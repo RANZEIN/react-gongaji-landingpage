@@ -323,10 +323,18 @@ export default function EaselShowcaseTemplate({
   const balls = useRef([] as (HTMLSpanElement | null)[])
 
   const [slide, setSlide] = useState(0)
-  const [watchVideo, setWatchVideo] = useState(false)
+  const [watchVideo, setWatchVideo] = useState(true)
   const [arc, setArc] = useState(0)
   const [liked, setLiked] = useState(false)
   const [dark, setDark] = useState(false)
+  const gateVideoRef = useRef(null as HTMLVideoElement | null)
+
+  useEffect(() => {
+    const vid = gateVideoRef.current
+    if (!watchVideo || !vid) return
+    vid.muted = true
+    vid.play().catch(() => {})
+  }, [watchVideo])
 
   useEffect(() => {
     const root = rootRef.current
@@ -820,12 +828,14 @@ export default function EaselShowcaseTemplate({
           <div className="ea-banner" data-rv>
             {watchVideo ? (
               <video
+                ref={gateVideoRef}
                 src={asset("02-gateway-banner/hero-video.mp4")}
                 poster={asset("02-gateway-banner/slide-1-gongaji-app.webp")}
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="auto"
                 className="ea-banner-vid"
               />
             ) : (

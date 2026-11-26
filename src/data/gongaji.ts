@@ -22,16 +22,68 @@ export const GONGAJI_LOGO = {
   ],
 } as const
 
-// 01-hero: Stage 1 fanned hero deck (back -> front, last card rises first)
+// 01-hero: Stage 1 fanned hero deck (left-back -> right-front, last card rises first)
 export const DECK1_ASSETS = [
-  { path: "01-hero/hero-8.png", alt: "Qursus by Gongaji — belajar mengaji bersama pengajar" },
-  { path: "01-hero/hero-7.png", alt: "QuPeduli by Gongaji — program donasi dan kebaikan" },
-  { path: "01-hero/hero-6.png", alt: "Gongaji App — teman tilawah dan hafalan Al-Qur'an" },
-  { path: "01-hero/hero-5.png", alt: "Qursus by Gongaji — kelas kelompok kecil 5 level" },
-  { path: "01-hero/hero-4.png", alt: "QuPeduli by Gongaji — sedekah dan wakaf transparan" },
-  { path: "01-hero/hero-3.png", alt: "Qursus by Gongaji — belajar lebih terarah dan bertahap" },
-  { path: "01-hero/hero-2.png", alt: "QuPeduli by Gongaji — berbagi kebaikan bersama" },
-  { path: "01-hero/hero-1.png", alt: "Gongaji App — aplikasi Al-Qur'an dan ibadah harian" },
+  {
+    kind: "tilawah" as const,
+    badge: "01 · BACA",
+    title: "Target Tilawah",
+    sub: "Khatam 30 Hari · Hari ke-12",
+    meta: "Al-Baqarah : 142 · 72%",
+    icon: "01-hero/icon-tafsir.webp",
+  },
+  {
+    kind: "cutout" as const,
+    theme: "gold" as const,
+    badge: "Qursus · Pengajar",
+    sub: "Bersertifikat",
+    path: "01-hero/mentor-teja.webp",
+  },
+  {
+    kind: "photo" as const,
+    path: "01-hero/deck-murottal-qari.webp",
+    badge: "11 Qari · Tikrar",
+    pos: "50% 42%",
+  },
+  {
+    kind: "features" as const,
+    badge: "IBADAH HARIAN",
+    title: "25+ Fitur Ibadah",
+    sub: "Shalat, Kiblat, Doa & VR",
+    icons: [
+      "01-hero/icon-jadwal-sholat.webp",
+      "01-hero/icon-arah-kiblat.webp",
+      "01-hero/icon-doa.webp",
+      "01-hero/icon-vr.webp",
+    ],
+  },
+  {
+    kind: "qulib" as const,
+    badge: "#JadiLebihMudah",
+    title: "Qu-Lib & Booster",
+    sub: "300+ buku & referensi Islami",
+    chips: ["Tilawah · Juz 12", "Hafalan · Tikrar"],
+    icon: "01-hero/icon-dzikir.webp",
+  },
+  {
+    kind: "cutout" as const,
+    theme: "cobalt" as const,
+    badge: "Live · 5–8 Org",
+    sub: "Pemula 1 – Mahir 2",
+    path: "01-hero/mentor-ilham.webp",
+  },
+  {
+    kind: "photo" as const,
+    path: "01-hero/deck-qupeduli-box.webp",
+    badge: "QuPeduli · Transparan",
+    pos: "42% 18%",
+  },
+  {
+    kind: "app" as const,
+    badge: "Gongaji App",
+    rating: "4,9 ★",
+    path: "01-hero/app-home.webp",
+  },
 ] as const
 
 // 02-gateway-banner: Featured ecosystem slides & video

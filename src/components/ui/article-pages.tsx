@@ -148,13 +148,13 @@ function SubpageFooter({ onNavigate }: { onNavigate: (to: string) => void }) {
         <div className="ea-wrap">
           <div className="ea-sub-cta">
             <div>
-              <span className="ea-duo-pill">Ekosistem Gongaji · App, Qursus &amp; QuPeduli</span>
+              <span className="ea-duo-pill">Ekosistem Gongaji · App, Qursus &amp; DonasiQu</span>
               <h2 className="ea-h3">
                 Baca Al-Qur’an &amp; Belajar{" "}
                 <span>Lebih Terarah</span>
               </h2>
               <p className="ea-small">
-                Nikmati 25+ fitur ibadah gratis di Gongaji App, kelas live Qursus 5–8 peserta, dan transparansi donasi QuPeduli.
+                Nikmati 25+ fitur ibadah gratis di Gongaji App, kelas live Qursus 5–8 peserta, dan transparansi donasi DonasiQu.
               </p>
             </div>
             <div className="ea-sub-cta-btns">
@@ -176,7 +176,7 @@ function SubpageFooter({ onNavigate }: { onNavigate: (to: string) => void }) {
               Baca. Belajar. Berbagi. <span className="ea-foot-dots">#JadiLebihMudah</span>
             </h2>
             <p className="ea-small">
-              Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. QuPeduli dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
+              Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. DonasiQu dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
             </p>
             <a className="ea-mail" href={mail}>
               {GONGAJI_LINKS.email}
@@ -213,8 +213,8 @@ function SubpageFooter({ onNavigate }: { onNavigate: (to: string) => void }) {
               <span className="ea-new">Live</span>
             </li>
             <li>
-              <a href="/#qupeduli" onClick={(e) => handleNav(e, "/#qupeduli")}>
-                QuPeduli
+              <a href="/#donasiqu" onClick={(e) => handleNav(e, "/#donasiqu")}>
+                DonasiQu
               </a>
             </li>
             <li>
@@ -241,8 +241,8 @@ function SubpageFooter({ onNavigate }: { onNavigate: (to: string) => void }) {
               </a>
             </li>
             <li>
-              <a href="/#qupeduli" onClick={(e) => handleNav(e, "/#qupeduli")}>
-                Program QuPeduli
+              <a href="/#donasiqu" onClick={(e) => handleNav(e, "/#donasiqu")}>
+                Program DonasiQu
               </a>
             </li>
             <li>

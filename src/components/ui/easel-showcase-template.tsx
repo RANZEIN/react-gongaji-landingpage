@@ -8,22 +8,22 @@ import {
   DECK1_ASSETS,
   DECK2_CARDS,
   DEFAULT_ARTICLES,
+  DONASIQU_CAMPAIGNS,
   formatArticleDate,
   GATEWAY_SLIDES,
   GONGAJI_LINKS,
   GONGAJI_LOGO,
   NAV_ITEMS,
   PUBLIC_ARTICLE_API,
-  QUPEDULI_CAMPAIGNS,
   splitCategories,
   TRUST_ITEMS,
   WALL_ASSETS,
   type ApiArticle,
-  type QuPeduliCampaign,
+  type DonasiQuCampaign,
 } from "@/data/gongaji"
 
 // Gongaji Ecosystem Showcase — kinetic scroll-driven landing page adapted from
-// the Easel Showcase choreography for the Gongaji ecosystem (Gongaji App, Qursus, QuPeduli).
+// the Easel Showcase choreography for the Gongaji ecosystem (Gongaji App, Qursus, DonasiQu).
 
 // #region motion
 export const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v))
@@ -302,8 +302,8 @@ export interface EaselShowcaseTemplateProps {
   email?: string
   /** where the pictures live; defaults to /assets/ */
   assetBase?: string
-  /** optional QuPeduli campaigns from API; defaults to local sample data */
-  campaigns?: readonly QuPeduliCampaign[]
+  /** optional DonasiQu campaigns from API; defaults to local sample data */
+  campaigns?: readonly DonasiQuCampaign[]
   /** optional articles override; by default fetches live from Gongaji public article API */
   articles?: readonly ApiArticle[]
   /** optional controlled dark mode state */
@@ -317,7 +317,7 @@ export default function EaselShowcaseTemplate({
   height = "100svh",
   email = GONGAJI_LINKS.email,
   assetBase = "/assets/",
-  campaigns = QUPEDULI_CAMPAIGNS,
+  campaigns = DONASIQU_CAMPAIGNS,
   articles,
   dark: controlledDark,
   onDarkChange,
@@ -742,7 +742,7 @@ export default function EaselShowcaseTemplate({
             </h1>
             <div className="ea-hero-foot">
               <p className="ea-fade" style={{ ["--d" as string]: "1.9s" } as CSSProperties}>
-                Gongaji adalah ekosistem digital Muslim: aplikasi tilawah harian Gongaji App, kelas belajar mengaji Qursus, dan platform kebaikan QuPeduli.
+                Gongaji adalah ekosistem digital Muslim: aplikasi tilawah harian Gongaji App, kelas belajar mengaji Qursus, dan platform kebaikan DonasiQu.
               </p>
               <div className="ea-btns ea-fade" style={{ ["--d" as string]: "2.05s" } as CSSProperties}>
                 <a className="ea-btn" href="#download">
@@ -765,7 +765,7 @@ export default function EaselShowcaseTemplate({
               <Words parts={["Berawal dari app,", "\n", ["tumbuh jadi", "ea-red"], "\n", "ekosistem Qur'an."]} at={4} />
             </h2>
             <p className="ea-body ea-wrapp">
-              <Words parts={["Dimulai dari Gongaji App sebagai teman tilawah harian, kini hadir dua sub-brand resmi: Qursus untuk belajar mengaji dan QuPeduli untuk berbagi."]} at={12} />
+              <Words parts={["Dimulai dari Gongaji App sebagai teman tilawah harian, kini hadir dua sub-brand resmi: Qursus untuk belajar mengaji dan DonasiQu untuk berbagi."]} at={12} />
             </p>
             <div className="ea-btns ea-late">
               <a className="ea-btn" href="#fitur">
@@ -776,7 +776,7 @@ export default function EaselShowcaseTemplate({
               </a>
             </div>
           </div>
-          <span className="ea-tag ea-t3 ea-redtag">@qursus · @qupeduli</span>
+          <span className="ea-tag ea-t3 ea-redtag">@qursus · @donasiqu</span>
           <span className="ea-tag ea-t4 ea-ink">50rb+ unduhan</span>
           <div className="ea-updown" aria-hidden="true">
             <Svg d={ICON.up} size={12} />
@@ -1484,13 +1484,13 @@ export default function EaselShowcaseTemplate({
                           </div>
                         </section>
 
-                        {/* ---------- Sub-Brand 02: dedicated QuPeduli section ---------- */}
-                        <section id="qupeduli" className="ea-sec ea-qupeduli" aria-label="Sub-Brand QuPeduli by Gongaji">
+                        {/* ---------- Sub-Brand 02: dedicated DonasiQu section ---------- */}
+                        <section id="donasiqu" className="ea-sec ea-qupeduli" aria-label="Sub-Brand DonasiQu by Gongaji">
                           <div className="ea-wrap">
                             <div className="ea-qup-head" data-rv>
                               <div>
                                 <p className="ea-eyebrow">
-                                  <Words parts={["SUB-BRAND 02 ·", ["QUPEDULI BY GONGAJI", "ea-purplew"]]} />
+                                  <Words parts={["SUB-BRAND 02 ·", ["DONASIQU BY GONGAJI", "ea-purplew"]]} />
                                 </p>
                                 <h2 className="ea-h2">
                                   <Words parts={["Kebaikan yang lahir", "\n", "dari rasa percaya."]} at={2} />
@@ -1636,7 +1636,7 @@ export default function EaselShowcaseTemplate({
                                     <span className="ea-mthumbs">
                                       <img src={asset("08-lime-marquee/thumb-4-qursus-murid.webp")} alt="" width={44} height={44} />
                                     </span>
-                                    Sub-Brand QuPeduli · Qubba Foundation
+                                    Sub-Brand DonasiQu · Qubba Foundation
                                     <span className="ea-mthumbs">
                                       <img src={asset("08-lime-marquee/thumb-5-teaching-mushaf.webp")} alt="" width={44} height={44} />
                                     </span>
@@ -1734,7 +1734,7 @@ export default function EaselShowcaseTemplate({
                                 Baca. Belajar. Berbagi. <span className="ea-foot-dots">#JadiLebihMudah</span>
                               </h2>
                               <p className="ea-small">
-                                Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. QuPeduli dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
+                                Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. DonasiQu dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
                               </p>
                               <a className="ea-mail" href={mail}>
                                 {email}
@@ -1769,7 +1769,7 @@ export default function EaselShowcaseTemplate({
                                 <span className="ea-new">Live</span>
                               </li>
                               <li>
-                                <a href="#qupeduli">QuPeduli</a>
+                                <a href="#donasiqu">DonasiQu</a>
                               </li>
                               <li>
                                 <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
@@ -1790,7 +1790,7 @@ export default function EaselShowcaseTemplate({
                                 <i className="ea-dot" /> <a href="#pricing">Biaya &amp; Beasiswa</a>
                               </li>
                               <li>
-                                <a href="#qupeduli">Program QuPeduli</a>
+                                <a href="#donasiqu">Program DonasiQu</a>
                               </li>
                               <li>
                                 <a href="#artikel">

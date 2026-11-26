@@ -22,12 +22,12 @@ export const GONGAJI_LOGO = {
   ],
 } as const
 
-// 01-hero: Stage 1 fanned hero deck (right-front -> left-back reading order: Gongaji App in front -> QuPeduli on far left)
+// 01-hero: Stage 1 fanned hero deck (right-front -> left-back reading order: Gongaji App in front -> DonasiQu on far left)
 export const DECK1_ASSETS = [
   {
     kind: "cutout" as const,
     theme: "sunburst" as const,
-    badge: "QuPeduli · Donasi",
+    badge: "DonasiQu · Donasi",
     sub: "",
     inkPill: true,
     darkText: true,
@@ -114,8 +114,8 @@ export const GATEWAY_SLIDES = [
   },
   {
     path: "02-gateway-banner/slide-3-qupeduli.webp",
-    alt: "QuPeduli by Gongaji — program sedekah dan wakaf transparan",
-    badge: "03 · QuPeduli",
+    alt: "DonasiQu by Gongaji — program sedekah dan wakaf transparan",
+    badge: "03 · DonasiQu",
     caption: "Donasi & wakaf transparan bersama Qubba Foundation",
   },
 ] as const
@@ -214,8 +214,8 @@ export const BAND_BOT_ASSETS = [
   { path: "04-fitur-icons/masjid-terdekat.webp", kind: "icon" as const, bg: "#4AC9AC" },
 ] as const
 
-// 10-qupeduli: Sub-Brand 02 (QuPeduli by Gongaji — siap disambungkan ke API campaign)
-export type QuPeduliCampaign = {
+// 10-qupeduli: Sub-Brand 02 (DonasiQu by Gongaji — siap disambungkan ke API campaign)
+export type DonasiQuCampaign = {
   readonly id: string
   readonly category: string
   readonly campaigner: string
@@ -229,7 +229,7 @@ export type QuPeduliCampaign = {
   readonly isIcon?: boolean
 }
 
-export const QUPEDULI_CAMPAIGNS: readonly QuPeduliCampaign[] = [
+export const DONASIQU_CAMPAIGNS: readonly DonasiQuCampaign[] = [
   {
     id: "mushaf-santri-garut",
     category: "Pendidikan",
@@ -497,7 +497,7 @@ export const NAV_ITEMS = [
   { label: "Tentang", href: "#ekosistem" },
   { label: "Fitur App", href: "#fitur", live: true },
   { label: "Qursus", href: "#qursus" },
-  { label: "QuPeduli", href: "#qupeduli" },
+  { label: "DonasiQu", href: "#donasiqu" },
   { label: "Artikel", href: "#artikel" },
   { label: "Kontak", href: `mailto:${GONGAJI_LINKS.email}` },
 ] as const

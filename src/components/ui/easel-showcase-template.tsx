@@ -1353,15 +1353,57 @@ export default function EaselShowcaseTemplate({
                 <div className="ea-rail-track" style={{ ["--ci" as string]: arc } as CSSProperties}>
                   {CAROUSEL_ITEMS.map((item, i) => (
                     <figure key={item.title} className="ea-arc" style={{ ["--i" as string]: i } as CSSProperties}>
-                      <div>
-                        <img
-                          src={asset(item.path)}
-                          alt={item.title}
-                          width={220}
-                          height={220}
-                          className={item.cls}
-                        />
-                      </div>
+                      {item.kind === "ui" ? (
+                        <div className={"ea-arc-card " + (item.variant === "indigo" ? "ea-arc-indigo" : "ea-arc-teal")}>
+                          <span className="ea-arc-top">
+                            <small>{item.badge}</small>
+                            <img src={asset(item.icon)} alt="" width={32} height={32} className="ea-arc-ico" />
+                          </span>
+                          <b>{item.big}</b>
+                          <span className="ea-arc-note">{item.note}</span>
+                        </div>
+                      ) : item.kind === "tajwid" ? (
+                        <div className="ea-arc-card ea-arc-tajwid">
+                          <small className="ea-arc-kicker">{item.badge}</small>
+                          <span className="ea-arc-rules">
+                            {item.rules.map((r) => (
+                              <em key={r}>{r}</em>
+                            ))}
+                          </span>
+                          <span className="ea-arc-note">{item.note}</span>
+                        </div>
+                      ) : item.kind === "cutout" ? (
+                        <div className={"ea-arc-card " + (item.theme === "gold" ? "ea-arc-gold" : "ea-arc-rose")}>
+                          <img src={asset(item.path)} alt={item.title} width={220} height={220} className="ea-arc-cut" />
+                          <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
+                        </div>
+                      ) : item.kind === "levels" ? (
+                        <div className="ea-arc-card ea-arc-levels">
+                          <span className="ea-arc-mini-photo">
+                            <img src={asset(item.path)} alt={item.title} width={220} height={115} />
+                          </span>
+                          <span className="ea-arc-lvl-row">
+                            {item.levels.map((lv, li) => (
+                              <em key={lv} className={li === 1 ? "on" : li === 0 ? "done" : ""}>
+                                {lv}
+                              </em>
+                            ))}
+                          </span>
+                          <span className="ea-arc-note">{item.note}</span>
+                        </div>
+                      ) : (
+                        <div className="ea-arc-photo">
+                          <img src={asset(item.path)} alt={item.title} width={220} height={220} />
+                          {item.pct > 0 ? (
+                            <span className="ea-arc-barbox" aria-hidden="true">
+                              <small>{item.sub}</small>
+                              <i><b style={{ width: item.pct + "%" }} /></i>
+                            </span>
+                          ) : (
+                            <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
+                          )}
+                        </div>
+                      )}
                       <figcaption>
                         <span className="ea-arc-tag">{item.tag}</span>
                         {item.title}
@@ -1989,9 +2031,39 @@ const CSS =
   ".ea-rail{overflow:hidden}" +
   ".ea-rail-track{display:flex;gap:16px;transform:translate3d(calc(var(--ci) * (-1 * (var(--cw) + 16px))),0,0);transition:transform .8s " + EASE + ";--cw:clamp(140px,15.3vw,220px)}" +
   ".ea-arc{flex:none;width:var(--cw)}" +
-  ".ea-arc div{width:var(--cw);height:var(--cw);border-radius:12px;overflow:hidden;opacity:0;filter:blur(10px);transform:scale(.94);transition:opacity .8s " + EASE + ",filter .8s " + EASE + ",transform .8s " + EASE + ";transition-delay:calc(var(--i) * 90ms)}" +
-  ".ea-in .ea-arc div{opacity:1;filter:blur(0);transform:none}" +
-  ".ea-arc img{width:100%;height:100%;object-fit:cover;transition:transform .8s " + EASE + "}" +
+  ".ea-arc>div{position:relative;width:var(--cw);height:var(--cw);border-radius:12px;overflow:hidden;opacity:0;filter:blur(10px);transform:scale(.94);transition:opacity .8s " + EASE + ",filter .8s " + EASE + ",transform .8s " + EASE + ";transition-delay:calc(var(--i) * 90ms)}" +
+  ".ea-in .ea-arc>div{opacity:1;filter:blur(0);transform:none}" +
+  ".ea-arc-photo>img{width:100%;height:100%;object-fit:cover;transition:transform .8s " + EASE + "}" +
+  ".ea-arc-card{padding:14px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;background:var(--card);border:1px solid var(--line)}" +
+  ".ea-arc-indigo{background:linear-gradient(150deg,#3a3088,#5145b9);color:#fff;border-color:transparent}" +
+  ".ea-arc-teal{background:linear-gradient(150deg,#0fa39d,#06767d);color:#fff;border-color:transparent}" +
+  ".ea-arc-tajwid{background:var(--card);color:var(--ink)}" +
+  ".ea-arc-gold{background:radial-gradient(circle at 55% 32%,#ffec94,#f8be24);color:#141414;border-color:transparent}" +
+  ".ea-arc-rose{background:radial-gradient(circle at 55% 32%,#ff9bb0,#da4d6e);color:#fff;border-color:transparent}" +
+  ".ea-arc-levels{padding:10px;background:var(--card);color:var(--ink)}" +
+  ".ea-arc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px}" +
+  ".ea-arc-top small,.ea-arc-kicker{font-size:9px;font-weight:700;letter-spacing:.08em;padding:3px 7px;border-radius:999px;background:rgba(255,255,255,.18);color:inherit;align-self:flex-start}" +
+  ".ea-arc-kicker{background:rgba(81,69,185,.12);color:#5145b9}" +
+  ".dark .ea-arc-kicker,.ea-dark .ea-arc-kicker{background:rgba(171,166,222,.16);color:#aba6de}" +
+  ".ea-arc-ico{width:32px;height:32px;object-fit:contain;flex:none}" +
+  ".ea-arc-card b{font-size:clamp(16px,1.45vw,21px);font-weight:600;letter-spacing:-.025em;line-height:1.1}" +
+  ".ea-arc-note{font-size:10px;opacity:.82;line-height:1.3}" +
+  ".ea-arc-rules{display:grid;grid-template-columns:1fr 1fr;gap:6px}" +
+  ".ea-arc-rules em{font-style:normal;font-size:11px;font-weight:600;padding:7px 6px;border-radius:8px;text-align:center;background:var(--bg);border:1px solid var(--line)}" +
+  ".ea-arc-cut{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:86%;height:88%;object-fit:contain;object-position:50% 100%;transition:transform .8s " + EASE + "}" +
+  ".ea-arc-rose .ea-arc-cut{bottom:18px;height:78%;object-position:50% 50%}" +
+  ".ea-arc-pill{height:21px;padding:0 8px;border-radius:999px;background:rgba(18,17,24,.82);backdrop-filter:blur(6px);color:#fff;font-size:9.5px;font-weight:600;display:inline-flex;align-items:center;white-space:nowrap}" +
+  ".ea-arc-pill-bot{position:absolute;left:10px;bottom:10px;z-index:2}" +
+  ".ea-arc-barbox{position:absolute;left:10px;right:10px;bottom:10px;padding:7px 9px;border-radius:9px;background:rgba(18,17,24,.84);backdrop-filter:blur(8px);color:#fff;display:flex;flex-direction:column;gap:4px}" +
+  ".ea-arc-barbox small{font-size:9.5px;font-weight:600}" +
+  ".ea-arc-barbox i{height:4px;border-radius:999px;background:rgba(255,255,255,.24);overflow:hidden;display:block}" +
+  ".ea-arc-barbox b{display:block;height:100%;border-radius:999px;background:#ffda03}" +
+  ".ea-arc-mini-photo{display:block;width:100%;height:52%;border-radius:8px;overflow:hidden}" +
+  ".ea-arc-mini-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .8s " + EASE + "}" +
+  ".ea-arc-lvl-row{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}" +
+  ".ea-arc-lvl-row em{font-style:normal;font-size:9.5px;font-weight:700;padding:5px 0;border-radius:6px;text-align:center;background:var(--bg);color:var(--mute)}" +
+  ".ea-arc-lvl-row em.done{background:#a6e8c1;color:#0f5b38}" +
+  ".ea-arc-lvl-row em.on{background:#5145b9;color:#fff}" +
   ".ea-arc figcaption{margin-top:10px;font-size:12px;font-weight:600;letter-spacing:-.01em;display:flex;flex-direction:column;gap:2px}" +
   ".ea-arc-tag{font-size:10px;font-weight:500;color:var(--blue);text-transform:uppercase;letter-spacing:.08em}" +
   ".dark .ea-arc-tag,.ea-dark .ea-arc-tag{color:#aba6de}" +
@@ -2100,7 +2172,7 @@ const CSS =
   ".ea-link:hover::after,.ea-ghost:hover::after,.ea-textlink:hover::after{transform:scaleX(1);transform-origin:0 50%}" +
   ".ea-round:hover,.ea-arrows button:hover{transform:scale(1.1)}" +
   ".ea-btn:hover,.ea-store-badge:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}" +
-  ".ea-arc:hover img,.ea-photo:hover>img{transform:scale(1.05)}" +
+  ".ea-arc:hover .ea-arc-photo>img,.ea-arc:hover .ea-arc-mini-photo>img,.ea-photo:hover>img{transform:scale(1.05)}" +
   ".ea-meet:hover .ea-duo-phones,.ea-arch:hover .ea-qursus-ui{transform:translate3d(0,-4px,0)}" +
   ".ea-b1:hover .ea-pile .ea-pcard:nth-child(1){transform:translate(-80%,-44%) rotate(-18deg)}" +
   ".ea-b1:hover .ea-pile .ea-pcard:nth-child(3){transform:translate(-18%,-58%) rotate(14deg)}" +
@@ -2127,9 +2199,9 @@ const CSS =
   "}" +
   // reduced motion: no time-based motion; scroll-linked stages follow the scrollbar only
   "@media (prefers-reduced-motion:reduce){" +
-  ".ea-w,.ea-late,.ea-fade,.ea-tag,.ea-doodle,.ea-bcard,.ea-banner,.ea-banner img,.ea-arc div,.ea-plan,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-rail-track,.ea-progress i{transition:none!important}" +
+  ".ea-w,.ea-late,.ea-fade,.ea-tag,.ea-doodle,.ea-bcard,.ea-banner,.ea-banner img,.ea-arc>div,.ea-plan,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-rail-track,.ea-progress i{transition:none!important}" +
   ".ea-w{opacity:1;filter:none;transform:none}" +
-  ".ea-late,.ea-fade,.ea-bcard,.ea-banner,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-arc div{opacity:1;filter:none;transform:none}" +
+  ".ea-late,.ea-fade,.ea-bcard,.ea-banner,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-arc>div{opacity:1;filter:none;transform:none}" +
   ".ea-logos-track{animation:none}" +
   "}" +
   ".ea-reduce .ea-w{transition:none;opacity:1;filter:none;transform:none}"

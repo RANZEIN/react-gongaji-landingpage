@@ -159,12 +159,12 @@ function ArticleCard({ item }: { item: ApiArticle }) {
       <div className="ga-card-body">
         <div className="ga-card-meta">
           <span>{formatArticleDate(item.article_published_at)}</span>
-          <span>{item.article_total_view.toLocaleString("id-ID")} dilihat</span>
+          <span>{(item.article_total_view ?? 0).toLocaleString("id-ID")} dilihat</span>
         </div>
         <h3>{item.article_title}</h3>
         <p>{cleanArticleExcerpt(item.article_excerpt)}</p>
         <div className="ga-card-foot">
-          <span className="ga-card-author">{item.article_author}</span>
+          <span className="ga-card-author">{item.article_author || "Redaksi Gongaji"}</span>
           <span className="ga-card-read">Baca artikel →</span>
         </div>
       </div>
@@ -235,15 +235,15 @@ export function ArticlesDirectoryPage({
         if (!cats.includes(category)) return false
       }
       if (!needle) return true
-      const haystack = `${item.article_title} ${item.article_excerpt} ${item.article_author} ${item.article_category}`.toLowerCase()
+      const haystack = `${item.article_title ?? ""} ${item.article_excerpt ?? ""} ${item.article_author ?? ""} ${item.article_category ?? ""}`.toLowerCase()
       return haystack.includes(needle)
     })
 
     const sorted = [...matching]
     sorted.sort((a, b) => {
-      if (sort === "popular") return b.article_total_view - a.article_total_view
-      const ta = new Date(a.article_published_at).getTime() || 0
-      const tb = new Date(b.article_published_at).getTime() || 0
+      if (sort === "popular") return (b.article_total_view ?? 0) - (a.article_total_view ?? 0)
+      const ta = new Date(a.article_published_at ?? "").getTime() || 0
+      const tb = new Date(b.article_published_at ?? "").getTime() || 0
       return sort === "oldest" ? ta - tb : tb - ta
     })
     return sorted
@@ -604,13 +604,13 @@ export function ArticleReaderPage({
                 <div className="ga-reader-meta-bar">
                   <div className="ga-author-box">
                     <span className="ga-author-avatar" aria-hidden="true">
-                      {article.article_author.trim().charAt(0).toUpperCase() || "G"}
+                      {(article.article_author || "Gongaji").trim().charAt(0).toUpperCase() || "G"}
                     </span>
                     <div>
-                      <strong>{article.article_author}</strong>
+                      <strong>{article.article_author || "Redaksi Gongaji"}</strong>
                       <small>
                         {formatArticleDate(article.article_published_at)} · {readMinutes} menit baca ·{" "}
-                        {article.article_total_view.toLocaleString("id-ID")} dilihat
+                        {(article.article_total_view ?? 0).toLocaleString("id-ID")} dilihat
                         {typeof article.article_total_like === "number" ? ` · ${article.article_total_like} suka` : ""}
                       </small>
                     </div>

@@ -15,6 +15,7 @@ import {
   NAV_ITEMS,
   PUBLIC_ARTICLE_API,
   QUPEDULI_CAMPAIGNS,
+  splitCategories,
   TRUST_ITEMS,
   WALL_ASSETS,
   type ApiArticle,
@@ -1540,13 +1541,15 @@ export default function EaselShowcaseTemplate({
                                 <p className="ea-small">
                                   Bacaan ringan seputar Ramadan, fikih keluarga, dan tadabbur Al-Qur'an langsung dari redaksi Gongaji.
                                 </p>
-                                <a className="ea-viewall ea-art-cta" href="#/artikel">
+                                <a className="ea-art-cta" href="#/artikel">
                                   Lihat Semua ({articleTotal} Artikel) →
                                 </a>
                               </div>
                             </div>
                             <div className="ea-art-grid" data-rv>
-                              {liveArticles.map((item) => (
+                              {liveArticles.map((item) => {
+                                const primaryCategory = splitCategories(item.article_category)[0]
+                                return (
                                 <a
                                   key={item.article_uuid}
                                   href={`#/artikel/${item.article_uuid}`}
@@ -1555,7 +1558,7 @@ export default function EaselShowcaseTemplate({
                                 >
                                   <div className="ea-art-media">
                                     <img
-                                      src={item.article_image_url}
+                                      src={item.article_image_url || asset("06-artikel-carousel/01-belajar-pemula.webp")}
                                       alt={item.article_title}
                                       width={400}
                                       height={250}
@@ -1567,22 +1570,23 @@ export default function EaselShowcaseTemplate({
                                         }
                                       }}
                                     />
-                                    <span className="ea-art-cat">{item.article_category.split(",")[0].trim()}</span>
+                                    {primaryCategory ? <span className="ea-art-cat">{primaryCategory}</span> : null}
                                   </div>
                                   <div className="ea-art-body">
                                     <div className="ea-art-meta">
                                       <span>{formatArticleDate(item.article_published_at)}</span>
-                                      <span>{item.article_total_view.toLocaleString("id-ID")} dilihat</span>
+                                      <span>{(item.article_total_view ?? 0).toLocaleString("id-ID")} dilihat</span>
                                     </div>
                                     <h3>{item.article_title}</h3>
                                     <p>{cleanArticleExcerpt(item.article_excerpt)}</p>
                                     <div className="ea-art-foot">
-                                      <span>{item.article_author}</span>
+                                      <span>{item.article_author || "Redaksi Gongaji"}</span>
                                       <small className="ea-art-read">Baca artikel →</small>
                                     </div>
                                   </div>
                                 </a>
-                              ))}
+                                )
+                              })}
                             </div>
                           </div>
                         </section>
@@ -2127,10 +2131,10 @@ export default function EaselShowcaseTemplate({
   ".ea-qup-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:var(--mute)}" +
   ".ea-qup-foot b{color:var(--ink);font-weight:600}" +
   // live articles section (3-column editorial grid)
-  ".ea-artikel{padding:clamp(60px,10vh,110px) 0}" +
+  ".ea-artikel{position:relative;z-index:2;padding:clamp(60px,10vh,110px) 0}" +
   ".ea-art-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}" +
-  ".ea-art-head-r{display:flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:360px}" +
-  ".ea-art-cta{position:static;height:30px;padding:0 16px;border-radius:999px;background:var(--blue);color:#fff;font-size:11px;font-weight:500;display:inline-flex;align-items:center}" +
+  ".ea-art-head-r{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:360px}" +
+  ".ea-art-cta{position:relative;z-index:3;height:36px;padding:0 18px;border-radius:999px;background:var(--blue);color:#fff;font-size:12px;font-weight:600;display:inline-flex;align-items:center;cursor:pointer;pointer-events:auto;transition:transform .25s " + EASE + ",opacity .2s ease}" +
   ".ea-art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
   ".ea-art-grid.ea-in{opacity:1;transform:none}" +
   ".ea-art-card{border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .45s " + EASE + ",border-color .25s ease}" +
@@ -2245,7 +2249,7 @@ export default function EaselShowcaseTemplate({
   "@media (hover:hover) and (pointer:fine){" +
   ".ea-link:hover::after,.ea-ghost:hover::after,.ea-textlink:hover::after{transform:scaleX(1);transform-origin:0 50%}" +
   ".ea-round:hover,.ea-arrows button:hover{transform:scale(1.1)}" +
-  ".ea-btn:hover,.ea-store-badge:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}" +
+  ".ea-btn:hover,.ea-art-cta:hover,.ea-store-badge:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}" +
   ".ea-art-card:hover .ea-art-media img,.ea-photo:hover>img{transform:scale(1.05)}" +
   ".ea-art-card:hover{transform:translate3d(0,-4px,0);border-color:var(--blue)}" +
   ".ea-meet:hover .ea-duo-phones,.ea-arch:hover .ea-qursus-ui{transform:translate3d(0,-4px,0)}" +

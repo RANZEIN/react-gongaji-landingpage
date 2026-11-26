@@ -287,57 +287,59 @@ export type ApiTaxonomyItem = {
 export type ApiArticle = {
   readonly article_uuid: string
   readonly article_title: string
-  readonly article_excerpt: string
-  readonly article_image_url: string
-  readonly article_author: string
-  readonly article_category: string
-  readonly article_published_at: string
-  readonly article_total_view: number
-  readonly article_total_comment: number
+  readonly article_excerpt: string | null
+  readonly article_image_url: string | null
+  readonly article_author: string | null
+  readonly article_category: string | null
+  readonly article_published_at: string | null
+  readonly article_total_view: number | null
+  readonly article_total_comment: number | null
 }
 
 export type ApiArticleDetail = {
   readonly article_uuid: string
   readonly article_title: string
-  readonly article_description: string
-  readonly article_image_url: string
-  readonly article_author: string
-  readonly article_category: string
-  readonly article_tag?: string
-  readonly article_published_at: string
-  readonly article_total_view: number
-  readonly article_total_like?: number
-  readonly article_category_list?: readonly ApiTaxonomyItem[]
-  readonly article_tag_list?: readonly ApiTaxonomyItem[]
+  readonly article_description: string | null
+  readonly article_image_url: string | null
+  readonly article_author: string | null
+  readonly article_category: string | null
+  readonly article_tag?: string | null
+  readonly article_published_at: string | null
+  readonly article_total_view: number | null
+  readonly article_total_like?: number | null
+  readonly article_category_list?: readonly ApiTaxonomyItem[] | null
+  readonly article_tag_list?: readonly ApiTaxonomyItem[] | null
 }
 
-export const cleanArticleExcerpt = (raw: string) => raw.replace(/\s+/g, " ").trim()
+export const cleanArticleExcerpt = (raw?: string | null) => (raw ?? "").replace(/\s+/g, " ").trim()
 
-export const formatArticleDate = (iso: string) => {
+export const formatArticleDate = (iso?: string | null) => {
+  if (!iso) return ""
   const dt = new Date(iso)
   if (Number.isNaN(dt.getTime())) return ""
   return new Intl.DateTimeFormat("id-ID", { day: "numeric", month: "short", year: "numeric" }).format(dt)
 }
 
-export const splitCategories = (raw: string) =>
-  raw
+export const splitCategories = (raw?: string | null) =>
+  (raw ?? "")
     .split(",")
     .map((c) => c.trim())
     .filter(Boolean)
 
-export const estimateReadingMinutes = (htmlOrText: string) => {
-  const plain = htmlOrText.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
+export const estimateReadingMinutes = (htmlOrText?: string | null) => {
+  const plain = (htmlOrText ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
   const words = plain ? plain.split(" ").length : 0
   return Math.max(1, Math.ceil(words / 180))
 }
 
-export function sanitizeArticleHtml(rawHtml: string): string {
-  if (!rawHtml) return ""
+export function sanitizeArticleHtml(rawHtml?: string | null): string {
+  const safeInput = rawHtml ?? ""
+  if (!safeInput) return ""
   if (typeof DOMParser === "undefined") {
-    return rawHtml.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
+    return safeInput.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
   }
   const parser = new DOMParser()
-  const doc = parser.parseFromString(rawHtml, "text/html")
+  const doc = parser.parseFromString(safeInput, "text/html")
 
   doc.querySelectorAll("script, style, iframe, object, embed, link, meta, form, input, button").forEach((el) => {
     el.remove()

@@ -467,7 +467,7 @@ export function ArticlesDirectoryPage({
                       setQuery(e.target.value)
                       setPage(1)
                     }}
-                    placeholder="Cari judul artikel, topik, atau nama penulis..."
+                    placeholder="Cari artikel atau penulis..."
                     aria-label="Cari artikel"
                   />
                   {query ? (
@@ -1119,6 +1119,13 @@ const SUBPAGE_CSS = `
 @media (max-width:767px){
   .ea-nav{height:76px;margin-bottom:-76px;padding-top:16px}
   .ea-submain{padding-top:96px}
+  .ea-filter-card{padding:14px;gap:12px}
+  .ea-search-row{flex-direction:column;align-items:stretch;gap:10px}
+  .ea-search-box{flex:none;width:100%;min-width:0;height:42px}
+  .ea-search-box input{font-size:15px}
+  .ea-sort-wrap{width:100%;justify-content:space-between;height:42px;padding:0 14px}
+  .ea-sort-wrap select{margin-left:auto;text-align:right;text-align-last:right;font-size:13px;padding-right:4px}
+  .ea-cats{margin:0 -14px;padding:2px 24px 2px 14px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%)}
   .ea-art-grid{grid-template-columns:1fr}
 }
 `

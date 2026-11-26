@@ -1079,13 +1079,13 @@ export default function EaselShowcaseTemplate({
             </h2>
             <span className="ea-tag ea-ink ea-pop ea-t5">50rb+ Download</span>
           </div>
-          <div className="ea-banner" data-rv>
+          <div className={"ea-banner" + (!activeSlide.video ? " is-empty-stage" : "")} data-rv>
             {watchVideo && activeSlide.video ? (
               <video
                 key={activeSlide.video}
                 ref={gateVideoRef}
                 src={asset(activeSlide.video)}
-                poster={asset(activeSlide.path)}
+                poster={activeSlide.path ? asset(activeSlide.path) : undefined}
                 autoPlay
                 loop
                 muted
@@ -1094,35 +1094,93 @@ export default function EaselShowcaseTemplate({
                 className="ea-banner-vid"
                 style={{ objectPosition: slide === 0 ? "50% 50%" : "50% 25%" }}
               />
+            ) : activeSlide.path ? (
+              GATEWAY_SLIDES.map((item, i) =>
+                item.path ? (
+                  <img
+                    key={item.path}
+                    src={asset(item.path)}
+                    alt={i === slide ? item.alt : ""}
+                    className={i === slide ? "on" : ""}
+                    width={1400}
+                    height={560}
+                    draggable={false}
+                  />
+                ) : null,
+              )
             ) : (
-              GATEWAY_SLIDES.map((item, i) => (
-                <img
-                  key={item.path}
-                  src={asset(item.path)}
-                  alt={i === slide ? item.alt : ""}
-                  className={i === slide ? "on" : ""}
-                  width={1400}
-                  height={560}
-                  draggable={false}
-                />
-              ))
-            )}
-            <div className="ea-banner-scrim" aria-hidden="true" />
-            {!activeSlide.video && watchVideo && (
-              <div className="ea-vid-empty" role="status">
-                <span className="ea-vid-empty-ico" aria-hidden="true">
-                  <Svg d={ICON.play} size={14} fill="currentColor" stroke={0} />
-                </span>
-                <b>Video DonasiQu Segera Hadir</b>
-                <small>Dokumentasi program sedekah &amp; wakaf sedang dipersiapkan.</small>
-                <div className="ea-vid-empty-acts">
-                  <button type="button" onClick={() => setWatchVideo(false)}>
-                    Lihat Poster
-                  </button>
-                  <a href="#donasiqu">Program DonasiQu →</a>
+              <div className="ea-dq-stage" role="status">
+                <div className="ea-dq-copy">
+                  <span className="ea-dq-pill">
+                    <i aria-hidden="true" />
+                    Video Segera Hadir
+                  </span>
+                  <h3>Video Profil DonasiQu Belum Tersedia</h3>
+                  <p>
+                    Dokumentasi penyaluran mushaf, insentif guru ngaji, &amp; program wakaf bersama Qubba Foundation sedang dalam tahap produksi.
+                  </p>
+                  <a className="ea-dq-btn" href="#donasiqu">
+                    Lihat Program DonasiQu →
+                  </a>
+                </div>
+                <div className="ea-dq-art" aria-hidden="true">
+                  <svg viewBox="0 0 360 250" fill="none" className="ea-dq-svg">
+                    <defs>
+                      <linearGradient id="dqFrameBg" x1="20" y1="16" x2="340" y2="232" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#352d7a" />
+                        <stop offset="100%" stopColor="#1c183c" />
+                      </linearGradient>
+                      <linearGradient id="dqGold" x1="120" y1="40" x2="245" y2="185" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#ffe570" />
+                        <stop offset="100%" stopColor="#f5a623" />
+                      </linearGradient>
+                      <linearGradient id="dqMint" x1="80" y1="130" x2="280" y2="210" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#a6e8c1" />
+                        <stop offset="100%" stopColor="#43c59e" />
+                      </linearGradient>
+                    </defs>
+                    {/* Video stage frame */}
+                    <rect x="24" y="20" width="312" height="196" rx="20" fill="url(#dqFrameBg)" stroke="rgba(255,255,255,0.16)" strokeWidth="1.5" />
+                    <rect x="38" y="34" width="284" height="140" rx="14" stroke="rgba(255,255,255,0.14)" strokeDasharray="5 5" strokeWidth="1.5" />
+                    {/* Subtle orbital rings */}
+                    <circle cx="180" cy="102" r="56" fill="rgba(248,190,36,0.09)" />
+                    <circle cx="180" cy="102" r="42" fill="rgba(81,69,185,0.28)" stroke="rgba(255,229,112,0.38)" strokeWidth="1.2" />
+                    {/* Floating sparkles & crescent */}
+                    <path d="M98 62c2.2 0 4-1.8 4-4 0 2.2 1.8 4 4 4-2.2 0-4 1.8-4 4 0-2.2-1.8-4-4-4Z" fill="#ffe570" />
+                    <path d="M262 74c1.8 0 3.2-1.4 3.2-3.2 0 1.8 1.4 3.2 3.2 3.2-1.8 0-3.2 1.4-3.2 3.2 0-1.8-1.4-3.2-3.2-3.2Z" fill="#a6e8c1" />
+                    <path d="M268 48a9 9 0 1 1-9.6 13.8 7.2 7.2 0 1 0 9.6-13.8Z" fill="#ffe570" opacity="0.88" />
+                    {/* Heart gift coin above mushaf */}
+                    <circle cx="180" cy="70" r="16" fill="url(#dqGold)" />
+                    <path
+                      d="M180 78.2s-6.8-4.2-6.8-8.6a3.8 3.8 0 0 1 6.8-2.3 3.8 3.8 0 0 1 6.8 2.3c0 4.4-6.8 8.6-6.8 8.6Z"
+                      fill="#1b1734"
+                    />
+                    {/* Open Mushaf & hands of care */}
+                    <path
+                      d="M128 106c0-4 3.2-7.2 7.2-7.2h26.4c9.2 0 15.2 3.2 18.4 8.2 3.2-5 9.2-8.2 18.4-8.2h26.4c4 0 7.2 3.2 7.2 7.2v34.5c0 3.6-2.9 6.5-6.5 6.5h-28.5c-7.8 0-13.5 3.1-17 7.5-3.5-4.4-9.2-7.5-17-7.5h-28.5c-3.6 0-6.5-2.9-6.5-6.5V106Z"
+                      fill="#fff"
+                    />
+                    <path d="M180 107v46" stroke="#d8d4f2" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M141 114h24M141 123h21M141 132h17" stroke="#5145b9" strokeWidth="2.4" strokeLinecap="round" opacity="0.72" />
+                    <path d="M195 114h24M198 123h21M202 132h17" stroke="#5145b9" strokeWidth="2.4" strokeLinecap="round" opacity="0.72" />
+                    {/* Supporting ribbon arc */}
+                    <path
+                      d="M112 149c16 14 41 21 68 21s52-7 68-21"
+                      stroke="url(#dqMint)"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                    />
+                    {/* Timeline bar inside frame */}
+                    <rect x="44" y="190" width="212" height="6" rx="3" fill="rgba(255,255,255,0.14)" />
+                    <rect x="44" y="190" width="76" height="6" rx="3" fill="#f8be24" opacity="0.7" />
+                    <rect x="268" y="185" width="48" height="16" rx="8" fill="rgba(255,255,255,0.12)" />
+                    <circle cx="278" cy="193" r="3" fill="#a6e8c1" />
+                    <rect x="285" y="191" width="23" height="4" rx="2" fill="rgba(255,255,255,0.72)" />
+                  </svg>
                 </div>
               </div>
             )}
+            <div className="ea-banner-scrim" aria-hidden="true" />
             <span className="ea-switch" aria-hidden="true">
               <i />
               <i />
@@ -1140,14 +1198,9 @@ export default function EaselShowcaseTemplate({
                 {watchVideo ? "Tutup Video" : "Tonton Video"}
               </button>
             ) : (
-              <button
-                type="button"
-                className="ea-watch is-empty"
-                onClick={() => setWatchVideo((v) => !v)}
-                aria-pressed={watchVideo}
-              >
-                {watchVideo ? "Tutup Info Video" : "Video Belum Tersedia"}
-              </button>
+              <span className="ea-watch is-empty" aria-disabled="true">
+                Video Belum Tersedia
+              </span>
             )}
             <div className="ea-arrows">
               <button
@@ -2204,15 +2257,17 @@ const CSS =
   ".ea-slide-meta small{font-size:12px;color:rgba(255,255,255,.8)}" +
   ".ea-more{position:absolute;right:22px;top:16px;color:#fff;opacity:.8;z-index:2}" +
   ".ea-watch{position:absolute;left:24px;bottom:22px;z-index:2;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 16px;border-radius:999px;background:#fff;color:#141414;font-size:12.5px;font-weight:500}" +
-  ".ea-watch.is-empty{background:rgba(255,255,255,.22);color:#fff;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.28)}" +
-  ".ea-vid-empty{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:2;width:min(340px,calc(100% - 40px));padding:18px 20px;border-radius:16px;background:rgba(18,17,24,.78);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.16);color:#fff;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}" +
-  ".ea-vid-empty-ico{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);color:#e6fa6a;display:grid;place-items:center;margin-bottom:2px}" +
-  ".ea-vid-empty b{font-size:14px;font-weight:600;letter-spacing:-.01em}" +
-  ".ea-vid-empty small{font-size:11.5px;line-height:1.4;color:rgba(255,255,255,.78)}" +
-  ".ea-vid-empty-acts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:6px}" +
-  ".ea-vid-empty-acts button,.ea-vid-empty-acts a{height:28px;padding:0 12px;border-radius:999px;font-size:11px;font-weight:600;display:inline-flex;align-items:center}" +
-  ".ea-vid-empty-acts button{background:rgba(255,255,255,.16);color:#fff}" +
-  ".ea-vid-empty-acts a{background:#fff;color:#141414}" +
+  ".ea-watch.is-empty{background:rgba(255,255,255,.14);color:rgba(255,255,255,.86);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);cursor:default}" +
+  ".ea-dq-stage{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center;gap:28px;padding:48px 82px 96px 86px;background:radial-gradient(circle at 78% 36%,rgba(248,190,36,.18),transparent 48%),radial-gradient(circle at 18% 82%,rgba(81,69,185,.35),transparent 55%),linear-gradient(135deg,#181530 0%,#262056 52%,#141226 100%);color:#fff}" +
+  ".ea-dq-copy{display:flex;flex-direction:column;align-items:flex-start;gap:10px;position:relative;z-index:2}" +
+  ".ea-dq-pill{display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 11px;border-radius:999px;background:rgba(248,190,36,.16);border:1px solid rgba(248,190,36,.38);color:#ffe570;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}" +
+  ".ea-dq-pill i{width:6px;height:6px;border-radius:50%;background:#ffe570}" +
+  ".ea-dq-copy h3{font-size:clamp(22px,2.5vw,34px);line-height:1.08;letter-spacing:-.03em;font-weight:600;max-width:460px}" +
+  ".ea-dq-copy p{font-size:clamp(12px,1.05vw,14px);line-height:1.5;color:rgba(255,255,255,.78);max-width:430px}" +
+  ".ea-dq-btn{margin-top:4px;display:inline-flex;align-items:center;height:36px;padding:0 16px;border-radius:999px;background:#f8be24;color:#141414;font-size:12px;font-weight:600;transition:transform .25s " + EASE + "}" +
+  ".ea-dq-btn:hover{transform:translate3d(0,-2px,0)}" +
+  ".ea-dq-art{display:flex;align-items:center;justify-content:center;position:relative;z-index:2}" +
+  ".ea-dq-svg{width:100%;max-width:360px;height:auto;filter:drop-shadow(0 22px 40px rgba(0,0,0,.38))}" +
   ".ea-arrows{position:absolute;right:22px;bottom:20px;z-index:2;display:flex;gap:6px}" +
   ".ea-arrows button{width:36px;height:36px;border-radius:50%;background:#fff;color:#141414;display:grid;place-items:center;transition:transform .3s " + EASE + "}" +
   // trusted
@@ -2571,6 +2626,11 @@ const CSS =
   ".ea-hoop-hud{top:4px;padding:4px 10px;font-size:10.5px}.ea-hoop-hud small{display:none}" +
   ".ea-trust-head{flex-direction:column;align-items:flex-start}" +
   ".ea-slide-meta{display:none}" +
+  ".ea-banner.is-empty-stage{height:auto;min-height:430px}" +
+  ".ea-dq-stage{position:relative;grid-template-columns:1fr;gap:14px;padding:24px 20px 76px 68px}" +
+  ".ea-dq-art{order:-1;justify-content:flex-start}" +
+  ".ea-dq-svg{max-width:210px}" +
+  ".ea-dq-copy p{font-size:12px}" +
   "}" +
   // reduced motion: no time-based motion; scroll-linked stages follow the scrollbar only
   "@media (prefers-reduced-motion:reduce){" +

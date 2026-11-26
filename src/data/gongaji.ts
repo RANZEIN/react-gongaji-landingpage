@@ -115,7 +115,7 @@ export const GATEWAY_SLIDES = [
     caption: "Kelas grup kecil 5–8 orang, Pemula hingga Mahir",
   },
   {
-    path: "02-gateway-banner/slide-3-qupeduli.webp",
+    path: null,
     video: null,
     alt: "DonasiQu by Gongaji — program sedekah dan wakaf transparan",
     badge: "03 · DonasiQu",

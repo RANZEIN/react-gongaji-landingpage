@@ -70,17 +70,21 @@ export function stair2Pose(j: number, w: number, h: number): Pose {
   if (w < 768) return { x: w * 0.2 + j * w * 0.1, y: h * 0.3 + j * h * 0.075, s: 0.55 * u, r: 0, ry: -6, o: 1 }
   return { x: 190 * u + j * 172 * u, y: h * 0.22 + j * h * 0.1, s: u, r: 0, ry: -8, o: 1 }
 }
-/** folder geometry: left, top, cell size, gap (px) */
+/** folder geometry: left, top, inner pad, cell size, gap (px) */
 export function folderBox(w: number, h: number) {
   const u = unitWH(w, h)
   if (w < 768) {
     const fw = w * 0.88
+    const pad = 10
     const gap = 8
-    const cell = (fw - 2 * gap) / 3
-    return { x: w * 0.06, y: h * 0.42, w: fw, cell, gap, head: 92 }
+    const cell = (fw - 2 * pad - 2 * gap) / 3
+    return { x: w * 0.06, y: h * 0.42, w: fw, pad, cell, gap, head: 98 }
   }
   const fw = 606 * u
-  return { x: w - 102 * u - fw, y: h / 2 - 290 * u, w: fw, cell: 192 * u, gap: 12 * u, head: 140 * u }
+  const pad = 16 * u
+  const gap = 12 * u
+  const cell = (fw - 2 * pad - 2 * gap) / 3
+  return { x: w - 102 * u - fw, y: h / 2 - 290 * u, w: fw, pad, cell, gap, head: 122 + pad }
 }
 /** where card j lands in the folder (the info card has no slot) */
 export const FOLDER_SLOT = [3, -1, 0, 1, 2, 4, 5]
@@ -90,7 +94,7 @@ export function folderPose(j: number, w: number, h: number): Pose {
   const c = slot % 3
   const r = Math.floor(slot / 3)
   return {
-    x: f.x + f.cell / 2 + c * (f.cell + f.gap),
+    x: f.x + f.pad + f.cell / 2 + c * (f.cell + f.gap),
     y: f.y + f.head + f.cell / 2 + r * (f.cell + f.gap),
     s: f.cell / 230,
     r: 0,
@@ -479,7 +483,7 @@ export default function EaselShowcaseTemplate({
           fd.style.left = f.x.toFixed(1) + "px"
           fd.style.top = f.y.toFixed(1) + "px"
           fd.style.width = f.w.toFixed(1) + "px"
-          fd.style.height = (f.head + 2 * f.cell + f.gap + (w < 768 ? 10 : 28 * u)).toFixed(1) + "px"
+          fd.style.height = (f.head + 2 * f.cell + f.gap + f.pad).toFixed(1) + "px"
           fd.style.opacity = a.toFixed(3)
           fd.style.transform = "translate3d(0," + ((1 - a) * 40).toFixed(1) + "px,0)"
         }

@@ -256,7 +256,7 @@ export function stepBalls(bs: Ball[], W: number, H: number, dt: number, g = 2600
 export const settled = (bs: Ball[]) => bs.every((b) => !b.grab && Math.abs(b.vx) < 6 && Math.abs(b.vy) < 6)
 // #endregion
 
-// line-art doodles: one path set per icon, drawn on a 24-unit grid
+// line-art doodles: one path set per icon, drawn on a 24-unit grid (stage 2 background)
 const DOODLES = [
   "M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.4 6.8 19.2l1-5.9L3.5 9.2l5.9-.8z",
   "M4 6.5A2.5 2.5 0 0 1 6.5 4H12v16H6.5A2.5 2.5 0 0 1 4 17.5z M20 6.5A2.5 2.5 0 0 0 17.5 4H12v16h5.5a2.5 2.5 0 0 0 2.5-2.5z",
@@ -267,12 +267,25 @@ const DOODLES = [
   "M13 3L5 13h6l-1 8 8-10h-6z",
   "M12 3l6 4v10l-6 4-6-4V7z M12 3v18 M6 7l12 10 M18 7L6 17",
   "M12 4a8 8 0 1 0 .01 0 M12 4v16 M4 12h16 M6.5 6.5l11 11",
-  "M5 19l4-12 4 8 3-5 3 9z",
-  "M12 5v14 M5 12h14 M7 7l10 10 M17 7L7 17",
-  "M8 4h8l3 6-7 10L5 10z M5 10h14 M10 4l2 6 2-6",
-  "M4 16c4-8 12-8 16 0 M8 16a4 4 0 0 0 8 0",
-  "M6 6h12v12H6z M9 9h6v6H9z",
 ]
+
+// 14 Gongaji App icons & official Gongaji mark for the interactive basketball pile
+const GONGAJI_BALL_ICONS = [
+  { kind: "mark" as const, label: "Gongaji App" },
+  { kind: "img" as const, path: "04-fitur-icons/tafsir.webp", label: "Tafsir Al-Qur'an" },
+  { kind: "img" as const, path: "04-fitur-icons/dzikir.webp", label: "Dzikir Harian" },
+  { kind: "img" as const, path: "04-fitur-icons/jadwal-sholat.webp", label: "Jadwal Shalat" },
+  { kind: "img" as const, path: "04-fitur-icons/arah-kiblat.webp", label: "Arah Kiblat" },
+  { kind: "img" as const, path: "04-fitur-icons/doa.webp", label: "Doa Harian" },
+  { kind: "img" as const, path: "04-fitur-icons/hadist.webp", label: "Kumpulan Hadits" },
+  { kind: "img" as const, path: "04-fitur-icons/vr.webp", label: "Manasik VR" },
+  { kind: "img" as const, path: "04-fitur-icons/qr.webp", label: "QR Content" },
+  { kind: "img" as const, path: "04-fitur-icons/sirah.webp", label: "Qu-Lib & Sirah" },
+  { kind: "img" as const, path: "04-fitur-icons/asmaul-husna.webp", label: "Asmaul Husna" },
+  { kind: "img" as const, path: "04-fitur-icons/kalender-hijriyah.webp", label: "Kalender Hijriyah" },
+  { kind: "img" as const, path: "04-fitur-icons/kalkulator-zakat.webp", label: "Kalkulator Zakat" },
+  { kind: "img" as const, path: "04-fitur-icons/donasi.webp", label: "DonasiQu" },
+] as const
 
 const ICON = {
   user: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM5 20c1-4 4-6 7-6s6 2 7 6",
@@ -1844,9 +1857,13 @@ export default function EaselShowcaseTemplate({
                 <path d="M12 22H102M17 44H97" stroke="rgba(255,255,255,.72)" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </div>
-            {DOODLES.map((d, i) => (
-              <span key={i} ref={(el) => { balls.current[i] = el }} className="ea-ball">
-                <Svg d={d} size={34} stroke={1.4} />
+            {GONGAJI_BALL_ICONS.map((item, i) => (
+              <span key={item.label} ref={(el) => { balls.current[i] = el }} className="ea-ball" title={item.label}>
+                {item.kind === "mark" ? (
+                  <GongajiMarkIcon size={34} />
+                ) : (
+                  <img src={asset(item.path)} alt={item.label} width={42} height={42} draggable={false} />
+                )}
               </span>
             ))}
           </div>
@@ -2430,7 +2447,9 @@ const CSS =
   ".ea-hoop-net{position:absolute;right:0;top:3px;width:114px;height:68px;z-index:4;transform-origin:top center;filter:drop-shadow(0 2px 4px rgba(0,0,0,.18))}" +
   ".ea-hoop.is-swish .ea-hoop-net{animation:ea-swish .42s cubic-bezier(.22,1,.36,1)}" +
   "@keyframes ea-swish{0%{transform:scaleY(1) scaleX(1)}35%{transform:scaleY(1.22) scaleX(.84)}70%{transform:scaleY(.92) scaleX(1.06)}100%{transform:scaleY(1) scaleX(1)}}" +
-  ".ea-ball{position:absolute;left:0;top:0;z-index:3;width:72px;height:72px;border-radius:50%;background:#fff;color:#141414;display:grid;place-items:center;transform:translate3d(-100px,-200px,0);will-change:transform;box-shadow:0 6px 12px -8px rgba(0,0,0,.4);cursor:grab;touch-action:none;user-select:none}" +
+  ".ea-ball{position:absolute;left:0;top:0;z-index:3;width:72px;height:72px;border-radius:50%;background:#fff;color:#5145b9;display:grid;place-items:center;transform:translate3d(-100px,-200px,0);will-change:transform;box-shadow:0 6px 12px -8px rgba(0,0,0,.4);cursor:grab;touch-action:none;user-select:none}" +
+  ".ea-ball img{width:42px;height:42px;object-fit:contain;pointer-events:none;user-select:none}" +
+  ".ea-ball svg{pointer-events:none}" +
   ".ea-ball.is-grab{cursor:grabbing;z-index:6;box-shadow:0 16px 28px -10px rgba(0,0,0,.45)}" +
   // duo
   ".ea-duo{padding:clamp(16px,2vh,24px) 0 clamp(100px,16vh,160px)}" +
@@ -2512,7 +2531,7 @@ const CSS =
   ".ea-art-cta{width:100%}" +
   ".ea-duo-grid{grid-template-columns:1fr}" +
   ".ea-plans{flex-direction:column;align-items:stretch;gap:12px;min-height:0}.ea-plan,.ea-p2{max-width:none;aspect-ratio:auto;min-height:132px;transform:none!important}" +
-  ".ea-ball{width:48px;height:48px}.ea-ball svg{width:24px;height:24px}" +
+  ".ea-ball{width:48px;height:48px}.ea-ball svg{width:24px;height:24px}.ea-ball img{width:28px;height:28px}" +
   ".ea-hoop{right:16px;width:84px}.ea-hoop-rim,.ea-hoop-net{width:76px}.ea-hoop-net{height:48px}.ea-hoop-board{top:-48px;height:56px}" +
   ".ea-hoop-hud{top:4px;padding:4px 10px;font-size:10.5px}.ea-hoop-hud small{display:none}" +
   ".ea-trust-head{flex-direction:column;align-items:flex-start}" +

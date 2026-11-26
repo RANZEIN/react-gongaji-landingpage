@@ -2,8 +2,53 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/AboutPatnershipGoNgaji",
+      "destination": "https://www.canva.com/design/DAGHzNJgMZo/bDx9jYOY4OyZri2NbgjMmA/edit?utm_content=DAGHzNJgMZo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+      "permanent": false
+    },
+    {
+      "source": "/PartnershipGuruNgajiGoNgaji",
+      "destination": "https://docs.google.com/forms/d/e/1FAIpQLSe41-wRzl57CpgokzpGyEgGIbd0GQ07sX2rfysrlYaW9I1NvQ/viewform",
+      "permanent": false
+    },
+    {
+      "source": "/gongaji-apps",
+      "destination": "/",
+      "permanent": false
+    },
+    {
       "source": "/privacy-policy",
       "destination": "https://info.gongaji.id/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy-apple",
+      "destination": "https://info.gongaji.id/privacy-policy-apple",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy-rihlah",
+      "destination": "https://info.gongaji.id/privacy-policy-rihlah",
+      "permanent": false
+    },
+    {
+      "source": "/term",
+      "destination": "https://info.gongaji.id/term",
+      "permanent": false
+    },
+    {
+      "source": "/term-condition-claim-voucher",
+      "destination": "https://info.gongaji.id/term-condition-claim-voucher",
+      "permanent": false
+    },
+    {
+      "source": "/kebijakan-penghapusan-akun-gongaji",
+      "destination": "https://info.gongaji.id/kebijakan-penghapusan-akun-gongaji",
+      "permanent": false
+    },
+    {
+      "source": "/account-deletion-rihlah",
+      "destination": "https://info.gongaji.id/account-deletion-rihlah",
       "permanent": false
     }
   ],

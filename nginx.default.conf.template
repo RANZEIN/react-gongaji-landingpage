@@ -10,10 +10,39 @@ server {
     gzip on;
     gzip_types text/plain text/css application/javascript application/json image/svg+xml;
 
+    # Route redirect parity dengan Laravel routes/web.php
+    location = /AboutPatnershipGoNgaji {
+        return 302 "https://www.canva.com/design/DAGHzNJgMZo/bDx9jYOY4OyZri2NbgjMmA/edit?utm_content=DAGHzNJgMZo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton";
+    }
+    location = /PartnershipGuruNgajiGoNgaji {
+        return 302 "https://docs.google.com/forms/d/e/1FAIpQLSe41-wRzl57CpgokzpGyEgGIbd0GQ07sX2rfysrlYaW9I1NvQ/viewform";
+    }
+    location = /gongaji-apps {
+        return 302 /;
+    }
     location = /privacy-policy {
         return 302 https://info.gongaji.id/privacy-policy;
     }
+    location = /privacy-policy-apple {
+        return 302 https://info.gongaji.id/privacy-policy-apple;
+    }
+    location = /privacy-policy-rihlah {
+        return 302 https://info.gongaji.id/privacy-policy-rihlah;
+    }
+    location = /term {
+        return 302 https://info.gongaji.id/term;
+    }
+    location = /term-condition-claim-voucher {
+        return 302 https://info.gongaji.id/term-condition-claim-voucher;
+    }
+    location = /kebijakan-penghapusan-akun-gongaji {
+        return 302 https://info.gongaji.id/kebijakan-penghapusan-akun-gongaji;
+    }
+    location = /account-deletion-rihlah {
+        return 302 https://info.gongaji.id/account-deletion-rihlah;
+    }
 
+    # Reverse proxy Artikel Gongaji (pengganti api/article.ts Vercel)
     location = /api/article {
         proxy_pass https://gongaji-service-article-staging-m3gra3glsq-et.a.run.app/v1/public/article;
         proxy_ssl_server_name on;
@@ -40,4 +69,3 @@ server {
         try_files $uri $uri/ /index.html;
     }
 }
-

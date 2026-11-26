@@ -1099,9 +1099,52 @@ export default function EaselShowcaseTemplate({
                   <Svg d={ICON.download} size={10} stroke={2} /> Gongaji App · 4,8★ &amp; 4,9★
                 </span>
                 <div className="ea-pile" aria-hidden="true">
-                  <img src={asset("05-bento-pilar/card1-app-target.webp")} alt="" width={150} height={150} className="ea-shot" />
-                  <img src={asset("05-bento-pilar/card1-app-home.webp")} alt="" width={150} height={150} className="ea-shot" />
-                  <img src={asset("05-bento-pilar/card1-app-quran.webp")} alt="" width={150} height={150} className="ea-shot" />
+                  <div className="ea-pcard ea-pc1">
+                    <div className="ea-pc-top">
+                      <span className="ea-pc-pill">TARGET</span>
+                      <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
+                    </div>
+                    <div className="ea-pc-mid">
+                      <strong>30 Hari</strong>
+                      <span>Khatam · Hari ke-12</span>
+                    </div>
+                    <div>
+                      <div className="ea-pc-bar"><i style={{ width: "72%" }} /></div>
+                      <span className="ea-pc-meta">Al-Baqarah : 142</span>
+                    </div>
+                  </div>
+                  <div className="ea-pcard ea-pc2">
+                    <div className="ea-pc-top">
+                      <span className="ea-pc-pill ea-pc-pill-w">BANDUNG</span>
+                      <img src={asset("05-bento-pilar/jadwal-sholat.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
+                    </div>
+                    <div className="ea-pc-mid">
+                      <strong>04:03</strong>
+                      <span>Subuh · Quran Booster</span>
+                    </div>
+                    <div className="ea-pc-chips">
+                      <span>Tilawah</span>
+                      <span>Hafalan</span>
+                    </div>
+                  </div>
+                  <div className="ea-pcard ea-pc3">
+                    <div className="ea-pc-top">
+                      <span className="ea-pc-pill ea-pc-pill-y">MUROTTAL</span>
+                      <img src={asset("05-bento-pilar/dzikir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
+                    </div>
+                    <div className="ea-pc-mid">
+                      <strong>11 Qari</strong>
+                      <span>Tikrar &amp; Ayat Terakhir</span>
+                    </div>
+                    <div className="ea-pc-bars">
+                      <i style={{ height: "42%" }} />
+                      <i style={{ height: "85%" }} />
+                      <i style={{ height: "62%" }} />
+                      <i style={{ height: "100%" }} />
+                      <i style={{ height: "70%" }} />
+                      <i style={{ height: "48%" }} />
+                    </div>
+                  </div>
                   <span className="ea-tag ea-blue ea-t9">25+ fitur</span>
                 </div>
                 <h3 className="ea-h4">01 — Gongaji App: Bangun Kebiasaan Tilawah</h3>
@@ -1114,7 +1157,11 @@ export default function EaselShowcaseTemplate({
               </article>
               <article className="ea-bcard ea-img" data-rv>
                 <div className="ea-photo">
-                  <img src={asset("05-bento-pilar/card2-qursus.webp")} alt="Pengajar Qursus mendampingi peserta secara daring" width={550} height={300} />
+                  <img src={asset("05-bento-pilar/card2-qursus.webp")} alt="Pengajar Qursus mendampingi peserta secara daring" width={1600} height={900} style={{ objectPosition: "50% 25%" }} />
+                  <div className="ea-ph-badge" aria-hidden="true">
+                    <strong>Kelas Live · 5–8 Peserta</strong>
+                    <span>Pemula 1 – Mahir 2 · Rapor &amp; Sertifikat</span>
+                  </div>
                 </div>
                 <h3 className="ea-h4">02 — Qursus: Belajar Ngaji Lebih Terarah</h3>
                 <p className="ea-small">
@@ -1127,8 +1174,17 @@ export default function EaselShowcaseTemplate({
             </div>
             <div className="ea-col ea-col-r">
               <article id="qupeduli" className="ea-bcard ea-img" data-rv>
-                <div className="ea-photo ea-blueph">
-                  <img src={asset("05-bento-pilar/card3-qupeduli.webp")} alt="Program penyaluran mushaf dan pendidikan Al-Qur'an QuPeduli" width={550} height={300} />
+                <div className="ea-photo ea-quph">
+                  <img src={asset("05-bento-pilar/card3-qupeduli.webp")} alt="Program penyaluran mushaf dan donasi QuPeduli by Gongaji" width={1600} height={1000} style={{ objectPosition: "35% 30%" }} />
+                  <div className="ea-qu-card" aria-hidden="true">
+                    <div className="ea-qu-top">
+                      <img src={asset("05-bento-pilar/donasi.webp")} alt="" width={22} height={22} />
+                      <span>Terverifikasi</span>
+                    </div>
+                    <strong>Mushaf Santri Garut</strong>
+                    <div className="ea-qu-bar"><i style={{ width: "64%" }} /></div>
+                    <small>Rp38,5 jt / Rp60 jt · 412 donatur</small>
+                  </div>
                 </div>
                 <h3 className="ea-h4">03 — QuPeduli: Kebaikan dari Rasa Percaya</h3>
                 <p className="ea-small">
@@ -1143,11 +1199,29 @@ export default function EaselShowcaseTemplate({
                   <Svg d={ICON.book} size={13} />
                 </span>
                 <div className="ea-phone">
-                  <small>Qu-Lib &amp; Quran Booster</small>
-                  <em>Baca. Belajar. Berbagi.</em>
-                  <b>#JadiLebihMudah</b>
-                  <em>300+ buku &amp; referensi Islami</em>
-                  <small>oleh Yayasan Quran Bina Bangsa</small>
+                  <div className="ea-ph-status">
+                    <span>04:03 · Subuh</span>
+                    <span>Bandung</span>
+                  </div>
+                  <div className="ea-ph-hero">
+                    <small>Quran Booster</small>
+                    <b>#JadiLebihMudah</b>
+                    <div className="ea-ph-pills">
+                      <span>Tilawah · Juz 12</span>
+                      <span>Hafalan · Tikrar</span>
+                    </div>
+                  </div>
+                  <div className="ea-ph-qulib">
+                    <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={34} height={34} aria-hidden="true" />
+                    <div>
+                      <strong>Qu-Lib · 300+ Buku</strong>
+                      <span>Tafsir, Sirah &amp; Referensi Islami</span>
+                    </div>
+                  </div>
+                  <div className="ea-ph-foot">
+                    <em>Baca. Belajar. Berbagi.</em>
+                    <small>Yayasan Quran Bina Bangsa</small>
+                  </div>
                 </div>
               </article>
             </div>
@@ -1694,21 +1768,61 @@ const CSS =
   ".ea-bcard .ea-chipbtn{align-self:flex-start;margin-top:6px;height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--line);display:inline-flex;align-items:center;font-size:11px;font-weight:500}" +
   ".ea-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--blue)}" +
   ".ea-b1 .ea-pile{position:relative;height:clamp(220px,22vw,300px);margin:6px 0 10px}" +
-  ".ea-pile img{position:absolute;left:50%;top:50%;width:clamp(130px,13vw,190px);height:clamp(130px,13vw,190px);object-fit:cover;border-radius:12px;box-shadow:0 20px 34px -20px rgba(0,0,0,.5);transition:transform .7s " + EASE + "}" +
-  ".ea-pile img:nth-child(1){transform:translate(-62%,-46%) rotate(-12deg)}" +
-  ".ea-pile img:nth-child(2){transform:translate(-50%,-52%) rotate(-3deg)}" +
-  ".ea-pile img:nth-child(3){transform:translate(-36%,-56%) rotate(8deg)}" +
-  ".ea-t9{left:62%;top:8%;--r:6deg}" +
+  ".ea-pile .ea-pcard{position:absolute;left:50%;top:50%;width:clamp(142px,14vw,196px);height:clamp(142px,14vw,196px);border-radius:14px;padding:13px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;box-shadow:0 20px 34px -20px rgba(0,0,0,.45);transition:transform .7s " + EASE + "}" +
+  ".ea-pile .ea-pcard:nth-child(1){transform:translate(-66%,-46%) rotate(-12deg);z-index:1}" +
+  ".ea-pile .ea-pcard:nth-child(2){transform:translate(-50%,-52%) rotate(-3deg);z-index:2}" +
+  ".ea-pile .ea-pcard:nth-child(3){transform:translate(-34%,-56%) rotate(8deg);z-index:3}" +
+  ".ea-pc1{background:#f5f4fd;color:#121118;border:1px solid rgba(81,69,185,.16)}" +
+  ".ea-pc2{background:linear-gradient(150deg,#3a3286,#5145b9);color:#fff}" +
+  ".ea-pc3{background:#171525;color:#fff;border:1px solid rgba(255,255,255,.1)}" +
+  ".ea-pc-top{display:flex;align-items:center;justify-content:space-between;gap:6px}" +
+  ".ea-pc-ico{width:26px;height:26px;object-fit:contain;flex:none}" +
+  ".ea-pc-pill{font-size:8.5px;font-weight:700;letter-spacing:.08em;padding:3px 7px;border-radius:999px;background:rgba(81,69,185,.12);color:#5145b9}" +
+  ".ea-pc-pill-w{background:rgba(255,255,255,.18);color:#fff}" +
+  ".ea-pc-pill-y{background:rgba(255,218,3,.16);color:#ffda03}" +
+  ".ea-pc-mid{display:flex;flex-direction:column;gap:2px}" +
+  ".ea-pc-mid strong{font-size:clamp(14px,1.25vw,18px);font-weight:600;letter-spacing:-.02em;line-height:1.1}" +
+  ".ea-pc-mid span{font-size:10px;opacity:.76;line-height:1.25}" +
+  ".ea-pc-bar{height:5px;border-radius:999px;background:rgba(81,69,185,.16);overflow:hidden;margin-bottom:5px}" +
+  ".ea-pc-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
+  ".ea-pc-meta{display:block;font-size:9.5px;font-weight:500;color:#5145b9}" +
+  ".ea-pc-chips{display:flex;gap:5px}" +
+  ".ea-pc-chips span{flex:1;text-align:center;font-size:9.5px;font-weight:600;padding:4px 6px;border-radius:7px;background:rgba(255,255,255,.16);color:#fff}" +
+  ".ea-pc-bars{display:flex;align-items:flex-end;gap:4px;height:22px}" +
+  ".ea-pc-bars i{flex:1;border-radius:999px;background:#ffda03}" +
+  ".ea-pc-bars i:nth-child(even){background:#a39cf4}" +
+  ".ea-t9{left:62%;top:8%;--r:6deg;z-index:4}" +
   ".ea-b1.ea-in .ea-t9{opacity:1;transform:rotate(var(--r));transition-delay:.5s}" +
-  ".ea-photo{position:relative;height:clamp(180px,21vw,300px);margin:-22px -22px 10px;border-radius:16px;overflow:hidden}" +
-  ".ea-photo img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s " + EASE + "}" +
-  ".ea-blueph{background:#3a3286}" +
-  ".ea-phone-wrap{min-height:clamp(320px,33vw,470px);align-items:center;justify-content:center;background:transparent}" +
+  ".ea-photo{position:relative;aspect-ratio:16/10;margin:-22px -22px 10px;border-radius:16px;overflow:hidden}" +
+  ".ea-photo>img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s " + EASE + "}" +
+  ".ea-quph{background:#f9cb2e}" +
+  ".ea-ph-badge{position:absolute;left:12px;bottom:12px;display:flex;flex-direction:column;gap:2px;padding:7px 11px;border-radius:10px;background:rgba(18,17,24,.82);backdrop-filter:blur(8px);color:#fff;pointer-events:none}" +
+  ".ea-ph-badge strong{font-size:11px;font-weight:600}" +
+  ".ea-ph-badge span{font-size:9.5px;color:rgba(255,255,255,.82)}" +
+  ".ea-qu-card{position:absolute;right:12px;top:12px;width:clamp(146px,15vw,186px);padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.95);color:#121118;box-shadow:0 14px 28px -16px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:5px;pointer-events:none}" +
+  ".ea-qu-top{display:flex;align-items:center;justify-content:space-between;gap:6px}" +
+  ".ea-qu-top img{width:20px;height:20px;object-fit:contain}" +
+  ".ea-qu-top span{font-size:8.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:999px;background:#e8f8ef;color:#0f6d3f}" +
+  ".ea-qu-card strong{font-size:11.5px;font-weight:600;line-height:1.2}" +
+  ".ea-qu-bar{height:5px;border-radius:999px;background:#ebe9f7;overflow:hidden}" +
+  ".ea-qu-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
+  ".ea-qu-card small{font-size:9px;color:#4a4858;line-height:1.25}" +
+  ".ea-phone-wrap{min-height:clamp(330px,34vw,470px);align-items:center;justify-content:center;background:transparent}" +
   ".ea-pen{position:absolute;right:16px;top:16px;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center}" +
-  ".ea-phone{width:clamp(190px,19vw,270px);aspect-ratio:3/4;border-radius:22px;background:#141414;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:20px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}" +
-  ".ea-phone b{font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:-.02em;color:#ffda03}" +
-  ".ea-phone em{font-style:normal;font-size:12px;color:rgba(255,255,255,.55)}" +
-  ".ea-phone small{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase}" +
+  ".ea-phone{width:clamp(224px,21vw,284px);aspect-ratio:3/4;border-radius:24px;background:#14131d;color:#fff;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:15px;box-shadow:0 30px 60px -30px rgba(0,0,0,.65)}" +
+  ".ea-ph-status{display:flex;align-items:center;justify-content:space-between;font-size:9.5px;color:rgba(255,255,255,.72);padding:0 2px}" +
+  ".ea-ph-hero{border-radius:14px;background:linear-gradient(145deg,#3a3286,#5145b9);padding:12px;display:flex;flex-direction:column;gap:5px}" +
+  ".ea-ph-hero small{font-size:8.5px;font-weight:600;color:rgba(255,255,255,.78);letter-spacing:.1em;text-transform:uppercase}" +
+  ".ea-ph-hero b{font-size:clamp(15px,1.35vw,18px);font-weight:600;letter-spacing:-.02em;color:#ffda03;line-height:1.15}" +
+  ".ea-ph-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}" +
+  ".ea-ph-pills span{font-size:9px;font-weight:500;padding:3px 7px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff}" +
+  ".ea-ph-qulib{border-radius:13px;background:#1e1c2b;border:1px solid rgba(255,255,255,.08);padding:10px;display:flex;align-items:center;gap:10px}" +
+  ".ea-ph-qulib img{width:34px;height:34px;object-fit:contain;flex:none}" +
+  ".ea-ph-qulib strong{display:block;font-size:11.5px;font-weight:600;color:#fff;line-height:1.2}" +
+  ".ea-ph-qulib span{display:block;font-size:9.5px;color:rgba(255,255,255,.72);line-height:1.25;margin-top:2px}" +
+  ".ea-ph-foot{text-align:center;display:flex;flex-direction:column;gap:2px;padding-bottom:2px}" +
+  ".ea-ph-foot em{font-style:normal;font-size:11px;font-weight:500;color:rgba(255,255,255,.86)}" +
+  ".ea-ph-foot small{font-size:8.5px;color:rgba(255,255,255,.58);letter-spacing:.08em;text-transform:uppercase}" +
   // archive / articles carousel
   ".ea-market{padding:clamp(60px,10vh,110px) 0}" +
   ".ea-market-grid{display:grid;grid-template-columns:minmax(0,.27fr) minmax(0,.73fr);gap:24px;align-items:start}" +
@@ -1817,9 +1931,9 @@ const CSS =
   ".ea-link:hover::after,.ea-ghost:hover::after,.ea-textlink:hover::after{transform:scaleX(1);transform-origin:0 50%}" +
   ".ea-round:hover,.ea-arrows button:hover{transform:scale(1.1)}" +
   ".ea-btn:hover,.ea-store-badge:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}" +
-  ".ea-arc:hover img,.ea-photo:hover img,.ea-meet:hover>img,.ea-arch:hover>img{transform:scale(1.05)}" +
-  ".ea-b1:hover .ea-pile img:nth-child(1){transform:translate(-80%,-44%) rotate(-18deg)}" +
-  ".ea-b1:hover .ea-pile img:nth-child(3){transform:translate(-18%,-58%) rotate(14deg)}" +
+  ".ea-arc:hover img,.ea-photo:hover>img,.ea-meet:hover>img,.ea-arch:hover>img{transform:scale(1.05)}" +
+  ".ea-b1:hover .ea-pile .ea-pcard:nth-child(1){transform:translate(-80%,-44%) rotate(-18deg)}" +
+  ".ea-b1:hover .ea-pile .ea-pcard:nth-child(3){transform:translate(-18%,-58%) rotate(14deg)}" +
   ".ea-plan:hover{transform:translate3d(0,-10px,0) rotate(0deg)!important;transition-duration:.45s;transition-delay:0s!important}" +
   ".ea-socials a:hover{color:var(--ink);border-color:var(--ink)}" +
   ".ea-av:hover{transform:translate3d(0,calc(var(--y) - 6px),0) scale(1.08);transition:transform .35s " + EASE + "}" +

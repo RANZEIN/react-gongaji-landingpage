@@ -120,21 +120,21 @@ export const CAROUSEL_ITEMS = [
 
 // 07-mentor-wall: Stage 3 portrait wall (5x3 grid, center index 7 empty for shrinking banner)
 export const WALL_ASSETS = [
-  "07-mentor-wall/dian.webp",
-  "07-mentor-wall/ilham.webp",
-  "07-mentor-wall/teja.webp",
-  "07-mentor-wall/ardi.webp",
-  "07-mentor-wall/rikrik.webp",
-  "07-mentor-wall/ardi.webp",
-  "07-mentor-wall/rikrik.webp",
-  "",
-  "07-mentor-wall/dian.webp",
-  "07-mentor-wall/ilham.webp",
-  "07-mentor-wall/teja.webp",
-  "07-mentor-wall/dian.webp",
-  "07-mentor-wall/ilham.webp",
-  "07-mentor-wall/rikrik.webp",
-  "07-mentor-wall/ardi.webp",
+  { path: "07-mentor-wall/dian.webp", bg: "#F2A70B" },
+  { path: "07-mentor-wall/ilham.webp", bg: "#00A99D" },
+  { path: "07-mentor-wall/teja.webp", bg: "#F26419" },
+  { path: "07-mentor-wall/ardi.webp", bg: "#00B5A3" },
+  { path: "07-mentor-wall/rikrik.webp", bg: "#D65DF2" },
+  { path: "07-mentor-wall/ardi.webp", bg: "#B5E600" },
+  { path: "07-mentor-wall/rikrik.webp", bg: "#E89B00" },
+  { path: "", bg: "" },
+  { path: "07-mentor-wall/dian.webp", bg: "#FA5E17" },
+  { path: "07-mentor-wall/ilham.webp", bg: "#FF4E6B" },
+  { path: "07-mentor-wall/teja.webp", bg: "#F91D67" },
+  { path: "07-mentor-wall/dian.webp", bg: "#8B2FC0" },
+  { path: "07-mentor-wall/ilham.webp", bg: "#4CD399" },
+  { path: "07-mentor-wall/rikrik.webp", bg: "#FF663C" },
+  { path: "07-mentor-wall/ardi.webp", bg: "#702EB4" },
 ] as const
 
 export const TRUST_ITEMS = [

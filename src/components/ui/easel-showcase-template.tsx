@@ -1122,10 +1122,16 @@ export default function EaselShowcaseTemplate({
               Ustadz &amp; Ustadzah Qursus mendampingi setiap kelas, mendengarkan bacaanmu, dan mencatat perkembanganmu.
             </p>
           </div>
-          {WALL_ASSETS.map((path, i) =>
-            path ? (
-              <div key={path + i} ref={(el) => { wall.current[i] = el }} className="ea-wall" aria-hidden="true">
-                <img src={asset(path)} alt="" width={195} height={210} className="ea-portrait" />
+          {WALL_ASSETS.map((item, i) =>
+            item.path ? (
+              <div
+                key={item.path + i}
+                ref={(el) => { wall.current[i] = el }}
+                className="ea-wall"
+                style={{ backgroundColor: item.bg }}
+                aria-hidden="true"
+              >
+                <img src={asset(item.path)} alt="" width={195} height={210} className="ea-portrait" />
               </div>
             ) : null,
           )}

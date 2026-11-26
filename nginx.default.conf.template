@@ -1,0 +1,43 @@
+server {
+    listen ${PORT};
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    absolute_redirect off;
+    port_in_redirect off;
+
+    gzip on;
+    gzip_types text/plain text/css application/javascript application/json image/svg+xml;
+
+    location = /privacy-policy {
+        return 302 https://info.gongaji.id/privacy-policy;
+    }
+
+    location = /api/article {
+        proxy_pass https://gongaji-service-article-staging-m3gra3glsq-et.a.run.app/v1/public/article;
+        proxy_ssl_server_name on;
+        proxy_set_header Host gongaji-service-article-staging-m3gra3glsq-et.a.run.app;
+        proxy_set_header Accept application/json;
+        proxy_hide_header Access-Control-Allow-Origin;
+    }
+
+    location /api/article/ {
+        proxy_pass https://gongaji-service-article-staging-m3gra3glsq-et.a.run.app/v1/public/article/;
+        proxy_ssl_server_name on;
+        proxy_set_header Host gongaji-service-article-staging-m3gra3glsq-et.a.run.app;
+        proxy_set_header Accept application/json;
+        proxy_hide_header Access-Control-Allow-Origin;
+    }
+
+    location /assets/ {
+        try_files $uri =404;
+        expires 7d;
+        add_header Cache-Control "public, max-age=604800";
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+

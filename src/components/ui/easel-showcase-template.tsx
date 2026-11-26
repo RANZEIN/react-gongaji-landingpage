@@ -1524,7 +1524,7 @@ const CSS =
   // bands
   ".ea-bands{position:relative;padding:clamp(60px,10vh,110px) 0;overflow:hidden}" +
   ".ea-band{display:flex;gap:clamp(14px,2.2vw,32px);width:max-content;will-change:transform}" +
-  ".ea-av{width:clamp(56px,6.1vw,88px);height:clamp(56px,6.1vw,88px);border-radius:14px;overflow:hidden;flex:none;transform:translate3d(0,var(--y),0);box-shadow:0 10px 24px -14px rgba(0,0,0,.4);background:var(--card)}" +
+  ".ea-av{width:clamp(56px,6.1vw,88px);height:clamp(56px,6.1vw,88px);border-radius:14px;overflow:hidden;flex:none;transform:translate3d(0,var(--y),0);box-shadow:0 10px 24px -14px rgba(0,0,0,.4)}" +
   ".ea-av img{width:100%;height:100%;object-fit:cover}" +
   ".ea-av-icon{padding:10px}" +
   ".ea-av-icon img{object-fit:contain}" +

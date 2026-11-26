@@ -22,7 +22,7 @@ export const GONGAJI_LOGO = {
   ],
 } as const
 
-// 01-hero: Stage 1 fanned hero deck (left-back -> right-front, matching hero palette progression)
+// 01-hero: Stage 1 fanned hero deck (left-back -> right-front, cohesive Gongaji editorial palette)
 export const DECK1_ASSETS = [
   {
     kind: "tilawah" as const,
@@ -34,9 +34,12 @@ export const DECK1_ASSETS = [
   },
   {
     kind: "cutout" as const,
-    theme: "slate" as const,
+    theme: "periwinkle" as const,
     badge: "Qursus · Pengajar",
     sub: "Bersertifikat",
+    inkPill: true,
+    darkText: true,
+    float: false,
     path: "01-hero/mentor-teja.webp",
   },
   {
@@ -45,6 +48,7 @@ export const DECK1_ASSETS = [
     badge: "QuPeduli · Transparan",
     sub: "",
     inkPill: true,
+    darkText: true,
     float: false,
     path: "01-hero/cutout-qupeduli.webp",
   },
@@ -54,6 +58,7 @@ export const DECK1_ASSETS = [
     badge: "11 Qari · Tikrar",
     sub: "",
     inkPill: false,
+    darkText: false,
     float: true,
     path: "01-hero/cutout-murottal.webp",
   },
@@ -79,9 +84,12 @@ export const DECK1_ASSETS = [
   },
   {
     kind: "cutout" as const,
-    theme: "royal" as const,
+    theme: "mint" as const,
     badge: "Live · 5–8 Org",
     sub: "Pemula 1 – Mahir 2",
+    inkPill: true,
+    darkText: true,
+    float: false,
     path: "01-hero/mentor-ilham.webp",
   },
   {

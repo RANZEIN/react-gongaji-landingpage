@@ -715,7 +715,7 @@ export default function EaselShowcaseTemplate({
             {DECK1_ASSETS.map((item, i) => {
               if (item.kind === "tilawah") {
                 return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-tealred">
+                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-indigo">
                     <div className="ea-s1-top">
                       <span className="ea-s1-pill">{item.badge}</span>
                       <img src={asset(item.icon)} alt="" width={38} height={38} className="ea-s1-ico" />
@@ -733,20 +733,18 @@ export default function EaselShowcaseTemplate({
               }
               if (item.kind === "cutout") {
                 const bgCls =
-                  item.theme === "slate"
-                    ? "ea-s1-slate"
+                  item.theme === "periwinkle"
+                    ? "ea-s1-periwinkle"
                     : item.theme === "sunburst"
                       ? "ea-s1-sunburst"
                       : item.theme === "rose"
                         ? "ea-s1-rose"
-                        : "ea-s1-royal"
-                const isInk = "inkPill" in item && item.inkPill
-                const isFloat = "float" in item && item.float
+                        : "ea-s1-mint"
                 return (
                   <div key={item.path + "-" + i} ref={(el) => { deck.current[i] = el }} className={"ea-card ea-c1 " + bgCls}>
-                    <img src={asset(item.path)} alt="" width={240} height={254} className={isFloat ? "ea-s1-mcut" : "ea-s1-cut"} draggable={false} />
-                    <div className="ea-s1-phead">
-                      <span className={"ea-s1-pill " + (isInk ? "ea-s1-pill-ink" : "")}>{item.badge}</span>
+                    <img src={asset(item.path)} alt="" width={240} height={254} className={item.float ? "ea-s1-mcut" : "ea-s1-cut"} draggable={false} />
+                    <div className={"ea-s1-phead " + (item.darkText ? "ea-s1-pdark" : "")}>
+                      <span className={"ea-s1-pill " + (item.inkPill ? "ea-s1-pill-ink" : "")}>{item.badge}</span>
                       {item.sub ? <small>{item.sub}</small> : null}
                     </div>
                   </div>
@@ -754,7 +752,7 @@ export default function EaselShowcaseTemplate({
               }
               if (item.kind === "features") {
                 return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-orange">
+                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-teal">
                     <div className="ea-s1-top">
                       <span className="ea-s1-pill">{item.badge}</span>
                     </div>
@@ -774,7 +772,7 @@ export default function EaselShowcaseTemplate({
               }
               if (item.kind === "qulib") {
                 return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-carmine">
+                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-dark">
                     <div className="ea-s1-top">
                       <span className="ea-s1-pill ea-s1-pill-gold">{item.badge}</span>
                       <img src={asset(item.icon)} alt="" width={38} height={38} className="ea-s1-ico" />
@@ -794,8 +792,8 @@ export default function EaselShowcaseTemplate({
               return (
                 <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1-app">
                   <div className="ea-s1-apphead">
-                    <span className="ea-s1-pill ea-s1-pill-ink">{item.badge}</span>
-                    <span className="ea-s1-pill ea-s1-pill-green">{item.rating}</span>
+                    <span className="ea-s1-pill ea-s1-pill-indigo">{item.badge}</span>
+                    <span className="ea-s1-pill ea-s1-pill-gold">{item.rating}</span>
                   </div>
                   <div className="ea-s1-phone">
                     <img src={asset(item.path)} alt="" width={216} height={240} className="ea-s1-screen" draggable={false} />
@@ -1711,23 +1709,24 @@ const CSS =
   ".ea-portrait{object-position:50% 18%!important}" +
   ".ea-c1{width:260px;height:282px}" +
   ".ea-s1{padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}" +
-  ".ea-s1-tealred{background:radial-gradient(circle at 82% 18%,rgba(229,83,56,.58),transparent 52%),linear-gradient(150deg,#0f7d8f,#0c4e5e);color:#fff}" +
-  ".ea-s1-slate{background:radial-gradient(circle at 55% 40%,#8e9299,#55585e);color:#fff}" +
-  ".ea-s1-sunburst{background:radial-gradient(circle at 55% 32%,#ffe375,#fdbc16);color:#141414}" +
-  ".ea-s1-rose{background:radial-gradient(circle at 55% 32%,#fb96a3,#d95775);color:#fff}" +
-  ".ea-s1-carmine{background:radial-gradient(circle at 80% 18%,rgba(220,38,38,.42),transparent 54%),linear-gradient(155deg,#9a0909,#380303);color:#fff}" +
-  ".ea-s1-orange{background:linear-gradient(155deg,#ff7505 0%,#d63903 100%);color:#fff}" +
-  ".ea-s1-royal{background:radial-gradient(circle at 60% 35%,#016bd0,#0049a4);color:#fff}" +
-  ".ea-s1-app{background:radial-gradient(circle at 90% 14%,rgba(124,196,94,.42),transparent 46%),radial-gradient(circle at 10% 88%,rgba(169,210,151,.48),transparent 46%),#fdf4ea;color:#141414;padding:12px 12px 0;display:flex;flex-direction:column;justify-content:space-between;gap:8px}" +
+  ".ea-s1-indigo{background:radial-gradient(circle at 82% 16%,rgba(167,159,248,.34),transparent 54%),linear-gradient(150deg,#3a3088,#5145b9);color:#fff}" +
+  ".ea-s1-periwinkle{background:radial-gradient(circle at 55% 32%,#d4d0fa,#958de2);color:#171333}" +
+  ".ea-s1-sunburst{background:radial-gradient(circle at 55% 32%,#ffec94,#f8be24);color:#141414}" +
+  ".ea-s1-rose{background:radial-gradient(circle at 55% 32%,#ff9bb0,#da4d6e);color:#fff}" +
+  ".ea-s1-dark{background:radial-gradient(circle at 80% 18%,rgba(124,113,232,.36),transparent 54%),#171528;color:#fff;border:1px solid rgba(255,255,255,.1)}" +
+  ".ea-s1-teal{background:linear-gradient(150deg,#0fa39d,#06767d);color:#fff}" +
+  ".ea-s1-mint{background:radial-gradient(circle at 55% 34%,#c6f6db,#6fd49c);color:#0f3923}" +
+  ".ea-s1-app{background:radial-gradient(circle at 86% 14%,rgba(166,232,193,.48),transparent 46%),radial-gradient(circle at 18% 82%,rgba(171,166,222,.5),transparent 52%),#f3f2fc;color:#141414;padding:12px 12px 0;display:flex;flex-direction:column;justify-content:space-between;gap:8px}" +
   ".ea-s1-cut{position:absolute!important;left:45%;bottom:0;transform:translateX(-50%);width:86%!important;height:82%!important;object-fit:contain!important;object-position:50% 100%!important;filter:drop-shadow(0 12px 24px rgba(0,0,0,.22))}" +
   ".ea-s1-mcut{position:absolute!important;left:50%;bottom:10px;transform:translateX(-50%);width:88%!important;height:78%!important;object-fit:contain!important;object-position:50% 50%!important;filter:drop-shadow(0 14px 26px rgba(100,14,38,.28))}" +
   ".ea-s1-phead{position:relative;z-index:2;padding:14px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}" +
   ".ea-s1-phead small{font-size:10px;font-weight:600;opacity:.88}" +
+  ".ea-s1-pdark small{color:#171333;opacity:.86}" +
   ".ea-s1-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}" +
   ".ea-s1-ico{width:38px!important;height:38px!important;object-fit:contain!important;flex:none}" +
   ".ea-s1-pill{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}" +
   ".ea-s1-pill-ink{background:#141414;color:#fff;text-transform:none;letter-spacing:-.01em}" +
-  ".ea-s1-pill-green{background:#2d8a22;color:#fff;text-transform:none;letter-spacing:-.01em}" +
+  ".ea-s1-pill-indigo{background:#5145b9;color:#fff;text-transform:none;letter-spacing:-.01em}" +
   ".ea-s1-pill-gold{background:#ffda03;color:#141414;text-transform:none;letter-spacing:-.01em}" +
   ".ea-s1-copy{display:flex;flex-direction:column;gap:4px}" +
   ".ea-s1-copy b{font-size:18px;font-weight:600;letter-spacing:-.025em;line-height:1.12}" +

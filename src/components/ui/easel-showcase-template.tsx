@@ -732,8 +732,8 @@ export default function EaselShowcaseTemplate({
             {DECK1_ASSETS.map((item, i) => {
               if (item.kind === "cutout") {
                 const bgCls =
-                  item.theme === "periwinkle"
-                    ? "ea-s1-periwinkle"
+                  item.theme === "sky"
+                    ? "ea-s1-sky"
                     : item.theme === "sunburst"
                       ? "ea-s1-sunburst"
                       : "ea-s1-rose"
@@ -749,7 +749,7 @@ export default function EaselShowcaseTemplate({
               }
               if (item.kind === "features") {
                 return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-indigo">
+                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-coral">
                     <div className="ea-s1-top">
                       <span className="ea-s1-pill">{item.badge}</span>
                     </div>
@@ -1864,14 +1864,14 @@ const CSS =
   ".ea-portrait{object-position:50% 18%!important}" +
   ".ea-c1{width:260px;height:282px}" +
   ".ea-s1{padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}" +
-  ".ea-s1-indigo{background:radial-gradient(circle at 82% 16%,rgba(167,159,248,.34),transparent 54%),linear-gradient(150deg,#3a3088,#5145b9);color:#fff}" +
-  ".ea-s1-periwinkle{background:radial-gradient(circle at 55% 32%,#d4d0fa,#958de2);color:#171333}" +
+  ".ea-s1-coral{background:linear-gradient(150deg,#f97316,#d94616);color:#fff}" +
+  ".ea-s1-sky{background:radial-gradient(circle at 55% 32%,#60a5fa,#1d6fe8);color:#fff}" +
   ".ea-s1-sunburst{background:radial-gradient(circle at 55% 32%,#ffec94,#f8be24);color:#141414}" +
   ".ea-s1-rose{background:radial-gradient(circle at 55% 32%,#ff9bb0,#da4d6e);color:#fff}" +
-  ".ea-s1-dark{background:radial-gradient(circle at 80% 18%,rgba(124,113,232,.36),transparent 54%),#171528;color:#fff;border:1px solid rgba(255,255,255,.1)}" +
+  ".ea-s1-dark{background:radial-gradient(circle at 80% 18%,rgba(255,218,3,.14),transparent 54%),#17171b;color:#fff;border:1px solid rgba(255,255,255,.1)}" +
   ".ea-s1-teal{background:linear-gradient(150deg,#0fa39d,#06767d);color:#fff}" +
   ".ea-s1-mint{background:radial-gradient(circle at 55% 34%,#c6f6db,#6fd49c);color:#0f3923}" +
-  ".ea-s1-app{background:radial-gradient(circle at 86% 14%,rgba(166,232,193,.48),transparent 46%),radial-gradient(circle at 18% 82%,rgba(171,166,222,.5),transparent 52%),#f3f2fc;color:#141414;padding:12px 12px 0;display:flex;flex-direction:column;justify-content:space-between;gap:8px}" +
+  ".ea-s1-app{background:radial-gradient(circle at 82% 16%,rgba(167,159,248,.38),transparent 52%),linear-gradient(160deg,#5b4fd1 0%,#3a3286 100%);color:#fff;padding:12px 12px 0;display:flex;flex-direction:column;justify-content:space-between;gap:8px}" +
   ".ea-s1-cut{position:absolute!important;left:45%;bottom:0;transform:translateX(-50%);width:86%!important;height:82%!important;object-fit:contain!important;object-position:50% 100%!important;filter:drop-shadow(0 12px 24px rgba(0,0,0,.22))}" +
   ".ea-s1-mcut{position:absolute!important;left:50%;bottom:10px;transform:translateX(-50%);width:88%!important;height:78%!important;object-fit:contain!important;object-position:50% 50%!important;filter:drop-shadow(0 14px 26px rgba(100,14,38,.28))}" +
   ".ea-s1-phead{position:relative;z-index:2;padding:14px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}" +
@@ -1881,7 +1881,7 @@ const CSS =
   ".ea-s1-ico{width:38px!important;height:38px!important;object-fit:contain!important;flex:none}" +
   ".ea-s1-pill{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}" +
   ".ea-s1-pill-ink{background:#141414;color:#fff;text-transform:none;letter-spacing:-.01em}" +
-  ".ea-s1-pill-indigo{background:#5145b9;color:#fff;text-transform:none;letter-spacing:-.01em}" +
+  ".ea-s1-pill-indigo{background:rgba(255,255,255,.95);color:#3a3286;text-transform:none;letter-spacing:-.01em}" +
   ".ea-s1-pill-gold{background:#ffda03;color:#141414;text-transform:none;letter-spacing:-.01em}" +
   ".ea-s1-copy{display:flex;flex-direction:column;gap:4px}" +
   ".ea-s1-copy b{font-size:18px;font-weight:600;letter-spacing:-.025em;line-height:1.12}" +

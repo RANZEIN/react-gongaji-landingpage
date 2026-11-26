@@ -1429,7 +1429,7 @@ export default function EaselShowcaseTemplate({
                                   {liked ? "Disukai" : "Suka"}
                                 </button>
                                 <div className="ea-by">
-                                  <img src={asset("07-mentor-wall/dian.webp")} alt="" width={28} height={28} />
+                                  <img src={asset("07-mentor-wall/ilham.webp")} alt="" width={28} height={28} />
                                   <span>
                                     <b>Fajar Nugraha · Pemula 2</b>
                                     <small>“Kelasnya kecil, salah langsung dibenerin.”</small>
@@ -1937,7 +1937,8 @@ export default function EaselShowcaseTemplate({
   ".ea-hero-foot p{font-size:13px;color:var(--ink)!important;max-width:460px}" +
   ".ea-t1{left:calc(50% - clamp(160px,25vw,360px));top:calc(clamp(120px,20.5vh,180px) + clamp(118px,16.5vh,152px));--r:-6deg}" +
   ".ea-t2{left:calc(50% + clamp(120px,24vw,350px));top:calc(clamp(120px,20.5vh,180px) + clamp(120px,17vh,160px));--r:8deg}" +
-  ".ea-show{position:absolute;left:clamp(20px,7.1vw,102px);top:clamp(96px,13vh,112px);max-width:min(620px,92vw);z-index:2}" +
+  ".ea-show{position:absolute;left:clamp(20px,7.1vw,102px);top:clamp(96px,13vh,112px);max-width:min(620px,92vw);z-index:2;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility 0s linear .35s}" +
+  ".ea-show.ea-in{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .35s ease,visibility 0s}" +
   ".ea-show .ea-btns{margin-top:clamp(22px,8vh,80px)}" +
   ".ea-wrapp{max-width:320px;margin-top:22px}" +
   ".ea-t3{left:calc(47% - 100px);top:calc(53% - 40px);--r:-4deg}" +
@@ -2028,7 +2029,8 @@ export default function EaselShowcaseTemplate({
   ".ea-folder-tab{position:absolute;left:0;top:0;right:0;height:56px;display:flex;justify-content:space-between;align-items:center;padding:0 16px 0 22px;font-size:clamp(14px,1.35vw,19px);font-weight:500;color:var(--ink)}" +
   ".ea-folder-tab b{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:var(--card);font-size:10px;font-weight:500}" +
   ".ea-folder-bar{position:absolute;left:0;right:0;top:58px;height:64px;background:#5145b9;color:#fff;border-radius:14px 14px 0 0;clip-path:polygon(0 0,62% 0,68% 42%,100% 42%,100% 100%,0 100%);padding:16px 22px;font-size:clamp(14px,1.35vw,19px);font-weight:500}" +
-  ".ea-vision{position:absolute;left:clamp(20px,7.1vw,102px);top:clamp(140px,19vh,170px);max-width:min(560px,88vw);z-index:2}" +
+  ".ea-vision{position:absolute;left:clamp(20px,7.1vw,102px);top:clamp(140px,19vh,170px);max-width:min(560px,88vw);z-index:2;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility 0s linear .35s}" +
+  ".ea-vision.ea-in{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .35s ease,visibility 0s}" +
   ".ea-eye{display:inline-grid;place-items:center;margin-bottom:12px;color:var(--blue)}" +
   ".ea-wrapv{margin-top:12px;max-width:340px}" +
   ".ea-textlink{display:inline-block;margin-top:22px}" +
@@ -2300,9 +2302,11 @@ export default function EaselShowcaseTemplate({
   "}" +
   // reduced motion: no time-based motion; scroll-linked stages follow the scrollbar only
   "@media (prefers-reduced-motion:reduce){" +
-  ".ea-w,.ea-late,.ea-fade,.ea-tag,.ea-doodle,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-art-grid,.ea-banner,.ea-banner img,.ea-plan,.ea-meet,.ea-arch,.ea-plans{transition:none!important}" +
+  ".ea-w,.ea-late,.ea-fade,.ea-tag,.ea-doodle,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-art-grid,.ea-banner,.ea-banner img,.ea-plan,.ea-meet,.ea-arch,.ea-plans,.ea-show,.ea-vision{transition:none!important}" +
   ".ea-w{opacity:1;filter:none;transform:none}" +
   ".ea-late,.ea-fade,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-art-grid,.ea-banner,.ea-meet,.ea-arch,.ea-plans{opacity:1;filter:none;transform:none}" +
+  ".ea-show:not(.ea-in),.ea-vision:not(.ea-in){opacity:0!important;visibility:hidden!important;pointer-events:none!important}" +
   ".ea-logos-track{animation:none}" +
   "}" +
-  ".ea-reduce .ea-w{transition:none;opacity:1;filter:none;transform:none}"
+  ".ea-reduce .ea-w{transition:none;opacity:1;filter:none;transform:none}" +
+  ".ea-reduce .ea-show:not(.ea-in),.ea-reduce .ea-vision:not(.ea-in){opacity:0;visibility:hidden;pointer-events:none}"

@@ -32,7 +32,7 @@ export const DECK1_ASSETS = [
     inkPill: true,
     darkText: true,
     float: false,
-    path: "01-hero/cutout-qupeduli.webp",
+    path: "01-hero/cutout-donasiqu.webp",
   },
   {
     kind: "cutout" as const,
@@ -169,7 +169,7 @@ export const DECK2_CARDS = [
     levels: ["Tilawah · Juz 12", "Hafalan · Tikrar", "Subuh · 04:03"],
   },
   {
-    kind: "qupeduli" as const,
+    kind: "donasiqu" as const,
     badge: "QU-LIB",
     title: "300+ Buku Islami",
     sub: "Tafsir, sirah & referensi",
@@ -217,7 +217,7 @@ export const BAND_BOT_ASSETS = [
   { path: "04-fitur-icons/masjid-terdekat.webp", kind: "icon" as const, bg: "#4AC9AC" },
 ] as const
 
-// 10-qupeduli: Sub-Brand 02 (DonasiQu by Gongaji — siap disambungkan ke API campaign)
+// 10-donasiqu: Sub-Brand 02 (DonasiQu by Gongaji — siap disambungkan ke API campaign)
 export type DonasiQuCampaign = {
   readonly id: string
   readonly category: string
@@ -243,7 +243,7 @@ export const DONASIQU_CAMPAIGNS: readonly DonasiQuCampaign[] = [
     pct: 64,
     donors: 412,
     daysLeft: "18 hari lagi",
-    image: "10-qupeduli/campaign-garut.webp",
+    image: "10-donasiqu/campaign-garut.webp",
   },
   {
     id: "insentif-guru-ngaji",
@@ -255,7 +255,7 @@ export const DONASIQU_CAMPAIGNS: readonly DonasiQuCampaign[] = [
     pct: 72,
     donors: 638,
     daysLeft: "Program rutin",
-    image: "10-qupeduli/icon-donasi.webp",
+    image: "10-donasiqu/icon-donasi.webp",
     isIcon: true,
   },
   {
@@ -268,7 +268,7 @@ export const DONASIQU_CAMPAIGNS: readonly DonasiQuCampaign[] = [
     pct: 60,
     donors: 319,
     daysLeft: "Laporan terbuka",
-    image: "10-qupeduli/icon-qurban.webp",
+    image: "10-donasiqu/icon-qurban.webp",
     isIcon: true,
   },
 ]

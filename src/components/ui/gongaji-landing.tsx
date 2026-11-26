@@ -1550,7 +1550,7 @@ export default function GongajiLanding({
             <div className="gj-col gj-col-r">
               <article className="gj-bcard gj-img" data-rv>
                 <div className="gj-photo">
-                  <img src={asset("05-bento-pilar/card3-qupeduli.webp")} alt="Penyaluran mushaf dan bantuan DonasiQu by Gongaji" width={1280} height={800} style={{ objectPosition: "50% 35%" }} />
+                  <img src={asset("05-bento-pilar/card3-donasiqu.webp")} alt="Penyaluran mushaf dan bantuan DonasiQu by Gongaji" width={1280} height={800} style={{ objectPosition: "50% 35%" }} />
                   <div className="gj-qu-card" aria-hidden="true">
                     <div className="gj-qu-top">
                       <img src={asset("05-bento-pilar/donasi.webp")} alt="" width={20} height={20} />
@@ -1709,9 +1709,9 @@ export default function GongajiLanding({
       </section>
 
       {/* ---------- Sub-Brand 02: dedicated DonasiQu section ---------- */}
-      <section id="donasiqu" className="gj-sec gj-qupeduli" aria-label="Sub-Brand DonasiQu by Gongaji">
+      <section id="donasiqu" className="gj-sec gj-donasiqu" aria-label="Sub-Brand DonasiQu by Gongaji">
         <div className="gj-wrap">
-          <div className="gj-qup-head" data-rv>
+          <div className="gj-dqs-head" data-rv>
             <div>
               <p className="gj-eyebrow">
                 <Words parts={["SUB-BRAND 02 ·", ["DONASIQU BY GONGAJI", "gj-purplew"]]} />
@@ -1720,40 +1720,40 @@ export default function GongajiLanding({
                 <Words parts={["Kebaikan yang lahir", "\n", "dari rasa percaya."]} at={2} />
               </h2>
             </div>
-            <p className="gj-small gj-qup-sub">
+            <p className="gj-small gj-dqs-sub">
               Platform donasi online, sedekah, dan wakaf bersama Yayasan Quran Bina Bangsa (Qubba Foundation) dengan rincian dana &amp; laporan penyaluran terbuka.
             </p>
           </div>
-          <div className="gj-qup-grid">
-            <div className="gj-qup-hero" data-rv>
-              <span className="gj-qup-pill">Qubba Foundation · Terverifikasi</span>
+          <div className="gj-dqs-grid">
+            <div className="gj-dqs-hero" data-rv>
+              <span className="gj-dqs-pill">Qubba Foundation · Terverifikasi</span>
               <h3>1.200+ Mushaf &amp; Bantuan Tersalurkan</h3>
               <p>Setiap donasi dicatat terbuka dan disalurkan berkala untuk santri, guru ngaji, serta masyarakat membutuhkan.</p>
-              <div className="gj-qup-chips">
+              <div className="gj-dqs-chips">
                 <span>Laporan Terbuka</span>
                 <span>Sedekah &amp; Wakaf</span>
               </div>
               <a className="gj-btn" href="#download">
                 Salurkan Lewat Gongaji App
               </a>
-              <img src={asset("10-qupeduli/donor-spotlight.webp")} alt="" width={280} height={320} className="gj-qup-donor" aria-hidden="true" draggable={false} />
+              <img src={asset("10-donasiqu/donor-spotlight.webp")} alt="" width={280} height={320} className="gj-dqs-donor" aria-hidden="true" draggable={false} />
             </div>
-            <div className="gj-qup-list" data-rv>
+            <div className="gj-dqs-list" data-rv>
               {campaigns.map((camp) => (
-                <article key={camp.id} className="gj-qup-item">
-                  <div className={"gj-qup-thumb" + (camp.isIcon ? " is-icon" : "")}>
+                <article key={camp.id} className="gj-dqs-item">
+                  <div className={"gj-dqs-thumb" + (camp.isIcon ? " is-icon" : "")}>
                     <img src={asset(camp.image)} alt={camp.title} width={76} height={76} />
                   </div>
-                  <div className="gj-qup-body">
-                    <div className="gj-qup-meta">
+                  <div className="gj-dqs-body">
+                    <div className="gj-dqs-meta">
                       <span>{camp.category}</span>
                       <small>{camp.daysLeft}</small>
                     </div>
                     <h4>{camp.title}</h4>
-                    <div className="gj-qup-bar">
+                    <div className="gj-dqs-bar">
                       <i style={{ width: camp.pct + "%" }} />
                     </div>
-                    <div className="gj-qup-foot">
+                    <div className="gj-dqs-foot">
                       <span>
                         <b>{camp.raisedText}</b> / {camp.targetText}
                       </span>
@@ -2377,38 +2377,38 @@ const CSS =
   ".gj-ph-foot{text-align:center;display:flex;flex-direction:column;gap:2px;padding-bottom:2px}" +
   ".gj-ph-foot em{font-style:normal;font-size:11px;font-weight:500;color:rgba(255,255,255,.86)}" +
   ".gj-ph-foot small{font-size:8.5px;color:rgba(255,255,255,.58);letter-spacing:.08em;text-transform:uppercase}" +
-  // dedicated QuPeduli sub-brand section
-  ".gj-qupeduli{padding:clamp(60px,10vh,110px) 0}" +
-  ".gj-qup-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}" +
-  ".gj-qup-sub{max-width:380px}" +
-  ".gj-qup-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:18px;align-items:stretch}" +
-  ".gj-qup-hero{position:relative;border-radius:16px;padding:26px;background:radial-gradient(circle at 75% 24%,#ffec94,#f8be24);color:#141414;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:330px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
-  ".gj-qup-hero.gj-in{opacity:1;transform:none}" +
-  ".gj-qup-pill{height:22px;padding:0 10px;border-radius:999px;background:#141414;color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center}" +
-  ".gj-qup-hero h3{font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.03em;line-height:1.12;max-width:65%}" +
-  ".gj-qup-hero p{font-size:12px;line-height:1.45;color:rgba(20,20,20,.78);max-width:60%}" +
-  ".gj-qup-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;position:relative;z-index:2}" +
-  ".gj-qup-chips span{font-size:10px;font-weight:600;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.55);color:#141414}" +
-  ".gj-qup-hero .gj-btn{margin-top:auto;position:relative;z-index:2;background:#141414;color:#fff}" +
-  ".gj-qup-donor{position:absolute;right:-6px;bottom:0;height:88%;width:auto;max-width:52%;object-fit:contain;object-position:100% 100%;pointer-events:none;filter:drop-shadow(0 16px 28px rgba(0,0,0,.22))}" +
-  ".gj-qup-list{display:flex;flex-direction:column;gap:12px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
-  ".gj-qup-list.gj-in{opacity:1;transform:none}" +
-  ".gj-qup-item{flex:1;display:flex;align-items:center;gap:14px;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line);transition:transform .3s " + EASE + "}" +
-  ".gj-qup-thumb{width:76px;height:76px;border-radius:10px;overflow:hidden;flex:none;background:var(--bg)}" +
-  ".gj-qup-thumb img{width:100%;height:100%;object-fit:cover;display:block}" +
-  ".gj-qup-thumb.is-icon{padding:14px;background:#f2f1fa}" +
-  ".dark .gj-qup-thumb.is-icon,.gj-dark .gj-qup-thumb.is-icon{background:#221f3a}" +
-  ".gj-qup-thumb.is-icon img{object-fit:contain}" +
-  ".gj-qup-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}" +
-  ".gj-qup-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}" +
-  ".gj-qup-meta span{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue)}" +
-  ".dark .gj-qup-meta span,.gj-dark .gj-qup-meta span{color:#aba6de}" +
-  ".gj-qup-meta small{font-size:10px;color:var(--mute)}" +
-  ".gj-qup-body h4{font-size:13.5px;font-weight:600;line-height:1.25;letter-spacing:-.01em}" +
-  ".gj-qup-bar{height:5px;border-radius:999px;background:var(--line);overflow:hidden}" +
-  ".gj-qup-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
-  ".gj-qup-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:var(--mute)}" +
-  ".gj-qup-foot b{color:var(--ink);font-weight:600}" +
+  // dedicated DonasiQu sub-brand section
+  ".gj-donasiqu{padding:clamp(60px,10vh,110px) 0}" +
+  ".gj-dqs-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}" +
+  ".gj-dqs-sub{max-width:380px}" +
+  ".gj-dqs-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:18px;align-items:stretch}" +
+  ".gj-dqs-hero{position:relative;border-radius:16px;padding:26px;background:radial-gradient(circle at 75% 24%,#ffec94,#f8be24);color:#141414;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:330px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+  ".gj-dqs-hero.gj-in{opacity:1;transform:none}" +
+  ".gj-dqs-pill{height:22px;padding:0 10px;border-radius:999px;background:#141414;color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center}" +
+  ".gj-dqs-hero h3{font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.03em;line-height:1.12;max-width:65%}" +
+  ".gj-dqs-hero p{font-size:12px;line-height:1.45;color:rgba(20,20,20,.78);max-width:60%}" +
+  ".gj-dqs-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;position:relative;z-index:2}" +
+  ".gj-dqs-chips span{font-size:10px;font-weight:600;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.55);color:#141414}" +
+  ".gj-dqs-hero .gj-btn{margin-top:auto;position:relative;z-index:2;background:#141414;color:#fff}" +
+  ".gj-dqs-donor{position:absolute;right:-6px;bottom:0;height:88%;width:auto;max-width:52%;object-fit:contain;object-position:100% 100%;pointer-events:none;filter:drop-shadow(0 16px 28px rgba(0,0,0,.22))}" +
+  ".gj-dqs-list{display:flex;flex-direction:column;gap:12px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+  ".gj-dqs-list.gj-in{opacity:1;transform:none}" +
+  ".gj-dqs-item{flex:1;display:flex;align-items:center;gap:14px;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line);transition:transform .3s " + EASE + "}" +
+  ".gj-dqs-thumb{width:76px;height:76px;border-radius:10px;overflow:hidden;flex:none;background:var(--bg)}" +
+  ".gj-dqs-thumb img{width:100%;height:100%;object-fit:cover;display:block}" +
+  ".gj-dqs-thumb.is-icon{padding:14px;background:#f2f1fa}" +
+  ".dark .gj-dqs-thumb.is-icon,.gj-dark .gj-dqs-thumb.is-icon{background:#221f3a}" +
+  ".gj-dqs-thumb.is-icon img{object-fit:contain}" +
+  ".gj-dqs-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}" +
+  ".gj-dqs-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}" +
+  ".gj-dqs-meta span{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue)}" +
+  ".dark .gj-dqs-meta span,.gj-dark .gj-dqs-meta span{color:#aba6de}" +
+  ".gj-dqs-meta small{font-size:10px;color:var(--mute)}" +
+  ".gj-dqs-body h4{font-size:13.5px;font-weight:600;line-height:1.25;letter-spacing:-.01em}" +
+  ".gj-dqs-bar{height:5px;border-radius:999px;background:var(--line);overflow:hidden}" +
+  ".gj-dqs-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
+  ".gj-dqs-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:var(--mute)}" +
+  ".gj-dqs-foot b{color:var(--ink);font-weight:600}" +
   // live articles section (3-column editorial grid)
   ".gj-artikel{position:relative;z-index:2;padding:clamp(60px,10vh,110px) 0}" +
   ".gj-art-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}" +
@@ -2556,7 +2556,7 @@ const CSS =
   ".gj-av:hover{transform:translate3d(0,calc(var(--y) - 6px),0) scale(1.08);transition:transform .35s " + EASE + "}" +
   "}" +
   // tablet / phone
-  "@media (max-width:1023px){.gj-links{display:none}.gj-qup-grid{grid-template-columns:1fr}.gj-art-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gj-price-grid{grid-template-columns:1fr}.gj-foot-grid{grid-template-columns:1fr 1fr}.gj-copy{position:static;grid-column:1/-1}}" +
+  "@media (max-width:1023px){.gj-links{display:none}.gj-dqs-grid{grid-template-columns:1fr}.gj-art-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gj-price-grid{grid-template-columns:1fr}.gj-foot-grid{grid-template-columns:1fr 1fr}.gj-copy{position:static;grid-column:1/-1}}" +
   "@media (max-width:767px){" +
   ".gj-nav{height:76px;margin-bottom:-76px;padding-top:16px}" +
   ".gj-show{top:84px}.gj-show .gj-btns{margin-top:18px}.gj-wrapp{margin-top:14px}" +
@@ -2566,7 +2566,7 @@ const CSS =
   ".gj-vision{top:96px}.gj-doodles{display:none}" +
   ".gj-folder-tab{font-size:12px}.gj-folder-bar{top:40px;height:46px;font-size:12px}" +
   ".gj-bento{grid-template-columns:1fr}.gj-col-r{padding-top:0}" +
-  ".gj-qup-hero h3,.gj-qup-hero p{max-width:100%}.gj-qup-donor{opacity:.25}" +
+  ".gj-dqs-hero h3,.gj-dqs-hero p{max-width:100%}.gj-dqs-donor{opacity:.25}" +
   ".gj-art-grid{grid-template-columns:1fr}" +
   ".gj-art-actions{justify-content:stretch}" +
   ".gj-art-cta{width:100%}" +
@@ -2586,9 +2586,9 @@ const CSS =
   "}" +
   // reduced motion: no time-based motion; scroll-linked stages follow the scrollbar only
   "@media (prefers-reduced-motion:reduce){" +
-  ".gj-w,.gj-late,.gj-fade,.gj-tag,.gj-doodle,.gj-bcard,.gj-qup-hero,.gj-qup-list,.gj-art-grid,.gj-banner,.gj-banner img,.gj-plan,.gj-meet,.gj-arch,.gj-plans,.gj-show,.gj-vision{transition:none!important}" +
+  ".gj-w,.gj-late,.gj-fade,.gj-tag,.gj-doodle,.gj-bcard,.gj-dqs-hero,.gj-dqs-list,.gj-art-grid,.gj-banner,.gj-banner img,.gj-plan,.gj-meet,.gj-arch,.gj-plans,.gj-show,.gj-vision{transition:none!important}" +
   ".gj-w{opacity:1;filter:none;transform:none}" +
-  ".gj-late,.gj-fade,.gj-bcard,.gj-qup-hero,.gj-qup-list,.gj-art-grid,.gj-banner,.gj-meet,.gj-arch,.gj-plans{opacity:1;filter:none;transform:none}" +
+  ".gj-late,.gj-fade,.gj-bcard,.gj-dqs-hero,.gj-dqs-list,.gj-art-grid,.gj-banner,.gj-meet,.gj-arch,.gj-plans{opacity:1;filter:none;transform:none}" +
   ".gj-show:not(.gj-in),.gj-vision:not(.gj-in){opacity:0!important;visibility:hidden!important;pointer-events:none!important}" +
   ".gj-logos-track{animation:none}" +
   "}" +

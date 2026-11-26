@@ -153,9 +153,9 @@ export const DECK2_CARDS = [
   },
   {
     kind: "photo" as const,
-    badge: "AL-QUR'AN",
-    title: "Mushaf & Tajwid",
-    sub: "Penanda ayat & audio",
+    badge: "MUSHAF",
+    title: "Mushaf Digital",
+    sub: "Penanda ayat & tajwid",
     photo: "03-filosofi-deck/card-app-quran.webp",
   },
   {
@@ -163,7 +163,7 @@ export const DECK2_CARDS = [
     badge: "BOOSTER",
     title: "Quran Booster",
     sub: "Jaga konsistensi harian",
-    levels: ["Tilawah · Juz 12", "Hafalan · Tikrar", "Subuh · 04:03", "Dzikir Pagi"],
+    levels: ["Tilawah · Juz 12", "Hafalan · Tikrar", "Subuh · 04:03"],
   },
   {
     kind: "qupeduli" as const,
@@ -376,12 +376,12 @@ export const CAROUSEL_ITEMS: readonly ArticleItem[] = [
     title: "Mengenal 5 Jenjang Belajar di Qursus",
     tag: "Artikel · Qursus",
   },
-{
-  kind: "photo",
+  {
+    kind: "photo",
     path: "06-artikel-carousel/04-mushaf-garut.webp",
-      title: "Keutamaan Wakaf Mushaf bagi Santri Pelosok",
-        tag: "Artikel · Inspirasi",
-          pill: "4 mnt baca",
+    title: "Keutamaan Wakaf Mushaf bagi Santri Pelosok",
+    tag: "Artikel · Inspirasi",
+    pill: "4 mnt baca",
   },
 ]
 

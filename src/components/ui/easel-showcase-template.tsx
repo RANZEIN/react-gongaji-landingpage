@@ -1025,7 +1025,7 @@ export default function EaselShowcaseTemplate({
                       App
                     </b>
                     <small>4,8★ &amp; 4,9★ · Gratis</small>
-                    <p>Mushaf digital, target khatam, murottal 11 qari, metode tikrar, Qu-Lib 300+ buku, hingga jadwal shalat.</p>
+                    <p>Mushaf, target khatam, 11 qari, Qu-Lib 300+ buku &amp; jadwal shalat.</p>
                   </div>
                 )
               }
@@ -1051,66 +1051,79 @@ export default function EaselShowcaseTemplate({
               }
               if (card.kind === "murottal") {
                 return (
-                  <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-lav">
-                    <div className="ea-s2-top">
-                      <span className="ea-s2-pill ea-s2-pill-dark">{card.badge}</span>
-                      <img src={asset(card.icon)} alt="" width={44} height={44} className="ea-s2-ico" />
-                    </div>
-                    <div className="ea-s2-copy">
-                      <b>{card.title}</b>
-                      <small>{card.sub}</small>
-                    </div>
-                    <div className="ea-s2-foot">
-                      <div className="ea-s2-wave">
-                        {[42, 76, 56, 94, 68, 86, 48, 72, 60, 40].map((h, wi) => (
-                          <i key={wi} style={{ height: h + "%" }} />
-                        ))}
+                    <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-rose">
+                      <div className="ea-s2-top">
+                        <span className="ea-s2-pill ea-s2-pill-dark">{card.badge}</span>
+                        <span className="ea-s2-pill">{card.badge}</span>
+                        <img src={asset(card.icon)} alt="" width={44} height={44} className="ea-s2-ico" />
                       </div>
-                      <span>{card.meta}</span>
+                      <div className="ea-s2-copy">
+                        <b>{card.title}</b>
+                        <small>{card.sub}</small>
+                      </div>
+                      <div className="ea-s2-foot">
+                        <div className="ea-s2-wave">
+                          {[42, 76, 56, 94, 68, 86, 48, 72, 60, 40].map((h, wi) => (
+                            <i key={wi} style={{ height: h + "%" }} />
+                          ))}
+                        </div>
+                        <span>{card.meta}</span>
+                      </div>
                     </div>
-                  </div>
-                )
+                    )
               }
-              if (card.kind === "photo") {
+                    if (card.kind === "photo") {
                 return (
-                  <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2-photo">
-                    <img src={asset(card.photo)} alt="" width={230} height={230} draggable={false} />
-                    <div className="ea-s2-scrim" />
-                    <span className="ea-s2-pill ea-s2-pill-gold ea-s2-photo-badge">{card.badge}</span>
-                    <div className="ea-s2-photo-copy">
-                      <b>{card.title}</b>
-                      <small>{card.sub}</small>
-                    </div>
-                  </div>
-                )
+                    <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2-photo">
+                      <img src={asset(card.photo)} alt="" width={230} height={230} draggable={false} />
+                      <div className="ea-s2-scrim" />
+                      <span className="ea-s2-pill ea-s2-pill-gold ea-s2-photo-badge">{card.badge}</span>
+                      <div className="ea-s2-photo-copy">
+                        <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-sky">
+                          <div className="ea-s2-top">
+                            <span className="ea-s2-pill">{card.badge}</span>
+                          </div>
+                          <div className="ea-s2-phonebox">
+                            <img src={asset(card.photo)} alt="" width={160} height={110} draggable={false} />
+                          </div>
+                          <div className="ea-s2-copy">
+                            <b>{card.title}</b>
+                            <small>{card.sub}</small>
+                          </div>
+                        </div>
+                        )
               }
-              if (card.kind === "features") {
+                        if (card.kind === "features") {
                 return (
-                  <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-teal">
-                    <div className="ea-s2-grid">
-                      {card.icons.map((ic) => (
-                        <span key={ic} className="ea-s2-tile">
-                          <img src={asset(ic)} alt="" width={34} height={34} />
-                        </span>
-                      ))}
-                    </div>
-                    <div className="ea-s2-copy">
-                      <b>{card.title}</b>
-                      <small>{card.sub}</small>
-                    </div>
-                  </div>
-                )
+                        <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-teal">
+                          <div className="ea-s2-grid">
+                            {card.icons.map((ic) => (
+                              <span key={ic} className="ea-s2-tile">
+                                <img src={asset(ic)} alt="" width={34} height={34} />
+                              </span>
+                            ))}
+                          </div>
+                          <div className="ea-s2-copy">
+                            <b>{card.title}</b>
+                            <small>{card.sub}</small>
+                          </div>
+                        </div>
+                        )
               }
-              if (card.kind === "rapor") {
+                        if (card.kind === "rapor") {
                 return (
-                  <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-white">
-                    <div className="ea-s2-top">
-                      <span className="ea-s2-pill ea-s2-pill-dark">{card.badge}</span>
-                      <span className="ea-s2-mint">Harian</span>
-                    </div>
-                    <div className="ea-s2-bgrid">
-                      {card.levels.map((lv, li) => (
+                        <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-white">
+                          <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-dark">
+                            <div className="ea-s2-top">
+                              <span className="ea-s2-pill ea-s2-pill-dark">{card.badge}</span>
+                              <span className="ea-s2-mint">Harian</span>
+                              <span className="ea-s2-pill ea-s2-pill-gold">{card.badge}</span>
+                            </div>
+                            <div className="ea-s2-bgrid">
+                              <div className="ea-s2-blist">
+                                {card.levels.map((lv, li) => (
                         <span key={lv} className={li === 0 ? "on" : li === 2 ? "done" : ""}>
+                        <span key={lv} className={li === 0 ? "on" : ""}>
                           {lv}
                         </span>
                       ))}
@@ -1120,1202 +1133,1215 @@ export default function EaselShowcaseTemplate({
                       <small>{card.sub}</small>
                     </div>
                   </div>
-                )
+                              )
               }
-              return (
-                <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-gold">
-                  <div className="ea-s2-top">
-                    <span className="ea-s2-pill ea-s2-pill-ink">{card.badge}</span>
-                    <img src={asset(card.icon)} alt="" width={44} height={44} className="ea-s2-ico" />
-                  </div>
-                  <div className="ea-s2-copy">
-                    <b>{card.title}</b>
-                    <small>{card.sub}</small>
-                  </div>
-                  <div className="ea-s2-foot">
-                    <span className="ea-s2-ver">{card.meta}</span>
-                  </div>
-                </div>
-              )
+                              return (
+                              <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-gold">
+                                <div className="ea-s2-top">
+                                  <span className="ea-s2-pill ea-s2-pill-ink">{card.badge}</span>
+                                  <img src={asset(card.icon)} alt="" width={44} height={44} className="ea-s2-ico" />
+                                </div>
+                                <div className="ea-s2-copy">
+                                  <b>{card.title}</b>
+                                  <small>{card.sub}</small>
+                                </div>
+                                <div className="ea-s2-foot">
+                                  <span className="ea-s2-ver">{card.meta}</span>
+                                </div>
+                              </div>
+                              )
             })}
-          </div>
-          <span className="ea-tag ea-orange ea-t8">@gongaji.app</span>
-        </div>
-      </section>
+                            </div>
+                            <span className="ea-tag ea-orange ea-t8">@gongaji.app</span>
+                          </div>
+                        </section>
 
-      {/* ---------- drifting feature icons ---------- */}
-      <section ref={bands} className="ea-bands" aria-label="25+ Fitur Ibadah Gongaji App">
-        <div ref={bandA} className="ea-band ea-band-a" aria-hidden="true">
-          {BAND_TOP_ASSETS.map((item, i) => (
-            <span
-              key={item.path + i}
-              className="ea-av ea-av-icon"
-              style={{ ["--y" as string]: ((i * 37) % 5) * 12 - 24 + "px", backgroundColor: item.bg } as CSSProperties}
-            >
-              <img src={asset(item.path)} alt="" width={88} height={88} />
-            </span>
-          ))}
-        </div>
-        <div className="ea-bands-mid" data-rv>
-          <span className="ea-spark" aria-hidden="true">
-            <GongajiMarkIcon size={18} />
-          </span>
-          <h2 className="ea-h2 ea-center">
-            <Words parts={["25+ fitur ibadah", "\n", "dalam satu aplikasi"]} />
-          </h2>
-          <p className="ea-small ea-center">
-            <Words parts={["Target tilawah, murottal 11 qari, 300+ buku di Qu-Lib, jadwal shalat, kiblat, hingga simulasi manasik VR."]} at={6} />
-          </p>
-        </div>
-        <div ref={bandB} className="ea-band ea-band-b" aria-hidden="true">
-          {BAND_BOT_ASSETS.map((item, i) => (
-            <span
-              key={item.path + i}
-              className={"ea-av" + (item.kind === "icon" ? " ea-av-icon" : " ea-av-portrait")}
-              style={{ ["--y" as string]: ((i * 53) % 5) * 12 - 24 + "px", backgroundColor: item.bg } as CSSProperties}
-            >
-              <img src={asset(item.path)} alt="" width={88} height={88} />
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* ---------- Gongaji App fitur bento ---------- */}
-      <section id="fitur" className="ea-sec ea-story" aria-label="Fitur Utama Gongaji App">
-        <div className="ea-wrap">
-          <div data-rv className="ea-center-head">
-            <p className="ea-eyebrow">
-              <Words parts={["FITUR UNGGULAN", ["GONGAJI APP", "ea-bluew"]]} />
-            </p>
-            <h2 className="ea-h2 ea-center">
-              <Words parts={["Semua kebutuhan ibadah", "\n", "dalam genggaman"]} at={3} />
-            </h2>
-          </div>
-          <div className="ea-bento">
-            <div className="ea-col">
-              <article className="ea-bcard ea-b1" data-rv>
-                <span className="ea-label">
-                  <Svg d={ICON.download} size={10} stroke={2} /> Gongaji App · 4,8★ &amp; 4,9★
-                </span>
-                <div className="ea-pile" aria-hidden="true">
-                  <div className="ea-pcard ea-pc1">
-                    <div className="ea-pc-top">
-                      <span className="ea-pc-pill">TARGET</span>
-                      <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
-                    </div>
-                    <div className="ea-pc-mid">
-                      <strong>30 Hari</strong>
-                      <span>Khatam · Hari ke-12</span>
-                    </div>
-                    <div>
-                      <div className="ea-pc-bar"><i style={{ width: "72%" }} /></div>
-                      <span className="ea-pc-meta">Al-Baqarah : 142</span>
-                    </div>
-                  </div>
-                  <div className="ea-pcard ea-pc2">
-                    <div className="ea-pc-top">
-                      <span className="ea-pc-pill ea-pc-pill-w">BANDUNG</span>
-                      <img src={asset("05-bento-pilar/jadwal-sholat.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
-                    </div>
-                    <div className="ea-pc-mid">
-                      <strong>04:03</strong>
-                      <span>Subuh · Quran Booster</span>
-                    </div>
-                    <div className="ea-pc-chips">
-                      <span>Tilawah</span>
-                      <span>Hafalan</span>
-                    </div>
-                  </div>
-                  <div className="ea-pcard ea-pc3">
-                    <div className="ea-pc-top">
-                      <span className="ea-pc-pill ea-pc-pill-y">MUROTTAL</span>
-                      <img src={asset("05-bento-pilar/dzikir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
-                    </div>
-                    <div className="ea-pc-mid">
-                      <strong>11 Qari</strong>
-                      <span>Tikrar &amp; Ayat Terakhir</span>
-                    </div>
-                    <div className="ea-pc-bars">
-                      <i style={{ height: "42%" }} />
-                      <i style={{ height: "85%" }} />
-                      <i style={{ height: "62%" }} />
-                      <i style={{ height: "100%" }} />
-                      <i style={{ height: "70%" }} />
-                      <i style={{ height: "48%" }} />
-                    </div>
-                  </div>
-                  <span className="ea-tag ea-blue ea-t9">25+ fitur</span>
-                </div>
-                <h3 className="ea-h4">01 — Al-Qur’an Digital &amp; Target Tilawah</h3>
-                <p className="ea-small">
-                  Mushaf digital nyaman dibaca, penanda ayat terakhir otomatis, serta target khatam santai hingga 30 hari agar tilawah lebih konsisten.
-                </p>
-                <a className="ea-chipbtn" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
-                  Unduh di Google Play
-                </a>
-              </article>
-              <article className="ea-bcard ea-img" data-rv>
-                <div className="ea-photo">
-                  <img src={asset("05-bento-pilar/card2-murottal.webp")} alt="Murottal 11 qari pilihan dan metode tikrar di Gongaji App" width={1280} height={800} style={{ objectPosition: "35% 45%" }} />
-                  <div className="ea-ph-badge" aria-hidden="true">
-                    <strong>Murottal · 11 Qari Pilihan</strong>
-                    <span>Putar &amp; ulangi per ayat · Metode Tikrar</span>
-                  </div>
-                </div>
-                <h3 className="ea-h4">02 — Murottal 11 Qari &amp; Metode Tikrar</h3>
-                <p className="ea-small">
-                  Dengarkan lantunan merdu 11 qari internasional dan hafalkan ayat secara bertahap dengan fitur pengulangan ayat otomatis.
-                </p>
-                <a className="ea-chipbtn" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
-                  Unduh di App Store
-                </a>
-              </article>
-            </div>
-            <div className="ea-col ea-col-r">
-              <article className="ea-bcard ea-img" data-rv>
-                <div className="ea-photo ea-ibadahph" aria-hidden="true">
-                  <div className="ea-ib-grid">
-                    {[
-                      { icon: "05-bento-pilar/jadwal-sholat.webp", label: "Jadwal Shalat" },
-                      { icon: "05-bento-pilar/arah-kiblat.webp", label: "Arah Kiblat" },
-                      { icon: "05-bento-pilar/doa.webp", label: "Dzikir & Doa" },
-                      { icon: "05-bento-pilar/tafsir.webp", label: "Tafsir & Hadits" },
-                      { icon: "05-bento-pilar/kalkulator-zakat.webp", label: "Hitung Zakat" },
-                      { icon: "05-bento-pilar/vr.webp", label: "Manasik VR" },
-                    ].map((it) => (
-                      <div key={it.label} className="ea-ib-item">
-                        <img src={asset(it.icon)} alt="" width={34} height={34} />
-                        <span>{it.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <h3 className="ea-h4">03 — Jadwal Shalat, Kiblat, &amp; 25+ Fitur Ibadah</h3>
-                <p className="ea-small">
-                  Pengingat adzan sesuai lokasi, kompas kiblat, dzikir harian, tafsir, kalkulator zakat, hingga simulasi manasik VR dalam satu aplikasi.
-                </p>
-                <a className="ea-chipbtn" href="#qursus">
-                  Kenali Sub-Brand Gongaji
-                </a>
-              </article>
-              <article className="ea-bcard ea-phone-wrap" data-rv>
-                <span className="ea-pen" aria-hidden="true">
-                  <Svg d={ICON.book} size={13} />
-                </span>
-                <div className="ea-phone">
-                  <div className="ea-ph-status">
-                    <span>04:03 · Subuh</span>
-                    <span>Bandung</span>
-                  </div>
-                  <div className="ea-ph-hero">
-                    <small>Quran Booster</small>
-                    <b>#JadiLebihMudah</b>
-                    <div className="ea-ph-pills">
-                      <span>Tilawah · Juz 12</span>
-                      <span>Hafalan · Tikrar</span>
-                    </div>
-                  </div>
-                  <div className="ea-ph-qulib">
-                    <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={34} height={34} aria-hidden="true" />
-                    <div>
-                      <strong>Qu-Lib · 300+ Buku</strong>
-                      <span>Tafsir, Sirah &amp; Referensi Islami</span>
-                    </div>
-                  </div>
-                  <div className="ea-ph-foot">
-                    <em>Baca. Belajar. Berbagi.</em>
-                    <small>Gongaji App · Fitur Gratis</small>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Sub-Brand 01: stage 3 banner → mentor & learner wall ---------- */}
-      <section ref={s3} id="qursus" className="ea-stage" style={stage(3)} aria-label="Sub-Brand Qursus by Gongaji">
-        <div ref={pin3} className="ea-pin" style={{ height }}>
-          <div ref={appRow} className="ea-lead">
-            <p className="ea-eyebrow">
-              SUB-BRAND 01 · <span className="ea-orangew">QURSUS BY GONGAJI</span>
-            </p>
-            <h2 className="ea-h2 ea-center">
-              Ingin belajar ngaji
-              <br />
-              dibimbing pengajar?
-            </h2>
-            <p className="ea-small ea-center">
-              Qursus adalah sub-brand edukasi Gongaji dengan kelas live grup kecil 5–8 peserta berjenjang (Pemula 1 – Mahir 2), dipisah ikhwan &amp; akhwat.
-            </p>
-          </div>
-          {WALL_ASSETS.map((item, i) =>
-            item.path ? (
-              <div
-                key={item.path + i}
-                ref={(el) => { wall.current[i] = el }}
-                className="ea-wall"
-                style={{ backgroundColor: item.bg }}
-                aria-hidden="true"
-              >
-                <img src={asset(item.path)} alt="" width={195} height={210} className="ea-portrait" />
-              </div>
-            ) : null,
-          )}
-          <div ref={banner} className="ea-orange">
-            <img src={asset("07-mentor-wall/mentor-center.webp")} alt="Pengajar Qursus tersenyum saat membimbing kelas daring" width={1600} height={900} />
-            <div className="ea-orange-scrim" aria-hidden="true" />
-            <div className="ea-orange-ui">
-              <span className="ea-tag ea-redtag ea-t10">@qursus.gongaji</span>
-              <button type="button" className={"ea-like" + (liked ? " on" : "")} aria-pressed={liked} onClick={() => setLiked((l) => !l)}>
-                <Svg d={ICON.heart} size={10} fill={liked ? "currentColor" : "none"} stroke={2} />
-                {liked ? "Disukai" : "Suka"}
-              </button>
-              <div className="ea-by">
-                <img src={asset("07-mentor-wall/dian.webp")} alt="" width={28} height={28} />
-                <span>
-                  <b>Fajar Nugraha · Pemula 2</b>
-                  <small>“Kelasnya kecil, salah langsung dibenerin.”</small>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Qursus pricing ---------- */}
-      <section id="pricing" className="ea-sec ea-price" aria-label="Biaya Sub-Brand Qursus">
-        <div className="ea-wrap ea-price-grid">
-          <div data-rv>
-            <span className="ea-eye">
-              <Svg d={ICON.spark} size={15} />
-            </span>
-            <h2 className="ea-h3">
-              <Words parts={["Biaya Qursus"]} />
-            </h2>
-            <p className="ea-small ea-wrapp">
-              <Words
-                parts={["Harga sama untuk semua level dari Pemula 1 hingga Mahir 2. Termasuk kelas live 3 bulan, evaluasi, rapor, dan sertifikat."]}
-                at={2}
-              />
-            </p>
-          </div>
-          <div className="ea-plans" data-rv>
-            <div className="ea-plan ea-p1">
-              <small>Bayar Penuh</small>
-              <b>
-                <sup>Rp</sup>699<small>rb</small>
-              </b>
-              <em>Per level · Hemat Rp51.000</em>
-            </div>
-            <div className="ea-plan ea-p2">
-              <small>Bertahap</small>
-              <span className="ea-pop-pill">Populer</span>
-              <b>
-                <sup>Rp</sup>750<small>rb</small>
-              </b>
-              <em>Dicicil selama 3 bulan</em>
-            </div>
-            <div className="ea-plan ea-p3">
-              <small>Beasiswa</small>
-              <b>
-                <sup>Rp</sup>0<small>/batch</small>
-              </b>
-              <em>Jalur beasiswa Pemula 1–3</em>
-            </div>
-          </div>
-        </div>
-      </section>
-
-        {/* ---------- Sub-Brand 02: dedicated QuPeduli section ---------- */}
-        <section id="qupeduli" className="ea-sec ea-qupeduli" aria-label="Sub-Brand QuPeduli by Gongaji">
-          <div className="ea-wrap">
-            <div className="ea-qup-head" data-rv>
-              <div>
-                <p className="ea-eyebrow">
-                  <Words parts={["SUB-BRAND 02 ·", ["QUPEDULI BY GONGAJI", "ea-purplew"]]} />
-                </p>
-                <h2 className="ea-h2">
-                  <Words parts={["Kebaikan yang lahir", "\n", "dari rasa percaya."]} at={2} />
-                </h2>
-              </div>
-              <p className="ea-small ea-qup-sub">
-                Platform donasi online, sedekah, dan wakaf bersama Yayasan Quran Bina Bangsa (Qubba Foundation) dengan rincian dana &amp; laporan penyaluran terbuka.
-              </p>
-            </div>
-            <div className="ea-qup-grid">
-              <div className="ea-qup-hero" data-rv>
-                <span className="ea-qup-pill">Qubba Foundation · Terverifikasi</span>
-                <h3>1.200+ Mushaf &amp; Bantuan Tersalurkan</h3>
-                <p>Setiap donasi dicatat terbuka dan disalurkan berkala untuk santri, guru ngaji, serta masyarakat membutuhkan.</p>
-                <div className="ea-qup-chips">
-                  <span>Laporan Terbuka</span>
-                  <span>Sedekah &amp; Wakaf</span>
-                </div>
-                <a className="ea-btn" href="#download">
-                  Salurkan Lewat Gongaji App
-                </a>
-                <img src={asset("10-qupeduli/donor-spotlight.webp")} alt="" width={280} height={320} className="ea-qup-donor" aria-hidden="true" draggable={false} />
-              </div>
-              <div className="ea-qup-list" data-rv>
-                {campaigns.map((camp) => (
-                  <article key={camp.id} className="ea-qup-item">
-                    <div className={"ea-qup-thumb" + (camp.isIcon ? " is-icon" : "")}>
-                      <img src={asset(camp.image)} alt={camp.title} width={76} height={76} />
-                    </div>
-                    <div className="ea-qup-body">
-                      <div className="ea-qup-meta">
-                        <span>{camp.category}</span>
-                        <small>{camp.daysLeft}</small>
-                      </div>
-                      <h4>{camp.title}</h4>
-                      <div className="ea-qup-bar">
-                        <i style={{ width: camp.pct + "%" }} />
-                      </div>
-                      <div className="ea-qup-foot">
-                        <span>
-                          <b>{camp.raisedText}</b> / {camp.targetText}
-                        </span>
-                        <small>{camp.donors} donatur</small>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ---------- Artikel & wawasan (API-ready carousel) ---------- */}
-        <section id="artikel" className="ea-sec ea-market" aria-label="Artikel dan Wawasan Gongaji">
-          <div className="ea-wrap">
-            <div className="ea-market-grid">
-              <div data-rv className="ea-market-head">
-                <p className="ea-eyebrow">
-                  <Words parts={["ARTIKEL &", ["WAWASAN", "ea-purplew"]]} />
-                </p>
-                <h2 className="ea-h2">
-                  <Words parts={["Artikel Pilihan &", "\n", "Panduan Qur'an"]} at={2} />
-                </h2>
-                <p className="ea-small ea-wrapm">
-                  <Words parts={["Bacaan ringan seputar tajwid, tilawah harian, metode hafalan, dan kisah kebaikan bersama Al-Qur'an."]} at={5} />
-                </p>
-                <div className="ea-mini-arrows ea-arc-arrows">
-                    <button type="button" aria-label="Artikel sebelumnya" onClick={() => setArc((a) => Math.max(0, a - 1))} disabled={arc === 0}>
-                      <Svg d={ICON.left} size={11} stroke={2} />
-                    </button>
-                    <button
-                      type="button"
-                      aria-label="Artikel berikutnya"
-                      onClick={() => setArc((a) => Math.min(Math.max(0, articles.length - 4), a + 1))}
-                      disabled={arc >= articles.length - 4}
-                    >
-                      <Svg d={ICON.right} size={11} stroke={2} />
-                    </button>
-                </div>
-              </div>
-              <div className="ea-market-right" data-rv>
-                <a className="ea-viewall" href="#download">
-                  Baca di Qu-Lib
-                </a>
-                <div className="ea-rail">
-                  <div className="ea-rail-track" style={{ ["--ci" as string]: arc } as CSSProperties}>
-                      {
-                        articles.map((item, i) => (
-                          <figure key={item.title} className="ea-arc" style={{ ["--i" as string]: i } as CSSProperties}>
-                            {item.kind === "ui" ? (
-                              <div className={"ea-arc-card " + (item.variant === "indigo" ? "ea-arc-indigo" : item.variant === "dark" ? "ea-arc-dark" : "ea-arc-teal")}>
-                                <span className="ea-arc-top">
-                                  <small>{item.badge}</small>
-                                  <img src={asset(item.icon)} alt="" width={32} height={32} className="ea-arc-ico" />
-                                </span>
-                                <b>{item.big}</b>
-                                <span className="ea-arc-note">{item.note}</span>
-                              </div>
-                            ) : item.kind === "tajwid" ? (
-                              <div className="ea-arc-card ea-arc-tajwid">
-                                <small className="ea-arc-kicker">{item.badge}</small>
-                                <span className="ea-arc-rules">
-                                  {item.rules.map((r) => (
-                                    <em key={r}>{r}</em>
-                                  ))}
-                                </span>
-                                <span className="ea-arc-note">{item.note}</span>
-                              </div>
-                            ) : item.kind === "cutout" ? (
-                                <div className={"ea-arc-card " + (item.theme === "rose" ? "ea-arc-rose" : "ea-arc-gold")}>
-                                  <img src={asset(item.path)} alt={item.title} width={220} height={220} className="ea-arc-cut" />
-                                  <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
-                                </div>
-                                ) : item.kind === "levels" ? (
-                                <div className="ea-arc-card ea-arc-levels">
-                                  <span className="ea-arc-mini-photo">
-                                    <img src={asset(item.path)} alt={item.title} width={220} height={115} />
-                                  </span>
-                                  <span className="ea-arc-lvl-row">
-                                    {item.levels.map((lv, li) => (
-                                      <em key={lv} className={li === 1 ? "on" : li === 0 ? "done" : ""}>
-                                        {lv}
-                                      </em>
-                                    ))}
-                                  </span>
-                                  <span className="ea-arc-note">{item.note}</span>
-                                </div>
-                                ) : (
-                                <div className="ea-arc-photo">
-                                  <img src={asset(item.path)} alt={item.title} width={220} height={220} />
-                                  <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
-                                </div>
-                      )}
-                                <figcaption>
-                                  <span className="ea-arc-tag">{item.tag}</span>
-                                  {item.title}
-                                </figcaption>
-                              </figure>
+                        {/* ---------- drifting feature icons ---------- */}
+                        <section ref={bands} className="ea-bands" aria-label="25+ Fitur Ibadah Gongaji App">
+                          <div ref={bandA} className="ea-band ea-band-a" aria-hidden="true">
+                            {BAND_TOP_ASSETS.map((item, i) => (
+                              <span
+                                key={item.path + i}
+                                className="ea-av ea-av-icon"
+                                style={{ ["--y" as string]: ((i * 37) % 5) * 12 - 24 + "px", backgroundColor: item.bg } as CSSProperties}
+                              >
+                                <img src={asset(item.path)} alt="" width={88} height={88} />
+                              </span>
                             ))}
                           </div>
-              </div>
-                  <div className="ea-progress" aria-hidden="true">
-                    <i style={{ ["--ci" as string]: arc } as CSSProperties} />
-                  </div>
-                </div>
-              </div>
-            </div>
-        </section>
+                          <div className="ea-bands-mid" data-rv>
+                            <span className="ea-spark" aria-hidden="true">
+                              <GongajiMarkIcon size={18} />
+                            </span>
+                            <h2 className="ea-h2 ea-center">
+                              <Words parts={["25+ fitur ibadah", "\n", "dalam satu aplikasi"]} />
+                            </h2>
+                            <p className="ea-small ea-center">
+                              <Words parts={["Target tilawah, murottal 11 qari, 300+ buku di Qu-Lib, jadwal shalat, kiblat, hingga simulasi manasik VR."]} at={6} />
+                            </p>
+                          </div>
+                          <div ref={bandB} className="ea-band ea-band-b" aria-hidden="true">
+                            {BAND_BOT_ASSETS.map((item, i) => (
+                              <span
+                                key={item.path + i}
+                                className={"ea-av" + (item.kind === "icon" ? " ea-av-icon" : " ea-av-portrait")}
+                                style={{ ["--y" as string]: ((i * 53) % 5) * 12 - 24 + "px", backgroundColor: item.bg } as CSSProperties}
+                              >
+                                <img src={asset(item.path)} alt="" width={88} height={88} />
+                              </span>
+                            ))}
+                          </div>
+                        </section>
 
-        {/* ---------- lime marquee + falling doodles ---------- */}
-        <section ref={limeRef} className="ea-sec ea-lime-sec" aria-label="Ajakan Ekosistem Gongaji">
-          <div className="ea-lime">
-            <span className="ea-water" aria-hidden="true">
-              GONGAJI
-            </span>
-            <div className="ea-marquee">
-              <div ref={limeTrack} className="ea-mtrack">
-                {[0, 1].map((rep) => (
-                  <span key={rep} className="ea-mrun" aria-hidden={rep === 1}>
-                    Baca. Belajar. Berbagi.
-                    <span className="ea-mthumbs">
-                      <i style={{ background: "#5145B9" }} />
-                      <img src={asset("08-lime-marquee/thumb-1-app-home.webp")} alt="" width={44} height={44} />
-                      <img src={asset("08-lime-marquee/thumb-2-app-quran.webp")} alt="" width={44} height={44} />
-                      <small>#JADILEBIHMUDAH</small>
-                    </span>
-                    25+ Fitur di Gongaji App
-                    <span className="ea-mthumbs">
-                      <img src={asset("08-lime-marquee/thumb-3-teaching-smile.webp")} alt="" width={44} height={44} />
-                    </span>
-                    Sub-Brand Qursus · 5 Level
-                    <span className="ea-mthumbs">
-                      <img src={asset("08-lime-marquee/thumb-4-qursus-murid.webp")} alt="" width={44} height={44} />
-                    </span>
-                    Sub-Brand QuPeduli · Qubba Foundation
-                    <span className="ea-mthumbs">
-                      <img src={asset("08-lime-marquee/thumb-5-teaching-mushaf.webp")} alt="" width={44} height={44} />
-                    </span>
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div ref={pile} className="ea-pilebox" aria-hidden="true">
-              {DOODLES.map((d, i) => (
-                <span key={i} ref={(el) => { balls.current[i] = el }} className="ea-ball">
-                  <Svg d={d} size={34} stroke={1.4} />
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
+                        {/* ---------- Gongaji App fitur bento ---------- */}
+                        <section id="fitur" className="ea-sec ea-story" aria-label="Fitur Utama Gongaji App">
+                          <div className="ea-wrap">
+                            <div data-rv className="ea-center-head">
+                              <p className="ea-eyebrow">
+                                <Words parts={["FITUR UNGGULAN", ["GONGAJI APP", "ea-bluew"]]} />
+                              </p>
+                              <h2 className="ea-h2 ea-center">
+                                <Words parts={["Semua kebutuhan ibadah", "\n", "dalam genggaman"]} at={3} />
+                              </h2>
+                            </div>
+                            <div className="ea-bento">
+                              <div className="ea-col">
+                                <article className="ea-bcard ea-b1" data-rv>
+                                  <span className="ea-label">
+                                    <Svg d={ICON.download} size={10} stroke={2} /> Gongaji App · 4,8★ &amp; 4,9★
+                                  </span>
+                                  <div className="ea-pile" aria-hidden="true">
+                                    <div className="ea-pcard ea-pc1">
+                                      <div className="ea-pc-top">
+                                        <span className="ea-pc-pill">TARGET</span>
+                                        <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
+                                      </div>
+                                      <div className="ea-pc-mid">
+                                        <strong>30 Hari</strong>
+                                        <span>Khatam · Hari ke-12</span>
+                                      </div>
+                                      <div>
+                                        <div className="ea-pc-bar"><i style={{ width: "72%" }} /></div>
+                                        <span className="ea-pc-meta">Al-Baqarah : 142</span>
+                                      </div>
+                                    </div>
+                                    <div className="ea-pcard ea-pc2">
+                                      <div className="ea-pc-top">
+                                        <span className="ea-pc-pill ea-pc-pill-w">BANDUNG</span>
+                                        <img src={asset("05-bento-pilar/jadwal-sholat.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
+                                      </div>
+                                      <div className="ea-pc-mid">
+                                        <strong>04:03</strong>
+                                        <span>Subuh · Quran Booster</span>
+                                      </div>
+                                      <div className="ea-pc-chips">
+                                        <span>Tilawah</span>
+                                        <span>Hafalan</span>
+                                      </div>
+                                    </div>
+                                    <div className="ea-pcard ea-pc3">
+                                      <div className="ea-pc-top">
+                                        <span className="ea-pc-pill ea-pc-pill-y">MUROTTAL</span>
+                                        <img src={asset("05-bento-pilar/dzikir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
+                                      </div>
+                                      <div className="ea-pc-mid">
+                                        <strong>11 Qari</strong>
+                                        <span>Tikrar &amp; Ayat Terakhir</span>
+                                      </div>
+                                      <div className="ea-pc-bars">
+                                        <i style={{ height: "42%" }} />
+                                        <i style={{ height: "85%" }} />
+                                        <i style={{ height: "62%" }} />
+                                        <i style={{ height: "100%" }} />
+                                        <i style={{ height: "70%" }} />
+                                        <i style={{ height: "48%" }} />
+                                      </div>
+                                    </div>
+                                    <span className="ea-tag ea-blue ea-t9">25+ fitur</span>
+                                  </div>
+                                  <h3 className="ea-h4">01 — Al-Qur’an Digital &amp; Target Tilawah</h3>
+                                  <p className="ea-small">
+                                    Mushaf digital nyaman dibaca, penanda ayat terakhir otomatis, serta target khatam santai hingga 30 hari agar tilawah lebih konsisten.
+                                  </p>
+                                  <a className="ea-chipbtn" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
+                                    Unduh di Google Play
+                                  </a>
+                                </article>
+                                <article className="ea-bcard ea-img" data-rv>
+                                  <div className="ea-photo">
+                                    <img src={asset("05-bento-pilar/card2-murottal.webp")} alt="Murottal 11 qari pilihan dan metode tikrar di Gongaji App" width={1280} height={800} style={{ objectPosition: "35% 45%" }} />
+                                    <div className="ea-ph-badge" aria-hidden="true">
+                                      <strong>Murottal · 11 Qari Pilihan</strong>
+                                      <span>Putar &amp; ulangi per ayat · Metode Tikrar</span>
+                                    </div>
+                                  </div>
+                                  <h3 className="ea-h4">02 — Murottal 11 Qari &amp; Metode Tikrar</h3>
+                                  <p className="ea-small">
+                                    Dengarkan lantunan merdu 11 qari internasional dan hafalkan ayat secara bertahap dengan fitur pengulangan ayat otomatis.
+                                  </p>
+                                  <a className="ea-chipbtn" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
+                                    Unduh di App Store
+                                  </a>
+                                </article>
+                              </div>
+                              <div className="ea-col ea-col-r">
+                                <article className="ea-bcard ea-img" data-rv>
+                                  <div className="ea-photo ea-ibadahph" aria-hidden="true">
+                                    <div className="ea-ib-grid">
+                                      {[
+                                        { icon: "05-bento-pilar/jadwal-sholat.webp", label: "Jadwal Shalat" },
+                                        { icon: "05-bento-pilar/arah-kiblat.webp", label: "Arah Kiblat" },
+                                        { icon: "05-bento-pilar/doa.webp", label: "Dzikir & Doa" },
+                                        { icon: "05-bento-pilar/tafsir.webp", label: "Tafsir & Hadits" },
+                                        { icon: "05-bento-pilar/kalkulator-zakat.webp", label: "Hitung Zakat" },
+                                        { icon: "05-bento-pilar/vr.webp", label: "Manasik VR" },
+                                      ].map((it) => (
+                                        <div key={it.label} className="ea-ib-item">
+                                          <img src={asset(it.icon)} alt="" width={34} height={34} />
+                                          <span>{it.label}</span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <h3 className="ea-h4">03 — Jadwal Shalat, Kiblat, &amp; 25+ Fitur Ibadah</h3>
+                                  <p className="ea-small">
+                                    Pengingat adzan sesuai lokasi, kompas kiblat, dzikir harian, tafsir, kalkulator zakat, hingga simulasi manasik VR dalam satu aplikasi.
+                                  </p>
+                                  <a className="ea-chipbtn" href="#qursus">
+                                    Kenali Sub-Brand Gongaji
+                                  </a>
+                                </article>
+                                <article className="ea-bcard ea-phone-wrap" data-rv>
+                                  <span className="ea-pen" aria-hidden="true">
+                                    <Svg d={ICON.book} size={13} />
+                                  </span>
+                                  <div className="ea-phone">
+                                    <div className="ea-ph-status">
+                                      <span>04:03 · Subuh</span>
+                                      <span>Bandung</span>
+                                    </div>
+                                    <div className="ea-ph-hero">
+                                      <small>Quran Booster</small>
+                                      <b>#JadiLebihMudah</b>
+                                      <div className="ea-ph-pills">
+                                        <span>Tilawah · Juz 12</span>
+                                        <span>Hafalan · Tikrar</span>
+                                      </div>
+                                    </div>
+                                    <div className="ea-ph-qulib">
+                                      <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={34} height={34} aria-hidden="true" />
+                                      <div>
+                                        <strong>Qu-Lib · 300+ Buku</strong>
+                                        <span>Tafsir, Sirah &amp; Referensi Islami</span>
+                                      </div>
+                                    </div>
+                                    <div className="ea-ph-foot">
+                                      <em>Baca. Belajar. Berbagi.</em>
+                                      <small>Gongaji App · Fitur Gratis</small>
+                                    </div>
+                                  </div>
+                                </article>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
 
-        {/* ---------- duo: download Gongaji App + daftar Qursus ---------- */}
-        <section id="download" className="ea-sec ea-duo" aria-label="Mulai Bersama Gongaji">
-          <div className="ea-wrap ea-duo-grid">
-            <article className="ea-meet" data-rv>
-              <div className="ea-duo-phones" aria-hidden="true">
-                <span className="ea-duo-pill">50rb+ Unduhan · 25+ Fitur</span>
-                <div className="ea-phone-back">
-                  <img src={asset("09-download-cta/app-quran.webp")} alt="" width={210} height={380} draggable={false} />
-                </div>
-                <div className="ea-phone-front">
-                  <img src={asset("09-download-cta/app-home.webp")} alt="" width={230} height={420} draggable={false} />
-                </div>
-              </div>
-              <div className="ea-duo-copy">
-                <Svg d={ICON.download} size={14} />
-                <h3 className="ea-h3">
-                  Unduh
-                  <br />
-                  <span>Gongaji App</span>
-                </h3>
-                <p className="ea-small">Tersedia gratis di Google Play (4,8★) dan App Store (4,9★). Mulai kebiasaan tilawahmu hari ini.</p>
-                <div className="ea-store-row">
-                  <a className="ea-store-badge" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di Google Play">
-                    <img src={asset("09-download-cta/badge-google-play.svg")} alt="" height={40} />
-                  </a>
-                  <a className="ea-store-badge" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di App Store">
-                    <img src={asset("09-download-cta/badge-app-store.svg")} alt="" height={40} />
-                  </a>
-                </div>
-              </div>
-            </article>
-            <article className="ea-arch" data-rv>
-              <div className="ea-qursus-ui" aria-hidden="true">
-                <div className="ea-qursus-photo">
-                  <img src={asset("09-download-cta/qursus-mentor.webp")} alt="" width={520} height={240} draggable={false} />
-                  <span className="ea-qursus-live">Kelas Live · 5–8 Peserta</span>
-                </div>
-                <div className="ea-qursus-steps">
-                  {[
-                    { label: "Pemula 1", st: "done" },
-                    { label: "Pemula 2", st: "on" },
-                    { label: "Pemula 3", st: "" },
-                    { label: "Mahir 1", st: "" },
-                    { label: "Mahir 2", st: "" },
-                  ].map((lv) => (
-                    <span key={lv.label} className={lv.st}>
-                      {lv.label}
-                    </span>
-                  ))}
-                </div>
-                <div className="ea-qursus-tags">
-                  <span>Asesmen Awal</span>
-                  <span>Ikhwan &amp; Akhwat Terpisah</span>
-                  <span>Rapor &amp; Sertifikat</span>
-                </div>
-              </div>
-              <div className="ea-duo-copy">
-                <Svg d={ICON.spark} size={14} />
-                <h3 className="ea-h3">
-                  Mulai Belajar
-                  <br />
-                  di Qursus
-                </h3>
-                <p className="ea-small">Ikuti asesmen awal, pilih jadwal kelas live kecil bersama pengajar bersertifikat, dan pantau rapor progresmu.</p>
-                <a className="ea-btn" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
-                  Daftar Qursus
-                </a>
-              </div>
-            </article>
-          </div>
-        </section>
+                        {/* ---------- Sub-Brand 01: stage 3 banner → mentor & learner wall ---------- */}
+                        <section ref={s3} id="qursus" className="ea-stage" style={stage(3)} aria-label="Sub-Brand Qursus by Gongaji">
+                          <div ref={pin3} className="ea-pin" style={{ height }}>
+                            <div ref={appRow} className="ea-lead">
+                              <p className="ea-eyebrow">
+                                SUB-BRAND 01 · <span className="ea-orangew">QURSUS BY GONGAJI</span>
+                              </p>
+                              <h2 className="ea-h2 ea-center">
+                                Ingin belajar ngaji
+                                <br />
+                                dibimbing pengajar?
+                              </h2>
+                              <p className="ea-small ea-center">
+                                Qursus adalah sub-brand edukasi Gongaji dengan kelas live grup kecil 5–8 peserta berjenjang (Pemula 1 – Mahir 2), dipisah ikhwan &amp; akhwat.
+                              </p>
+                            </div>
+                            {WALL_ASSETS.map((item, i) =>
+                              item.path ? (
+                                <div
+                                  key={item.path + i}
+                                  ref={(el) => { wall.current[i] = el }}
+                                  className="ea-wall"
+                                  style={{ backgroundColor: item.bg }}
+                                  aria-hidden="true"
+                                >
+                                  <img src={asset(item.path)} alt="" width={195} height={210} className="ea-portrait" />
+                                </div>
+                              ) : null,
+                            )}
+                            <div ref={banner} className="ea-orange">
+                              <img src={asset("07-mentor-wall/mentor-center.webp")} alt="Pengajar Qursus tersenyum saat membimbing kelas daring" width={1600} height={900} />
+                              <div className="ea-orange-scrim" aria-hidden="true" />
+                              <div className="ea-orange-ui">
+                                <span className="ea-tag ea-redtag ea-t10">@qursus.gongaji</span>
+                                <button type="button" className={"ea-like" + (liked ? " on" : "")} aria-pressed={liked} onClick={() => setLiked((l) => !l)}>
+                                  <Svg d={ICON.heart} size={10} fill={liked ? "currentColor" : "none"} stroke={2} />
+                                  {liked ? "Disukai" : "Suka"}
+                                </button>
+                                <div className="ea-by">
+                                  <img src={asset("07-mentor-wall/dian.webp")} alt="" width={28} height={28} />
+                                  <span>
+                                    <b>Fajar Nugraha · Pemula 2</b>
+                                    <small>“Kelasnya kecil, salah langsung dibenerin.”</small>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
 
-        {/* ---------- footer ---------- */}
-        <footer className="ea-foot">
-          <div className="ea-wrap ea-foot-grid">
-            <div>
-              <h2 className="ea-h4">
-                Baca. Belajar. Berbagi. <span className="ea-foot-dots">#JadiLebihMudah</span>
-              </h2>
-              <p className="ea-small">
-                Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. QuPeduli dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
-              </p>
-              <a className="ea-mail" href={mail}>
-                {email}
-              </a>
-              <span className="ea-contact-meta">
-                {GONGAJI_LINKS.whatsapp} · {GONGAJI_LINKS.instagram}
-              </span>
-              <div className="ea-socials">
-                <a href={mail} aria-label="Email Gongaji">
-                  <Svg d={ICON.mail} size={12} />
-                </a>
-                <a href={GONGAJI_LINKS.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Gongaji">
-                  <Svg d={ICON.globe} size={12} />
-                </a>
-                <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Gongaji di Google Play">
-                  <Svg d={ICON.grid} size={12} />
-                </a>
-                <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer" aria-label="Qursus by Gongaji">
-                  <Svg d={ICON.spark} size={12} />
-                </a>
-              </div>
-            </div>
-            <ul>
-              <li>
-                <a href="#fitur">Gongaji App</a>
-              </li>
-              <li>
-                <i className="ea-dot" />{" "}
-                <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
-                  Qursus
-                </a>{" "}
-                <span className="ea-new">Live</span>
-              </li>
-              <li>
-                <a href="#qupeduli">QuPeduli</a>
-              </li>
-              <li>
-                <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
-                  Google Play
-                </a>
-              </li>
-              <li>
-                <a href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
-                  App Store
-                </a>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <a href="#qursus">Pemula 1 – Mahir 2</a>
-              </li>
-              <li>
-                <i className="ea-dot" /> <a href="#pricing">Biaya &amp; Beasiswa</a>
-              </li>
-              <li>
-                  <a href="#qupeduli">Program QuPeduli</a>
-              </li>
-              <li>
-                <a href="#artikel">
-                  Artikel Islami <span className="ea-soon">Baru</span>
-                </a>
-              </li>
-            </ul>
-            <ul>
-              <li>Qubba Foundation</li>
-              <li>
-                <a href={mail}>Kontak Kami</a>
-              </li>
-              <li>
-                Kemitraan <span className="ea-soon">Mitra</span>
-              </li>
-            </ul>
-            <p className="ea-copy">© 2026 Gongaji. Semua hak dilindungi.</p>
-          </div>
-        </footer>
-    </div>
-  )
+                        {/* ---------- Qursus pricing ---------- */}
+                        <section id="pricing" className="ea-sec ea-price" aria-label="Biaya Sub-Brand Qursus">
+                          <div className="ea-wrap ea-price-grid">
+                            <div data-rv>
+                              <span className="ea-eye">
+                                <Svg d={ICON.spark} size={15} />
+                              </span>
+                              <h2 className="ea-h3">
+                                <Words parts={["Biaya Qursus"]} />
+                              </h2>
+                              <p className="ea-small ea-wrapp">
+                                <Words
+                                  parts={["Harga sama untuk semua level dari Pemula 1 hingga Mahir 2. Termasuk kelas live 3 bulan, evaluasi, rapor, dan sertifikat."]}
+                                  at={2}
+                                />
+                              </p>
+                            </div>
+                            <div className="ea-plans" data-rv>
+                              <div className="ea-plan ea-p1">
+                                <small>Bayar Penuh</small>
+                                <b>
+                                  <sup>Rp</sup>699<small>rb</small>
+                                </b>
+                                <em>Per level · Hemat Rp51.000</em>
+                              </div>
+                              <div className="ea-plan ea-p2">
+                                <small>Bertahap</small>
+                                <span className="ea-pop-pill">Populer</span>
+                                <b>
+                                  <sup>Rp</sup>750<small>rb</small>
+                                </b>
+                                <em>Dicicil selama 3 bulan</em>
+                              </div>
+                              <div className="ea-plan ea-p3">
+                                <small>Beasiswa</small>
+                                <b>
+                                  <sup>Rp</sup>0<small>/batch</small>
+                                </b>
+                                <em>Jalur beasiswa Pemula 1–3</em>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+
+                        {/* ---------- Sub-Brand 02: dedicated QuPeduli section ---------- */}
+                        <section id="qupeduli" className="ea-sec ea-qupeduli" aria-label="Sub-Brand QuPeduli by Gongaji">
+                          <div className="ea-wrap">
+                            <div className="ea-qup-head" data-rv>
+                              <div>
+                                <p className="ea-eyebrow">
+                                  <Words parts={["SUB-BRAND 02 ·", ["QUPEDULI BY GONGAJI", "ea-purplew"]]} />
+                                </p>
+                                <h2 className="ea-h2">
+                                  <Words parts={["Kebaikan yang lahir", "\n", "dari rasa percaya."]} at={2} />
+                                </h2>
+                              </div>
+                              <p className="ea-small ea-qup-sub">
+                                Platform donasi online, sedekah, dan wakaf bersama Yayasan Quran Bina Bangsa (Qubba Foundation) dengan rincian dana &amp; laporan penyaluran terbuka.
+                              </p>
+                            </div>
+                            <div className="ea-qup-grid">
+                              <div className="ea-qup-hero" data-rv>
+                                <span className="ea-qup-pill">Qubba Foundation · Terverifikasi</span>
+                                <h3>1.200+ Mushaf &amp; Bantuan Tersalurkan</h3>
+                                <p>Setiap donasi dicatat terbuka dan disalurkan berkala untuk santri, guru ngaji, serta masyarakat membutuhkan.</p>
+                                <div className="ea-qup-chips">
+                                  <span>Laporan Terbuka</span>
+                                  <span>Sedekah &amp; Wakaf</span>
+                                </div>
+                                <a className="ea-btn" href="#download">
+                                  Salurkan Lewat Gongaji App
+                                </a>
+                                <img src={asset("10-qupeduli/donor-spotlight.webp")} alt="" width={280} height={320} className="ea-qup-donor" aria-hidden="true" draggable={false} />
+                              </div>
+                              <div className="ea-qup-list" data-rv>
+                                {campaigns.map((camp) => (
+                                  <article key={camp.id} className="ea-qup-item">
+                                    <div className={"ea-qup-thumb" + (camp.isIcon ? " is-icon" : "")}>
+                                      <img src={asset(camp.image)} alt={camp.title} width={76} height={76} />
+                                    </div>
+                                    <div className="ea-qup-body">
+                                      <div className="ea-qup-meta">
+                                        <span>{camp.category}</span>
+                                        <small>{camp.daysLeft}</small>
+                                      </div>
+                                      <h4>{camp.title}</h4>
+                                      <div className="ea-qup-bar">
+                                        <i style={{ width: camp.pct + "%" }} />
+                                      </div>
+                                      <div className="ea-qup-foot">
+                                        <span>
+                                          <b>{camp.raisedText}</b> / {camp.targetText}
+                                        </span>
+                                        <small>{camp.donors} donatur</small>
+                                      </div>
+                                    </div>
+                                  </article>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+
+                        {/* ---------- Artikel & wawasan (API-ready carousel) ---------- */}
+                        <section id="artikel" className="ea-sec ea-market" aria-label="Artikel dan Wawasan Gongaji">
+                          <div className="ea-wrap">
+                            <div className="ea-market-grid">
+                              <div data-rv className="ea-market-head">
+                                <p className="ea-eyebrow">
+                                  <Words parts={["ARTIKEL &", ["WAWASAN", "ea-purplew"]]} />
+                                </p>
+                                <h2 className="ea-h2">
+                                  <Words parts={["Artikel Pilihan &", "\n", "Panduan Qur'an"]} at={2} />
+                                </h2>
+                                <p className="ea-small ea-wrapm">
+                                  <Words parts={["Bacaan ringan seputar tajwid, tilawah harian, metode hafalan, dan kisah kebaikan bersama Al-Qur'an."]} at={5} />
+                                </p>
+                                <div className="ea-mini-arrows ea-arc-arrows">
+                                  <button type="button" aria-label="Artikel sebelumnya" onClick={() => setArc((a) => Math.max(0, a - 1))} disabled={arc === 0}>
+                                    <Svg d={ICON.left} size={11} stroke={2} />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    aria-label="Artikel berikutnya"
+                                    onClick={() => setArc((a) => Math.min(Math.max(0, articles.length - 4), a + 1))}
+                                    disabled={arc >= articles.length - 4}
+                                  >
+                                    <Svg d={ICON.right} size={11} stroke={2} />
+                                  </button>
+                                </div>
+                              </div>
+                              <div className="ea-market-right" data-rv>
+                                <a className="ea-viewall" href="#download">
+                                  Baca di Qu-Lib
+                                </a>
+                                <div className="ea-rail">
+                                  <div className="ea-rail-track" style={{ ["--ci" as string]: arc } as CSSProperties}>
+                                    {
+                                      articles.map((item, i) => (
+                                        <figure key={item.title} className="ea-arc" style={{ ["--i" as string]: i } as CSSProperties}>
+                                          {item.kind === "ui" ? (
+                                            <div className={"ea-arc-card " + (item.variant === "indigo" ? "ea-arc-indigo" : item.variant === "dark" ? "ea-arc-dark" : "ea-arc-teal")}>
+                                              <span className="ea-arc-top">
+                                                <small>{item.badge}</small>
+                                                <img src={asset(item.icon)} alt="" width={32} height={32} className="ea-arc-ico" />
+                                              </span>
+                                              <b>{item.big}</b>
+                                              <span className="ea-arc-note">{item.note}</span>
+                                            </div>
+                                          ) : item.kind === "tajwid" ? (
+                                            <div className="ea-arc-card ea-arc-tajwid">
+                                              <small className="ea-arc-kicker">{item.badge}</small>
+                                              <span className="ea-arc-rules">
+                                                {item.rules.map((r) => (
+                                                  <em key={r}>{r}</em>
+                                                ))}
+                                              </span>
+                                              <span className="ea-arc-note">{item.note}</span>
+                                            </div>
+                                          ) : item.kind === "cutout" ? (
+                                            <div className={"ea-arc-card " + (item.theme === "rose" ? "ea-arc-rose" : "ea-arc-gold")}>
+                                              <img src={asset(item.path)} alt={item.title} width={220} height={220} className="ea-arc-cut" />
+                                              <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
+                                            </div>
+                                          ) : item.kind === "levels" ? (
+                                            <div className="ea-arc-card ea-arc-levels">
+                                              <span className="ea-arc-mini-photo">
+                                                <img src={asset(item.path)} alt={item.title} width={220} height={115} />
+                                              </span>
+                                              <span className="ea-arc-lvl-row">
+                                                {item.levels.map((lv, li) => (
+                                                  <em key={lv} className={li === 1 ? "on" : li === 0 ? "done" : ""}>
+                                                    {lv}
+                                                  </em>
+                                                ))}
+                                              </span>
+                                              <span className="ea-arc-note">{item.note}</span>
+                                            </div>
+                                          ) : (
+                                            <div className="ea-arc-photo">
+                                              <img src={asset(item.path)} alt={item.title} width={220} height={220} />
+                                              <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
+                                            </div>
+                                          )}
+                                          <figcaption>
+                                            <span className="ea-arc-tag">{item.tag}</span>
+                                            {item.title}
+                                          </figcaption>
+                                        </figure>
+                                      ))}
+                                  </div>
+                                </div>
+                                <div className="ea-progress" aria-hidden="true">
+                                  <i style={{ ["--ci" as string]: arc } as CSSProperties} />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+
+                        {/* ---------- lime marquee + falling doodles ---------- */}
+                        <section ref={limeRef} className="ea-sec ea-lime-sec" aria-label="Ajakan Ekosistem Gongaji">
+                          <div className="ea-lime">
+                            <span className="ea-water" aria-hidden="true">
+                              GONGAJI
+                            </span>
+                            <div className="ea-marquee">
+                              <div ref={limeTrack} className="ea-mtrack">
+                                {[0, 1].map((rep) => (
+                                  <span key={rep} className="ea-mrun" aria-hidden={rep === 1}>
+                                    Baca. Belajar. Berbagi.
+                                    <span className="ea-mthumbs">
+                                      <i style={{ background: "#5145B9" }} />
+                                      <img src={asset("08-lime-marquee/thumb-1-app-home.webp")} alt="" width={44} height={44} />
+                                      <img src={asset("08-lime-marquee/thumb-2-app-quran.webp")} alt="" width={44} height={44} />
+                                      <small>#JADILEBIHMUDAH</small>
+                                    </span>
+                                    25+ Fitur di Gongaji App
+                                    <span className="ea-mthumbs">
+                                      <img src={asset("08-lime-marquee/thumb-3-teaching-smile.webp")} alt="" width={44} height={44} />
+                                    </span>
+                                    Sub-Brand Qursus · 5 Level
+                                    <span className="ea-mthumbs">
+                                      <img src={asset("08-lime-marquee/thumb-4-qursus-murid.webp")} alt="" width={44} height={44} />
+                                    </span>
+                                    Sub-Brand QuPeduli · Qubba Foundation
+                                    <span className="ea-mthumbs">
+                                      <img src={asset("08-lime-marquee/thumb-5-teaching-mushaf.webp")} alt="" width={44} height={44} />
+                                    </span>
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                            <div ref={pile} className="ea-pilebox" aria-hidden="true">
+                              {DOODLES.map((d, i) => (
+                                <span key={i} ref={(el) => { balls.current[i] = el }} className="ea-ball">
+                                  <Svg d={d} size={34} stroke={1.4} />
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </section>
+
+                        {/* ---------- duo: download Gongaji App + daftar Qursus ---------- */}
+                        <section id="download" className="ea-sec ea-duo" aria-label="Mulai Bersama Gongaji">
+                          <div className="ea-wrap ea-duo-grid">
+                            <article className="ea-meet" data-rv>
+                              <div className="ea-duo-phones" aria-hidden="true">
+                                <span className="ea-duo-pill">50rb+ Unduhan · 25+ Fitur</span>
+                                <div className="ea-phone-back">
+                                  <img src={asset("09-download-cta/app-quran.webp")} alt="" width={210} height={380} draggable={false} />
+                                </div>
+                                <div className="ea-phone-front">
+                                  <img src={asset("09-download-cta/app-home.webp")} alt="" width={230} height={420} draggable={false} />
+                                </div>
+                              </div>
+                              <div className="ea-duo-copy">
+                                <Svg d={ICON.download} size={14} />
+                                <h3 className="ea-h3">
+                                  Unduh
+                                  <br />
+                                  <span>Gongaji App</span>
+                                </h3>
+                                <p className="ea-small">Tersedia gratis di Google Play (4,8★) dan App Store (4,9★). Mulai kebiasaan tilawahmu hari ini.</p>
+                                <div className="ea-store-row">
+                                  <a className="ea-store-badge" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di Google Play">
+                                    <img src={asset("09-download-cta/badge-google-play.svg")} alt="" height={40} />
+                                  </a>
+                                  <a className="ea-store-badge" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di App Store">
+                                    <img src={asset("09-download-cta/badge-app-store.svg")} alt="" height={40} />
+                                  </a>
+                                </div>
+                              </div>
+                            </article>
+                            <article className="ea-arch" data-rv>
+                              <div className="ea-qursus-ui" aria-hidden="true">
+                                <div className="ea-qursus-photo">
+                                  <img src={asset("09-download-cta/qursus-mentor.webp")} alt="" width={520} height={240} draggable={false} />
+                                  <span className="ea-qursus-live">Kelas Live · 5–8 Peserta</span>
+                                </div>
+                                <div className="ea-qursus-steps">
+                                  {[
+                                    { label: "Pemula 1", st: "done" },
+                                    { label: "Pemula 2", st: "on" },
+                                    { label: "Pemula 3", st: "" },
+                                    { label: "Mahir 1", st: "" },
+                                    { label: "Mahir 2", st: "" },
+                                  ].map((lv) => (
+                                    <span key={lv.label} className={lv.st}>
+                                      {lv.label}
+                                    </span>
+                                  ))}
+                                </div>
+                                <div className="ea-qursus-tags">
+                                  <span>Asesmen Awal</span>
+                                  <span>Ikhwan &amp; Akhwat Terpisah</span>
+                                  <span>Rapor &amp; Sertifikat</span>
+                                </div>
+                              </div>
+                              <div className="ea-duo-copy">
+                                <Svg d={ICON.spark} size={14} />
+                                <h3 className="ea-h3">
+                                  Mulai Belajar
+                                  <br />
+                                  di Qursus
+                                </h3>
+                                <p className="ea-small">Ikuti asesmen awal, pilih jadwal kelas live kecil bersama pengajar bersertifikat, dan pantau rapor progresmu.</p>
+                                <a className="ea-btn" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
+                                  Daftar Qursus
+                                </a>
+                              </div>
+                            </article>
+                          </div>
+                        </section>
+
+                        {/* ---------- footer ---------- */}
+                        <footer className="ea-foot">
+                          <div className="ea-wrap ea-foot-grid">
+                            <div>
+                              <h2 className="ea-h4">
+                                Baca. Belajar. Berbagi. <span className="ea-foot-dots">#JadiLebihMudah</span>
+                              </h2>
+                              <p className="ea-small">
+                                Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. QuPeduli dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
+                              </p>
+                              <a className="ea-mail" href={mail}>
+                                {email}
+                              </a>
+                              <span className="ea-contact-meta">
+                                {GONGAJI_LINKS.whatsapp} · {GONGAJI_LINKS.instagram}
+                              </span>
+                              <div className="ea-socials">
+                                <a href={mail} aria-label="Email Gongaji">
+                                  <Svg d={ICON.mail} size={12} />
+                                </a>
+                                <a href={GONGAJI_LINKS.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Gongaji">
+                                  <Svg d={ICON.globe} size={12} />
+                                </a>
+                                <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Gongaji di Google Play">
+                                  <Svg d={ICON.grid} size={12} />
+                                </a>
+                                <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer" aria-label="Qursus by Gongaji">
+                                  <Svg d={ICON.spark} size={12} />
+                                </a>
+                              </div>
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#fitur">Gongaji App</a>
+                              </li>
+                              <li>
+                                <i className="ea-dot" />{" "}
+                                <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
+                                  Qursus
+                                </a>{" "}
+                                <span className="ea-new">Live</span>
+                              </li>
+                              <li>
+                                <a href="#qupeduli">QuPeduli</a>
+                              </li>
+                              <li>
+                                <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
+                                  Google Play
+                                </a>
+                              </li>
+                              <li>
+                                <a href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
+                                  App Store
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#qursus">Pemula 1 – Mahir 2</a>
+                              </li>
+                              <li>
+                                <i className="ea-dot" /> <a href="#pricing">Biaya &amp; Beasiswa</a>
+                              </li>
+                              <li>
+                                <a href="#qupeduli">Program QuPeduli</a>
+                              </li>
+                              <li>
+                                <a href="#artikel">
+                                  Artikel Islami <span className="ea-soon">Baru</span>
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>Qubba Foundation</li>
+                              <li>
+                                <a href={mail}>Kontak Kami</a>
+                              </li>
+                              <li>
+                                Kemitraan <span className="ea-soon">Mitra</span>
+                              </li>
+                            </ul>
+                            <p className="ea-copy">© 2026 Gongaji. Semua hak dilindungi.</p>
+                          </div>
+                        </footer>
+                      </div>
+                      )
 }
 
-const EASE = "cubic-bezier(.22,1,.36,1)"
+                      const EASE = "cubic-bezier(.22,1,.36,1)"
 
-const CSS =
-  ".ea-root{--bg:#f6f6f5;--ink:#141414;--mute:#666666;--soft:#bdbdbd;--card:#ffffff;--line:#e3e3e1;--foot:#efefee;--red:#5145b9;--blue:#5145b9;--mint:#a6e8c1;--purple:#736ac8;--lime:#e6fa6a;--orange:#5145b9;--sun:#ffda03;" +
+                      const CSS =
+                      ".ea-root{--bg:#f6f6f5;--ink:#141414;--mute:#666666;--soft:#bdbdbd;--card:#ffffff;--line:#e3e3e1;--foot:#efefee;--red:#5145b9;--blue:#5145b9;--mint:#a6e8c1;--purple:#736ac8;--lime:#e6fa6a;--orange:#5145b9;--sun:#ffda03;" +
   "position:relative;width:100%;overflow:clip;background:var(--bg);color:var(--ink);font-family:'Instrument Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;letter-spacing:-.01em;line-height:1.4;transition:background-color .4s ease,color .4s ease}" +
-  ".dark .ea-root,.ea-root.ea-dark{--bg:#0f0f10;--ink:#f1f1ef;--mute:#a3a3a0;--soft:#4a4a4c;--card:#19191b;--line:#2b2b2d;--foot:#151517;--red:#aba6de;--blue:#6c60d8;--orange:#5145b9}" +
-  ".ea-root *,.ea-root *::before,.ea-root *::after{box-sizing:border-box}" +
-  ".ea-root :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}" +
-  ".ea-root img{max-width:none}" +
-  ".ea-root :where(img){display:block;user-select:none;-webkit-user-drag:none}" +
-  ".ea-root :where(a){color:inherit;text-decoration:none}" +
-  ".ea-root :where(button){font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}" +
-  ".ea-root :where(h1,h2,h3,h4,p,ul,figure){margin:0;padding:0}" +
-  ".ea-root :where(ul){list-style:none}" +
-  ".ea-wrap{width:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,7.1vw,102px)}" +
-  // nav
-  ".ea-nav{position:sticky;top:0;z-index:40;height:110px;margin-bottom:-110px;display:flex;align-items:center;gap:24px;padding:30px clamp(20px,5.6vw,80px) 0;pointer-events:none}" +
-  ".ea-nav>*{pointer-events:auto}" +
-  ".ea-nav::before{content:'';position:absolute;left:0;right:0;top:0;bottom:12px;z-index:-1;background:rgba(246,246,245,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);opacity:0;transition:opacity .35s ease}" +
-  ".dark .ea-nav::before,.ea-dark .ea-nav::before{background:rgba(15,15,16,.8)}" +
-  ".ea-nav.ea-solid::before{opacity:1}" +
-  ".ea-brand{display:inline-flex;align-items:center;margin-right:auto}" +
-  ".ea-brand-svg{height:24px;width:auto;display:block}" +
-  ".ea-links{display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);font-size:13px;font-weight:500}" +
-  ".ea-link{position:relative;display:inline-flex;align-items:center;gap:6px;padding:4px 0}" +
-  ".ea-link::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s " + EASE + "}" +
-  ".ea-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:inset 0 0 0 2px var(--blue),inset 0 0 0 3px var(--bg)}" +
-  ".ea-tools{display:flex;gap:8px;margin-left:clamp(12px,3vw,48px)}" +
-  ".ea-round{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--card);box-shadow:0 1px 0 var(--line);transition:transform .3s " + EASE + "}" +
-  // shared type
-  ".ea-h1{font-size:clamp(38px,5.6vw,80px);line-height:1.05;letter-spacing:-.045em;font-weight:500;text-align:center}" +
-  ".ea-h2{font-size:clamp(34px,4.6vw,66px);line-height:1.06;letter-spacing:-.04em;font-weight:500}" +
-  ".ea-h2.ea-big{font-size:clamp(36px,4.85vw,70px)}" +
-  ".ea-h2.ea-mid{font-size:clamp(28px,3vw,44px)}" +
-  ".ea-h3{font-size:clamp(26px,2.65vw,38px);line-height:1.1;letter-spacing:-.035em;font-weight:500}" +
-  ".ea-h4{font-size:17px;line-height:1.25;letter-spacing:-.02em;font-weight:600}" +
-  ".ea-center{text-align:center}" +
-  ".ea-eyebrow{font-size:10px;letter-spacing:.32em;font-weight:600;text-transform:uppercase;margin-bottom:16px}" +
-  ".ea-body{font-size:13px;line-height:1.7}" +
-  ".ea-small{font-size:12.5px;line-height:1.6;color:var(--mute)}" +
-  ".ea-red{color:var(--red)}" +
-  ".ea-grey{color:var(--mute)}" +
-  ".ea-bluew{color:var(--blue)}" +
-  ".ea-purplew{color:var(--purple)}" +
-  ".ea-orangew{color:var(--orange)}" +
-  // word reveal
-  ".ea-w{display:inline-block;opacity:0;filter:blur(8px);transform:translate3d(0,.25em,0);transition:opacity .7s " + EASE + ",filter .7s " + EASE + ",transform .7s " + EASE + ";transition-delay:calc(var(--i) * 70ms)}" +
-  ".ea-in .ea-w{opacity:1;filter:blur(0);transform:none}" +
-  ".ea-late{opacity:0;transform:translate3d(0,14px,0);transition:opacity .7s " + EASE + " .55s,transform .7s " + EASE + " .55s}" +
-  ".ea-in .ea-late,.ea-in.ea-late{opacity:1;transform:none}" +
-  ".ea-fade{opacity:0;transform:translate3d(0,14px,0);transition:opacity .8s " + EASE + " var(--d),transform .8s " + EASE + " var(--d)}" +
-  ".ea-in .ea-fade{opacity:1;transform:none}" +
-  // buttons, tags
-  ".ea-btns{display:flex;align-items:center;gap:22px}" +
-  ".ea-btn{display:inline-flex;align-items:center;height:40px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:500;white-space:nowrap;transition:transform .35s " + EASE + ",box-shadow .35s " + EASE + "}" +
-  ".ea-btn-w{background:#fff;color:#141414}" +
-  ".ea-ghost,.ea-textlink{font-size:12px;font-weight:500;position:relative}" +
-  ".ea-ghost::after,.ea-textlink::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s " + EASE + "}" +
-  ".ea-tag{position:absolute;z-index:30;display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;opacity:0;transform:translate3d(0,8px,0) scale(.6) rotate(var(--r,0deg));transition:opacity .45s " + EASE + ",transform .6s cubic-bezier(.34,1.56,.64,1);pointer-events:none}" +
-  ".ea-tag::after{content:'';position:absolute;left:50%;bottom:-5px;width:10px;height:10px;margin-left:-5px;background:inherit;transform:rotate(45deg);border-radius:2px;z-index:-1}" +
-  ".ea-blue{background:#5145b9;color:#fff}" +
-  ".ea-mint{background:#a6e8c1;color:#0f5b38}" +
-  ".ea-redtag{background:#ffda03;color:#141414}" +
-  ".ea-ink{background:#141414;color:#fff}" +
-  ".ea-orange{background:#5145b9;color:#fff}" +
-  ".ea-pop.ea-tag{position:absolute}" +
-  ".ea-in .ea-pop,.ea-tags1 .ea-t1,.ea-tags1 .ea-t2,.ea-tags2 .ea-t3,.ea-tags2 .ea-t4{opacity:1;transform:translate3d(0,0,0) scale(1) rotate(var(--r,0deg))}" +
-  // pinned stages
-  ".ea-stage{position:relative}" +
-  ".ea-pin{position:sticky;top:0;overflow-x:clip;overflow-y:visible;min-height:520px}" +
-  ".ea-deck{position:absolute;inset:0;pointer-events:none}" +
-  ".ea-card{position:absolute;left:0;top:0;border-radius:16px;overflow:hidden;background:var(--card);box-shadow:0 30px 54px -26px rgba(18,17,24,.46),0 0 0 1px rgba(18,17,24,.06);will-change:transform;backface-visibility:hidden;opacity:0}" +
-  ".ea-ready .ea-card{opacity:1}" +
-  ".ea-card img{width:100%;height:100%;object-fit:cover}" +
-  ".ea-shot{object-position:50% 8%!important}" +
-  ".ea-portrait{object-position:50% 18%!important}" +
-  ".ea-c1{width:260px;height:282px}" +
-  ".ea-s1{padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}" +
-  ".ea-s1-coral{background:linear-gradient(150deg,#f97316,#d94616);color:#fff}" +
-  ".ea-s1-sky{background:radial-gradient(circle at 55% 32%,#60a5fa,#1d6fe8);color:#fff}" +
-  ".ea-s1-sunburst{background:radial-gradient(circle at 55% 32%,#ffec94,#f8be24);color:#141414}" +
-  ".ea-s1-rose{background:radial-gradient(circle at 55% 32%,#ff9bb0,#da4d6e);color:#fff}" +
-  ".ea-s1-dark{background:radial-gradient(circle at 80% 18%,rgba(255,218,3,.14),transparent 54%),#17171b;color:#fff;border:1px solid rgba(255,255,255,.1)}" +
-  ".ea-s1-teal{background:linear-gradient(150deg,#0fa39d,#06767d);color:#fff}" +
-  ".ea-s1-mint{background:radial-gradient(circle at 55% 34%,#c6f6db,#6fd49c);color:#0f3923}" +
-  ".ea-s1-app{background:radial-gradient(circle at 82% 16%,rgba(167,159,248,.38),transparent 52%),linear-gradient(160deg,#5b4fd1 0%,#3a3286 100%);color:#fff;padding:12px 12px 0;display:flex;flex-direction:column;justify-content:space-between;gap:8px}" +
-  ".ea-s1-cut{position:absolute!important;left:45%;bottom:0;transform:translateX(-50%);width:86%!important;height:82%!important;object-fit:contain!important;object-position:50% 100%!important;filter:drop-shadow(0 12px 24px rgba(0,0,0,.22))}" +
-  ".ea-s1-mcut{position:absolute!important;left:50%;bottom:10px;transform:translateX(-50%);width:88%!important;height:78%!important;object-fit:contain!important;object-position:50% 50%!important;filter:drop-shadow(0 14px 26px rgba(100,14,38,.28))}" +
-  ".ea-s1-phead{position:relative;z-index:2;padding:14px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}" +
-  ".ea-s1-phead small{font-size:10px;font-weight:600;opacity:.88}" +
-  ".ea-s1-pdark small{color:#171333;opacity:.86}" +
-  ".ea-s1-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}" +
-  ".ea-s1-ico{width:38px!important;height:38px!important;object-fit:contain!important;flex:none}" +
-  ".ea-s1-pill{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}" +
-  ".ea-s1-pill-ink{background:#141414;color:#fff;text-transform:none;letter-spacing:-.01em}" +
-  ".ea-s1-pill-indigo{background:rgba(255,255,255,.95);color:#3a3286;text-transform:none;letter-spacing:-.01em}" +
-  ".ea-s1-pill-gold{background:#ffda03;color:#141414;text-transform:none;letter-spacing:-.01em}" +
-  ".ea-s1-copy{display:flex;flex-direction:column;gap:4px}" +
-  ".ea-s1-copy b{font-size:18px;font-weight:600;letter-spacing:-.025em;line-height:1.12}" +
-  ".ea-s1-copy-sm b{font-size:15.5px}" +
-  ".ea-s1-copy small{font-size:10.5px;color:rgba(255,255,255,.84);line-height:1.3}" +
-  ".ea-s1-copydark small{color:rgba(15,57,35,.82)}" +
-  ".ea-s1-heroico{width:84px;height:84px;border-radius:20px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.24);display:grid;place-items:center}" +
-  ".ea-s1-heroico.is-mint{background:rgba(255,255,255,.48);border-color:rgba(15,57,35,.12)}" +
-  ".ea-s1-bigico{width:58px!important;height:58px!important;object-fit:contain!important}" +
-  ".ea-s1-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}" +
-  ".ea-s1-tile{height:54px;border-radius:12px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.22);display:grid;place-items:center}" +
-  ".ea-s1-timg{width:34px!important;height:34px!important;object-fit:contain!important}" +
-  ".ea-s1-foot{display:flex;flex-direction:column;gap:6px}" +
-  ".ea-s1-foot span{font-size:11px;font-weight:500;color:rgba(255,255,255,.88)}" +
-  ".ea-s1-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.24);overflow:hidden}" +
-  ".ea-s1-bar i{display:block;height:100%;border-radius:999px;background:#ffda03}" +
-  ".ea-s1-chips{display:flex;flex-direction:column;gap:6px}" +
-  ".ea-s1-chips span{font-size:11px;font-weight:600;padding:6px 10px;border-radius:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);color:#fff}" +
-  ".ea-s1-apphead{display:flex;align-items:center;justify-content:space-between;gap:6px}" +
-  ".ea-s1-phone{flex:1;min-height:0;border-radius:20px 20px 0 0;border:4px solid #161523;border-bottom:0;background:#fff;overflow:hidden;box-shadow:0 16px 32px -12px rgba(0,0,0,.45)}" +
-  ".ea-s1-screen{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 0%!important;display:block}" +
-  ".ea-c2{width:230px;height:230px;border-radius:14px}" +
-  ".ea-hero{position:absolute;left:0;right:0;top:clamp(120px,20.5vh,180px);display:flex;flex-direction:column;align-items:center;z-index:2;will-change:transform}" +
-  ".ea-hero-foot{position:absolute;top:calc(80vh - clamp(120px,20.5vh,180px));left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;padding:0 20px}" +
-  ".ea-hero-foot p{font-size:13px;color:var(--ink)!important;max-width:460px}" +
-  ".ea-t1{left:calc(50% - clamp(160px,25vw,360px));top:calc(clamp(120px,20.5vh,180px) + clamp(118px,16.5vh,152px));--r:-6deg}" +
-  ".ea-t2{left:calc(50% + clamp(120px,24vw,350px));top:calc(clamp(120px,20.5vh,180px) + clamp(120px,17vh,160px));--r:8deg}" +
-  ".ea-show{position:absolute;left:clamp(20px,7.1vw,102px);top:clamp(96px,13vh,112px);max-width:min(620px,92vw);z-index:2}" +
-  ".ea-show .ea-btns{margin-top:clamp(22px,8vh,80px)}" +
-  ".ea-wrapp{max-width:320px;margin-top:22px}" +
-  ".ea-t3{left:calc(47% - 100px);top:calc(53% - 40px);--r:-4deg}" +
-  ".ea-t4{left:calc(78%);top:58%;--r:5deg}" +
-  ".ea-updown{position:absolute;right:clamp(20px,6.2vw,90px);top:48%;display:flex;flex-direction:column;gap:6px;color:var(--mute);z-index:2}" +
-  // gateway
-  ".ea-sec{position:relative}" +
-  ".ea-gate{position:relative;padding:clamp(110px,15vh,150px) 0 0}" +
-  ".ea-gate-head{position:relative;margin-bottom:28px}" +
-  ".ea-t5{right:9%;bottom:6px;--r:9deg}" +
-  ".ea-banner{position:relative;height:clamp(300px,36vw,520px);border-radius:16px;overflow:hidden;background:#3a3286;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
-  ".ea-banner.ea-in{opacity:1;transform:none}" +
-  ".ea-banner img,.ea-banner-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:0;transform:scale(1.04);transition:opacity .8s ease,transform 1.4s " + EASE + "}" +
-  ".ea-banner img.on,.ea-banner-vid{opacity:1;transform:none}" +
-  ".ea-banner-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,17,.12) 0%,rgba(17,17,17,.08) 45%,rgba(17,17,17,.65) 100%);pointer-events:none}" +
-  ".ea-switch{position:absolute;left:24px;top:24px;display:flex;flex-direction:column;gap:6px;z-index:2}" +
-  ".ea-switch i{width:34px;height:34px;border-radius:10px;background:#fff}" +
-  ".ea-switch i+i{background:#5145b9}" +
-  ".ea-slide-meta{position:absolute;left:24px;bottom:64px;z-index:2;color:#fff;display:flex;flex-direction:column;gap:2px}" +
-  ".ea-slide-meta b{font-size:15px;font-weight:600;letter-spacing:-.01em}" +
-  ".ea-slide-meta small{font-size:12px;color:rgba(255,255,255,.8)}" +
-  ".ea-more{position:absolute;right:22px;top:16px;color:#fff;opacity:.8;z-index:2}" +
-  ".ea-watch{position:absolute;left:24px;bottom:22px;z-index:2;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 16px;border-radius:999px;background:#fff;color:#141414;font-size:12.5px;font-weight:500}" +
-  ".ea-arrows{position:absolute;right:22px;bottom:20px;z-index:2;display:flex;gap:6px}" +
-  ".ea-arrows button{width:36px;height:36px;border-radius:50%;background:#fff;color:#141414;display:grid;place-items:center;transition:transform .3s " + EASE + "}" +
-  // trusted
-  ".ea-trust{padding:clamp(80px,13vh,130px) 0 clamp(40px,7vh,70px)}" +
-  ".ea-trust-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}" +
-  ".ea-trust-head .ea-small{margin-top:10px}" +
-  ".ea-mini-arrows{display:flex;gap:12px;color:var(--mute)}" +
-  ".ea-mini-arrows button:disabled{opacity:.3;cursor:default}" +
-  ".ea-logos{margin-top:clamp(36px,6vh,60px);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}" +
-  ".ea-logos-track{display:flex;width:max-content;animation:ea-marq 28s linear infinite}" +
-  ".ea-logo-item{display:inline-flex;align-items:center;gap:8px;padding:0 clamp(28px,3.4vw,50px);font-size:clamp(17px,1.6vw,23px);font-weight:600;letter-spacing:-.02em;color:var(--mute);opacity:.8;white-space:nowrap}" +
-  "@keyframes ea-marq{to{transform:translate3d(-50%,0,0)}}" +
-  // whether
-  ".ea-whether{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 20px;z-index:1}" +
-  ".ea-ink-text{font-size:clamp(26px,3.9vw,56px);line-height:1.2;letter-spacing:-.04em;font-weight:500;text-align:center;max-width:1240px;margin-top:16vh}" +
-  ".ea-sw{opacity:.18;transition:opacity .15s linear}" +
-  ".ea-mintw{color:#5145b9}" +
-  ".dark .ea-mintw,.ea-dark .ea-mintw{color:#aba6de}" +
-  ".ea-chip{display:inline-block;vertical-align:-.12em;width:.85em;height:.85em;border-radius:.2em;overflow:hidden}" +
-  ".ea-chip img{width:100%;height:100%;object-fit:cover}" +
-  ".ea-iconrow{display:flex;gap:10px;margin-top:5vh;color:var(--ink)}" +
-  ".ea-iconrow svg{width:22px;height:22px;padding:4px;border-radius:6px;background:var(--card)}" +
-  ".ea-t6{left:14%;top:37%;--r:-5deg;opacity:1;transform:rotate(var(--r))}" +
-  ".ea-t7{left:80%;top:38%;--r:7deg;opacity:1;transform:rotate(var(--r))}" +
-  ".ea-t8{left:62%;top:44%;--r:-6deg}" +
-  ".ea-doodled .ea-t8{opacity:0}" +
-  ".ea-pin:not(.ea-doodled) .ea-t8{opacity:0}" +
-  ".ea-info{width:230px;height:280px;padding:22px 20px;display:flex;flex-direction:column;gap:6px;background:var(--card);color:var(--ink)}" +
-  ".ea-info b{font-size:15px;line-height:1.15;font-weight:600;letter-spacing:-.02em;padding-right:26px}" +
-  ".ea-info small{font-size:10px;color:var(--mute)}" +
-  ".ea-info p{margin-top:auto;font-size:11.5px;line-height:1.5;color:var(--mute)}" +
-  ".ea-info-dot{position:absolute;right:18px;top:18px;width:22px;height:22px;border-radius:50%;background:var(--blue);box-shadow:inset 0 0 0 6px var(--blue),inset 0 0 0 8px var(--card)}" +
-  // stage 2 folder cards (230x230 bespoke cards)
-  ".ea-s2{padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}" +
-  ".ea-s2-purple{background:linear-gradient(145deg,#5145b9,#3a3286);color:#fff}" +
-  ".ea-s2-lav{background:#f2f1fa;color:#141414}" +
-  ".dark .ea-s2-lav,.ea-dark .ea-s2-lav{background:#221f3a;color:#f1f1ef}" +
-  ".ea-s2-teal{background:linear-gradient(145deg,#009e97,#007d8a);color:#fff}" +
-  ".ea-s2-white{background:var(--card);color:var(--ink);border:1px solid var(--line)}" +
-  ".ea-s2-gold{background:linear-gradient(145deg,#ffda03,#f2b800);color:#141414}" +
-  ".ea-s2-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}" +
-  ".ea-s2-ico{width:42px!important;height:42px!important;object-fit:contain!important;flex:none}" +
-  ".ea-s2-pill{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;background:rgba(255,255,255,.18);color:inherit;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}" +
-  ".ea-s2-pill-dark{background:rgba(81,69,185,.12);color:#5145b9}" +
-  ".dark .ea-s2-pill-dark,.ea-dark .ea-s2-pill-dark{background:rgba(171,166,222,.16);color:#aba6de}" +
-  ".ea-s2-pill-gold{background:#ffda03;color:#141414}" +
-  ".ea-s2-pill-ink{background:#141414;color:#fff}" +
-  ".ea-s2-mint{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;background:#a6e8c1;color:#0f5b38;font-size:9px;font-weight:600}" +
-  ".ea-s2-copy{display:flex;flex-direction:column;gap:2px}" +
-  ".ea-s2-copy b{font-size:15px;line-height:1.15;font-weight:600;letter-spacing:-.02em}" +
-  ".ea-s2-copy small{font-size:10.5px;line-height:1.35;opacity:.78}" +
-  ".ea-s2-foot{display:flex;flex-direction:column;gap:5px}" +
-  ".ea-s2-foot span{font-size:9.5px;font-weight:500;opacity:.85}" +
-  ".ea-s2-bar{height:5px;width:100%;border-radius:999px;background:rgba(255,255,255,.22);overflow:hidden}" +
-  ".ea-s2-bar i{display:block;height:100%;border-radius:999px;background:#ffda03}" +
-  ".ea-s2-wave{display:flex;align-items:flex-end;gap:4px;height:24px}" +
-  ".ea-s2-wave i{flex:1;border-radius:999px;background:#5145b9;opacity:.78}" +
-  ".dark .ea-s2-wave i,.ea-dark .ea-s2-wave i{background:#aba6de}" +
-  ".ea-s2-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:108px}" +
-  ".ea-s2-tile{width:50px;height:50px;border-radius:10px;background:rgba(255,255,255,.18);display:grid;place-items:center;padding:6px}" +
-  ".ea-s2-tile img{width:100%!important;height:100%!important;object-fit:contain!important}" +
-  ".ea-s2-bgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}" +
-  ".ea-s2-bgrid span{height:28px;padding:0 6px;border-radius:8px;display:grid;place-items:center;font-size:9px;font-weight:600;background:rgba(128,128,128,.12);color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
-  ".ea-s2-bgrid span.done{background:#a6e8c1;color:#0f5b38}" +
-  ".ea-s2-bgrid span.on{background:#5145b9;color:#fff}" +
-  ".ea-s2-ver{display:inline-flex;align-items:center;padding:4px 8px;border-radius:8px;background:rgba(20,20,20,.1);font-size:9.5px;font-weight:600}" +
-  ".ea-s2-photo img{object-position:50% 20%}" +
-  ".ea-s2-scrim{position:absolute;inset:35% 0 0;background:linear-gradient(180deg,rgba(17,17,17,0),rgba(17,17,17,.82) 78%);pointer-events:none}" +
-  ".ea-s2-photo-badge{position:absolute;left:14px;top:14px;z-index:1}" +
-  ".ea-s2-photo-copy{position:absolute;left:14px;right:14px;bottom:14px;z-index:1;color:#fff;display:flex;flex-direction:column;gap:2px}" +
-  ".ea-s2-photo-copy b{font-size:15px;line-height:1.15;font-weight:600}" +
-  ".ea-s2-photo-copy small{font-size:10px;opacity:.85}" +
-  ".ea-folder{position:absolute;opacity:0;border-radius:16px;z-index:0;background:var(--card);box-shadow:0 30px 60px -40px rgba(0,0,0,.35)}" +
-  ".ea-folder-tab{position:absolute;left:0;top:0;right:0;height:56px;display:flex;justify-content:space-between;align-items:center;padding:0 16px 0 22px;font-size:clamp(14px,1.35vw,19px);font-weight:500;color:var(--ink)}" +
-  ".ea-folder-tab b{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:var(--card);font-size:10px;font-weight:500}" +
-  ".ea-folder-bar{position:absolute;left:0;right:0;top:58px;height:64px;background:#5145b9;color:#fff;border-radius:14px 14px 0 0;clip-path:polygon(0 0,62% 0,68% 42%,100% 42%,100% 100%,0 100%);padding:16px 22px;font-size:clamp(14px,1.35vw,19px);font-weight:500}" +
-  ".ea-vision{position:absolute;left:clamp(20px,7.1vw,102px);top:clamp(140px,19vh,170px);max-width:min(560px,88vw);z-index:2}" +
-  ".ea-eye{display:inline-grid;place-items:center;margin-bottom:12px;color:var(--blue)}" +
-  ".ea-wrapv{margin-top:12px;max-width:340px}" +
-  ".ea-textlink{display:inline-block;margin-top:22px}" +
-  ".ea-doodles{position:absolute;left:clamp(30px,6vw,90px);top:62%;width:min(420px,60vw);height:30%;z-index:1}" +
-  ".ea-doodle{position:absolute;color:var(--ink);opacity:0;transform:scale(.3) rotate(-30deg);transition:opacity .5s " + EASE + ",transform .7s cubic-bezier(.34,1.56,.64,1);transition-delay:calc(var(--i) * 60ms)}" +
-  ".ea-doodled .ea-doodle{opacity:1;transform:none}" +
-  ".ea-doodle:nth-child(1){left:20%;top:0}.ea-doodle:nth-child(2){left:0;top:38%}.ea-doodle:nth-child(3){left:17%;top:36%}.ea-doodle:nth-child(4){left:36%;top:42%}.ea-doodle:nth-child(5){left:61%;top:40%}" +
-  ".ea-doodle:nth-child(6){left:4%;top:76%}.ea-doodle:nth-child(7){left:22%;top:78%}.ea-doodle:nth-child(8){left:44%;top:80%}.ea-doodle:nth-child(9){left:66%;top:6%}" +
-  // bands
-  ".ea-bands{position:relative;padding:clamp(60px,10vh,110px) 0;overflow:hidden}" +
-  ".ea-band{display:flex;gap:clamp(14px,2.2vw,32px);width:max-content;will-change:transform}" +
-  ".ea-av{width:clamp(56px,6.1vw,88px);height:clamp(56px,6.1vw,88px);border-radius:14px;overflow:hidden;flex:none;transform:translate3d(0,var(--y),0);box-shadow:0 10px 24px -14px rgba(0,0,0,.4)}" +
-  ".ea-av img{width:100%;height:100%;object-fit:cover}" +
-  ".ea-av-icon{padding:10px}" +
-  ".ea-av-icon img{object-fit:contain}" +
-  ".ea-av-portrait img{object-position:50% 18%}" +
-  ".ea-bands-mid{display:flex;flex-direction:column;align-items:center;gap:14px;padding:clamp(60px,9vh,100px) 20px}" +
-  ".ea-bands-mid .ea-small{max-width:340px}" +
-  ".ea-spark{color:var(--blue)}" +
-  // story / bento
-  ".ea-story{padding:clamp(60px,9vh,100px) 0}" +
-  ".ea-center-head{display:flex;flex-direction:column;align-items:center;margin-bottom:clamp(40px,8vh,90px)}" +
-  ".ea-bento{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1116px;margin:0 auto}" +
-  ".ea-col{display:flex;flex-direction:column;gap:16px}" +
-  ".ea-col-r{padding-top:clamp(0px,6vw,85px)}" +
-  ".ea-bcard{position:relative;border-radius:16px;background:var(--card);padding:22px;display:flex;flex-direction:column;gap:8px;opacity:0;transform:translate3d(0,50px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
-  ".ea-bcard.ea-in{opacity:1;transform:none}" +
-  ".ea-bcard .ea-chipbtn{align-self:flex-start;margin-top:6px;height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--line);display:inline-flex;align-items:center;font-size:11px;font-weight:500}" +
-  ".ea-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--blue)}" +
-  ".ea-b1 .ea-pile{position:relative;height:clamp(220px,22vw,300px);margin:6px 0 10px}" +
-  ".ea-pile .ea-pcard{position:absolute;left:50%;top:50%;width:clamp(142px,14vw,196px);height:clamp(142px,14vw,196px);border-radius:14px;padding:13px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;box-shadow:0 20px 34px -20px rgba(0,0,0,.45);transition:transform .7s " + EASE + "}" +
-  ".ea-pile .ea-pcard:nth-child(1){transform:translate(-66%,-46%) rotate(-12deg);z-index:1}" +
-  ".ea-pile .ea-pcard:nth-child(2){transform:translate(-50%,-52%) rotate(-3deg);z-index:2}" +
-  ".ea-pile .ea-pcard:nth-child(3){transform:translate(-34%,-56%) rotate(8deg);z-index:3}" +
-  ".ea-pc1{background:#f5f4fd;color:#121118;border:1px solid rgba(81,69,185,.16)}" +
-  ".ea-pc2{background:linear-gradient(150deg,#3a3286,#5145b9);color:#fff}" +
-  ".ea-pc3{background:#171525;color:#fff;border:1px solid rgba(255,255,255,.1)}" +
-  ".ea-pc-top{display:flex;align-items:center;justify-content:space-between;gap:6px}" +
-  ".ea-pc-ico{width:26px;height:26px;object-fit:contain;flex:none}" +
-  ".ea-pc-pill{font-size:8.5px;font-weight:700;letter-spacing:.08em;padding:3px 7px;border-radius:999px;background:rgba(81,69,185,.12);color:#5145b9}" +
-  ".ea-pc-pill-w{background:rgba(255,255,255,.18);color:#fff}" +
-  ".ea-pc-pill-y{background:rgba(255,218,3,.16);color:#ffda03}" +
-  ".ea-pc-mid{display:flex;flex-direction:column;gap:2px}" +
-  ".ea-pc-mid strong{font-size:clamp(14px,1.25vw,18px);font-weight:600;letter-spacing:-.02em;line-height:1.1}" +
-  ".ea-pc-mid span{font-size:10px;opacity:.76;line-height:1.25}" +
-  ".ea-pc-bar{height:5px;border-radius:999px;background:rgba(81,69,185,.16);overflow:hidden;margin-bottom:5px}" +
-  ".ea-pc-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
-  ".ea-pc-meta{display:block;font-size:9.5px;font-weight:500;color:#5145b9}" +
-  ".ea-pc-chips{display:flex;gap:5px}" +
-  ".ea-pc-chips span{flex:1;text-align:center;font-size:9.5px;font-weight:600;padding:4px 6px;border-radius:7px;background:rgba(255,255,255,.16);color:#fff}" +
-  ".ea-pc-bars{display:flex;align-items:flex-end;gap:4px;height:22px}" +
-  ".ea-pc-bars i{flex:1;border-radius:999px;background:#ffda03}" +
-  ".ea-pc-bars i:nth-child(even){background:#a39cf4}" +
-  ".ea-t9{left:62%;top:8%;--r:6deg;z-index:4}" +
-  ".ea-b1.ea-in .ea-t9{opacity:1;transform:rotate(var(--r));transition-delay:.5s}" +
-  ".ea-photo{position:relative;aspect-ratio:16/10;margin:-22px -22px 10px;border-radius:16px;overflow:hidden}" +
+                      ".dark .ea-root,.ea-root.ea-dark{--bg:#0f0f10;--ink:#f1f1ef;--mute:#a3a3a0;--soft:#4a4a4c;--card:#19191b;--line:#2b2b2d;--foot:#151517;--red:#aba6de;--blue:#6c60d8;--orange:#5145b9}" +
+                      ".ea-root *,.ea-root *::before,.ea-root *::after{box - sizing:border-box}" +
+                      ".ea-root :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}" +
+                      ".ea-root img{max - width:none}" +
+                      ".ea-root :where(img){display:block;user-select:none;-webkit-user-drag:none}" +
+                      ".ea-root :where(a){color:inherit;text-decoration:none}" +
+                      ".ea-root :where(button){font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}" +
+                      ".ea-root :where(h1,h2,h3,h4,p,ul,figure){margin:0;padding:0}" +
+                      ".ea-root :where(ul){list - style:none}" +
+                      ".ea-wrap{width:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,7.1vw,102px)}" +
+                      // nav
+                      ".ea-nav{position:sticky;top:0;z-index:40;height:110px;margin-bottom:-110px;display:flex;align-items:center;gap:24px;padding:30px clamp(20px,5.6vw,80px) 0;pointer-events:none}" +
+  ".ea-nav>*{pointer - events:auto}" +
+                      ".ea-nav::before{content:'';position:absolute;left:0;right:0;top:0;bottom:12px;z-index:-1;background:rgba(246,246,245,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);opacity:0;transition:opacity .35s ease}" +
+                      ".dark .ea-nav::before,.ea-dark .ea-nav::before{background:rgba(15,15,16,.8)}" +
+                      ".ea-nav.ea-solid::before{opacity:1}" +
+                      ".ea-brand{display:inline-flex;align-items:center;margin-right:auto}" +
+                      ".ea-brand-svg{height:24px;width:auto;display:block}" +
+                      ".ea-links{display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);font-size:13px;font-weight:500}" +
+                      ".ea-link{position:relative;display:inline-flex;align-items:center;gap:6px;padding:4px 0}" +
+                      ".ea-link::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s " + EASE + "}" +
+                      ".ea-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:inset 0 0 0 2px var(--blue),inset 0 0 0 3px var(--bg)}" +
+                      ".ea-tools{display:flex;gap:8px;margin-left:clamp(12px,3vw,48px)}" +
+                      ".ea-round{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--card);box-shadow:0 1px 0 var(--line);transition:transform .3s " + EASE + "}" +
+                      // shared type
+                      ".ea-h1{font - size:clamp(38px,5.6vw,80px);line-height:1.05;letter-spacing:-.045em;font-weight:500;text-align:center}" +
+                      ".ea-h2{font - size:clamp(34px,4.6vw,66px);line-height:1.06;letter-spacing:-.04em;font-weight:500}" +
+                      ".ea-h2.ea-big{font - size:clamp(36px,4.85vw,70px)}" +
+                      ".ea-h2.ea-mid{font - size:clamp(28px,3vw,44px)}" +
+                      ".ea-h3{font - size:clamp(26px,2.65vw,38px);line-height:1.1;letter-spacing:-.035em;font-weight:500}" +
+                      ".ea-h4{font - size:17px;line-height:1.25;letter-spacing:-.02em;font-weight:600}" +
+                      ".ea-center{text - align:center}" +
+                      ".ea-eyebrow{font - size:10px;letter-spacing:.32em;font-weight:600;text-transform:uppercase;margin-bottom:16px}" +
+                      ".ea-body{font - size:13px;line-height:1.7}" +
+                      ".ea-small{font - size:12.5px;line-height:1.6;color:var(--mute)}" +
+                      ".ea-red{color:var(--red)}" +
+                      ".ea-grey{color:var(--mute)}" +
+                      ".ea-bluew{color:var(--blue)}" +
+                      ".ea-purplew{color:var(--purple)}" +
+                      ".ea-orangew{color:var(--orange)}" +
+                      // word reveal
+                      ".ea-w{display:inline-block;opacity:0;filter:blur(8px);transform:translate3d(0,.25em,0);transition:opacity .7s " + EASE + ",filter .7s " + EASE + ",transform .7s " + EASE + ";transition-delay:calc(var(--i) * 70ms)}" +
+                      ".ea-in .ea-w{opacity:1;filter:blur(0);transform:none}" +
+                      ".ea-late{opacity:0;transform:translate3d(0,14px,0);transition:opacity .7s " + EASE + " .55s,transform .7s " + EASE + " .55s}" +
+                      ".ea-in .ea-late,.ea-in.ea-late{opacity:1;transform:none}" +
+                      ".ea-fade{opacity:0;transform:translate3d(0,14px,0);transition:opacity .8s " + EASE + " var(--d),transform .8s " + EASE + " var(--d)}" +
+                      ".ea-in .ea-fade{opacity:1;transform:none}" +
+                      // buttons, tags
+                      ".ea-btns{display:flex;align-items:center;gap:22px}" +
+                      ".ea-btn{display:inline-flex;align-items:center;height:40px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:500;white-space:nowrap;transition:transform .35s " + EASE + ",box-shadow .35s " + EASE + "}" +
+                      ".ea-btn-w{background:#fff;color:#141414}" +
+                      ".ea-ghost,.ea-textlink{font - size:12px;font-weight:500;position:relative}" +
+                      ".ea-ghost::after,.ea-textlink::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s " + EASE + "}" +
+                      ".ea-tag{position:absolute;z-index:30;display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;opacity:0;transform:translate3d(0,8px,0) scale(.6) rotate(var(--r,0deg));transition:opacity .45s " + EASE + ",transform .6s cubic-bezier(.34,1.56,.64,1);pointer-events:none}" +
+                      ".ea-tag::after{content:'';position:absolute;left:50%;bottom:-5px;width:10px;height:10px;margin-left:-5px;background:inherit;transform:rotate(45deg);border-radius:2px;z-index:-1}" +
+                      ".ea-blue{background:#5145b9;color:#fff}" +
+                      ".ea-mint{background:#a6e8c1;color:#0f5b38}" +
+                      ".ea-redtag{background:#ffda03;color:#141414}" +
+                      ".ea-ink{background:#141414;color:#fff}" +
+                      ".ea-orange{background:#5145b9;color:#fff}" +
+                      ".ea-pop.ea-tag{position:absolute}" +
+                      ".ea-in .ea-pop,.ea-tags1 .ea-t1,.ea-tags1 .ea-t2,.ea-tags2 .ea-t3,.ea-tags2 .ea-t4{opacity:1;transform:translate3d(0,0,0) scale(1) rotate(var(--r,0deg))}" +
+                      // pinned stages
+                      ".ea-stage{position:relative}" +
+                      ".ea-pin{position:sticky;top:0;overflow-x:clip;overflow-y:visible;min-height:520px}" +
+                      ".ea-deck{position:absolute;inset:0;pointer-events:none}" +
+                      ".ea-card{position:absolute;left:0;top:0;border-radius:16px;overflow:hidden;background:var(--card);box-shadow:0 30px 54px -26px rgba(18,17,24,.46),0 0 0 1px rgba(18,17,24,.06);will-change:transform;backface-visibility:hidden;opacity:0}" +
+                      ".ea-ready .ea-card{opacity:1}" +
+                      ".ea-card img{width:100%;height:100%;object-fit:cover}" +
+                      ".ea-shot{object - position:50% 8%!important}" +
+                      ".ea-portrait{object - position:50% 18%!important}" +
+                      ".ea-c1{width:260px;height:282px}" +
+                      ".ea-s1{padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}" +
+                      ".ea-s1-coral{background:linear-gradient(150deg,#f97316,#d94616);color:#fff}" +
+                      ".ea-s1-sky{background:radial-gradient(circle at 55% 32%,#60a5fa,#1d6fe8);color:#fff}" +
+                      ".ea-s1-sunburst{background:radial-gradient(circle at 55% 32%,#ffec94,#f8be24);color:#141414}" +
+                      ".ea-s1-rose{background:radial-gradient(circle at 55% 32%,#ff9bb0,#da4d6e);color:#fff}" +
+                      ".ea-s1-dark{background:radial-gradient(circle at 80% 18%,rgba(255,218,3,.14),transparent 54%),#17171b;color:#fff;border:1px solid rgba(255,255,255,.1)}" +
+                      ".ea-s1-teal{background:linear-gradient(150deg,#0fa39d,#06767d);color:#fff}" +
+                      ".ea-s1-mint{background:radial-gradient(circle at 55% 34%,#c6f6db,#6fd49c);color:#0f3923}" +
+                      ".ea-s1-app{background:radial-gradient(circle at 82% 16%,rgba(167,159,248,.38),transparent 52%),linear-gradient(160deg,#5b4fd1 0%,#3a3286 100%);color:#fff;padding:12px 12px 0;display:flex;flex-direction:column;justify-content:space-between;gap:8px}" +
+                      ".ea-s1-cut{position:absolute!important;left:45%;bottom:0;transform:translateX(-50%);width:86%!important;height:82%!important;object-fit:contain!important;object-position:50% 100%!important;filter:drop-shadow(0 12px 24px rgba(0,0,0,.22))}" +
+                      ".ea-s1-mcut{position:absolute!important;left:50%;bottom:10px;transform:translateX(-50%);width:88%!important;height:78%!important;object-fit:contain!important;object-position:50% 50%!important;filter:drop-shadow(0 14px 26px rgba(100,14,38,.28))}" +
+                      ".ea-s1-phead{position:relative;z-index:2;padding:14px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}" +
+                      ".ea-s1-phead small{font - size:10px;font-weight:600;opacity:.88}" +
+                      ".ea-s1-pdark small{color:#171333;opacity:.86}" +
+                      ".ea-s1-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}" +
+                      ".ea-s1-ico{width:38px!important;height:38px!important;object-fit:contain!important;flex:none}" +
+                      ".ea-s1-pill{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}" +
+                      ".ea-s1-pill-ink{background:#141414;color:#fff;text-transform:none;letter-spacing:-.01em}" +
+                      ".ea-s1-pill-indigo{background:rgba(255,255,255,.95);color:#3a3286;text-transform:none;letter-spacing:-.01em}" +
+                      ".ea-s1-pill-gold{background:#ffda03;color:#141414;text-transform:none;letter-spacing:-.01em}" +
+                      ".ea-s1-copy{display:flex;flex-direction:column;gap:4px}" +
+                      ".ea-s1-copy b{font - size:18px;font-weight:600;letter-spacing:-.025em;line-height:1.12}" +
+                      ".ea-s1-copy-sm b{font - size:15.5px}" +
+                      ".ea-s1-copy small{font - size:10.5px;color:rgba(255,255,255,.84);line-height:1.3}" +
+                      ".ea-s1-copydark small{color:rgba(15,57,35,.82)}" +
+                      ".ea-s1-heroico{width:84px;height:84px;border-radius:20px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.24);display:grid;place-items:center}" +
+                      ".ea-s1-heroico.is-mint{background:rgba(255,255,255,.48);border-color:rgba(15,57,35,.12)}" +
+                      ".ea-s1-bigico{width:58px!important;height:58px!important;object-fit:contain!important}" +
+                      ".ea-s1-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}" +
+                      ".ea-s1-tile{height:54px;border-radius:12px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.22);display:grid;place-items:center}" +
+                      ".ea-s1-timg{width:34px!important;height:34px!important;object-fit:contain!important}" +
+                      ".ea-s1-foot{display:flex;flex-direction:column;gap:6px}" +
+                      ".ea-s1-foot span{font - size:11px;font-weight:500;color:rgba(255,255,255,.88)}" +
+                      ".ea-s1-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.24);overflow:hidden}" +
+                      ".ea-s1-bar i{display:block;height:100%;border-radius:999px;background:#ffda03}" +
+                      ".ea-s1-chips{display:flex;flex-direction:column;gap:6px}" +
+                      ".ea-s1-chips span{font - size:11px;font-weight:600;padding:6px 10px;border-radius:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);color:#fff}" +
+                      ".ea-s1-apphead{display:flex;align-items:center;justify-content:space-between;gap:6px}" +
+                      ".ea-s1-phone{flex:1;min-height:0;border-radius:20px 20px 0 0;border:4px solid #161523;border-bottom:0;background:#fff;overflow:hidden;box-shadow:0 16px 32px -12px rgba(0,0,0,.45)}" +
+                      ".ea-s1-screen{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 0%!important;display:block}" +
+                      ".ea-c2{width:230px;height:230px;border-radius:14px}" +
+                      ".ea-hero{position:absolute;left:0;right:0;top:clamp(120px,20.5vh,180px);display:flex;flex-direction:column;align-items:center;z-index:2;will-change:transform}" +
+                      ".ea-hero-foot{position:absolute;top:calc(80vh - clamp(120px,20.5vh,180px));left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;padding:0 20px}" +
+                      ".ea-hero-foot p{font - size:13px;color:var(--ink)!important;max-width:460px}" +
+                      ".ea-t1{left:calc(50% - clamp(160px,25vw,360px));top:calc(clamp(120px,20.5vh,180px) + clamp(118px,16.5vh,152px));--r:-6deg}" +
+                      ".ea-t2{left:calc(50% + clamp(120px,24vw,350px));top:calc(clamp(120px,20.5vh,180px) + clamp(120px,17vh,160px));--r:8deg}" +
+                      ".ea-show{position:absolute;left:clamp(20px,7.1vw,102px);top:clamp(96px,13vh,112px);max-width:min(620px,92vw);z-index:2}" +
+                      ".ea-show .ea-btns{margin - top:clamp(22px,8vh,80px)}" +
+                      ".ea-wrapp{max - width:320px;margin-top:22px}" +
+                      ".ea-t3{left:calc(47% - 100px);top:calc(53% - 40px);--r:-4deg}" +
+                      ".ea-t4{left:calc(78%);top:58%;--r:5deg}" +
+                      ".ea-updown{position:absolute;right:clamp(20px,6.2vw,90px);top:48%;display:flex;flex-direction:column;gap:6px;color:var(--mute);z-index:2}" +
+                      // gateway
+                      ".ea-sec{position:relative}" +
+                      ".ea-gate{position:relative;padding:clamp(110px,15vh,150px) 0 0}" +
+                      ".ea-gate-head{position:relative;margin-bottom:28px}" +
+                      ".ea-t5{right:9%;bottom:6px;--r:9deg}" +
+                      ".ea-banner{position:relative;height:clamp(300px,36vw,520px);border-radius:16px;overflow:hidden;background:#3a3286;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+                      ".ea-banner.ea-in{opacity:1;transform:none}" +
+                      ".ea-banner img,.ea-banner-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:0;transform:scale(1.04);transition:opacity .8s ease,transform 1.4s " + EASE + "}" +
+                      ".ea-banner img.on,.ea-banner-vid{opacity:1;transform:none}" +
+                      ".ea-banner-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,17,.12) 0%,rgba(17,17,17,.08) 45%,rgba(17,17,17,.65) 100%);pointer-events:none}" +
+                      ".ea-switch{position:absolute;left:24px;top:24px;display:flex;flex-direction:column;gap:6px;z-index:2}" +
+                      ".ea-switch i{width:34px;height:34px;border-radius:10px;background:#fff}" +
+                      ".ea-switch i+i{background:#5145b9}" +
+                      ".ea-slide-meta{position:absolute;left:24px;bottom:64px;z-index:2;color:#fff;display:flex;flex-direction:column;gap:2px}" +
+                      ".ea-slide-meta b{font - size:15px;font-weight:600;letter-spacing:-.01em}" +
+                      ".ea-slide-meta small{font - size:12px;color:rgba(255,255,255,.8)}" +
+                      ".ea-more{position:absolute;right:22px;top:16px;color:#fff;opacity:.8;z-index:2}" +
+                      ".ea-watch{position:absolute;left:24px;bottom:22px;z-index:2;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 16px;border-radius:999px;background:#fff;color:#141414;font-size:12.5px;font-weight:500}" +
+                      ".ea-arrows{position:absolute;right:22px;bottom:20px;z-index:2;display:flex;gap:6px}" +
+                      ".ea-arrows button{width:36px;height:36px;border-radius:50%;background:#fff;color:#141414;display:grid;place-items:center;transition:transform .3s " + EASE + "}" +
+                      // trusted
+                      ".ea-trust{padding:clamp(80px,13vh,130px) 0 clamp(40px,7vh,70px)}" +
+                      ".ea-trust-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}" +
+                      ".ea-trust-head .ea-small{margin - top:10px}" +
+                      ".ea-mini-arrows{display:flex;gap:12px;color:var(--mute)}" +
+                      ".ea-mini-arrows button:disabled{opacity:.3;cursor:default}" +
+                      ".ea-logos{margin - top:clamp(36px,6vh,60px);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}" +
+                      ".ea-logos-track{display:flex;width:max-content;animation:ea-marq 28s linear infinite}" +
+                      ".ea-logo-item{display:inline-flex;align-items:center;gap:8px;padding:0 clamp(28px,3.4vw,50px);font-size:clamp(17px,1.6vw,23px);font-weight:600;letter-spacing:-.02em;color:var(--mute);opacity:.8;white-space:nowrap}" +
+                      "@keyframes ea-marq{to{transform:translate3d(-50%,0,0)}}" +
+                      // whether
+                      ".ea-whether{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 20px;z-index:1}" +
+                      ".ea-ink-text{font - size:clamp(26px,3.9vw,56px);line-height:1.2;letter-spacing:-.04em;font-weight:500;text-align:center;max-width:1240px;margin-top:16vh}" +
+                      ".ea-sw{opacity:.18;transition:opacity .15s linear}" +
+                      ".ea-mintw{color:#5145b9}" +
+                      ".dark .ea-mintw,.ea-dark .ea-mintw{color:#aba6de}" +
+                      ".ea-chip{display:inline-block;vertical-align:-.12em;width:.85em;height:.85em;border-radius:.2em;overflow:hidden}" +
+                      ".ea-chip img{width:100%;height:100%;object-fit:cover}" +
+                      ".ea-iconrow{display:flex;gap:10px;margin-top:5vh;color:var(--ink)}" +
+                      ".ea-iconrow svg{width:22px;height:22px;padding:4px;border-radius:6px;background:var(--card)}" +
+                      ".ea-t6{left:14%;top:37%;--r:-5deg;opacity:1;transform:rotate(var(--r))}" +
+                      ".ea-t7{left:80%;top:38%;--r:7deg;opacity:1;transform:rotate(var(--r))}" +
+                      ".ea-t8{left:62%;top:44%;--r:-6deg}" +
+                      ".ea-doodled .ea-t8{opacity:0}" +
+                      ".ea-pin:not(.ea-doodled) .ea-t8{opacity:0}" +
+                      ".ea-info{width:230px;height:280px;padding:22px 20px;display:flex;flex-direction:column;gap:6px;background:var(--card);color:var(--ink)}" +
+                      ".ea-info b{font - size:15px;line-height:1.15;font-weight:600;letter-spacing:-.02em;padding-right:26px}" +
+                      ".ea-info small{font - size:10px;color:var(--mute)}" +
+                      ".ea-info p{margin - top:auto;font-size:11.5px;line-height:1.5;color:var(--mute)}" +
+                      ".ea-info p{margin - top:auto;font-size:11.5px;line-height:1.5;color:var(--mute);padding-right:42px}" +
+                      ".ea-info-dot{position:absolute;right:18px;top:18px;width:22px;height:22px;border-radius:50%;background:var(--blue);box-shadow:inset 0 0 0 6px var(--blue),inset 0 0 0 8px var(--card)}" +
+                      // stage 2 folder cards (230x230 bespoke cards)
+                      ".ea-s2{padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}" +
+                      ".ea-s2-purple{background:linear-gradient(145deg,#5145b9,#3a3286);color:#fff}" +
+                      ".ea-s2-lav{background:#f2f1fa;color:#141414}" +
+                      ".dark .ea-s2-lav,.ea-dark .ea-s2-lav{background:#221f3a;color:#f1f1ef}" +
+                      ".ea-s2-rose{background:linear-gradient(145deg,#fb5a7c,#dc3055);color:#fff}" +
+                      ".ea-s2-sky{background:linear-gradient(145deg,#38bdf8,#1d6fe8);color:#fff}" +
+                      ".ea-s2-teal{background:linear-gradient(145deg,#009e97,#007d8a);color:#fff}" +
+                      ".ea-s2-white{background:var(--card);color:var(--ink);border:1px solid var(--line)}" +
+                      ".ea-s2-dark{background:radial-gradient(circle at 80% 18%,rgba(255,218,3,.14),transparent 54%),#17171b;color:#fff;border:1px solid rgba(255,255,255,.1)}" +
+                      ".ea-s2-gold{background:linear-gradient(145deg,#ffda03,#f2b800);color:#141414}" +
+                      ".ea-s2-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}" +
+                      ".ea-s2-ico{width:42px!important;height:42px!important;object-fit:contain!important;flex:none}" +
+                      ".ea-s2-pill{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;background:rgba(255,255,255,.18);color:inherit;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}" +
+                      ".ea-s2-pill-dark{background:rgba(81,69,185,.12);color:#5145b9}" +
+                      ".dark .ea-s2-pill-dark,.ea-dark .ea-s2-pill-dark{background:rgba(171,166,222,.16);color:#aba6de}" +
+                      ".ea-s2-pill-gold{background:#ffda03;color:#141414}" +
+                      ".ea-s2-pill-ink{background:#141414;color:#fff}" +
+                      ".ea-s2-mint{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;background:#a6e8c1;color:#0f5b38;font-size:9px;font-weight:600}" +
+                      ".ea-s2-copy{display:flex;flex-direction:column;gap:2px}" +
+                      ".ea-s2-copy b{font - size:15px;line-height:1.15;font-weight:600;letter-spacing:-.02em}" +
+                      ".ea-s2-copy small{font - size:10.5px;line-height:1.35;opacity:.78}" +
+                      ".ea-s2-copy small{font - size:10.5px;line-height:1.35;opacity:.84}" +
+                      ".ea-s2-foot{display:flex;flex-direction:column;gap:5px}" +
+                      ".ea-s2-foot span{font - size:9.5px;font-weight:500;opacity:.85}" +
+                      ".ea-s2-foot span{font - size:9.5px;font-weight:500;opacity:.88}" +
+                      ".ea-s2-bar{height:5px;width:100%;border-radius:999px;background:rgba(255,255,255,.22);overflow:hidden}" +
+                      ".ea-s2-bar i{display:block;height:100%;border-radius:999px;background:#ffda03}" +
+                      ".ea-s2-wave{display:flex;align-items:flex-end;gap:4px;height:24px}" +
+                      ".ea-s2-wave i{flex:1;border-radius:999px;background:#5145b9;opacity:.78}" +
+                      ".dark .ea-s2-wave i,.ea-dark .ea-s2-wave i{background:#aba6de}" +
+                      ".ea-s2-wave{display:flex;align-items:flex-end;gap:4px;height:24px;max-width:140px}" +
+                      ".ea-s2-wave i{flex:1;border-radius:999px;background:rgba(255,255,255,.92)}" +
+                      ".ea-s2-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:108px}" +
+                      ".ea-s2-tile{width:50px;height:50px;border-radius:10px;background:rgba(255,255,255,.18);display:grid;place-items:center;padding:6px}" +
+                      ".ea-s2-tile img{width:100%!important;height:100%!important;object-fit:contain!important}" +
+                      ".ea-s2-bgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}" +
+                      ".ea-s2-bgrid span{height:28px;padding:0 6px;border-radius:8px;display:grid;place-items:center;font-size:9px;font-weight:600;background:rgba(128,128,128,.12);color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
+                      ".ea-s2-bgrid span.done{background:#a6e8c1;color:#0f5b38}" +
+                      ".ea-s2-bgrid span.on{background:#5145b9;color:#fff}" +
+                      ".ea-s2-phonebox{height:106px;border-radius:12px;border:3px solid #161523;background:#fff;overflow:hidden;box-shadow:0 12px 24px -10px rgba(0,0,0,.35)}" +
+                      ".ea-s2-phonebox img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 8%!important}" +
+                      ".ea-s2-blist{display:flex;flex-direction:column;gap:5px;max-width:145px}" +
+                      ".ea-s2-blist span{height:24px;padding:0 9px;border-radius:7px;display:flex;align-items:center;font-size:9.5px;font-weight:600;background:rgba(255,255,255,.1);color:rgba(255,255,255,.88);white-space:nowrap}" +
+                      ".ea-s2-blist span.on{background:#009e97;color:#fff}" +
+                      ".ea-s2-ver{display:inline-flex;align-items:center;padding:4px 8px;border-radius:8px;background:rgba(20,20,20,.1);font-size:9.5px;font-weight:600}" +
+                      ".ea-s2-photo img{object - position:50% 20%}" +
+                      ".ea-s2-scrim{position:absolute;inset:35% 0 0;background:linear-gradient(180deg,rgba(17,17,17,0),rgba(17,17,17,.82) 78%);pointer-events:none}" +
+                      ".ea-s2-photo-badge{position:absolute;left:14px;top:14px;z-index:1}" +
+                      ".ea-s2-photo-copy{position:absolute;left:14px;right:14px;bottom:14px;z-index:1;color:#fff;display:flex;flex-direction:column;gap:2px}" +
+                      ".ea-s2-photo-copy b{font - size:15px;line-height:1.15;font-weight:600}" +
+                      ".ea-s2-photo-copy small{font - size:10px;opacity:.85}" +
+                      ".ea-folder{position:absolute;opacity:0;border-radius:16px;z-index:0;background:var(--card);box-shadow:0 30px 60px -40px rgba(0,0,0,.35)}" +
+                      ".ea-folder-tab{position:absolute;left:0;top:0;right:0;height:56px;display:flex;justify-content:space-between;align-items:center;padding:0 16px 0 22px;font-size:clamp(14px,1.35vw,19px);font-weight:500;color:var(--ink)}" +
+                      ".ea-folder-tab b{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:var(--card);font-size:10px;font-weight:500}" +
+                      ".ea-folder-bar{position:absolute;left:0;right:0;top:58px;height:64px;background:#5145b9;color:#fff;border-radius:14px 14px 0 0;clip-path:polygon(0 0,62% 0,68% 42%,100% 42%,100% 100%,0 100%);padding:16px 22px;font-size:clamp(14px,1.35vw,19px);font-weight:500}" +
+                      ".ea-vision{position:absolute;left:clamp(20px,7.1vw,102px);top:clamp(140px,19vh,170px);max-width:min(560px,88vw);z-index:2}" +
+                      ".ea-eye{display:inline-grid;place-items:center;margin-bottom:12px;color:var(--blue)}" +
+                      ".ea-wrapv{margin - top:12px;max-width:340px}" +
+                      ".ea-textlink{display:inline-block;margin-top:22px}" +
+                      ".ea-doodles{position:absolute;left:clamp(30px,6vw,90px);top:62%;width:min(420px,60vw);height:30%;z-index:1}" +
+                      ".ea-doodle{position:absolute;color:var(--ink);opacity:0;transform:scale(.3) rotate(-30deg);transition:opacity .5s " + EASE + ",transform .7s cubic-bezier(.34,1.56,.64,1);transition-delay:calc(var(--i) * 60ms)}" +
+                      ".ea-doodled .ea-doodle{opacity:1;transform:none}" +
+                      ".ea-doodle:nth-child(1){left:20%;top:0}.ea-doodle:nth-child(2){left:0;top:38%}.ea-doodle:nth-child(3){left:17%;top:36%}.ea-doodle:nth-child(4){left:36%;top:42%}.ea-doodle:nth-child(5){left:61%;top:40%}" +
+                      ".ea-doodle:nth-child(6){left:4%;top:76%}.ea-doodle:nth-child(7){left:22%;top:78%}.ea-doodle:nth-child(8){left:44%;top:80%}.ea-doodle:nth-child(9){left:66%;top:6%}" +
+                      // bands
+                      ".ea-bands{position:relative;padding:clamp(60px,10vh,110px) 0;overflow:hidden}" +
+                      ".ea-band{display:flex;gap:clamp(14px,2.2vw,32px);width:max-content;will-change:transform}" +
+                      ".ea-av{width:clamp(56px,6.1vw,88px);height:clamp(56px,6.1vw,88px);border-radius:14px;overflow:hidden;flex:none;transform:translate3d(0,var(--y),0);box-shadow:0 10px 24px -14px rgba(0,0,0,.4)}" +
+                      ".ea-av img{width:100%;height:100%;object-fit:cover}" +
+                      ".ea-av-icon{padding:10px}" +
+                      ".ea-av-icon img{object - fit:contain}" +
+                      ".ea-av-portrait img{object - position:50% 18%}" +
+                      ".ea-bands-mid{display:flex;flex-direction:column;align-items:center;gap:14px;padding:clamp(60px,9vh,100px) 20px}" +
+                      ".ea-bands-mid .ea-small{max - width:340px}" +
+                      ".ea-spark{color:var(--blue)}" +
+                      // story / bento
+                      ".ea-story{padding:clamp(60px,9vh,100px) 0}" +
+                      ".ea-center-head{display:flex;flex-direction:column;align-items:center;margin-bottom:clamp(40px,8vh,90px)}" +
+                      ".ea-bento{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1116px;margin:0 auto}" +
+                      ".ea-col{display:flex;flex-direction:column;gap:16px}" +
+                      ".ea-col-r{padding - top:clamp(0px,6vw,85px)}" +
+                      ".ea-bcard{position:relative;border-radius:16px;background:var(--card);padding:22px;display:flex;flex-direction:column;gap:8px;opacity:0;transform:translate3d(0,50px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+                      ".ea-bcard.ea-in{opacity:1;transform:none}" +
+                      ".ea-bcard .ea-chipbtn{align - self:flex-start;margin-top:6px;height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--line);display:inline-flex;align-items:center;font-size:11px;font-weight:500}" +
+                      ".ea-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--blue)}" +
+                      ".ea-b1 .ea-pile{position:relative;height:clamp(220px,22vw,300px);margin:6px 0 10px}" +
+                      ".ea-pile .ea-pcard{position:absolute;left:50%;top:50%;width:clamp(142px,14vw,196px);height:clamp(142px,14vw,196px);border-radius:14px;padding:13px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;box-shadow:0 20px 34px -20px rgba(0,0,0,.45);transition:transform .7s " + EASE + "}" +
+                      ".ea-pile .ea-pcard:nth-child(1){transform:translate(-66%,-46%) rotate(-12deg);z-index:1}" +
+                      ".ea-pile .ea-pcard:nth-child(2){transform:translate(-50%,-52%) rotate(-3deg);z-index:2}" +
+                      ".ea-pile .ea-pcard:nth-child(3){transform:translate(-34%,-56%) rotate(8deg);z-index:3}" +
+                      ".ea-pc1{background:#f5f4fd;color:#121118;border:1px solid rgba(81,69,185,.16)}" +
+                      ".ea-pc2{background:linear-gradient(150deg,#3a3286,#5145b9);color:#fff}" +
+                      ".ea-pc3{background:#171525;color:#fff;border:1px solid rgba(255,255,255,.1)}" +
+                      ".ea-pc-top{display:flex;align-items:center;justify-content:space-between;gap:6px}" +
+                      ".ea-pc-ico{width:26px;height:26px;object-fit:contain;flex:none}" +
+                      ".ea-pc-pill{font - size:8.5px;font-weight:700;letter-spacing:.08em;padding:3px 7px;border-radius:999px;background:rgba(81,69,185,.12);color:#5145b9}" +
+                      ".ea-pc-pill-w{background:rgba(255,255,255,.18);color:#fff}" +
+                      ".ea-pc-pill-y{background:rgba(255,218,3,.16);color:#ffda03}" +
+                      ".ea-pc-mid{display:flex;flex-direction:column;gap:2px}" +
+                      ".ea-pc-mid strong{font - size:clamp(14px,1.25vw,18px);font-weight:600;letter-spacing:-.02em;line-height:1.1}" +
+                      ".ea-pc-mid span{font - size:10px;opacity:.76;line-height:1.25}" +
+                      ".ea-pc-bar{height:5px;border-radius:999px;background:rgba(81,69,185,.16);overflow:hidden;margin-bottom:5px}" +
+                      ".ea-pc-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
+                      ".ea-pc-meta{display:block;font-size:9.5px;font-weight:500;color:#5145b9}" +
+                      ".ea-pc-chips{display:flex;gap:5px}" +
+                      ".ea-pc-chips span{flex:1;text-align:center;font-size:9.5px;font-weight:600;padding:4px 6px;border-radius:7px;background:rgba(255,255,255,.16);color:#fff}" +
+                      ".ea-pc-bars{display:flex;align-items:flex-end;gap:4px;height:22px}" +
+                      ".ea-pc-bars i{flex:1;border-radius:999px;background:#ffda03}" +
+                      ".ea-pc-bars i:nth-child(even){background:#a39cf4}" +
+                      ".ea-t9{left:62%;top:8%;--r:6deg;z-index:4}" +
+                      ".ea-b1.ea-in .ea-t9{opacity:1;transform:rotate(var(--r));transition-delay:.5s}" +
+                      ".ea-photo{position:relative;aspect-ratio:16/10;margin:-22px -22px 10px;border-radius:16px;overflow:hidden}" +
   ".ea-photo>img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s " + EASE + "}" +
-  ".ea-ibadahph{background:radial-gradient(circle at 82% 18%,rgba(167,159,248,.34),transparent 54%),linear-gradient(150deg,#3a3286,#5145b9);padding:16px;display:flex;align-items:center;justify-content:center}" +
-  ".ea-ib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}" +
-  ".ea-ib-item{border-radius:12px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}" +
-  ".ea-ib-item img{width:34px;height:34px;object-fit:contain}" +
-  ".ea-ib-item span{font-size:10px;font-weight:600;color:#fff;line-height:1.15}" +
-  ".ea-ph-badge{position:absolute;left:12px;bottom:12px;display:flex;flex-direction:column;gap:2px;padding:7px 11px;border-radius:10px;background:rgba(18,17,24,.82);backdrop-filter:blur(8px);color:#fff;pointer-events:none}" +
-  ".ea-ph-badge strong{font-size:11px;font-weight:600}" +
-  ".ea-ph-badge span{font-size:9.5px;color:rgba(255,255,255,.82)}" +
-  ".ea-qu-card{position:absolute;right:12px;top:12px;width:clamp(146px,15vw,186px);padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.95);color:#121118;box-shadow:0 14px 28px -16px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:5px;pointer-events:none}" +
-  ".ea-qu-top{display:flex;align-items:center;justify-content:space-between;gap:6px}" +
-  ".ea-qu-top img{width:20px;height:20px;object-fit:contain}" +
-  ".ea-qu-top span{font-size:8.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:999px;background:#e8f8ef;color:#0f6d3f}" +
-  ".ea-qu-card strong{font-size:11.5px;font-weight:600;line-height:1.2}" +
-  ".ea-qu-bar{height:5px;border-radius:999px;background:#ebe9f7;overflow:hidden}" +
-  ".ea-qu-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
-  ".ea-qu-card small{font-size:9px;color:#4a4858;line-height:1.25}" +
-  ".ea-phone-wrap{min-height:clamp(330px,34vw,470px);align-items:center;justify-content:center;background:transparent}" +
-  ".ea-pen{position:absolute;right:16px;top:16px;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center}" +
-  ".ea-phone{width:clamp(224px,21vw,284px);aspect-ratio:3/4;border-radius:24px;background:#14131d;color:#fff;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:15px;box-shadow:0 30px 60px -30px rgba(0,0,0,.65)}" +
-  ".ea-ph-status{display:flex;align-items:center;justify-content:space-between;font-size:9.5px;color:rgba(255,255,255,.72);padding:0 2px}" +
-  ".ea-ph-hero{border-radius:14px;background:linear-gradient(145deg,#3a3286,#5145b9);padding:12px;display:flex;flex-direction:column;gap:5px}" +
-  ".ea-ph-hero small{font-size:8.5px;font-weight:600;color:rgba(255,255,255,.78);letter-spacing:.1em;text-transform:uppercase}" +
-  ".ea-ph-hero b{font-size:clamp(15px,1.35vw,18px);font-weight:600;letter-spacing:-.02em;color:#ffda03;line-height:1.15}" +
-  ".ea-ph-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}" +
-  ".ea-ph-pills span{font-size:9px;font-weight:500;padding:3px 7px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff}" +
-  ".ea-ph-qulib{border-radius:13px;background:#1e1c2b;border:1px solid rgba(255,255,255,.08);padding:10px;display:flex;align-items:center;gap:10px}" +
-  ".ea-ph-qulib img{width:34px;height:34px;object-fit:contain;flex:none}" +
-  ".ea-ph-qulib strong{display:block;font-size:11.5px;font-weight:600;color:#fff;line-height:1.2}" +
-  ".ea-ph-qulib span{display:block;font-size:9.5px;color:rgba(255,255,255,.72);line-height:1.25;margin-top:2px}" +
-  ".ea-ph-foot{text-align:center;display:flex;flex-direction:column;gap:2px;padding-bottom:2px}" +
-  ".ea-ph-foot em{font-style:normal;font-size:11px;font-weight:500;color:rgba(255,255,255,.86)}" +
-  ".ea-ph-foot small{font-size:8.5px;color:rgba(255,255,255,.58);letter-spacing:.08em;text-transform:uppercase}" +
-  // dedicated QuPeduli sub-brand section
-  ".ea-qupeduli{padding:clamp(60px,10vh,110px) 0}" +
-  ".ea-qup-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}" +
-  ".ea-qup-sub{max-width:380px}" +
-  ".ea-qup-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:18px;align-items:stretch}" +
-  ".ea-qup-hero{position:relative;border-radius:16px;padding:26px;background:radial-gradient(circle at 75% 24%,#ffec94,#f8be24);color:#141414;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:330px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
-  ".ea-qup-hero.ea-in{opacity:1;transform:none}" +
-  ".ea-qup-pill{height:22px;padding:0 10px;border-radius:999px;background:#141414;color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center}" +
-  ".ea-qup-hero h3{font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.03em;line-height:1.12;max-width:65%}" +
-  ".ea-qup-hero p{font-size:12px;line-height:1.45;color:rgba(20,20,20,.78);max-width:60%}" +
-  ".ea-qup-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;position:relative;z-index:2}" +
-  ".ea-qup-chips span{font-size:10px;font-weight:600;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.55);color:#141414}" +
-  ".ea-qup-hero .ea-btn{margin-top:auto;position:relative;z-index:2;background:#141414;color:#fff}" +
-  ".ea-qup-donor{position:absolute;right:-6px;bottom:0;height:88%;width:auto;max-width:52%;object-fit:contain;object-position:100% 100%;pointer-events:none;filter:drop-shadow(0 16px 28px rgba(0,0,0,.22))}" +
-  ".ea-qup-list{display:flex;flex-direction:column;gap:12px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
-  ".ea-qup-list.ea-in{opacity:1;transform:none}" +
-  ".ea-qup-item{flex:1;display:flex;align-items:center;gap:14px;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line);transition:transform .3s " + EASE + "}" +
-  ".ea-qup-thumb{width:76px;height:76px;border-radius:10px;overflow:hidden;flex:none;background:var(--bg)}" +
-  ".ea-qup-thumb img{width:100%;height:100%;object-fit:cover;display:block}" +
-  ".ea-qup-thumb.is-icon{padding:14px;background:#f2f1fa}" +
-  ".dark .ea-qup-thumb.is-icon,.ea-dark .ea-qup-thumb.is-icon{background:#221f3a}" +
-  ".ea-qup-thumb.is-icon img{object-fit:contain}" +
-  ".ea-qup-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}" +
-  ".ea-qup-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}" +
-  ".ea-qup-meta span{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue)}" +
-  ".dark .ea-qup-meta span,.ea-dark .ea-qup-meta span{color:#aba6de}" +
-  ".ea-qup-meta small{font-size:10px;color:var(--mute)}" +
-  ".ea-qup-body h4{font-size:13.5px;font-weight:600;line-height:1.25;letter-spacing:-.01em}" +
-  ".ea-qup-bar{height:5px;border-radius:999px;background:var(--line);overflow:hidden}" +
-  ".ea-qup-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
-  ".ea-qup-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:var(--mute)}" +
-  ".ea-qup-foot b{color:var(--ink);font-weight:600}" +
-  // archive / articles carousel
-  ".ea-market{padding:clamp(60px,10vh,110px) 0}" +
-  ".ea-market-grid{display:grid;grid-template-columns:minmax(0,.27fr) minmax(0,.73fr);gap:24px;align-items:start}" +
-  ".ea-market-head{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr)}" +
-  ".ea-wrapm{max-width:250px;margin-top:16px}" +
-  ".ea-arc-arrows{margin-top:clamp(40px,17vh,150px)}" +
-  ".ea-market-right{grid-column:2;margin-top:-50px;position:relative;opacity:0;transition:opacity .8s " + EASE + "}" +
-  ".ea-market-right.ea-in{opacity:1}" +
-  ".ea-viewall{position:absolute;right:0;top:-78px;height:26px;padding:0 16px;border-radius:999px;background:var(--blue);color:#fff;font-size:10.5px;font-weight:500;display:inline-flex;align-items:center}" +
-  ".ea-rail{overflow:hidden}" +
-  ".ea-rail-track{display:flex;gap:16px;transform:translate3d(calc(var(--ci) * (-1 * (var(--cw) + 16px))),0,0);transition:transform .8s " + EASE + ";--cw:clamp(140px,15.3vw,220px)}" +
-  ".ea-arc{flex:none;width:var(--cw)}" +
+                      ".ea-ibadahph{background:radial-gradient(circle at 82% 18%,rgba(167,159,248,.34),transparent 54%),linear-gradient(150deg,#3a3286,#5145b9);padding:16px;display:flex;align-items:center;justify-content:center}" +
+                      ".ea-ib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}" +
+                      ".ea-ib-item{border - radius:12px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}" +
+                      ".ea-ib-item img{width:34px;height:34px;object-fit:contain}" +
+                      ".ea-ib-item span{font - size:10px;font-weight:600;color:#fff;line-height:1.15}" +
+                      ".ea-ph-badge{position:absolute;left:12px;bottom:12px;display:flex;flex-direction:column;gap:2px;padding:7px 11px;border-radius:10px;background:rgba(18,17,24,.82);backdrop-filter:blur(8px);color:#fff;pointer-events:none}" +
+                      ".ea-ph-badge strong{font - size:11px;font-weight:600}" +
+                      ".ea-ph-badge span{font - size:9.5px;color:rgba(255,255,255,.82)}" +
+                      ".ea-qu-card{position:absolute;right:12px;top:12px;width:clamp(146px,15vw,186px);padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.95);color:#121118;box-shadow:0 14px 28px -16px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:5px;pointer-events:none}" +
+                      ".ea-qu-top{display:flex;align-items:center;justify-content:space-between;gap:6px}" +
+                      ".ea-qu-top img{width:20px;height:20px;object-fit:contain}" +
+                      ".ea-qu-top span{font - size:8.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:999px;background:#e8f8ef;color:#0f6d3f}" +
+                      ".ea-qu-card strong{font - size:11.5px;font-weight:600;line-height:1.2}" +
+                      ".ea-qu-bar{height:5px;border-radius:999px;background:#ebe9f7;overflow:hidden}" +
+                      ".ea-qu-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
+                      ".ea-qu-card small{font - size:9px;color:#4a4858;line-height:1.25}" +
+                      ".ea-phone-wrap{min - height:clamp(330px,34vw,470px);align-items:center;justify-content:center;background:transparent}" +
+                      ".ea-pen{position:absolute;right:16px;top:16px;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center}" +
+                      ".ea-phone{width:clamp(224px,21vw,284px);aspect-ratio:3/4;border-radius:24px;background:#14131d;color:#fff;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:15px;box-shadow:0 30px 60px -30px rgba(0,0,0,.65)}" +
+                      ".ea-ph-status{display:flex;align-items:center;justify-content:space-between;font-size:9.5px;color:rgba(255,255,255,.72);padding:0 2px}" +
+                      ".ea-ph-hero{border - radius:14px;background:linear-gradient(145deg,#3a3286,#5145b9);padding:12px;display:flex;flex-direction:column;gap:5px}" +
+                      ".ea-ph-hero small{font - size:8.5px;font-weight:600;color:rgba(255,255,255,.78);letter-spacing:.1em;text-transform:uppercase}" +
+                      ".ea-ph-hero b{font - size:clamp(15px,1.35vw,18px);font-weight:600;letter-spacing:-.02em;color:#ffda03;line-height:1.15}" +
+                      ".ea-ph-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}" +
+                      ".ea-ph-pills span{font - size:9px;font-weight:500;padding:3px 7px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff}" +
+                      ".ea-ph-qulib{border - radius:13px;background:#1e1c2b;border:1px solid rgba(255,255,255,.08);padding:10px;display:flex;align-items:center;gap:10px}" +
+                      ".ea-ph-qulib img{width:34px;height:34px;object-fit:contain;flex:none}" +
+                      ".ea-ph-qulib strong{display:block;font-size:11.5px;font-weight:600;color:#fff;line-height:1.2}" +
+                      ".ea-ph-qulib span{display:block;font-size:9.5px;color:rgba(255,255,255,.72);line-height:1.25;margin-top:2px}" +
+                      ".ea-ph-foot{text - align:center;display:flex;flex-direction:column;gap:2px;padding-bottom:2px}" +
+                      ".ea-ph-foot em{font - style:normal;font-size:11px;font-weight:500;color:rgba(255,255,255,.86)}" +
+                      ".ea-ph-foot small{font - size:8.5px;color:rgba(255,255,255,.58);letter-spacing:.08em;text-transform:uppercase}" +
+                      // dedicated QuPeduli sub-brand section
+                      ".ea-qupeduli{padding:clamp(60px,10vh,110px) 0}" +
+                      ".ea-qup-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}" +
+                      ".ea-qup-sub{max - width:380px}" +
+                      ".ea-qup-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:18px;align-items:stretch}" +
+                      ".ea-qup-hero{position:relative;border-radius:16px;padding:26px;background:radial-gradient(circle at 75% 24%,#ffec94,#f8be24);color:#141414;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:330px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+                      ".ea-qup-hero.ea-in{opacity:1;transform:none}" +
+                      ".ea-qup-pill{height:22px;padding:0 10px;border-radius:999px;background:#141414;color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center}" +
+                      ".ea-qup-hero h3{font - size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.03em;line-height:1.12;max-width:65%}" +
+                      ".ea-qup-hero p{font - size:12px;line-height:1.45;color:rgba(20,20,20,.78);max-width:60%}" +
+                      ".ea-qup-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;position:relative;z-index:2}" +
+                      ".ea-qup-chips span{font - size:10px;font-weight:600;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.55);color:#141414}" +
+                      ".ea-qup-hero .ea-btn{margin - top:auto;position:relative;z-index:2;background:#141414;color:#fff}" +
+                      ".ea-qup-donor{position:absolute;right:-6px;bottom:0;height:88%;width:auto;max-width:52%;object-fit:contain;object-position:100% 100%;pointer-events:none;filter:drop-shadow(0 16px 28px rgba(0,0,0,.22))}" +
+                      ".ea-qup-list{display:flex;flex-direction:column;gap:12px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+                      ".ea-qup-list.ea-in{opacity:1;transform:none}" +
+                      ".ea-qup-item{flex:1;display:flex;align-items:center;gap:14px;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line);transition:transform .3s " + EASE + "}" +
+                      ".ea-qup-thumb{width:76px;height:76px;border-radius:10px;overflow:hidden;flex:none;background:var(--bg)}" +
+                      ".ea-qup-thumb img{width:100%;height:100%;object-fit:cover;display:block}" +
+                      ".ea-qup-thumb.is-icon{padding:14px;background:#f2f1fa}" +
+                      ".dark .ea-qup-thumb.is-icon,.ea-dark .ea-qup-thumb.is-icon{background:#221f3a}" +
+                      ".ea-qup-thumb.is-icon img{object - fit:contain}" +
+                      ".ea-qup-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}" +
+                      ".ea-qup-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}" +
+                      ".ea-qup-meta span{font - size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue)}" +
+                      ".dark .ea-qup-meta span,.ea-dark .ea-qup-meta span{color:#aba6de}" +
+                      ".ea-qup-meta small{font - size:10px;color:var(--mute)}" +
+                      ".ea-qup-body h4{font - size:13.5px;font-weight:600;line-height:1.25;letter-spacing:-.01em}" +
+                      ".ea-qup-bar{height:5px;border-radius:999px;background:var(--line);overflow:hidden}" +
+                      ".ea-qup-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
+                      ".ea-qup-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:var(--mute)}" +
+                      ".ea-qup-foot b{color:var(--ink);font-weight:600}" +
+                      // archive / articles carousel
+                      ".ea-market{padding:clamp(60px,10vh,110px) 0}" +
+                      ".ea-market-grid{display:grid;grid-template-columns:minmax(0,.27fr) minmax(0,.73fr);gap:24px;align-items:start}" +
+                      ".ea-market-head{grid - column:1/-1;display:grid;grid-template-columns:minmax(0,1fr)}" +
+                      ".ea-wrapm{max - width:250px;margin-top:16px}" +
+                      ".ea-arc-arrows{margin - top:clamp(40px,17vh,150px)}" +
+                      ".ea-market-right{grid - column:2;margin-top:-50px;position:relative;opacity:0;transition:opacity .8s " + EASE + "}" +
+                      ".ea-market-right.ea-in{opacity:1}" +
+                      ".ea-viewall{position:absolute;right:0;top:-78px;height:26px;padding:0 16px;border-radius:999px;background:var(--blue);color:#fff;font-size:10.5px;font-weight:500;display:inline-flex;align-items:center}" +
+                      ".ea-rail{overflow:hidden}" +
+                      ".ea-rail-track{display:flex;gap:16px;transform:translate3d(calc(var(--ci) * (-1 * (var(--cw) + 16px))),0,0);transition:transform .8s " + EASE + ";--cw:clamp(140px,15.3vw,220px)}" +
+                      ".ea-arc{flex:none;width:var(--cw)}" +
   ".ea-arc>div{position:relative;width:var(--cw);height:var(--cw);border-radius:12px;overflow:hidden;opacity:0;filter:blur(10px);transform:scale(.94);transition:opacity .8s " + EASE + ",filter .8s " + EASE + ",transform .8s " + EASE + ";transition-delay:calc(var(--i) * 90ms)}" +
   ".ea-in .ea-arc>div{opacity:1;filter:blur(0);transform:none}" +
   ".ea-arc-photo>img{width:100%;height:100%;object-fit:cover;transition:transform .8s " + EASE + "}" +
-  ".ea-arc-card{padding:14px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;background:var(--card);border:1px solid var(--line)}" +
-  ".ea-arc-indigo{background:linear-gradient(150deg,#3a3088,#5145b9);color:#fff;border-color:transparent}" +
-  ".ea-arc-teal{background:linear-gradient(150deg,#0fa39d,#06767d);color:#fff;border-color:transparent}" +
-  ".ea-arc-dark{background:radial-gradient(circle at 80% 18%,rgba(124,113,232,.36),transparent 54%),#171528;color:#fff;border-color:transparent}" +
-  ".ea-arc-tajwid{background:var(--card);color:var(--ink)}" +
-  ".ea-arc-gold{background:radial-gradient(circle at 55% 32%,#ffec94,#f8be24);color:#141414;border-color:transparent}" +
-  ".ea-arc-rose{background:radial-gradient(circle at 55% 32%,#ff9bb0,#da4d6e);color:#fff;border-color:transparent}" +
-  ".ea-arc-levels{padding:10px;background:var(--card);color:var(--ink)}" +
-  ".ea-arc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px}" +
-  ".ea-arc-top small,.ea-arc-kicker{font-size:9px;font-weight:700;letter-spacing:.08em;padding:3px 7px;border-radius:999px;background:rgba(255,255,255,.18);color:inherit;align-self:flex-start}" +
-  ".ea-arc-kicker{background:rgba(81,69,185,.12);color:#5145b9}" +
-  ".dark .ea-arc-kicker,.ea-dark .ea-arc-kicker{background:rgba(171,166,222,.16);color:#aba6de}" +
-  ".ea-arc-ico{width:32px;height:32px;object-fit:contain;flex:none}" +
-  ".ea-arc-card b{font-size:clamp(16px,1.45vw,21px);font-weight:600;letter-spacing:-.025em;line-height:1.1}" +
-  ".ea-arc-note{font-size:10px;opacity:.82;line-height:1.3}" +
-  ".ea-arc-rules{display:grid;grid-template-columns:1fr 1fr;gap:6px}" +
-  ".ea-arc-rules em{font-style:normal;font-size:11px;font-weight:600;padding:7px 6px;border-radius:8px;text-align:center;background:var(--bg);border:1px solid var(--line)}" +
-  ".ea-arc-cut{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:86%;height:88%;object-fit:contain;object-position:50% 100%;transition:transform .8s " + EASE + "}" +
-  ".ea-arc-rose .ea-arc-cut{bottom:18px;height:78%;object-position:50% 50%}" +
-  ".ea-arc-pill{height:21px;padding:0 8px;border-radius:999px;background:rgba(18,17,24,.82);backdrop-filter:blur(6px);color:#fff;font-size:9.5px;font-weight:600;display:inline-flex;align-items:center;white-space:nowrap}" +
-  ".ea-arc-pill-bot{position:absolute;left:10px;bottom:10px;z-index:2}" +
-  ".ea-arc-barbox{position:absolute;left:10px;right:10px;bottom:10px;padding:7px 9px;border-radius:9px;background:rgba(18,17,24,.84);backdrop-filter:blur(8px);color:#fff;display:flex;flex-direction:column;gap:4px}" +
-  ".ea-arc-barbox small{font-size:9.5px;font-weight:600}" +
-  ".ea-arc-barbox i{height:4px;border-radius:999px;background:rgba(255,255,255,.24);overflow:hidden;display:block}" +
-  ".ea-arc-barbox b{display:block;height:100%;border-radius:999px;background:#ffda03}" +
-  ".ea-arc-mini-photo{display:block;width:100%;height:52%;border-radius:8px;overflow:hidden}" +
-  ".ea-arc-mini-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .8s " + EASE + "}" +
-  ".ea-arc-lvl-row{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}" +
-  ".ea-arc-lvl-row em{font-style:normal;font-size:9.5px;font-weight:700;padding:5px 0;border-radius:6px;text-align:center;background:var(--bg);color:var(--mute)}" +
-  ".ea-arc-lvl-row em.done{background:#a6e8c1;color:#0f5b38}" +
-  ".ea-arc-lvl-row em.on{background:#5145b9;color:#fff}" +
-  ".ea-arc figcaption{margin-top:10px;font-size:12px;font-weight:600;letter-spacing:-.01em;display:flex;flex-direction:column;gap:2px}" +
-  ".ea-arc-tag{font-size:10px;font-weight:500;color:var(--blue);text-transform:uppercase;letter-spacing:.08em}" +
-  ".dark .ea-arc-tag,.ea-dark .ea-arc-tag{color:#aba6de}" +
-  ".ea-progress{position:relative;height:2px;margin-top:22px;width:calc(var(--cw,clamp(140px,15.3vw,220px)))}" +
-  ".ea-progress i{position:absolute;left:0;top:0;height:2px;width:clamp(140px,15.3vw,220px);background:var(--ink);transform:translate3d(calc(var(--ci) * 25%),0,0);transition:transform .8s " + EASE + "}" +
-  // stage 3
-  ".ea-lead{position:absolute;left:50%;top:22%;width:min(640px,90vw);display:flex;flex-direction:column;align-items:center;gap:14px;z-index:3}" +
-  ".ea-lead .ea-eyebrow{margin-bottom:0}" +
-  ".ea-lead .ea-small{max-width:360px}" +
-  ".ea-wall{position:absolute;left:0;top:0;border-radius:12px;overflow:hidden;opacity:0;will-change:transform}" +
-  ".ea-wall img{width:100%;height:100%;object-fit:cover}" +
-  ".ea-orange{position:absolute;overflow:hidden;background:#3a3286;z-index:2;box-shadow:0 40px 70px -40px rgba(34,26,95,.65)}" +
+                      ".ea-arc-card{padding:14px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;background:var(--card);border:1px solid var(--line)}" +
+                      ".ea-arc-indigo{background:linear-gradient(150deg,#3a3088,#5145b9);color:#fff;border-color:transparent}" +
+                      ".ea-arc-teal{background:linear-gradient(150deg,#0fa39d,#06767d);color:#fff;border-color:transparent}" +
+                      ".ea-arc-dark{background:radial-gradient(circle at 80% 18%,rgba(124,113,232,.36),transparent 54%),#171528;color:#fff;border-color:transparent}" +
+                      ".ea-arc-tajwid{background:var(--card);color:var(--ink)}" +
+                      ".ea-arc-gold{background:radial-gradient(circle at 55% 32%,#ffec94,#f8be24);color:#141414;border-color:transparent}" +
+                      ".ea-arc-rose{background:radial-gradient(circle at 55% 32%,#ff9bb0,#da4d6e);color:#fff;border-color:transparent}" +
+                      ".ea-arc-levels{padding:10px;background:var(--card);color:var(--ink)}" +
+                      ".ea-arc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px}" +
+                      ".ea-arc-top small,.ea-arc-kicker{font - size:9px;font-weight:700;letter-spacing:.08em;padding:3px 7px;border-radius:999px;background:rgba(255,255,255,.18);color:inherit;align-self:flex-start}" +
+                      ".ea-arc-kicker{background:rgba(81,69,185,.12);color:#5145b9}" +
+                      ".dark .ea-arc-kicker,.ea-dark .ea-arc-kicker{background:rgba(171,166,222,.16);color:#aba6de}" +
+                      ".ea-arc-ico{width:32px;height:32px;object-fit:contain;flex:none}" +
+                      ".ea-arc-card b{font - size:clamp(16px,1.45vw,21px);font-weight:600;letter-spacing:-.025em;line-height:1.1}" +
+                      ".ea-arc-note{font - size:10px;opacity:.82;line-height:1.3}" +
+                      ".ea-arc-rules{display:grid;grid-template-columns:1fr 1fr;gap:6px}" +
+                      ".ea-arc-rules em{font - style:normal;font-size:11px;font-weight:600;padding:7px 6px;border-radius:8px;text-align:center;background:var(--bg);border:1px solid var(--line)}" +
+                      ".ea-arc-cut{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:86%;height:88%;object-fit:contain;object-position:50% 100%;transition:transform .8s " + EASE + "}" +
+                      ".ea-arc-rose .ea-arc-cut{bottom:18px;height:78%;object-position:50% 50%}" +
+                      ".ea-arc-pill{height:21px;padding:0 8px;border-radius:999px;background:rgba(18,17,24,.82);backdrop-filter:blur(6px);color:#fff;font-size:9.5px;font-weight:600;display:inline-flex;align-items:center;white-space:nowrap}" +
+                      ".ea-arc-pill-bot{position:absolute;left:10px;bottom:10px;z-index:2}" +
+                      ".ea-arc-barbox{position:absolute;left:10px;right:10px;bottom:10px;padding:7px 9px;border-radius:9px;background:rgba(18,17,24,.84);backdrop-filter:blur(8px);color:#fff;display:flex;flex-direction:column;gap:4px}" +
+                      ".ea-arc-barbox small{font - size:9.5px;font-weight:600}" +
+                      ".ea-arc-barbox i{height:4px;border-radius:999px;background:rgba(255,255,255,.24);overflow:hidden;display:block}" +
+                      ".ea-arc-barbox b{display:block;height:100%;border-radius:999px;background:#ffda03}" +
+                      ".ea-arc-mini-photo{display:block;width:100%;height:52%;border-radius:8px;overflow:hidden}" +
+                      ".ea-arc-mini-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .8s " + EASE + "}" +
+                      ".ea-arc-lvl-row{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}" +
+                      ".ea-arc-lvl-row em{font - style:normal;font-size:9.5px;font-weight:700;padding:5px 0;border-radius:6px;text-align:center;background:var(--bg);color:var(--mute)}" +
+                      ".ea-arc-lvl-row em.done{background:#a6e8c1;color:#0f5b38}" +
+                      ".ea-arc-lvl-row em.on{background:#5145b9;color:#fff}" +
+                      ".ea-arc figcaption{margin - top:10px;font-size:12px;font-weight:600;letter-spacing:-.01em;display:flex;flex-direction:column;gap:2px}" +
+                      ".ea-arc-tag{font - size:10px;font-weight:500;color:var(--blue);text-transform:uppercase;letter-spacing:.08em}" +
+                      ".dark .ea-arc-tag,.ea-dark .ea-arc-tag{color:#aba6de}" +
+                      ".ea-progress{position:relative;height:2px;margin-top:22px;width:calc(var(--cw,clamp(140px,15.3vw,220px)))}" +
+                      ".ea-progress i{position:absolute;left:0;top:0;height:2px;width:clamp(140px,15.3vw,220px);background:var(--ink);transform:translate3d(calc(var(--ci) * 25%),0,0);transition:transform .8s " + EASE + "}" +
+                      // stage 3
+                      ".ea-lead{position:absolute;left:50%;top:22%;width:min(640px,90vw);display:flex;flex-direction:column;align-items:center;gap:14px;z-index:3}" +
+                      ".ea-lead .ea-eyebrow{margin - bottom:0}" +
+                      ".ea-lead .ea-small{max - width:360px}" +
+                      ".ea-wall{position:absolute;left:0;top:0;border-radius:12px;overflow:hidden;opacity:0;will-change:transform}" +
+                      ".ea-wall img{width:100%;height:100%;object-fit:cover}" +
+                      ".ea-orange{position:absolute;overflow:hidden;background:#3a3286;z-index:2;box-shadow:0 40px 70px -40px rgba(34,26,95,.65)}" +
   ".ea-orange>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%}" +
-  ".ea-orange-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,25,25,0) 45%,rgba(25,25,25,.72) 100%);pointer-events:none}" +
-  ".ea-orange-ui{position:absolute;inset:0;opacity:0;transition:opacity .5s " + EASE + "}" +
-  ".ea-card-on .ea-orange-ui{opacity:1}" +
-  ".ea-t10{left:14px;top:40px;--r:-10deg;height:24px;font-size:11px;padding:0 10px}" +
-  ".ea-card-on .ea-t10{opacity:1;transform:rotate(var(--r))}" +
-  ".ea-like{position:absolute;right:12px;top:12px;display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 10px;border-radius:999px;background:#fff;color:#141414;font-size:10px;font-weight:500}" +
-  ".ea-like.on{color:#e8203a}" +
-  ".ea-by{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;gap:8px;color:#fff}" +
-  ".ea-by img{width:28px;height:28px;border-radius:8px;object-fit:cover;object-position:50% 20%}" +
-  ".ea-by b{display:block;font-size:12px;font-weight:600}" +
-  ".ea-by small{display:block;font-size:10px;opacity:.85}" +
-  // pricing
-  ".ea-price{padding:clamp(70px,12vh,130px) 0 clamp(40px,7vh,70px)}" +
-  ".ea-price-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:32px;align-items:center}" +
-  ".ea-plans{display:flex;align-items:center;justify-content:center;gap:14px;min-height:clamp(210px,18vw,260px);opacity:0;transition:opacity .6s " + EASE + "}" +
-  ".ea-plans.ea-in{opacity:1}" +
-  ".ea-plan{position:relative;flex:1;min-width:0;max-width:205px;aspect-ratio:1/1.04;border-radius:14px;background:var(--card);padding:16px;display:flex;flex-direction:column;box-shadow:0 24px 38px -26px rgba(0,0,0,.32);transform:translate3d(0,48px,0) rotate(0deg);transition:transform 1s cubic-bezier(.34,1.3,.64,1)}" +
-  ".ea-plan small{font-size:11px;font-weight:500}" +
-  ".ea-plan b{font-size:clamp(28px,2.9vw,44px);line-height:1;font-weight:600;letter-spacing:-.04em;margin-top:8px;white-space:nowrap}" +
-  ".ea-plan sup{font-size:.34em;vertical-align:.95em;margin:0 2px 0 0;letter-spacing:0}" +
-  ".ea-plan b small{font-size:.3em;font-weight:500;letter-spacing:0;margin-left:2px}" +
-  ".ea-plan em{margin-top:auto;font-style:normal;font-size:10px;line-height:1.3;color:var(--mute)}" +
-  ".ea-p1{z-index:1}" +
-  ".ea-p2{z-index:2;background:#5145b9;color:#fff;aspect-ratio:1/1.12}" +
-  ".ea-p2 em{color:rgba(255,255,255,.85)}" +
-  ".ea-p3{z-index:1}" +
-  ".ea-in .ea-p1{transform:rotate(-3deg)}.ea-in .ea-p2{transform:translate3d(0,-10px,0) rotate(-1deg);transition-delay:.1s}.ea-in .ea-p3{transform:translate3d(0,6px,0) rotate(4deg);transition-delay:.2s}" +
-  ".ea-pop-pill{position:absolute;right:12px;top:12px;height:20px;padding:0 9px;border-radius:999px;background:#ffda03;color:#141414;font-size:9.5px;font-weight:600;display:inline-flex;align-items:center;transform:rotate(8deg)}" +
-  // lime marquee
-  ".ea-lime-sec{padding:0 clamp(16px,8.75vw,126px) clamp(16px,2vh,24px)}" +
-  ".ea-lime{position:relative;height:clamp(420px,58vh,500px);border-radius:16px;background:var(--lime);color:#141414;overflow:hidden}" +
-  ".ea-water{position:absolute;left:-2%;top:6%;font-size:clamp(130px,22vw,320px);line-height:.8;font-weight:600;letter-spacing:-.06em;color:rgba(255,255,255,.22);pointer-events:none}" +
-  ".ea-marquee{position:relative;padding-top:clamp(14px,2.4vh,22px);overflow:hidden}" +
-  ".ea-mtrack{display:flex;width:max-content;will-change:transform}" +
-  ".ea-mrun{display:inline-flex;align-items:flex-start;font-size:clamp(34px,4.45vw,64px);line-height:1.15;letter-spacing:-.04em;font-weight:500;white-space:nowrap}" +
-  ".ea-mthumbs{position:relative;display:inline-flex;align-items:center;gap:6px;margin:.18em .3em 0;height:.82em}" +
-  ".ea-mthumbs img,.ea-mthumbs i{width:.82em;height:.82em;border-radius:.14em;object-fit:cover;display:block}" +
-  ".ea-mthumbs i{width:.42em;height:.42em;border-radius:50%}" +
-  ".ea-mthumbs small{position:absolute;left:30%;top:100%;margin-top:4px;font-size:8px;line-height:1.2;letter-spacing:.06em;font-weight:600;white-space:nowrap;text-align:center}" +
-  ".ea-pilebox{position:absolute;left:0;right:0;bottom:0;top:34%;cursor:crosshair}" +
-  ".ea-ball{position:absolute;left:0;top:0;width:72px;height:72px;border-radius:50%;background:#fff;color:#141414;display:grid;place-items:center;transform:translate3d(-100px,-200px,0);will-change:transform;box-shadow:0 6px 12px -8px rgba(0,0,0,.4)}" +
-  // duo
-  ".ea-duo{padding:clamp(16px,2vh,24px) 0 clamp(100px,16vh,160px)}" +
-  ".ea-duo-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.9vw,27px);padding:0 clamp(16px,8.75vw,126px)}" +
-  ".ea-meet,.ea-arch{position:relative;height:clamp(490px,45vw,650px);border-radius:16px;overflow:hidden;opacity:0;transform:translate3d(0,50px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
-  ".ea-meet.ea-in,.ea-arch.ea-in{opacity:1;transform:none}" +
-  ".ea-meet{background:radial-gradient(circle at 80% 14%,rgba(167,159,248,.36),transparent 54%),linear-gradient(155deg,#3a3286,#5145b9);color:#fff}" +
-  ".ea-arch{background:var(--card);color:var(--ink)}" +
-  ".ea-duo-phones{position:relative;height:62%;padding:22px;overflow:hidden;transition:transform .8s " + EASE + "}" +
-  ".ea-duo-pill{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;letter-spacing:.02em}" +
-  ".ea-phone-back,.ea-phone-front{position:absolute;border-radius:22px;border:5px solid #161523;background:#fff;overflow:hidden;box-shadow:0 26px 48px -20px rgba(0,0,0,.55)}" +
-  ".ea-phone-back{width:clamp(146px,15vw,210px);aspect-ratio:9/18;left:22%;top:64px;transform:rotate(-7deg);opacity:.94}" +
-  ".ea-phone-front{width:clamp(160px,16.5vw,228px);aspect-ratio:9/18;left:46%;top:34px;transform:rotate(3deg)}" +
-  ".ea-phone-back img,.ea-phone-front img{width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block}" +
-  ".ea-qursus-ui{position:relative;margin:22px 22px 0;padding:12px;border-radius:14px;background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px;box-shadow:0 18px 36px -22px rgba(18,17,24,.18);transition:transform .8s " + EASE + "}" +
-  ".ea-qursus-photo{position:relative;height:clamp(108px,13vw,182px);border-radius:10px;overflow:hidden}" +
-  ".ea-qursus-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 24%;display:block}" +
-  ".ea-qursus-live{position:absolute;left:10px;bottom:10px;height:22px;padding:0 9px;border-radius:999px;background:rgba(18,17,24,.8);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center;gap:5px}" +
-  ".ea-qursus-live::before{content:'';width:6px;height:6px;border-radius:50%;background:#34d399}" +
-  ".ea-qursus-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}" +
-  ".ea-qursus-steps span{text-align:center;padding:6px 4px;border-radius:8px;font-size:9.5px;font-weight:600;background:var(--card);color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
-  ".ea-qursus-steps span.done{background:#a6e8c1;color:#0f5b38}" +
-  ".ea-qursus-steps span.on{background:#5145b9;color:#fff}" +
-  ".ea-qursus-tags{display:flex;flex-wrap:wrap;gap:6px}" +
-  ".ea-qursus-tags span{font-size:9.5px;font-weight:500;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mute)}" +
-  ".ea-meet::after{content:'';position:absolute;inset:42% 0 0;background:linear-gradient(180deg,rgba(58,50,134,0),rgba(58,50,134,.96) 56%);pointer-events:none}" +
-  ".ea-duo-copy{position:absolute;z-index:1;left:26px;right:26px;bottom:26px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}" +
-  ".ea-meet h3 span{color:#ffda03}" +
-  ".ea-meet .ea-small{color:rgba(255,255,255,.82);max-width:340px}" +
-  ".ea-arch .ea-small{color:var(--mute);max-width:340px}" +
-  ".ea-arch .ea-btn{background:var(--ink);color:var(--bg)}" +
-  ".ea-store-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}" +
-  ".ea-store-badge{display:inline-flex;height:40px;transition:transform .25s " + EASE + "}" +
-  ".ea-store-badge img{height:40px;width:auto}" +
-  // footer
-  ".ea-foot{background:var(--foot);padding:clamp(50px,7vh,70px) 0 clamp(30px,5vh,46px)}" +
-  ".ea-foot-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr .6fr;gap:32px;position:relative}" +
-  ".ea-foot-grid .ea-small{max-width:300px;margin-top:12px}" +
-  ".ea-foot .ea-h4{font-size:clamp(17px,1.45vw,21px)}" +
-  ".ea-foot-dots{font-size:9px;letter-spacing:.08em;vertical-align:3px;margin-left:8px;padding:3px 8px;border-radius:999px;background:var(--card);color:var(--blue);font-weight:600}" +
-  ".ea-mail{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:500;border-bottom:1px solid var(--line)}" +
-  ".ea-contact-meta{display:block;margin-top:6px;font-size:11.5px;color:var(--mute)}" +
-  ".ea-socials{display:flex;gap:8px;margin-top:18px}" +
-  ".ea-socials a{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--mute);transition:color .3s ease,border-color .3s ease}" +
-  ".ea-foot ul{display:flex;flex-direction:column;gap:11px;font-size:12.5px}" +
-  ".ea-foot li{display:flex;align-items:center;gap:6px}" +
-  ".ea-new,.ea-soon{height:16px;padding:0 7px;border-radius:999px;font-size:9px;display:inline-flex;align-items:center}" +
-  ".ea-new{background:#5145b9;color:#fff}" +
-  ".ea-soon{background:#f2f1fa;color:#5145b9}" +
-  ".ea-copy{position:absolute;right:clamp(20px,7.1vw,102px);bottom:0;font-size:10.5px;color:var(--mute)}" +
-  // hover — only where a mouse can hover
-  "@media (hover:hover) and (pointer:fine){" +
+                      ".ea-orange-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,25,25,0) 45%,rgba(25,25,25,.72) 100%);pointer-events:none}" +
+                      ".ea-orange-ui{position:absolute;inset:0;opacity:0;transition:opacity .5s " + EASE + "}" +
+                      ".ea-card-on .ea-orange-ui{opacity:1}" +
+                      ".ea-t10{left:14px;top:40px;--r:-10deg;height:24px;font-size:11px;padding:0 10px}" +
+                      ".ea-card-on .ea-t10{opacity:1;transform:rotate(var(--r))}" +
+                      ".ea-like{position:absolute;right:12px;top:12px;display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 10px;border-radius:999px;background:#fff;color:#141414;font-size:10px;font-weight:500}" +
+                      ".ea-like.on{color:#e8203a}" +
+                      ".ea-by{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;gap:8px;color:#fff}" +
+                      ".ea-by img{width:28px;height:28px;border-radius:8px;object-fit:cover;object-position:50% 20%}" +
+                      ".ea-by b{display:block;font-size:12px;font-weight:600}" +
+                      ".ea-by small{display:block;font-size:10px;opacity:.85}" +
+                      // pricing
+                      ".ea-price{padding:clamp(70px,12vh,130px) 0 clamp(40px,7vh,70px)}" +
+                      ".ea-price-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:32px;align-items:center}" +
+                      ".ea-plans{display:flex;align-items:center;justify-content:center;gap:14px;min-height:clamp(210px,18vw,260px);opacity:0;transition:opacity .6s " + EASE + "}" +
+                      ".ea-plans.ea-in{opacity:1}" +
+                      ".ea-plan{position:relative;flex:1;min-width:0;max-width:205px;aspect-ratio:1/1.04;border-radius:14px;background:var(--card);padding:16px;display:flex;flex-direction:column;box-shadow:0 24px 38px -26px rgba(0,0,0,.32);transform:translate3d(0,48px,0) rotate(0deg);transition:transform 1s cubic-bezier(.34,1.3,.64,1)}" +
+                      ".ea-plan small{font - size:11px;font-weight:500}" +
+                      ".ea-plan b{font - size:clamp(28px,2.9vw,44px);line-height:1;font-weight:600;letter-spacing:-.04em;margin-top:8px;white-space:nowrap}" +
+                      ".ea-plan sup{font - size:.34em;vertical-align:.95em;margin:0 2px 0 0;letter-spacing:0}" +
+                      ".ea-plan b small{font - size:.3em;font-weight:500;letter-spacing:0;margin-left:2px}" +
+                      ".ea-plan em{margin - top:auto;font-style:normal;font-size:10px;line-height:1.3;color:var(--mute)}" +
+                      ".ea-p1{z - index:1}" +
+                      ".ea-p2{z - index:2;background:#5145b9;color:#fff;aspect-ratio:1/1.12}" +
+                      ".ea-p2 em{color:rgba(255,255,255,.85)}" +
+                      ".ea-p3{z - index:1}" +
+                      ".ea-in .ea-p1{transform:rotate(-3deg)}.ea-in .ea-p2{transform:translate3d(0,-10px,0) rotate(-1deg);transition-delay:.1s}.ea-in .ea-p3{transform:translate3d(0,6px,0) rotate(4deg);transition-delay:.2s}" +
+                      ".ea-pop-pill{position:absolute;right:12px;top:12px;height:20px;padding:0 9px;border-radius:999px;background:#ffda03;color:#141414;font-size:9.5px;font-weight:600;display:inline-flex;align-items:center;transform:rotate(8deg)}" +
+                      // lime marquee
+                      ".ea-lime-sec{padding:0 clamp(16px,8.75vw,126px) clamp(16px,2vh,24px)}" +
+                      ".ea-lime{position:relative;height:clamp(420px,58vh,500px);border-radius:16px;background:var(--lime);color:#141414;overflow:hidden}" +
+                      ".ea-water{position:absolute;left:-2%;top:6%;font-size:clamp(130px,22vw,320px);line-height:.8;font-weight:600;letter-spacing:-.06em;color:rgba(255,255,255,.22);pointer-events:none}" +
+                      ".ea-marquee{position:relative;padding-top:clamp(14px,2.4vh,22px);overflow:hidden}" +
+                      ".ea-mtrack{display:flex;width:max-content;will-change:transform}" +
+                      ".ea-mrun{display:inline-flex;align-items:flex-start;font-size:clamp(34px,4.45vw,64px);line-height:1.15;letter-spacing:-.04em;font-weight:500;white-space:nowrap}" +
+                      ".ea-mthumbs{position:relative;display:inline-flex;align-items:center;gap:6px;margin:.18em .3em 0;height:.82em}" +
+                      ".ea-mthumbs img,.ea-mthumbs i{width:.82em;height:.82em;border-radius:.14em;object-fit:cover;display:block}" +
+                      ".ea-mthumbs i{width:.42em;height:.42em;border-radius:50%}" +
+                      ".ea-mthumbs small{position:absolute;left:30%;top:100%;margin-top:4px;font-size:8px;line-height:1.2;letter-spacing:.06em;font-weight:600;white-space:nowrap;text-align:center}" +
+                      ".ea-pilebox{position:absolute;left:0;right:0;bottom:0;top:34%;cursor:crosshair}" +
+                      ".ea-ball{position:absolute;left:0;top:0;width:72px;height:72px;border-radius:50%;background:#fff;color:#141414;display:grid;place-items:center;transform:translate3d(-100px,-200px,0);will-change:transform;box-shadow:0 6px 12px -8px rgba(0,0,0,.4)}" +
+                      // duo
+                      ".ea-duo{padding:clamp(16px,2vh,24px) 0 clamp(100px,16vh,160px)}" +
+                      ".ea-duo-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.9vw,27px);padding:0 clamp(16px,8.75vw,126px)}" +
+                      ".ea-meet,.ea-arch{position:relative;height:clamp(490px,45vw,650px);border-radius:16px;overflow:hidden;opacity:0;transform:translate3d(0,50px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+                      ".ea-meet.ea-in,.ea-arch.ea-in{opacity:1;transform:none}" +
+                      ".ea-meet{background:radial-gradient(circle at 80% 14%,rgba(167,159,248,.36),transparent 54%),linear-gradient(155deg,#3a3286,#5145b9);color:#fff}" +
+                      ".ea-arch{background:var(--card);color:var(--ink)}" +
+                      ".ea-duo-phones{position:relative;height:62%;padding:22px;overflow:hidden;transition:transform .8s " + EASE + "}" +
+                      ".ea-duo-pill{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;letter-spacing:.02em}" +
+                      ".ea-phone-back,.ea-phone-front{position:absolute;border-radius:22px;border:5px solid #161523;background:#fff;overflow:hidden;box-shadow:0 26px 48px -20px rgba(0,0,0,.55)}" +
+                      ".ea-phone-back{width:clamp(146px,15vw,210px);aspect-ratio:9/18;left:22%;top:64px;transform:rotate(-7deg);opacity:.94}" +
+                      ".ea-phone-front{width:clamp(160px,16.5vw,228px);aspect-ratio:9/18;left:46%;top:34px;transform:rotate(3deg)}" +
+                      ".ea-phone-back img,.ea-phone-front img{width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block}" +
+                      ".ea-qursus-ui{position:relative;margin:22px 22px 0;padding:12px;border-radius:14px;background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px;box-shadow:0 18px 36px -22px rgba(18,17,24,.18);transition:transform .8s " + EASE + "}" +
+                      ".ea-qursus-photo{position:relative;height:clamp(108px,13vw,182px);border-radius:10px;overflow:hidden}" +
+                      ".ea-qursus-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 24%;display:block}" +
+                      ".ea-qursus-live{position:absolute;left:10px;bottom:10px;height:22px;padding:0 9px;border-radius:999px;background:rgba(18,17,24,.8);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center;gap:5px}" +
+                      ".ea-qursus-live::before{content:'';width:6px;height:6px;border-radius:50%;background:#34d399}" +
+                      ".ea-qursus-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}" +
+                      ".ea-qursus-steps span{text - align:center;padding:6px 4px;border-radius:8px;font-size:9.5px;font-weight:600;background:var(--card);color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
+                      ".ea-qursus-steps span.done{background:#a6e8c1;color:#0f5b38}" +
+                      ".ea-qursus-steps span.on{background:#5145b9;color:#fff}" +
+                      ".ea-qursus-tags{display:flex;flex-wrap:wrap;gap:6px}" +
+                      ".ea-qursus-tags span{font - size:9.5px;font-weight:500;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mute)}" +
+                      ".ea-meet::after{content:'';position:absolute;inset:42% 0 0;background:linear-gradient(180deg,rgba(58,50,134,0),rgba(58,50,134,.96) 56%);pointer-events:none}" +
+                      ".ea-duo-copy{position:absolute;z-index:1;left:26px;right:26px;bottom:26px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}" +
+                      ".ea-meet h3 span{color:#ffda03}" +
+                      ".ea-meet .ea-small{color:rgba(255,255,255,.82);max-width:340px}" +
+                      ".ea-arch .ea-small{color:var(--mute);max-width:340px}" +
+                      ".ea-arch .ea-btn{background:var(--ink);color:var(--bg)}" +
+                      ".ea-store-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}" +
+                      ".ea-store-badge{display:inline-flex;height:40px;transition:transform .25s " + EASE + "}" +
+                      ".ea-store-badge img{height:40px;width:auto}" +
+                      // footer
+                      ".ea-foot{background:var(--foot);padding:clamp(50px,7vh,70px) 0 clamp(30px,5vh,46px)}" +
+                      ".ea-foot-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr .6fr;gap:32px;position:relative}" +
+                      ".ea-foot-grid .ea-small{max - width:300px;margin-top:12px}" +
+                      ".ea-foot .ea-h4{font - size:clamp(17px,1.45vw,21px)}" +
+                      ".ea-foot-dots{font - size:9px;letter-spacing:.08em;vertical-align:3px;margin-left:8px;padding:3px 8px;border-radius:999px;background:var(--card);color:var(--blue);font-weight:600}" +
+                      ".ea-mail{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:500;border-bottom:1px solid var(--line)}" +
+                      ".ea-contact-meta{display:block;margin-top:6px;font-size:11.5px;color:var(--mute)}" +
+                      ".ea-socials{display:flex;gap:8px;margin-top:18px}" +
+                      ".ea-socials a{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--mute);transition:color .3s ease,border-color .3s ease}" +
+                      ".ea-foot ul{display:flex;flex-direction:column;gap:11px;font-size:12.5px}" +
+                      ".ea-foot li{display:flex;align-items:center;gap:6px}" +
+                      ".ea-new,.ea-soon{height:16px;padding:0 7px;border-radius:999px;font-size:9px;display:inline-flex;align-items:center}" +
+                      ".ea-new{background:#5145b9;color:#fff}" +
+                      ".ea-soon{background:#f2f1fa;color:#5145b9}" +
+                      ".ea-copy{position:absolute;right:clamp(20px,7.1vw,102px);bottom:0;font-size:10.5px;color:var(--mute)}" +
+                      // hover — only where a mouse can hover
+                      "@media (hover:hover) and (pointer:fine){" +
   ".ea-link:hover::after,.ea-ghost:hover::after,.ea-textlink:hover::after{transform:scaleX(1);transform-origin:0 50%}" +
-  ".ea-round:hover,.ea-arrows button:hover{transform:scale(1.1)}" +
-  ".ea-btn:hover,.ea-store-badge:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}" +
+                      ".ea-round:hover,.ea-arrows button:hover{transform:scale(1.1)}" +
+                      ".ea-btn:hover,.ea-store-badge:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}" +
   ".ea-arc:hover .ea-arc-photo>img,.ea-arc:hover .ea-arc-mini-photo>img,.ea-photo:hover>img{transform:scale(1.05)}" +
-  ".ea-meet:hover .ea-duo-phones,.ea-arch:hover .ea-qursus-ui{transform:translate3d(0,-4px,0)}" +
-  ".ea-b1:hover .ea-pile .ea-pcard:nth-child(1){transform:translate(-80%,-44%) rotate(-18deg)}" +
-  ".ea-b1:hover .ea-pile .ea-pcard:nth-child(3){transform:translate(-18%,-58%) rotate(14deg)}" +
-  ".ea-plan:hover{transform:translate3d(0,-10px,0) rotate(0deg)!important;transition-duration:.45s;transition-delay:0s!important}" +
-  ".ea-socials a:hover{color:var(--ink);border-color:var(--ink)}" +
-  ".ea-av:hover{transform:translate3d(0,calc(var(--y) - 6px),0) scale(1.08);transition:transform .35s " + EASE + "}" +
+                      ".ea-meet:hover .ea-duo-phones,.ea-arch:hover .ea-qursus-ui{transform:translate3d(0,-4px,0)}" +
+                      ".ea-b1:hover .ea-pile .ea-pcard:nth-child(1){transform:translate(-80%,-44%) rotate(-18deg)}" +
+                      ".ea-b1:hover .ea-pile .ea-pcard:nth-child(3){transform:translate(-18%,-58%) rotate(14deg)}" +
+                      ".ea-plan:hover{transform:translate3d(0,-10px,0) rotate(0deg)!important;transition-duration:.45s;transition-delay:0s!important}" +
+                      ".ea-socials a:hover{color:var(--ink);border-color:var(--ink)}" +
+                      ".ea-av:hover{transform:translate3d(0,calc(var(--y) - 6px),0) scale(1.08);transition:transform .35s " + EASE + "}" +
   "}" +
-  // tablet / phone
-  "@media (max-width:1023px){.ea-links{display:none}.ea-qup-grid{grid-template-columns:1fr}.ea-market-grid{grid-template-columns:1fr}.ea-market-right{grid-column:1;margin-top:0}.ea-viewall{position:static;margin-bottom:16px}.ea-price-grid{grid-template-columns:1fr}.ea-foot-grid{grid-template-columns:1fr 1fr}.ea-copy{position:static;grid-column:1/-1}}" +
-  "@media (max-width:767px){" +
+                      // tablet / phone
+                      "@media (max-width:1023px){.ea - links{display:none}.ea-qup-grid{grid - template - columns:1fr}.ea-market-grid{grid - template - columns:1fr}.ea-market-right{grid - column:1;margin-top:0}.ea-viewall{position:static;margin-bottom:16px}.ea-price-grid{grid - template - columns:1fr}.ea-foot-grid{grid - template - columns:1fr 1fr}.ea-copy{position:static;grid-column:1/-1}}" +
+                      "@media (max-width:767px){" +
   ".ea-nav{height:76px;margin-bottom:-76px;padding-top:16px}" +
-  ".ea-show{top:84px}.ea-show .ea-btns{margin-top:18px}.ea-wrapp{margin-top:14px}" +
-  ".ea-t3{left:12%;top:56%}.ea-t4{left:60%;top:62%}.ea-updown{display:none}" +
-  ".ea-t1{left:8%}.ea-t2{left:auto;right:8%}" +
-  ".ea-t6{left:6%;top:16%}.ea-t7{left:auto;right:6%;top:18%}" +
-  ".ea-vision{top:96px}.ea-doodles{display:none}" +
-  ".ea-folder-tab{font-size:12px}.ea-folder-bar{top:40px;height:46px;font-size:12px}" +
-  ".ea-bento{grid-template-columns:1fr}.ea-col-r{padding-top:0}" +
-  ".ea-qup-hero h3,.ea-qup-hero p{max-width:100%}.ea-qup-donor{opacity:.25}" +
-  ".ea-duo-grid{grid-template-columns:1fr}" +
-  ".ea-plans{flex-direction:column;align-items:stretch;gap:12px;min-height:0}.ea-plan,.ea-p2{max-width:none;aspect-ratio:auto;min-height:132px;transform:none!important}" +
-  ".ea-ball{width:48px;height:48px}.ea-ball svg{width:24px;height:24px}" +
-  ".ea-trust-head{flex-direction:column;align-items:flex-start}" +
-  ".ea-slide-meta{display:none}" +
+                      ".ea-show{top:84px}.ea-show .ea-btns{margin - top:18px}.ea-wrapp{margin - top:14px}" +
+                      ".ea-t3{left:12%;top:56%}.ea-t4{left:60%;top:62%}.ea-updown{display:none}" +
+                      ".ea-t1{left:8%}.ea-t2{left:auto;right:8%}" +
+                      ".ea-t6{left:6%;top:16%}.ea-t7{left:auto;right:6%;top:18%}" +
+                      ".ea-vision{top:96px}.ea-doodles{display:none}" +
+                      ".ea-folder-tab{font - size:12px}.ea-folder-bar{top:40px;height:46px;font-size:12px}" +
+                      ".ea-bento{grid - template - columns:1fr}.ea-col-r{padding - top:0}" +
+                      ".ea-qup-hero h3,.ea-qup-hero p{max - width:100%}.ea-qup-donor{opacity:.25}" +
+                      ".ea-duo-grid{grid - template - columns:1fr}" +
+                      ".ea-plans{flex - direction:column;align-items:stretch;gap:12px;min-height:0}.ea-plan,.ea-p2{max - width:none;aspect-ratio:auto;min-height:132px;transform:none!important}" +
+                      ".ea-ball{width:48px;height:48px}.ea-ball svg{width:24px;height:24px}" +
+                      ".ea-trust-head{flex - direction:column;align-items:flex-start}" +
+                      ".ea-slide-meta{display:none}" +
   "}" +
-  // reduced motion: no time-based motion; scroll-linked stages follow the scrollbar only
-  "@media (prefers-reduced-motion:reduce){" +
+                      // reduced motion: no time-based motion; scroll-linked stages follow the scrollbar only
+                      "@media (prefers-reduced-motion:reduce){" +
   ".ea-w,.ea-late,.ea-fade,.ea-tag,.ea-doodle,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-banner,.ea-banner img,.ea-arc>div,.ea-plan,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-rail-track,.ea-progress i{transition:none!important}" +
-  ".ea-w{opacity:1;filter:none;transform:none}" +
+                      ".ea-w{opacity:1;filter:none;transform:none}" +
   ".ea-late,.ea-fade,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-banner,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-arc>div{opacity:1;filter:none;transform:none}" +
-  ".ea-logos-track{animation:none}" +
+                      ".ea-logos-track{animation:none}" +
   "}" +
-  ".ea-reduce .ea-w{transition:none;opacity:1;filter:none;transform:none}"
+                      ".ea-reduce .ea-w{transition:none;opacity:1;filter:none;transform:none}"

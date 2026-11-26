@@ -333,7 +333,6 @@ export function ArticlesDirectoryPage({
   onNavigate: (to: string) => void
 }) {
   const [articles, setArticles] = useState<readonly ApiArticle[]>(DEFAULT_ARTICLES)
-  const [totalCount, setTotalCount] = useState<number>(DEFAULT_ARTICLES.length)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [reloadTick, setReloadTick] = useState(0)
@@ -363,7 +362,6 @@ export function ArticlesDirectoryPage({
       .then((res) => {
         if (res.items.length > 0) {
           setArticles(res.items)
-          setTotalCount(res.total)
         }
         setLoading(false)
       })
@@ -469,10 +467,6 @@ export function ArticlesDirectoryPage({
                   <span className="ea-tag-inline ea-blue">@gongaji.artikel</span>
                   <span className="ea-tag-inline ea-mint">#WawasanQurani</span>
                 </div>
-                <div className="ea-stat-card" aria-live="polite">
-                  <strong>{loading ? "Memuat..." : `${filtered.length} Artikel`}</strong>
-                  <span>dari {totalCount} arsip redaksi</span>
-                </div>
               </div>
             </div>
 
@@ -522,7 +516,17 @@ export function ArticlesDirectoryPage({
                 </label>
               </div>
 
-              <div className="ea-cats" role="tablist" aria-label="Filter kategori artikel">
+              <div
+                className="ea-cats"
+                role="tablist"
+                aria-label="Filter kategori artikel"
+                onWheel={(e) => {
+                  if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && e.currentTarget.scrollWidth > e.currentTarget.clientWidth) {
+                    e.preventDefault()
+                    e.currentTarget.scrollLeft += e.deltaY
+                  }
+                }}
+              >
                 <button
                   type="button"
                   className={"ea-cat-pill" + (category === "Semua" ? " is-on" : "")}
@@ -996,12 +1000,9 @@ const SUBPAGE_CSS = `
 .ea-tag-inline{position:relative;display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
 .ea-tag-inline.ea-blue{background:#5145b9;color:#fff;transform:rotate(-3deg)}
 .ea-tag-inline.ea-mint{background:#a6e8c1;color:#0f5b38;transform:rotate(4deg)}
-.ea-stat-card{padding:14px 18px;border-radius:16px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:2px;min-width:175px}
-.ea-stat-card strong{font-size:20px;font-weight:600;letter-spacing:-.03em}
-.ea-stat-card span{font-size:11.5px;color:var(--mute)}
 
 /* Filter controls */
-.ea-filter-card{display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:16px;background:var(--card);border:1px solid var(--line);margin-bottom:26px}
+.ea-filter-card{display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:16px;background:var(--card);border:1px solid var(--line);margin-bottom:26px;overflow:hidden}
 .ea-search-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .ea-search-box{flex:1;min-width:240px;height:42px;display:flex;align-items:center;gap:10px;padding:0 14px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--mute)}
 .ea-search-box:focus-within{border-color:var(--blue)}
@@ -1009,8 +1010,9 @@ const SUBPAGE_CSS = `
 .ea-clear-x{width:22px;height:22px;border-radius:50%;background:var(--line);color:var(--ink);display:grid;place-items:center;font-size:15px;line-height:1}
 .ea-sort-wrap{display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 16px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:12px;color:var(--mute)}
 .ea-sort-wrap select{border:0;outline:0;background:transparent;font:inherit;font-weight:600;color:var(--ink);cursor:pointer}
-.ea-cats{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.ea-cat-pill{height:30px;padding:0 13px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all .2s ease}
+.ea-cats{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;padding:2px 20px 4px 0;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 28px),transparent 100%)}
+.ea-cats::-webkit-scrollbar{display:none}
+.ea-cat-pill{flex:0 0 auto;white-space:nowrap;height:30px;padding:0 13px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all .2s ease}
 .ea-cat-pill small{font-size:10.5px;opacity:.68}
 .ea-cat-pill:hover{border-color:var(--blue)}
 .ea-cat-pill.is-on{background:var(--blue);border-color:var(--blue);color:#fff}

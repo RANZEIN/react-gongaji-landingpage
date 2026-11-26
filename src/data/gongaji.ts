@@ -26,7 +26,7 @@ export const GONGAJI_LOGO = {
 export const DECK1_ASSETS = [
   {
     kind: "tilawah" as const,
-    badge: "01 · BACA",
+    badge: "GONGAJI APP",
     title: "Target Tilawah",
     sub: "Khatam 30 Hari · Hari ke-12",
     meta: "Al-Baqarah : 142 · 72%",
@@ -35,8 +35,8 @@ export const DECK1_ASSETS = [
   {
     kind: "cutout" as const,
     theme: "periwinkle" as const,
-    badge: "Qursus · Pengajar",
-    sub: "Bersertifikat",
+    badge: "Qursus · Mentor",
+    sub: "Pengajar Bersertifikat",
     inkPill: true,
     darkText: true,
     float: false,
@@ -45,7 +45,7 @@ export const DECK1_ASSETS = [
   {
     kind: "cutout" as const,
     theme: "sunburst" as const,
-    badge: "QuPeduli · Transparan",
+    badge: "QuPeduli · Donasi",
     sub: "",
     inkPill: true,
     darkText: true,
@@ -55,7 +55,7 @@ export const DECK1_ASSETS = [
   {
     kind: "cutout" as const,
     theme: "rose" as const,
-    badge: "11 Qari · Tikrar",
+    badge: "App · 11 Qari",
     sub: "",
     inkPill: false,
     darkText: false,
@@ -85,7 +85,7 @@ export const DECK1_ASSETS = [
   {
     kind: "cutout" as const,
     theme: "mint" as const,
-    badge: "Live · 5–8 Org",
+    badge: "Qursus · 5–8 Org",
     sub: "Pemula 1 – Mahir 2",
     inkPill: true,
     darkText: true,
@@ -122,12 +122,12 @@ export const GATEWAY_SLIDES = [
   },
 ] as const
 
-// 03-filosofi-deck: Stage 2 riffling deck -> filed into folder (index 1 is the info card)
+// 03-filosofi-deck: Stage 2 riffling deck -> filed into Gongaji App folder (index 1 is the info card)
 export const DECK2_CARDS = [
   {
     kind: "features" as const,
-    badge: "IBADAH",
-    title: "25+ Fitur Ibadah",
+    badge: "25+ FITUR",
+    title: "Ibadah Lengkap",
     sub: "Shalat, Kiblat, Doa & VR",
     icons: [
       "03-filosofi-deck/icon-jadwal-sholat.webp",
@@ -139,8 +139,8 @@ export const DECK2_CARDS = [
   { kind: "info" as const },
   {
     kind: "tilawah" as const,
-    badge: "01 · BACA",
-    title: "Target Tilawah",
+    badge: "TILAWAH",
+    title: "Target Khatam",
     sub: "Khatam Santai · 30 Hari",
     meta: "Al-Baqarah : 142 · 72%",
     icon: "03-filosofi-deck/icon-tafsir.webp",
@@ -155,25 +155,25 @@ export const DECK2_CARDS = [
   },
   {
     kind: "photo" as const,
-    badge: "02 · BELAJAR",
-    title: "Qursus Live",
-    sub: "5–8 peserta · Pemula–Mahir",
-    photo: "03-filosofi-deck/card-qursus-mentor.webp",
+    badge: "AL-QUR'AN",
+    title: "Mushaf & Tajwid",
+    sub: "Penanda ayat & audio",
+    photo: "03-filosofi-deck/card-app-quran.webp",
   },
   {
     kind: "rapor" as const,
-    badge: "RAPOR",
-    title: "Progres Terpantau",
-    sub: "Evaluasi & sertifikat resmi",
-    levels: ["P1", "P2", "P3", "M1", "M2"],
+    badge: "BOOSTER",
+    title: "Quran Booster",
+    sub: "Jaga konsistensi harian",
+    levels: ["Tilawah · Juz 12", "Hafalan · Tikrar", "Subuh · 04:03", "Dzikir Pagi"],
   },
   {
     kind: "qupeduli" as const,
-    badge: "03 · BERBAGI",
-    title: "QuPeduli",
-    sub: "Sedekah & wakaf transparan",
-    meta: "Qubba Foundation · Terverifikasi",
-    icon: "03-filosofi-deck/icon-donasi.webp",
+    badge: "QU-LIB",
+    title: "300+ Buku Islami",
+    sub: "Tafsir, sirah & referensi",
+    meta: "Gratis di Gongaji App",
+    icon: "03-filosofi-deck/icon-sirah.webp",
   },
 ] as const
 
@@ -216,79 +216,178 @@ export const BAND_BOT_ASSETS = [
   { path: "04-fitur-icons/masjid-terdekat.webp", kind: "icon" as const, bg: "#4AC9AC" },
 ] as const
 
-// 06-artikel-carousel: Articles & QuPeduli campaigns carousel
-export const CAROUSEL_ITEMS = [
+// 10-qupeduli: Sub-Brand 02 (QuPeduli by Gongaji — siap disambungkan ke API campaign)
+export type QuPeduliCampaign = {
+  readonly id: string
+  readonly category: string
+  readonly campaigner: string
+  readonly title: string
+  readonly raisedText: string
+  readonly targetText: string
+  readonly pct: number
+  readonly donors: number
+  readonly daysLeft: string
+  readonly image: string
+  readonly isIcon?: boolean
+}
+
+export const QUPEDULI_CAMPAIGNS: readonly QuPeduliCampaign[] = [
   {
-    kind: "photo" as const,
-    path: "06-artikel-carousel/01-belajar-pemula.webp",
-    title: "Belajar Ngaji untuk Pemula",
-    tag: "Qursus",
-    pill: "Grup Kecil · 5–8 Org",
-    sub: "",
-    pct: 0,
+    id: "mushaf-santri-garut",
+    category: "Pendidikan",
+    campaigner: "Yayasan Cahaya Qur’ani · Terverifikasi",
+    title: "Mushaf untuk santri TPQ pelosok Garut",
+    raisedText: "Rp38,5 jt",
+    targetText: "Rp60 jt",
+    pct: 64,
+    donors: 412,
+    daysLeft: "18 hari lagi",
+    image: "10-qupeduli/campaign-garut.webp",
   },
   {
-    kind: "ui" as const,
-    variant: "indigo" as const,
-    badge: "TILAWAH HARIAN",
+    id: "insentif-guru-ngaji",
+    category: "Guru Ngaji",
+    campaigner: "Qubba Foundation · Terverifikasi",
+    title: "Insentif 50 guru ngaji daerah terpencil",
+    raisedText: "Rp72,1 jt",
+    targetText: "Rp100 jt",
+    pct: 72,
+    donors: 638,
+    daysLeft: "Program rutin",
+    image: "10-qupeduli/icon-donasi.webp",
+    isIcon: true,
+  },
+  {
+    id: "pangan-qurban-pelosok",
+    category: "Kemanusiaan",
+    campaigner: "Qubba Foundation · Terverifikasi",
+    title: "Bantuan pangan, qurban & air bersih wilayah terdampak",
+    raisedText: "Rp45,0 jt",
+    targetText: "Rp75 jt",
+    pct: 60,
+    donors: 319,
+    daysLeft: "Laporan terbuka",
+    image: "10-qupeduli/icon-qurban.webp",
+    isIcon: true,
+  },
+]
+
+// 06-artikel-carousel: Artikel Islami & Panduan Qur'an (siap disambungkan ke API artikel)
+export type ArticleItem =
+  | {
+    readonly kind: "ui"
+    readonly variant: "indigo" | "teal" | "dark"
+    readonly badge: string
+    readonly big: string
+    readonly note: string
+    readonly icon: string
+    readonly title: string
+    readonly tag: string
+  }
+  | {
+    readonly kind: "tajwid"
+    readonly badge: string
+    readonly rules: readonly string[]
+    readonly note: string
+    readonly title: string
+    readonly tag: string
+  }
+  | {
+    readonly kind: "cutout"
+    readonly theme: "rose" | "gold"
+    readonly path: string
+    readonly title: string
+    readonly tag: string
+    readonly pill: string
+  }
+  | {
+    readonly kind: "levels"
+    readonly path: string
+    readonly levels: readonly string[]
+    readonly note: string
+    readonly title: string
+    readonly tag: string
+  }
+  | {
+    readonly kind: "photo"
+    readonly path: string
+    readonly title: string
+    readonly tag: string
+    readonly pill: string
+  }
+
+export const CAROUSEL_ITEMS: readonly ArticleItem[] = [
+  {
+    kind: "ui",
+    variant: "indigo",
+    badge: "TILAWAH · 4 MNT",
     big: "1 Hal / Hari",
-    note: "Al-Baqarah · Juz 1 · Konsisten",
+    note: "Menjaga istiqamah di kesibukan",
     icon: "06-artikel-carousel/icon-tafsir.webp",
-    title: "Satu Halaman Sehari",
-    tag: "Gongaji App",
+    title: "Cara Konsisten Tilawah Satu Halaman Sehari",
+    tag: "Artikel · Tilawah",
   },
   {
-    kind: "tajwid" as const,
-    badge: "QU-LIB · 4 MENIT",
+    kind: "photo",
+    path: "06-artikel-carousel/01-belajar-pemula.webp",
+    title: "Belajar Ngaji dari Nol untuk Pemula Dewasa",
+    tag: "Artikel · Panduan",
+    pill: "5 mnt baca",
+  },
+  {
+    kind: "tajwid",
+    badge: "TAJWID · 4 MNT",
     rules: ["Idzhar", "Idgham", "Iqlab", "Ikhfa"],
     note: "Hukum Nun & Mim Mati",
-    title: "Tajwid Dasar: Nun & Mim Mati",
-    tag: "Edukasi",
+    title: "Tajwid Dasar: Mengenal Nun & Mim Mati",
+    tag: "Artikel · Tajwid",
   },
   {
-    kind: "photo" as const,
-    path: "06-artikel-carousel/04-mushaf-garut.webp",
-    title: "Mushaf Santri Garut · Rp38,5 jt",
-    tag: "QuPeduli",
-    pill: "412 Donatur · Terverifikasi",
-    sub: "64% dari Rp60 jt",
-    pct: 64,
+    kind: "ui",
+    variant: "dark",
+    badge: "HAFALAN · 6 MNT",
+    big: "Metode Tikrar",
+    note: "Ulangi ayat bertahap agar melekat",
+    icon: "06-artikel-carousel/icon-dzikir.webp",
+    title: "Teknik Tikrar agar Hafalan Tidak Mudah Hilang",
+    tag: "Artikel · Hafalan",
   },
   {
-    kind: "cutout" as const,
-    theme: "gold" as const,
-    path: "06-artikel-carousel/05-insentif-guru.webp",
-    title: "Insentif 50 Guru Ngaji · Rp72,1 jt",
-    tag: "QuPeduli",
-    pill: "72% · Qubba Foundation",
+    kind: "cutout",
+    theme: "rose",
+    path: "06-artikel-carousel/08-murottal-qari.webp",
+    title: "Menyimak Murottal untuk Melatih Makhraj",
+    tag: "Artikel · Murottal",
+    pill: "11 Qari · 3 mnt",
   },
   {
-    kind: "ui" as const,
-    variant: "teal" as const,
-    badge: "KHATAM 30 HARI",
-    big: "1 Juz / Hari",
-    note: "Target 72% · Pengingat Harian",
+    kind: "ui",
+    variant: "teal",
+    badge: "TARGET · 5 MNT",
+    big: "Khatam 30 Hari",
+    note: "Panduan membagi 1 juz setiap hari",
     icon: "06-artikel-carousel/icon-jadwal-sholat.webp",
-    title: "Target Tilawah Khatam 30 Hari",
-    tag: "Gongaji App",
+    title: "Strategi Khatam 30 Hari Bagi Pekerja Sibuk",
+    tag: "Artikel · Tilawah",
   },
   {
-    kind: "levels" as const,
+    kind: "levels",
     path: "06-artikel-carousel/07-jenjang-qursus.webp",
     levels: ["P1", "P2", "P3", "M1", "M2"],
-    note: "3 Bulan / Level · Rapor Resmi",
-    title: "5 Jenjang Pemula 1 – Mahir 2",
-    tag: "Qursus",
+    note: "Alur belajar Pemula 1 – Mahir 2",
+    title: "Mengenal 5 Jenjang Belajar di Qursus",
+    tag: "Artikel · Qursus",
   },
-  {
-    kind: "cutout" as const,
-    theme: "rose" as const,
-    path: "06-artikel-carousel/08-murottal-qari.webp",
-    title: "Murottal dari 11 Qari Pilihan",
-    tag: "Gongaji App",
-    pill: "Metode Tikrar · 11 Qari",
+{
+  kind: "photo",
+    path: "06-artikel-carousel/04-mushaf-garut.webp",
+      title: "Keutamaan Wakaf Mushaf bagi Santri Pelosok",
+        tag: "Artikel · Inspirasi",
+          pill: "4 mnt baca",
   },
-] as const
+]
+
+export const ARTICLES = CAROUSEL_ITEMS
 
 // 07-mentor-wall: Stage 3 portrait wall (5x3 grid, center index 7 empty for shrinking banner)
 export const WALL_ASSETS = [
@@ -320,8 +419,8 @@ export const TRUST_ITEMS = [
 ] as const
 
 export const NAV_ITEMS = [
-  { label: "Ekosistem", href: "#ekosistem" },
-  { label: "Gongaji App", href: "#fitur", live: true },
+  { label: "Tentang", href: "#ekosistem" },
+  { label: "Fitur App", href: "#fitur", live: true },
   { label: "Qursus", href: "#qursus" },
   { label: "QuPeduli", href: "#qupeduli" },
   { label: "Artikel", href: "#artikel" },

@@ -11,8 +11,11 @@ import {
   GONGAJI_LINKS,
   GONGAJI_LOGO,
   NAV_ITEMS,
+  QUPEDULI_CAMPAIGNS,
   TRUST_ITEMS,
   WALL_ASSETS,
+  type ArticleItem,
+  type QuPeduliCampaign,
 } from "@/data/gongaji"
 
 // Gongaji Ecosystem Showcase — kinetic scroll-driven landing page adapted from
@@ -281,6 +284,10 @@ export interface EaselShowcaseTemplateProps {
   email?: string
   /** where the pictures live; defaults to /assets/ */
   assetBase?: string
+  /** optional QuPeduli campaigns from API; defaults to local sample data */
+  campaigns?: readonly QuPeduliCampaign[]
+  /** optional articles from API; defaults to local article cards */
+  articles?: readonly ArticleItem[]
   className?: string
   style?: CSSProperties
 }
@@ -289,6 +296,8 @@ export default function EaselShowcaseTemplate({
   height = "100svh",
   email = GONGAJI_LINKS.email,
   assetBase = "/assets/",
+  campaigns = QUPEDULI_CAMPAIGNS,
+  articles = CAROUSEL_ITEMS,
   className,
   style,
 }: EaselShowcaseTemplateProps) {
@@ -333,7 +342,7 @@ export default function EaselShowcaseTemplate({
     const vid = gateVideoRef.current
     if (!watchVideo || !vid) return
     vid.muted = true
-    vid.play().catch(() => {})
+    vid.play().catch(() => { })
   }, [watchVideo])
 
   useEffect(() => {
@@ -678,41 +687,41 @@ export default function EaselShowcaseTemplate({
             </h1>
             <div className="ea-hero-foot">
               <p className="ea-fade" style={{ ["--d" as string]: "1.9s" } as CSSProperties}>
-                Gongaji menemani kamu membaca Al-Qur’an, belajar bersama pengajar lewat Qursus, dan menghadirkan kebaikan lewat QuPeduli.
+                Gongaji adalah ekosistem digital Muslim: aplikasi tilawah harian Gongaji App, kelas belajar mengaji Qursus, dan platform kebaikan QuPeduli.
               </p>
               <div className="ea-btns ea-fade" style={{ ["--d" as string]: "2.05s" } as CSSProperties}>
                 <a className="ea-btn" href="#download">
-                  Download Gongaji
+                  Unduh Gongaji App
                 </a>
                 <a className="ea-ghost" href="#ekosistem">
-                  Jelajahi Ekosistem
+                  Kenali Gongaji
                 </a>
               </div>
             </div>
           </div>
           <span className="ea-tag ea-t1 ea-blue">@gongaji.app</span>
-          <span className="ea-tag ea-t2 ea-mint">@qursus</span>
+          <span className="ea-tag ea-t2 ea-mint">#JadiLebihMudah</span>
 
           <div ref={showText} id="ekosistem" className="ea-show">
             <p className="ea-eyebrow">
-              <Words parts={["EKOSISTEM GONGAJI · #JADILEBIHMUDAH"]} />
+              <Words parts={["APA ITU GONGAJI · EKOSISTEM DIGITAL"]} />
             </p>
             <h2 className="ea-h2 ea-big">
-              <Words parts={["Baca, belajar,", "\n", ["& berbagi kebaikan", "ea-red"], "\n", "dalam satu langkah."]} at={4} />
+              <Words parts={["Berawal dari app,", "\n", ["tumbuh jadi", "ea-red"], "\n", "ekosistem Qur'an."]} at={4} />
             </h2>
             <p className="ea-body ea-wrapp">
-              <Words parts={["Gongaji App untuk kebiasaan tilawah harian, Qursus bersama mentor, dan QuPeduli untuk program sosial transparan."]} at={12} />
+              <Words parts={["Dimulai dari Gongaji App sebagai teman tilawah harian, kini hadir dua sub-brand resmi: Qursus untuk belajar mengaji dan QuPeduli untuk berbagi."]} at={12} />
             </p>
             <div className="ea-btns ea-late">
-              <a className="ea-btn" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
-                Pelajari Qursus
+              <a className="ea-btn" href="#fitur">
+                Lihat Fitur App
               </a>
-              <a className="ea-ghost" href="#fitur">
-                Lihat Fitur
+              <a className="ea-ghost" href="#qursus">
+                Jelajahi Sub-Brand
               </a>
             </div>
           </div>
-          <span className="ea-tag ea-t3 ea-redtag">@qupeduli</span>
+          <span className="ea-tag ea-t3 ea-redtag">@qursus · @qupeduli</span>
           <span className="ea-tag ea-t4 ea-ink">50rb+ unduhan</span>
           <div className="ea-updown" aria-hidden="true">
             <Svg d={ICON.up} size={12} />
@@ -818,12 +827,12 @@ export default function EaselShowcaseTemplate({
         <div className="ea-wrap">
           <div data-rv className="ea-gate-head">
             <p className="ea-eyebrow">
-              <Words parts={["EKOSISTEM DALAM AKSI"]} />
+              <Words parts={["SEKILAS EKOSISTEM GONGAJI"]} />
             </p>
             <h2 className="ea-h2">
-              <Words parts={["Satu perjalanan,", "\n", "banyak cara bertumbuh."]} at={3} />
+              <Words parts={["Dari aplikasi ibadah,", "\n", "ke kelas & aksi peduli."]} at={3} />
             </h2>
-            <span className="ea-tag ea-ink ea-pop ea-t5">#JadiLebihMudah</span>
+            <span className="ea-tag ea-ink ea-pop ea-t5">50rb+ Download</span>
           </div>
           <div className="ea-banner" data-rv>
             {watchVideo ? (
@@ -930,25 +939,25 @@ export default function EaselShowcaseTemplate({
         <div ref={pin2} className="ea-pin" style={{ height }}>
           <div ref={whether} className="ea-whether">
             <p className="ea-ink-text">
-              {"Dari pemula yang baru mengenal huruf hijaiyah".split(" ").map((w, i) => (
+              {"Dari pengingat waktu Subuh".split(" ").map((w, i) => (
                 <span key={"a" + i} className="ea-sw">
                   {w}{" "}
                 </span>
               ))}
               <br />
-              {"/ hingga yang ingin bacaannya lebih".split(" ").map((w, i) => (
+              {"/ hingga menutup hari dengan".split(" ").map((w, i) => (
                 <span key={"b" + i} className="ea-sw">
                   {w}{" "}
                 </span>
               ))}{" "}
-              <span className="ea-sw ea-mintw">tartil </span>
-              <span className="ea-sw">dan terarah </span>
+              <span className="ea-sw ea-mintw">tilawah </span>
+              <span className="ea-sw">dan hafalan </span>
               <span className="ea-chip ea-sw">
                 <img src={asset("03-filosofi-deck/chip-1-quran.webp")} alt="" width={44} height={44} />
               </span>{" "}
-              <span className="ea-sw">Gongaji </span>
+              <span className="ea-sw">Gongaji App </span>
               <br />
-              {"menghubungkan tilawah harian dengan".split(" ").map((w, i) => (
+              {"menyatukan Al-Qur'an, murottal, dan".split(" ").map((w, i) => (
                 <span key={"c" + i} className="ea-sw">
                   {w}{" "}
                 </span>
@@ -956,27 +965,27 @@ export default function EaselShowcaseTemplate({
               <span className="ea-chip ea-sw">
                 <img src={asset("03-filosofi-deck/chip-2-mentor.webp")} alt="" width={44} height={44} />
               </span>{" "}
-              <span className="ea-sw">mentor </span>
-              <span className="ea-sw">dan kebaikan.</span>
+              <span className="ea-sw">25+ fitur </span>
+              <span className="ea-sw">ibadah harian.</span>
             </p>
             <div className="ea-iconrow" aria-hidden="true">
               <Svg d={ICON.book} size={14} />
               <Svg d={ICON.grid} size={14} />
               <Svg d={ICON.heart} size={14} />
             </div>
-            <span className="ea-tag ea-ink ea-t6">Pemula 1 – Mahir 2</span>
+            <span className="ea-tag ea-ink ea-t6">4,8★ &amp; 4,9★</span>
             <span className="ea-tag ea-blue ea-t7">25+ fitur ibadah</span>
           </div>
 
           <div ref={folder} className="ea-folder" aria-hidden="true">
             <div className="ea-folder-tab">
-              <span>Ekosistem</span>
+              <span>Aplikasi</span>
               <b>
-                <i className="ea-dot" /> Gongaji
+                <i className="ea-dot" /> Gongaji App
               </b>
             </div>
             <div className="ea-folder-bar">
-              <span>Baca · Belajar · Berbagi</span>
+              <span>25+ Fitur Tilawah &amp; Ibadah</span>
             </div>
           </div>
 
@@ -985,13 +994,13 @@ export default function EaselShowcaseTemplate({
               <GongajiMarkIcon size={20} />
             </span>
             <h2 className="ea-h2 ea-mid">
-              <Words parts={["Teknologi yang membuat", "\n", "Al-Qur’an terasa lebih dekat."]} />
+              <Words parts={["Semua kebutuhan tilawah", "\n", "dalam satu aplikasi."]} />
             </h2>
             <p className="ea-small ea-wrapv">
-              <Words parts={["Kami membangun Gongaji agar siapa pun dapat membaca, belajar, dan berbagi kebaikan tanpa bingung mulai dari mana."]} at={7} />
+              <Words parts={["Dari mushaf digital, target khatam 30 hari, murottal 11 qari, hingga 300+ buku di Qu-Lib — gratis dan nyaman digunakan setiap hari."]} at={7} />
             </p>
             <a className="ea-textlink ea-late" href="#fitur">
-              Lihat fitur utama
+              Jelajahi fitur app
             </a>
           </div>
           <div className="ea-doodles" aria-hidden="true">
@@ -1009,12 +1018,12 @@ export default function EaselShowcaseTemplate({
                   <div key="info" ref={(el) => { deck2.current[j] = el }} className="ea-card ea-info">
                     <span className="ea-info-dot" />
                     <b>
-                      Qursus
+                      Gongaji
                       <br />
-                      by Gongaji
+                      App
                     </b>
-                    <small>5 Level · 3 Bulan / Level</small>
-                    <p>Kelas live online 5–8 orang bersama mentor bersertifikat, dengan kelas ikhwan dan akhwat terpisah.</p>
+                    <small>4,8★ &amp; 4,9★ · Gratis</small>
+                    <p>Mushaf digital, target khatam, murottal 11 qari, metode tikrar, Qu-Lib 300+ buku, hingga jadwal shalat.</p>
                   </div>
                 )
               }
@@ -1095,11 +1104,11 @@ export default function EaselShowcaseTemplate({
                   <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-white">
                     <div className="ea-s2-top">
                       <span className="ea-s2-pill ea-s2-pill-dark">{card.badge}</span>
-                      <span className="ea-s2-mint">5 Level</span>
+                      <span className="ea-s2-mint">Harian</span>
                     </div>
-                    <div className="ea-s2-levels">
+                    <div className="ea-s2-bgrid">
                       {card.levels.map((lv, li) => (
-                        <span key={lv} className={li === 2 ? "on" : li < 2 ? "done" : ""}>
+                        <span key={lv} className={li === 0 ? "on" : li === 2 ? "done" : ""}>
                           {lv}
                         </span>
                       ))}
@@ -1128,12 +1137,12 @@ export default function EaselShowcaseTemplate({
               )
             })}
           </div>
-          <span className="ea-tag ea-orange ea-t8">@qupeduli</span>
+          <span className="ea-tag ea-orange ea-t8">@gongaji.app</span>
         </div>
       </section>
 
-      {/* ---------- drifting feature icons & mentor bands ---------- */}
-      <section ref={bands} className="ea-bands" aria-label="Fitur dan Pengajar Gongaji">
+      {/* ---------- drifting feature icons ---------- */}
+      <section ref={bands} className="ea-bands" aria-label="25+ Fitur Ibadah Gongaji App">
         <div ref={bandA} className="ea-band ea-band-a" aria-hidden="true">
           {BAND_TOP_ASSETS.map((item, i) => (
             <span
@@ -1150,10 +1159,10 @@ export default function EaselShowcaseTemplate({
             <GongajiMarkIcon size={18} />
           </span>
           <h2 className="ea-h2 ea-center">
-            <Words parts={["25+ fitur ibadah &", "\n", "pengajar bersertifikat"]} />
+            <Words parts={["25+ fitur ibadah", "\n", "dalam satu aplikasi"]} />
           </h2>
           <p className="ea-small ea-center">
-            <Words parts={["Dari target tilawah, murottal 11 qari, 300+ buku di Qu-Lib, hingga kelas Qursus."]} at={6} />
+            <Words parts={["Target tilawah, murottal 11 qari, 300+ buku di Qu-Lib, jadwal shalat, kiblat, hingga simulasi manasik VR."]} at={6} />
           </p>
         </div>
         <div ref={bandB} className="ea-band ea-band-b" aria-hidden="true">
@@ -1169,15 +1178,15 @@ export default function EaselShowcaseTemplate({
         </div>
       </section>
 
-      {/* ---------- ecosystem bento ---------- */}
-      <section id="fitur" className="ea-sec ea-story" aria-label="Pilar Ekosistem Gongaji">
+      {/* ---------- Gongaji App fitur bento ---------- */}
+      <section id="fitur" className="ea-sec ea-story" aria-label="Fitur Utama Gongaji App">
         <div className="ea-wrap">
           <div data-rv className="ea-center-head">
             <p className="ea-eyebrow">
-              <Words parts={["PILAR EKOSISTEM", ["GONGAJI", "ea-bluew"]]} />
+              <Words parts={["FITUR UNGGULAN", ["GONGAJI APP", "ea-bluew"]]} />
             </p>
             <h2 className="ea-h2 ea-center">
-              <Words parts={["Setiap langkah", "\n", "punya arti"]} at={3} />
+              <Words parts={["Semua kebutuhan ibadah", "\n", "dalam genggaman"]} at={3} />
             </h2>
           </div>
           <div className="ea-bento">
@@ -1235,9 +1244,9 @@ export default function EaselShowcaseTemplate({
                   </div>
                   <span className="ea-tag ea-blue ea-t9">25+ fitur</span>
                 </div>
-                <h3 className="ea-h4">01 — Gongaji App: Bangun Kebiasaan Tilawah</h3>
+                <h3 className="ea-h4">01 — Al-Qur’an Digital &amp; Target Tilawah</h3>
                 <p className="ea-small">
-                  Target khatam santai atau 30 hari, penanda ayat terakhir, murottal 11 qari, hafalan metode tikrar, hingga jadwal shalat &amp; arah kiblat.
+                  Mushaf digital nyaman dibaca, penanda ayat terakhir otomatis, serta target khatam santai hingga 30 hari agar tilawah lebih konsisten.
                 </p>
                 <a className="ea-chipbtn" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
                   Unduh di Google Play
@@ -1245,41 +1254,46 @@ export default function EaselShowcaseTemplate({
               </article>
               <article className="ea-bcard ea-img" data-rv>
                 <div className="ea-photo">
-                  <img src={asset("05-bento-pilar/card2-qursus.webp")} alt="Pengajar Qursus mendampingi peserta secara daring" width={1600} height={900} style={{ objectPosition: "50% 25%" }} />
+                  <img src={asset("05-bento-pilar/card2-murottal.webp")} alt="Murottal 11 qari pilihan dan metode tikrar di Gongaji App" width={1280} height={800} style={{ objectPosition: "35% 45%" }} />
                   <div className="ea-ph-badge" aria-hidden="true">
-                    <strong>Kelas Live · 5–8 Peserta</strong>
-                    <span>Pemula 1 – Mahir 2 · Rapor &amp; Sertifikat</span>
+                    <strong>Murottal · 11 Qari Pilihan</strong>
+                    <span>Putar &amp; ulangi per ayat · Metode Tikrar</span>
                   </div>
                 </div>
-                <h3 className="ea-h4">02 — Qursus: Belajar Ngaji Lebih Terarah</h3>
+                <h3 className="ea-h4">02 — Murottal 11 Qari &amp; Metode Tikrar</h3>
                 <p className="ea-small">
-                  Kelas live grup kecil 5–8 peserta berjenjang dari Pemula 1 hingga Mahir 2, dipisah ikhwan dan akhwat, lengkap dengan rapor dan sertifikat.
+                  Dengarkan lantunan merdu 11 qari internasional dan hafalkan ayat secara bertahap dengan fitur pengulangan ayat otomatis.
                 </p>
-                <a className="ea-chipbtn" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
-                  Pelajari Qursus
+                <a className="ea-chipbtn" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
+                  Unduh di App Store
                 </a>
               </article>
             </div>
             <div className="ea-col ea-col-r">
-              <article id="qupeduli" className="ea-bcard ea-img" data-rv>
-                <div className="ea-photo ea-quph">
-                  <img src={asset("05-bento-pilar/card3-qupeduli.webp")} alt="Program penyaluran mushaf dan donasi QuPeduli by Gongaji" width={1600} height={1000} style={{ objectPosition: "35% 30%" }} />
-                  <div className="ea-qu-card" aria-hidden="true">
-                    <div className="ea-qu-top">
-                      <img src={asset("05-bento-pilar/donasi.webp")} alt="" width={22} height={22} />
-                      <span>Terverifikasi</span>
-                    </div>
-                    <strong>Mushaf Santri Garut</strong>
-                    <div className="ea-qu-bar"><i style={{ width: "64%" }} /></div>
-                    <small>Rp38,5 jt / Rp60 jt · 412 donatur</small>
+              <article className="ea-bcard ea-img" data-rv>
+                <div className="ea-photo ea-ibadahph" aria-hidden="true">
+                  <div className="ea-ib-grid">
+                    {[
+                      { icon: "05-bento-pilar/jadwal-sholat.webp", label: "Jadwal Shalat" },
+                      { icon: "05-bento-pilar/arah-kiblat.webp", label: "Arah Kiblat" },
+                      { icon: "05-bento-pilar/doa.webp", label: "Dzikir & Doa" },
+                      { icon: "05-bento-pilar/tafsir.webp", label: "Tafsir & Hadits" },
+                      { icon: "05-bento-pilar/kalkulator-zakat.webp", label: "Hitung Zakat" },
+                      { icon: "05-bento-pilar/vr.webp", label: "Manasik VR" },
+                    ].map((it) => (
+                      <div key={it.label} className="ea-ib-item">
+                        <img src={asset(it.icon)} alt="" width={34} height={34} />
+                        <span>{it.label}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <h3 className="ea-h4">03 — QuPeduli: Kebaikan dari Rasa Percaya</h3>
+                <h3 className="ea-h4">03 — Jadwal Shalat, Kiblat, &amp; 25+ Fitur Ibadah</h3>
                 <p className="ea-small">
-                  Platform donasi online, sedekah, dan wakaf bersama Yayasan Quran Bina Bangsa (Qubba Foundation) dengan rincian dana &amp; laporan penyaluran terbuka.
+                  Pengingat adzan sesuai lokasi, kompas kiblat, dzikir harian, tafsir, kalkulator zakat, hingga simulasi manasik VR dalam satu aplikasi.
                 </p>
-                <a className="ea-chipbtn" href="#artikel">
-                  Lihat Program Aktif
+                <a className="ea-chipbtn" href="#qursus">
+                  Kenali Sub-Brand Gongaji
                 </a>
               </article>
               <article className="ea-bcard ea-phone-wrap" data-rv>
@@ -1308,7 +1322,7 @@ export default function EaselShowcaseTemplate({
                   </div>
                   <div className="ea-ph-foot">
                     <em>Baca. Belajar. Berbagi.</em>
-                    <small>Yayasan Quran Bina Bangsa</small>
+                    <small>Gongaji App · Fitur Gratis</small>
                   </div>
                 </div>
               </article>
@@ -1317,123 +1331,20 @@ export default function EaselShowcaseTemplate({
         </div>
       </section>
 
-      {/* ---------- articles & campaigns carousel ---------- */}
-      <section id="artikel" className="ea-sec ea-market" aria-label="Artikel dan Program QuPeduli">
-        <div className="ea-wrap">
-          <div className="ea-market-grid">
-            <div data-rv className="ea-market-head">
-              <p className="ea-eyebrow">
-                <Words parts={["WAWASAN &", ["PROGRAM", "ea-purplew"]]} />
-              </p>
-              <h2 className="ea-h2">
-                <Words parts={["Artikel &", "\n", "Program Kebaikan"]} at={2} />
-              </h2>
-              <p className="ea-small ea-wrapm">
-                <Words parts={["Panduan praktis membaca Al-Qur’an, tilawah harian, serta campaign QuPeduli yang sedang berjalan."]} at={5} />
-              </p>
-              <div className="ea-mini-arrows ea-arc-arrows">
-                <button type="button" aria-label="Item sebelumnya" onClick={() => setArc((a) => Math.max(0, a - 1))} disabled={arc === 0}>
-                  <Svg d={ICON.left} size={11} stroke={2} />
-                </button>
-                <button
-                  type="button"
-                  aria-label="Item berikutnya"
-                  onClick={() => setArc((a) => Math.min(CAROUSEL_ITEMS.length - 4, a + 1))}
-                  disabled={arc >= CAROUSEL_ITEMS.length - 4}
-                >
-                  <Svg d={ICON.right} size={11} stroke={2} />
-                </button>
-              </div>
-            </div>
-            <div className="ea-market-right" data-rv>
-              <a className="ea-viewall" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
-                Buka Qursus
-              </a>
-              <div className="ea-rail">
-                <div className="ea-rail-track" style={{ ["--ci" as string]: arc } as CSSProperties}>
-                  {CAROUSEL_ITEMS.map((item, i) => (
-                    <figure key={item.title} className="ea-arc" style={{ ["--i" as string]: i } as CSSProperties}>
-                      {item.kind === "ui" ? (
-                        <div className={"ea-arc-card " + (item.variant === "indigo" ? "ea-arc-indigo" : "ea-arc-teal")}>
-                          <span className="ea-arc-top">
-                            <small>{item.badge}</small>
-                            <img src={asset(item.icon)} alt="" width={32} height={32} className="ea-arc-ico" />
-                          </span>
-                          <b>{item.big}</b>
-                          <span className="ea-arc-note">{item.note}</span>
-                        </div>
-                      ) : item.kind === "tajwid" ? (
-                        <div className="ea-arc-card ea-arc-tajwid">
-                          <small className="ea-arc-kicker">{item.badge}</small>
-                          <span className="ea-arc-rules">
-                            {item.rules.map((r) => (
-                              <em key={r}>{r}</em>
-                            ))}
-                          </span>
-                          <span className="ea-arc-note">{item.note}</span>
-                        </div>
-                      ) : item.kind === "cutout" ? (
-                        <div className={"ea-arc-card " + (item.theme === "gold" ? "ea-arc-gold" : "ea-arc-rose")}>
-                          <img src={asset(item.path)} alt={item.title} width={220} height={220} className="ea-arc-cut" />
-                          <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
-                        </div>
-                      ) : item.kind === "levels" ? (
-                        <div className="ea-arc-card ea-arc-levels">
-                          <span className="ea-arc-mini-photo">
-                            <img src={asset(item.path)} alt={item.title} width={220} height={115} />
-                          </span>
-                          <span className="ea-arc-lvl-row">
-                            {item.levels.map((lv, li) => (
-                              <em key={lv} className={li === 1 ? "on" : li === 0 ? "done" : ""}>
-                                {lv}
-                              </em>
-                            ))}
-                          </span>
-                          <span className="ea-arc-note">{item.note}</span>
-                        </div>
-                      ) : (
-                        <div className="ea-arc-photo">
-                          <img src={asset(item.path)} alt={item.title} width={220} height={220} />
-                          {item.pct > 0 ? (
-                            <span className="ea-arc-barbox" aria-hidden="true">
-                              <small>{item.sub}</small>
-                              <i><b style={{ width: item.pct + "%" }} /></i>
-                            </span>
-                          ) : (
-                            <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
-                          )}
-                        </div>
-                      )}
-                      <figcaption>
-                        <span className="ea-arc-tag">{item.tag}</span>
-                        {item.title}
-                      </figcaption>
-                    </figure>
-                  ))}
-                </div>
-              </div>
-              <div className="ea-progress" aria-hidden="true">
-                <i style={{ ["--ci" as string]: arc } as CSSProperties} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- stage 3: banner → mentor & learner wall ---------- */}
-      <section ref={s3} id="qursus" className="ea-stage" style={stage(3)} aria-label="Pengajar dan Peserta Qursus">
+      {/* ---------- Sub-Brand 01: stage 3 banner → mentor & learner wall ---------- */}
+      <section ref={s3} id="qursus" className="ea-stage" style={stage(3)} aria-label="Sub-Brand Qursus by Gongaji">
         <div ref={pin3} className="ea-pin" style={{ height }}>
           <div ref={appRow} className="ea-lead">
             <p className="ea-eyebrow">
-              PENGAJAR <span className="ea-orangew">QURSUS</span>
+              SUB-BRAND 01 · <span className="ea-orangew">QURSUS BY GONGAJI</span>
             </p>
             <h2 className="ea-h2 ea-center">
-              Kamu tidak belajar
+              Ingin belajar ngaji
               <br />
-              sendirian.
+              dibimbing pengajar?
             </h2>
             <p className="ea-small ea-center">
-              Ustadz &amp; Ustadzah Qursus mendampingi setiap kelas, mendengarkan bacaanmu, dan mencatat perkembanganmu.
+              Qursus adalah sub-brand edukasi Gongaji dengan kelas live grup kecil 5–8 peserta berjenjang (Pemula 1 – Mahir 2), dipisah ikhwan &amp; akhwat.
             </p>
           </div>
           {WALL_ASSETS.map((item, i) =>
@@ -1471,7 +1382,7 @@ export default function EaselShowcaseTemplate({
       </section>
 
       {/* ---------- Qursus pricing ---------- */}
-      <section id="pricing" className="ea-sec ea-price" aria-label="Biaya Qursus">
+      <section id="pricing" className="ea-sec ea-price" aria-label="Biaya Sub-Brand Qursus">
         <div className="ea-wrap ea-price-grid">
           <div data-rv>
             <span className="ea-eye">
@@ -1514,202 +1425,361 @@ export default function EaselShowcaseTemplate({
         </div>
       </section>
 
-      {/* ---------- lime marquee + falling doodles ---------- */}
-      <section ref={limeRef} className="ea-sec ea-lime-sec" aria-label="Ajakan Ekosistem Gongaji">
-        <div className="ea-lime">
-          <span className="ea-water" aria-hidden="true">
-            GONGAJI
-          </span>
-          <div className="ea-marquee">
-            <div ref={limeTrack} className="ea-mtrack">
-              {[0, 1].map((rep) => (
-                <span key={rep} className="ea-mrun" aria-hidden={rep === 1}>
-                  Baca. Belajar. Berbagi.
-                  <span className="ea-mthumbs">
-                    <i style={{ background: "#5145B9" }} />
-                    <img src={asset("08-lime-marquee/thumb-1-app-home.webp")} alt="" width={44} height={44} />
-                    <img src={asset("08-lime-marquee/thumb-2-app-quran.webp")} alt="" width={44} height={44} />
-                    <small>#JADILEBIHMUDAH</small>
+        {/* ---------- Sub-Brand 02: dedicated QuPeduli section ---------- */}
+        <section id="qupeduli" className="ea-sec ea-qupeduli" aria-label="Sub-Brand QuPeduli by Gongaji">
+          <div className="ea-wrap">
+            <div className="ea-qup-head" data-rv>
+              <div>
+                <p className="ea-eyebrow">
+                  <Words parts={["SUB-BRAND 02 ·", ["QUPEDULI BY GONGAJI", "ea-purplew"]]} />
+                </p>
+                <h2 className="ea-h2">
+                  <Words parts={["Kebaikan yang lahir", "\n", "dari rasa percaya."]} at={2} />
+                </h2>
+              </div>
+              <p className="ea-small ea-qup-sub">
+                Platform donasi online, sedekah, dan wakaf bersama Yayasan Quran Bina Bangsa (Qubba Foundation) dengan rincian dana &amp; laporan penyaluran terbuka.
+              </p>
+            </div>
+            <div className="ea-qup-grid">
+              <div className="ea-qup-hero" data-rv>
+                <span className="ea-qup-pill">Qubba Foundation · Terverifikasi</span>
+                <h3>1.200+ Mushaf &amp; Bantuan Tersalurkan</h3>
+                <p>Setiap donasi dicatat terbuka dan disalurkan berkala untuk santri, guru ngaji, serta masyarakat membutuhkan.</p>
+                <div className="ea-qup-chips">
+                  <span>Laporan Terbuka</span>
+                  <span>Sedekah &amp; Wakaf</span>
+                </div>
+                <a className="ea-btn" href="#download">
+                  Salurkan Lewat Gongaji App
+                </a>
+                <img src={asset("10-qupeduli/donor-spotlight.webp")} alt="" width={280} height={320} className="ea-qup-donor" aria-hidden="true" draggable={false} />
+              </div>
+              <div className="ea-qup-list" data-rv>
+                {campaigns.map((camp) => (
+                  <article key={camp.id} className="ea-qup-item">
+                    <div className={"ea-qup-thumb" + (camp.isIcon ? " is-icon" : "")}>
+                      <img src={asset(camp.image)} alt={camp.title} width={76} height={76} />
+                    </div>
+                    <div className="ea-qup-body">
+                      <div className="ea-qup-meta">
+                        <span>{camp.category}</span>
+                        <small>{camp.daysLeft}</small>
+                      </div>
+                      <h4>{camp.title}</h4>
+                      <div className="ea-qup-bar">
+                        <i style={{ width: camp.pct + "%" }} />
+                      </div>
+                      <div className="ea-qup-foot">
+                        <span>
+                          <b>{camp.raisedText}</b> / {camp.targetText}
+                        </span>
+                        <small>{camp.donors} donatur</small>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ---------- Artikel & wawasan (API-ready carousel) ---------- */}
+        <section id="artikel" className="ea-sec ea-market" aria-label="Artikel dan Wawasan Gongaji">
+          <div className="ea-wrap">
+            <div className="ea-market-grid">
+              <div data-rv className="ea-market-head">
+                <p className="ea-eyebrow">
+                  <Words parts={["ARTIKEL &", ["WAWASAN", "ea-purplew"]]} />
+                </p>
+                <h2 className="ea-h2">
+                  <Words parts={["Artikel Pilihan &", "\n", "Panduan Qur'an"]} at={2} />
+                </h2>
+                <p className="ea-small ea-wrapm">
+                  <Words parts={["Bacaan ringan seputar tajwid, tilawah harian, metode hafalan, dan kisah kebaikan bersama Al-Qur'an."]} at={5} />
+                </p>
+                <div className="ea-mini-arrows ea-arc-arrows">
+                    <button type="button" aria-label="Artikel sebelumnya" onClick={() => setArc((a) => Math.max(0, a - 1))} disabled={arc === 0}>
+                      <Svg d={ICON.left} size={11} stroke={2} />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="Artikel berikutnya"
+                      onClick={() => setArc((a) => Math.min(Math.max(0, articles.length - 4), a + 1))}
+                      disabled={arc >= articles.length - 4}
+                    >
+                      <Svg d={ICON.right} size={11} stroke={2} />
+                    </button>
+                </div>
+              </div>
+              <div className="ea-market-right" data-rv>
+                <a className="ea-viewall" href="#download">
+                  Baca di Qu-Lib
+                </a>
+                <div className="ea-rail">
+                  <div className="ea-rail-track" style={{ ["--ci" as string]: arc } as CSSProperties}>
+                      {
+                        articles.map((item, i) => (
+                          <figure key={item.title} className="ea-arc" style={{ ["--i" as string]: i } as CSSProperties}>
+                            {item.kind === "ui" ? (
+                              <div className={"ea-arc-card " + (item.variant === "indigo" ? "ea-arc-indigo" : item.variant === "dark" ? "ea-arc-dark" : "ea-arc-teal")}>
+                                <span className="ea-arc-top">
+                                  <small>{item.badge}</small>
+                                  <img src={asset(item.icon)} alt="" width={32} height={32} className="ea-arc-ico" />
+                                </span>
+                                <b>{item.big}</b>
+                                <span className="ea-arc-note">{item.note}</span>
+                              </div>
+                            ) : item.kind === "tajwid" ? (
+                              <div className="ea-arc-card ea-arc-tajwid">
+                                <small className="ea-arc-kicker">{item.badge}</small>
+                                <span className="ea-arc-rules">
+                                  {item.rules.map((r) => (
+                                    <em key={r}>{r}</em>
+                                  ))}
+                                </span>
+                                <span className="ea-arc-note">{item.note}</span>
+                              </div>
+                            ) : item.kind === "cutout" ? (
+                                <div className={"ea-arc-card " + (item.theme === "rose" ? "ea-arc-rose" : "ea-arc-gold")}>
+                                  <img src={asset(item.path)} alt={item.title} width={220} height={220} className="ea-arc-cut" />
+                                  <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
+                                </div>
+                                ) : item.kind === "levels" ? (
+                                <div className="ea-arc-card ea-arc-levels">
+                                  <span className="ea-arc-mini-photo">
+                                    <img src={asset(item.path)} alt={item.title} width={220} height={115} />
+                                  </span>
+                                  <span className="ea-arc-lvl-row">
+                                    {item.levels.map((lv, li) => (
+                                      <em key={lv} className={li === 1 ? "on" : li === 0 ? "done" : ""}>
+                                        {lv}
+                                      </em>
+                                    ))}
+                                  </span>
+                                  <span className="ea-arc-note">{item.note}</span>
+                                </div>
+                                ) : (
+                                <div className="ea-arc-photo">
+                                  <img src={asset(item.path)} alt={item.title} width={220} height={220} />
+                                  <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
+                                </div>
+                      )}
+                                <figcaption>
+                                  <span className="ea-arc-tag">{item.tag}</span>
+                                  {item.title}
+                                </figcaption>
+                              </figure>
+                            ))}
+                          </div>
+              </div>
+                  <div className="ea-progress" aria-hidden="true">
+                    <i style={{ ["--ci" as string]: arc } as CSSProperties} />
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        {/* ---------- lime marquee + falling doodles ---------- */}
+        <section ref={limeRef} className="ea-sec ea-lime-sec" aria-label="Ajakan Ekosistem Gongaji">
+          <div className="ea-lime">
+            <span className="ea-water" aria-hidden="true">
+              GONGAJI
+            </span>
+            <div className="ea-marquee">
+              <div ref={limeTrack} className="ea-mtrack">
+                {[0, 1].map((rep) => (
+                  <span key={rep} className="ea-mrun" aria-hidden={rep === 1}>
+                    Baca. Belajar. Berbagi.
+                    <span className="ea-mthumbs">
+                      <i style={{ background: "#5145B9" }} />
+                      <img src={asset("08-lime-marquee/thumb-1-app-home.webp")} alt="" width={44} height={44} />
+                      <img src={asset("08-lime-marquee/thumb-2-app-quran.webp")} alt="" width={44} height={44} />
+                      <small>#JADILEBIHMUDAH</small>
+                    </span>
+                    25+ Fitur di Gongaji App
+                    <span className="ea-mthumbs">
+                      <img src={asset("08-lime-marquee/thumb-3-teaching-smile.webp")} alt="" width={44} height={44} />
+                    </span>
+                    Sub-Brand Qursus · 5 Level
+                    <span className="ea-mthumbs">
+                      <img src={asset("08-lime-marquee/thumb-4-qursus-murid.webp")} alt="" width={44} height={44} />
+                    </span>
+                    Sub-Brand QuPeduli · Qubba Foundation
+                    <span className="ea-mthumbs">
+                      <img src={asset("08-lime-marquee/thumb-5-teaching-mushaf.webp")} alt="" width={44} height={44} />
+                    </span>
                   </span>
-                  50rb+ Download di Android &amp; iOS
-                  <span className="ea-mthumbs">
-                    <img src={asset("08-lime-marquee/thumb-3-teaching-smile.webp")} alt="" width={44} height={44} />
-                  </span>
-                  Qursus 5 Level Pemula–Mahir
-                  <span className="ea-mthumbs">
-                    <img src={asset("08-lime-marquee/thumb-4-qursus-murid.webp")} alt="" width={44} height={44} />
-                  </span>
-                  QuPeduli · Qubba Foundation
-                  <span className="ea-mthumbs">
-                    <img src={asset("08-lime-marquee/thumb-5-teaching-mushaf.webp")} alt="" width={44} height={44} />
-                  </span>
+                ))}
+              </div>
+            </div>
+            <div ref={pile} className="ea-pilebox" aria-hidden="true">
+              {DOODLES.map((d, i) => (
+                <span key={i} ref={(el) => { balls.current[i] = el }} className="ea-ball">
+                  <Svg d={d} size={34} stroke={1.4} />
                 </span>
               ))}
             </div>
           </div>
-          <div ref={pile} className="ea-pilebox" aria-hidden="true">
-            {DOODLES.map((d, i) => (
-              <span key={i} ref={(el) => { balls.current[i] = el }} className="ea-ball">
-                <Svg d={d} size={34} stroke={1.4} />
+        </section>
+
+        {/* ---------- duo: download Gongaji App + daftar Qursus ---------- */}
+        <section id="download" className="ea-sec ea-duo" aria-label="Mulai Bersama Gongaji">
+          <div className="ea-wrap ea-duo-grid">
+            <article className="ea-meet" data-rv>
+              <div className="ea-duo-phones" aria-hidden="true">
+                <span className="ea-duo-pill">50rb+ Unduhan · 25+ Fitur</span>
+                <div className="ea-phone-back">
+                  <img src={asset("09-download-cta/app-quran.webp")} alt="" width={210} height={380} draggable={false} />
+                </div>
+                <div className="ea-phone-front">
+                  <img src={asset("09-download-cta/app-home.webp")} alt="" width={230} height={420} draggable={false} />
+                </div>
+              </div>
+              <div className="ea-duo-copy">
+                <Svg d={ICON.download} size={14} />
+                <h3 className="ea-h3">
+                  Unduh
+                  <br />
+                  <span>Gongaji App</span>
+                </h3>
+                <p className="ea-small">Tersedia gratis di Google Play (4,8★) dan App Store (4,9★). Mulai kebiasaan tilawahmu hari ini.</p>
+                <div className="ea-store-row">
+                  <a className="ea-store-badge" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di Google Play">
+                    <img src={asset("09-download-cta/badge-google-play.svg")} alt="" height={40} />
+                  </a>
+                  <a className="ea-store-badge" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di App Store">
+                    <img src={asset("09-download-cta/badge-app-store.svg")} alt="" height={40} />
+                  </a>
+                </div>
+              </div>
+            </article>
+            <article className="ea-arch" data-rv>
+              <div className="ea-qursus-ui" aria-hidden="true">
+                <div className="ea-qursus-photo">
+                  <img src={asset("09-download-cta/qursus-mentor.webp")} alt="" width={520} height={240} draggable={false} />
+                  <span className="ea-qursus-live">Kelas Live · 5–8 Peserta</span>
+                </div>
+                <div className="ea-qursus-steps">
+                  {[
+                    { label: "Pemula 1", st: "done" },
+                    { label: "Pemula 2", st: "on" },
+                    { label: "Pemula 3", st: "" },
+                    { label: "Mahir 1", st: "" },
+                    { label: "Mahir 2", st: "" },
+                  ].map((lv) => (
+                    <span key={lv.label} className={lv.st}>
+                      {lv.label}
+                    </span>
+                  ))}
+                </div>
+                <div className="ea-qursus-tags">
+                  <span>Asesmen Awal</span>
+                  <span>Ikhwan &amp; Akhwat Terpisah</span>
+                  <span>Rapor &amp; Sertifikat</span>
+                </div>
+              </div>
+              <div className="ea-duo-copy">
+                <Svg d={ICON.spark} size={14} />
+                <h3 className="ea-h3">
+                  Mulai Belajar
+                  <br />
+                  di Qursus
+                </h3>
+                <p className="ea-small">Ikuti asesmen awal, pilih jadwal kelas live kecil bersama pengajar bersertifikat, dan pantau rapor progresmu.</p>
+                <a className="ea-btn" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
+                  Daftar Qursus
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        {/* ---------- footer ---------- */}
+        <footer className="ea-foot">
+          <div className="ea-wrap ea-foot-grid">
+            <div>
+              <h2 className="ea-h4">
+                Baca. Belajar. Berbagi. <span className="ea-foot-dots">#JadiLebihMudah</span>
+              </h2>
+              <p className="ea-small">
+                Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. QuPeduli dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
+              </p>
+              <a className="ea-mail" href={mail}>
+                {email}
+              </a>
+              <span className="ea-contact-meta">
+                {GONGAJI_LINKS.whatsapp} · {GONGAJI_LINKS.instagram}
               </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- duo: download Gongaji App + daftar Qursus ---------- */}
-      <section id="download" className="ea-sec ea-duo" aria-label="Mulai Bersama Gongaji">
-        <div className="ea-wrap ea-duo-grid">
-          <article className="ea-meet" data-rv>
-            <div className="ea-duo-phones" aria-hidden="true">
-              <span className="ea-duo-pill">50rb+ Unduhan · 25+ Fitur</span>
-              <div className="ea-phone-back">
-                <img src={asset("09-download-cta/app-quran.webp")} alt="" width={210} height={380} draggable={false} />
-              </div>
-              <div className="ea-phone-front">
-                <img src={asset("09-download-cta/app-home.webp")} alt="" width={230} height={420} draggable={false} />
-              </div>
-            </div>
-            <div className="ea-duo-copy">
-              <Svg d={ICON.download} size={14} />
-              <h3 className="ea-h3">
-                Unduh
-                <br />
-                <span>Gongaji App</span>
-              </h3>
-              <p className="ea-small">Tersedia gratis di Google Play (4,8★) dan App Store (4,9★). Mulai kebiasaan tilawahmu hari ini.</p>
-              <div className="ea-store-row">
-                <a className="ea-store-badge" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di Google Play">
-                  <img src={asset("09-download-cta/badge-google-play.svg")} alt="" height={40} />
+              <div className="ea-socials">
+                <a href={mail} aria-label="Email Gongaji">
+                  <Svg d={ICON.mail} size={12} />
                 </a>
-                <a className="ea-store-badge" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di App Store">
-                  <img src={asset("09-download-cta/badge-app-store.svg")} alt="" height={40} />
+                <a href={GONGAJI_LINKS.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Gongaji">
+                  <Svg d={ICON.globe} size={12} />
+                </a>
+                <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Gongaji di Google Play">
+                  <Svg d={ICON.grid} size={12} />
+                </a>
+                <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer" aria-label="Qursus by Gongaji">
+                  <Svg d={ICON.spark} size={12} />
                 </a>
               </div>
             </div>
-          </article>
-          <article className="ea-arch" data-rv>
-            <div className="ea-qursus-ui" aria-hidden="true">
-              <div className="ea-qursus-photo">
-                <img src={asset("09-download-cta/qursus-mentor.webp")} alt="" width={520} height={240} draggable={false} />
-                <span className="ea-qursus-live">Kelas Live · 5–8 Peserta</span>
-              </div>
-              <div className="ea-qursus-steps">
-                {[
-                  { label: "Pemula 1", st: "done" },
-                  { label: "Pemula 2", st: "on" },
-                  { label: "Pemula 3", st: "" },
-                  { label: "Mahir 1", st: "" },
-                  { label: "Mahir 2", st: "" },
-                ].map((lv) => (
-                  <span key={lv.label} className={lv.st}>
-                    {lv.label}
-                  </span>
-                ))}
-              </div>
-              <div className="ea-qursus-tags">
-                <span>Asesmen Awal</span>
-                <span>Ikhwan &amp; Akhwat Terpisah</span>
-                <span>Rapor &amp; Sertifikat</span>
-              </div>
-            </div>
-            <div className="ea-duo-copy">
-              <Svg d={ICON.spark} size={14} />
-              <h3 className="ea-h3">
-                Mulai Belajar
-                <br />
-                di Qursus
-              </h3>
-              <p className="ea-small">Ikuti asesmen awal, pilih jadwal kelas live kecil bersama pengajar bersertifikat, dan pantau rapor progresmu.</p>
-              <a className="ea-btn" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
-                Daftar Qursus
-              </a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      {/* ---------- footer ---------- */}
-      <footer className="ea-foot">
-        <div className="ea-wrap ea-foot-grid">
-          <div>
-            <h2 className="ea-h4">
-              Baca. Belajar. Berbagi. <span className="ea-foot-dots">#JadiLebihMudah</span>
-            </h2>
-            <p className="ea-small">
-              Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. QuPeduli dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
-            </p>
-            <a className="ea-mail" href={mail}>
-              {email}
-            </a>
-            <span className="ea-contact-meta">
-              {GONGAJI_LINKS.whatsapp} · {GONGAJI_LINKS.instagram}
-            </span>
-            <div className="ea-socials">
-              <a href={mail} aria-label="Email Gongaji">
-                <Svg d={ICON.mail} size={12} />
-              </a>
-              <a href={GONGAJI_LINKS.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Gongaji">
-                <Svg d={ICON.globe} size={12} />
-              </a>
-              <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Gongaji di Google Play">
-                <Svg d={ICON.grid} size={12} />
-              </a>
-              <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer" aria-label="Qursus by Gongaji">
-                <Svg d={ICON.spark} size={12} />
-              </a>
-            </div>
+            <ul>
+              <li>
+                <a href="#fitur">Gongaji App</a>
+              </li>
+              <li>
+                <i className="ea-dot" />{" "}
+                <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
+                  Qursus
+                </a>{" "}
+                <span className="ea-new">Live</span>
+              </li>
+              <li>
+                <a href="#qupeduli">QuPeduli</a>
+              </li>
+              <li>
+                <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
+                  Google Play
+                </a>
+              </li>
+              <li>
+                <a href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
+                  App Store
+                </a>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <a href="#qursus">Pemula 1 – Mahir 2</a>
+              </li>
+              <li>
+                <i className="ea-dot" /> <a href="#pricing">Biaya &amp; Beasiswa</a>
+              </li>
+              <li>
+                  <a href="#qupeduli">Program QuPeduli</a>
+              </li>
+              <li>
+                <a href="#artikel">
+                  Artikel Islami <span className="ea-soon">Baru</span>
+                </a>
+              </li>
+            </ul>
+            <ul>
+              <li>Qubba Foundation</li>
+              <li>
+                <a href={mail}>Kontak Kami</a>
+              </li>
+              <li>
+                Kemitraan <span className="ea-soon">Mitra</span>
+              </li>
+            </ul>
+            <p className="ea-copy">© 2026 Gongaji. Semua hak dilindungi.</p>
           </div>
-          <ul>
-            <li>
-              <a href="#fitur">Gongaji App</a>
-            </li>
-            <li>
-              <i className="ea-dot" />{" "}
-              <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
-                Qursus
-              </a>{" "}
-              <span className="ea-new">Live</span>
-            </li>
-            <li>
-              <a href="#qupeduli">QuPeduli</a>
-            </li>
-            <li>
-              <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
-                Google Play
-              </a>
-            </li>
-            <li>
-              <a href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
-                App Store
-              </a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="#qursus">Pemula 1 – Mahir 2</a>
-            </li>
-            <li>
-              <i className="ea-dot" /> <a href="#pricing">Biaya &amp; Beasiswa</a>
-            </li>
-            <li>
-              <a href="#artikel">
-                Artikel Islami <span className="ea-soon">10+</span>
-              </a>
-            </li>
-          </ul>
-          <ul>
-            <li>Qubba Foundation</li>
-            <li>
-              <a href={mail}>Kontak Kami</a>
-            </li>
-            <li>
-              Kemitraan <span className="ea-soon">Mitra</span>
-            </li>
-          </ul>
-          <p className="ea-copy">© 2026 Gongaji. Semua hak dilindungi.</p>
-        </div>
-      </footer>
+        </footer>
     </div>
   )
 }
@@ -1918,10 +1988,10 @@ const CSS =
   ".ea-s2-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:108px}" +
   ".ea-s2-tile{width:50px;height:50px;border-radius:10px;background:rgba(255,255,255,.18);display:grid;place-items:center;padding:6px}" +
   ".ea-s2-tile img{width:100%!important;height:100%!important;object-fit:contain!important}" +
-  ".ea-s2-levels{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}" +
-  ".ea-s2-levels span{height:26px;border-radius:7px;display:grid;place-items:center;font-size:9.5px;font-weight:600;background:rgba(128,128,128,.12);color:var(--mute)}" +
-  ".ea-s2-levels span.done{background:#a6e8c1;color:#0f5b38}" +
-  ".ea-s2-levels span.on{background:#5145b9;color:#fff}" +
+  ".ea-s2-bgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}" +
+  ".ea-s2-bgrid span{height:28px;padding:0 6px;border-radius:8px;display:grid;place-items:center;font-size:9px;font-weight:600;background:rgba(128,128,128,.12);color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
+  ".ea-s2-bgrid span.done{background:#a6e8c1;color:#0f5b38}" +
+  ".ea-s2-bgrid span.on{background:#5145b9;color:#fff}" +
   ".ea-s2-ver{display:inline-flex;align-items:center;padding:4px 8px;border-radius:8px;background:rgba(20,20,20,.1);font-size:9.5px;font-weight:600}" +
   ".ea-s2-photo img{object-position:50% 20%}" +
   ".ea-s2-scrim{position:absolute;inset:35% 0 0;background:linear-gradient(180deg,rgba(17,17,17,0),rgba(17,17,17,.82) 78%);pointer-events:none}" +
@@ -1991,7 +2061,11 @@ const CSS =
   ".ea-b1.ea-in .ea-t9{opacity:1;transform:rotate(var(--r));transition-delay:.5s}" +
   ".ea-photo{position:relative;aspect-ratio:16/10;margin:-22px -22px 10px;border-radius:16px;overflow:hidden}" +
   ".ea-photo>img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s " + EASE + "}" +
-  ".ea-quph{background:#f9cb2e}" +
+  ".ea-ibadahph{background:radial-gradient(circle at 82% 18%,rgba(167,159,248,.34),transparent 54%),linear-gradient(150deg,#3a3286,#5145b9);padding:16px;display:flex;align-items:center;justify-content:center}" +
+  ".ea-ib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}" +
+  ".ea-ib-item{border-radius:12px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}" +
+  ".ea-ib-item img{width:34px;height:34px;object-fit:contain}" +
+  ".ea-ib-item span{font-size:10px;font-weight:600;color:#fff;line-height:1.15}" +
   ".ea-ph-badge{position:absolute;left:12px;bottom:12px;display:flex;flex-direction:column;gap:2px;padding:7px 11px;border-radius:10px;background:rgba(18,17,24,.82);backdrop-filter:blur(8px);color:#fff;pointer-events:none}" +
   ".ea-ph-badge strong{font-size:11px;font-weight:600}" +
   ".ea-ph-badge span{font-size:9.5px;color:rgba(255,255,255,.82)}" +
@@ -2019,6 +2093,38 @@ const CSS =
   ".ea-ph-foot{text-align:center;display:flex;flex-direction:column;gap:2px;padding-bottom:2px}" +
   ".ea-ph-foot em{font-style:normal;font-size:11px;font-weight:500;color:rgba(255,255,255,.86)}" +
   ".ea-ph-foot small{font-size:8.5px;color:rgba(255,255,255,.58);letter-spacing:.08em;text-transform:uppercase}" +
+  // dedicated QuPeduli sub-brand section
+  ".ea-qupeduli{padding:clamp(60px,10vh,110px) 0}" +
+  ".ea-qup-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}" +
+  ".ea-qup-sub{max-width:380px}" +
+  ".ea-qup-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:18px;align-items:stretch}" +
+  ".ea-qup-hero{position:relative;border-radius:16px;padding:26px;background:radial-gradient(circle at 75% 24%,#ffec94,#f8be24);color:#141414;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:330px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+  ".ea-qup-hero.ea-in{opacity:1;transform:none}" +
+  ".ea-qup-pill{height:22px;padding:0 10px;border-radius:999px;background:#141414;color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center}" +
+  ".ea-qup-hero h3{font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.03em;line-height:1.12;max-width:65%}" +
+  ".ea-qup-hero p{font-size:12px;line-height:1.45;color:rgba(20,20,20,.78);max-width:60%}" +
+  ".ea-qup-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;position:relative;z-index:2}" +
+  ".ea-qup-chips span{font-size:10px;font-weight:600;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.55);color:#141414}" +
+  ".ea-qup-hero .ea-btn{margin-top:auto;position:relative;z-index:2;background:#141414;color:#fff}" +
+  ".ea-qup-donor{position:absolute;right:-6px;bottom:0;height:88%;width:auto;max-width:52%;object-fit:contain;object-position:100% 100%;pointer-events:none;filter:drop-shadow(0 16px 28px rgba(0,0,0,.22))}" +
+  ".ea-qup-list{display:flex;flex-direction:column;gap:12px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+  ".ea-qup-list.ea-in{opacity:1;transform:none}" +
+  ".ea-qup-item{flex:1;display:flex;align-items:center;gap:14px;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line);transition:transform .3s " + EASE + "}" +
+  ".ea-qup-thumb{width:76px;height:76px;border-radius:10px;overflow:hidden;flex:none;background:var(--bg)}" +
+  ".ea-qup-thumb img{width:100%;height:100%;object-fit:cover;display:block}" +
+  ".ea-qup-thumb.is-icon{padding:14px;background:#f2f1fa}" +
+  ".dark .ea-qup-thumb.is-icon,.ea-dark .ea-qup-thumb.is-icon{background:#221f3a}" +
+  ".ea-qup-thumb.is-icon img{object-fit:contain}" +
+  ".ea-qup-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}" +
+  ".ea-qup-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}" +
+  ".ea-qup-meta span{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue)}" +
+  ".dark .ea-qup-meta span,.ea-dark .ea-qup-meta span{color:#aba6de}" +
+  ".ea-qup-meta small{font-size:10px;color:var(--mute)}" +
+  ".ea-qup-body h4{font-size:13.5px;font-weight:600;line-height:1.25;letter-spacing:-.01em}" +
+  ".ea-qup-bar{height:5px;border-radius:999px;background:var(--line);overflow:hidden}" +
+  ".ea-qup-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
+  ".ea-qup-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:var(--mute)}" +
+  ".ea-qup-foot b{color:var(--ink);font-weight:600}" +
   // archive / articles carousel
   ".ea-market{padding:clamp(60px,10vh,110px) 0}" +
   ".ea-market-grid{display:grid;grid-template-columns:minmax(0,.27fr) minmax(0,.73fr);gap:24px;align-items:start}" +
@@ -2037,6 +2143,7 @@ const CSS =
   ".ea-arc-card{padding:14px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;background:var(--card);border:1px solid var(--line)}" +
   ".ea-arc-indigo{background:linear-gradient(150deg,#3a3088,#5145b9);color:#fff;border-color:transparent}" +
   ".ea-arc-teal{background:linear-gradient(150deg,#0fa39d,#06767d);color:#fff;border-color:transparent}" +
+  ".ea-arc-dark{background:radial-gradient(circle at 80% 18%,rgba(124,113,232,.36),transparent 54%),#171528;color:#fff;border-color:transparent}" +
   ".ea-arc-tajwid{background:var(--card);color:var(--ink)}" +
   ".ea-arc-gold{background:radial-gradient(circle at 55% 32%,#ffec94,#f8be24);color:#141414;border-color:transparent}" +
   ".ea-arc-rose{background:radial-gradient(circle at 55% 32%,#ff9bb0,#da4d6e);color:#fff;border-color:transparent}" +
@@ -2090,20 +2197,20 @@ const CSS =
   ".ea-by small{display:block;font-size:10px;opacity:.85}" +
   // pricing
   ".ea-price{padding:clamp(70px,12vh,130px) 0 clamp(40px,7vh,70px)}" +
-  ".ea-price-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}" +
-  ".ea-plans{position:relative;height:clamp(220px,18vw,260px);opacity:0;transition:opacity .6s " + EASE + "}" +
+  ".ea-price-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:32px;align-items:center}" +
+  ".ea-plans{display:flex;align-items:center;justify-content:center;gap:14px;min-height:clamp(210px,18vw,260px);opacity:0;transition:opacity .6s " + EASE + "}" +
   ".ea-plans.ea-in{opacity:1}" +
-  ".ea-plan{position:absolute;top:10%;width:clamp(150px,13.5vw,195px);height:clamp(150px,13.5vw,195px);border-radius:14px;background:var(--card);padding:16px;display:flex;flex-direction:column;box-shadow:0 30px 40px -30px rgba(0,0,0,.35);transform:translate3d(0,60px,0) rotate(0deg);transition:transform 1s cubic-bezier(.34,1.3,.64,1)}" +
+  ".ea-plan{position:relative;flex:1;min-width:0;max-width:205px;aspect-ratio:1/1.04;border-radius:14px;background:var(--card);padding:16px;display:flex;flex-direction:column;box-shadow:0 24px 38px -26px rgba(0,0,0,.32);transform:translate3d(0,48px,0) rotate(0deg);transition:transform 1s cubic-bezier(.34,1.3,.64,1)}" +
   ".ea-plan small{font-size:11px;font-weight:500}" +
-  ".ea-plan b{font-size:clamp(34px,3.6vw,52px);line-height:1;font-weight:600;letter-spacing:-.04em;margin-top:8px}" +
+  ".ea-plan b{font-size:clamp(28px,2.9vw,44px);line-height:1;font-weight:600;letter-spacing:-.04em;margin-top:8px;white-space:nowrap}" +
   ".ea-plan sup{font-size:.34em;vertical-align:.95em;margin:0 2px 0 0;letter-spacing:0}" +
   ".ea-plan b small{font-size:.3em;font-weight:500;letter-spacing:0;margin-left:2px}" +
-  ".ea-plan em{margin-top:auto;font-style:normal;font-size:9.5px;color:var(--mute)}" +
-  ".ea-p1{left:6%;z-index:1}" +
-  ".ea-p2{left:34%;top:0;z-index:2;background:#5145b9;color:#fff;height:clamp(165px,14.5vw,210px)}" +
+  ".ea-plan em{margin-top:auto;font-style:normal;font-size:10px;line-height:1.3;color:var(--mute)}" +
+  ".ea-p1{z-index:1}" +
+  ".ea-p2{z-index:2;background:#5145b9;color:#fff;aspect-ratio:1/1.12}" +
   ".ea-p2 em{color:rgba(255,255,255,.85)}" +
-  ".ea-p3{left:62%;top:14%;z-index:1}" +
-  ".ea-in .ea-p1{transform:rotate(-3deg)}.ea-in .ea-p2{transform:rotate(-1deg);transition-delay:.1s}.ea-in .ea-p3{transform:rotate(5deg);transition-delay:.2s}" +
+  ".ea-p3{z-index:1}" +
+  ".ea-in .ea-p1{transform:rotate(-3deg)}.ea-in .ea-p2{transform:translate3d(0,-10px,0) rotate(-1deg);transition-delay:.1s}.ea-in .ea-p3{transform:translate3d(0,6px,0) rotate(4deg);transition-delay:.2s}" +
   ".ea-pop-pill{position:absolute;right:12px;top:12px;height:20px;padding:0 9px;border-radius:999px;background:#ffda03;color:#141414;font-size:9.5px;font-weight:600;display:inline-flex;align-items:center;transform:rotate(8deg)}" +
   // lime marquee
   ".ea-lime-sec{padding:0 clamp(16px,8.75vw,126px) clamp(16px,2vh,24px)}" +
@@ -2181,7 +2288,7 @@ const CSS =
   ".ea-av:hover{transform:translate3d(0,calc(var(--y) - 6px),0) scale(1.08);transition:transform .35s " + EASE + "}" +
   "}" +
   // tablet / phone
-  "@media (max-width:1023px){.ea-links{display:none}.ea-market-grid{grid-template-columns:1fr}.ea-market-right{grid-column:1;margin-top:0}.ea-viewall{position:static;margin-bottom:16px}.ea-price-grid{grid-template-columns:1fr}.ea-foot-grid{grid-template-columns:1fr 1fr}.ea-copy{position:static;grid-column:1/-1}}" +
+  "@media (max-width:1023px){.ea-links{display:none}.ea-qup-grid{grid-template-columns:1fr}.ea-market-grid{grid-template-columns:1fr}.ea-market-right{grid-column:1;margin-top:0}.ea-viewall{position:static;margin-bottom:16px}.ea-price-grid{grid-template-columns:1fr}.ea-foot-grid{grid-template-columns:1fr 1fr}.ea-copy{position:static;grid-column:1/-1}}" +
   "@media (max-width:767px){" +
   ".ea-nav{height:76px;margin-bottom:-76px;padding-top:16px}" +
   ".ea-show{top:84px}.ea-show .ea-btns{margin-top:18px}.ea-wrapp{margin-top:14px}" +
@@ -2191,17 +2298,18 @@ const CSS =
   ".ea-vision{top:96px}.ea-doodles{display:none}" +
   ".ea-folder-tab{font-size:12px}.ea-folder-bar{top:40px;height:46px;font-size:12px}" +
   ".ea-bento{grid-template-columns:1fr}.ea-col-r{padding-top:0}" +
+  ".ea-qup-hero h3,.ea-qup-hero p{max-width:100%}.ea-qup-donor{opacity:.25}" +
   ".ea-duo-grid{grid-template-columns:1fr}" +
-  ".ea-plan{width:42%;height:auto;aspect-ratio:1}.ea-p1{left:0}.ea-p2{left:29%;height:auto}.ea-p3{left:58%}" +
+  ".ea-plans{flex-direction:column;align-items:stretch;gap:12px;min-height:0}.ea-plan,.ea-p2{max-width:none;aspect-ratio:auto;min-height:132px;transform:none!important}" +
   ".ea-ball{width:48px;height:48px}.ea-ball svg{width:24px;height:24px}" +
   ".ea-trust-head{flex-direction:column;align-items:flex-start}" +
   ".ea-slide-meta{display:none}" +
   "}" +
   // reduced motion: no time-based motion; scroll-linked stages follow the scrollbar only
   "@media (prefers-reduced-motion:reduce){" +
-  ".ea-w,.ea-late,.ea-fade,.ea-tag,.ea-doodle,.ea-bcard,.ea-banner,.ea-banner img,.ea-arc>div,.ea-plan,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-rail-track,.ea-progress i{transition:none!important}" +
+  ".ea-w,.ea-late,.ea-fade,.ea-tag,.ea-doodle,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-banner,.ea-banner img,.ea-arc>div,.ea-plan,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-rail-track,.ea-progress i{transition:none!important}" +
   ".ea-w{opacity:1;filter:none;transform:none}" +
-  ".ea-late,.ea-fade,.ea-bcard,.ea-banner,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-arc>div{opacity:1;filter:none;transform:none}" +
+  ".ea-late,.ea-fade,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-banner,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-arc>div{opacity:1;filter:none;transform:none}" +
   ".ea-logos-track{animation:none}" +
   "}" +
   ".ea-reduce .ea-w{transition:none;opacity:1;filter:none;transform:none}"

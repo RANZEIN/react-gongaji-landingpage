@@ -1519,8 +1519,16 @@ export default function EaselShowcaseTemplate({
       <section id="download" className="ea-sec ea-duo" aria-label="Mulai Bersama Gongaji">
         <div className="ea-wrap ea-duo-grid">
           <article className="ea-meet" data-rv>
-            <img src={asset("09-download-cta/card-download.webp")} alt="Aplikasi dan pembelajaran Al-Qur'an Gongaji" width={590} height={650} />
-            <div>
+            <div className="ea-duo-phones" aria-hidden="true">
+              <span className="ea-duo-pill">50rb+ Unduhan · 25+ Fitur</span>
+              <div className="ea-phone-back">
+                <img src={asset("09-download-cta/app-quran.webp")} alt="" width={210} height={380} draggable={false} />
+              </div>
+              <div className="ea-phone-front">
+                <img src={asset("09-download-cta/app-home.webp")} alt="" width={230} height={420} draggable={false} />
+              </div>
+            </div>
+            <div className="ea-duo-copy">
               <Svg d={ICON.download} size={14} />
               <h3 className="ea-h3">
                 Unduh
@@ -1539,8 +1547,31 @@ export default function EaselShowcaseTemplate({
             </div>
           </article>
           <article className="ea-arch" data-rv>
-            <img src={asset("09-download-cta/card-qursus.webp")} alt="Dashboard murid Qursus by Gongaji" width={575} height={650} />
-            <div>
+            <div className="ea-qursus-ui" aria-hidden="true">
+              <div className="ea-qursus-photo">
+                <img src={asset("09-download-cta/qursus-mentor.webp")} alt="" width={520} height={240} draggable={false} />
+                <span className="ea-qursus-live">Kelas Live · 5–8 Peserta</span>
+              </div>
+              <div className="ea-qursus-steps">
+                {[
+                  { label: "Pemula 1", st: "done" },
+                  { label: "Pemula 2", st: "on" },
+                  { label: "Pemula 3", st: "" },
+                  { label: "Mahir 1", st: "" },
+                  { label: "Mahir 2", st: "" },
+                ].map((lv) => (
+                  <span key={lv.label} className={lv.st}>
+                    {lv.label}
+                  </span>
+                ))}
+              </div>
+              <div className="ea-qursus-tags">
+                <span>Asesmen Awal</span>
+                <span>Ikhwan &amp; Akhwat Terpisah</span>
+                <span>Rapor &amp; Sertifikat</span>
+              </div>
+            </div>
+            <div className="ea-duo-copy">
               <Svg d={ICON.spark} size={14} />
               <h3 className="ea-h3">
                 Mulai Belajar
@@ -2018,14 +2049,29 @@ const CSS =
   // duo
   ".ea-duo{padding:clamp(16px,2vh,24px) 0 clamp(100px,16vh,160px)}" +
   ".ea-duo-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.9vw,27px);padding:0 clamp(16px,8.75vw,126px)}" +
-  ".ea-meet,.ea-arch{position:relative;height:clamp(460px,45vw,650px);border-radius:16px;overflow:hidden;opacity:0;transform:translate3d(0,50px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+  ".ea-meet,.ea-arch{position:relative;height:clamp(490px,45vw,650px);border-radius:16px;overflow:hidden;opacity:0;transform:translate3d(0,50px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
   ".ea-meet.ea-in,.ea-arch.ea-in{opacity:1;transform:none}" +
-  ".ea-meet{background:#3a3286;color:#fff}" +
+  ".ea-meet{background:radial-gradient(circle at 80% 14%,rgba(167,159,248,.36),transparent 54%),linear-gradient(155deg,#3a3286,#5145b9);color:#fff}" +
   ".ea-arch{background:var(--card);color:var(--ink)}" +
-  ".ea-meet>img,.ea-arch>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s " + EASE + "}" +
-  ".ea-arch>img{inset:-4% -6% auto auto;width:90%;height:74%;object-position:50% 20%}" +
-  ".ea-meet::after{content:'';position:absolute;inset:38% 0 0;background:linear-gradient(180deg,rgba(58,50,134,0),rgba(58,50,134,.92) 68%);pointer-events:none}" +
-  ".ea-meet>div,.ea-arch>div{position:absolute;z-index:1;left:26px;right:26px;bottom:26px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}" +
+  ".ea-duo-phones{position:relative;height:62%;padding:22px;overflow:hidden;transition:transform .8s " + EASE + "}" +
+  ".ea-duo-pill{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;letter-spacing:.02em}" +
+  ".ea-phone-back,.ea-phone-front{position:absolute;border-radius:22px;border:5px solid #161523;background:#fff;overflow:hidden;box-shadow:0 26px 48px -20px rgba(0,0,0,.55)}" +
+  ".ea-phone-back{width:clamp(146px,15vw,210px);aspect-ratio:9/18;left:22%;top:64px;transform:rotate(-7deg);opacity:.94}" +
+  ".ea-phone-front{width:clamp(160px,16.5vw,228px);aspect-ratio:9/18;left:46%;top:34px;transform:rotate(3deg)}" +
+  ".ea-phone-back img,.ea-phone-front img{width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block}" +
+  ".ea-qursus-ui{position:relative;margin:22px 22px 0;padding:12px;border-radius:14px;background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px;box-shadow:0 18px 36px -22px rgba(18,17,24,.18);transition:transform .8s " + EASE + "}" +
+  ".ea-qursus-photo{position:relative;height:clamp(108px,13vw,182px);border-radius:10px;overflow:hidden}" +
+  ".ea-qursus-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 24%;display:block}" +
+  ".ea-qursus-live{position:absolute;left:10px;bottom:10px;height:22px;padding:0 9px;border-radius:999px;background:rgba(18,17,24,.8);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center;gap:5px}" +
+  ".ea-qursus-live::before{content:'';width:6px;height:6px;border-radius:50%;background:#34d399}" +
+  ".ea-qursus-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}" +
+  ".ea-qursus-steps span{text-align:center;padding:6px 4px;border-radius:8px;font-size:9.5px;font-weight:600;background:var(--card);color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
+  ".ea-qursus-steps span.done{background:#a6e8c1;color:#0f5b38}" +
+  ".ea-qursus-steps span.on{background:#5145b9;color:#fff}" +
+  ".ea-qursus-tags{display:flex;flex-wrap:wrap;gap:6px}" +
+  ".ea-qursus-tags span{font-size:9.5px;font-weight:500;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mute)}" +
+  ".ea-meet::after{content:'';position:absolute;inset:42% 0 0;background:linear-gradient(180deg,rgba(58,50,134,0),rgba(58,50,134,.96) 56%);pointer-events:none}" +
+  ".ea-duo-copy{position:absolute;z-index:1;left:26px;right:26px;bottom:26px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}" +
   ".ea-meet h3 span{color:#ffda03}" +
   ".ea-meet .ea-small{color:rgba(255,255,255,.82);max-width:340px}" +
   ".ea-arch .ea-small{color:var(--mute);max-width:340px}" +
@@ -2054,7 +2100,8 @@ const CSS =
   ".ea-link:hover::after,.ea-ghost:hover::after,.ea-textlink:hover::after{transform:scaleX(1);transform-origin:0 50%}" +
   ".ea-round:hover,.ea-arrows button:hover{transform:scale(1.1)}" +
   ".ea-btn:hover,.ea-store-badge:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}" +
-  ".ea-arc:hover img,.ea-photo:hover>img,.ea-meet:hover>img,.ea-arch:hover>img{transform:scale(1.05)}" +
+  ".ea-arc:hover img,.ea-photo:hover>img{transform:scale(1.05)}" +
+  ".ea-meet:hover .ea-duo-phones,.ea-arch:hover .ea-qursus-ui{transform:translate3d(0,-4px,0)}" +
   ".ea-b1:hover .ea-pile .ea-pcard:nth-child(1){transform:translate(-80%,-44%) rotate(-18deg)}" +
   ".ea-b1:hover .ea-pile .ea-pcard:nth-child(3){transform:translate(-18%,-58%) rotate(14deg)}" +
   ".ea-plan:hover{transform:translate3d(0,-10px,0) rotate(0deg)!important;transition-duration:.45s;transition-delay:0s!important}" +

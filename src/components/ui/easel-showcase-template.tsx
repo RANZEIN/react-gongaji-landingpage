@@ -774,7 +774,7 @@ export default function EaselShowcaseTemplate({
         b.vx = lerp(b.vx, ivx, 0.65)
         b.vy = lerp(b.vy, ivy, 0.65)
         b.x = clamp(mx, b.r, sim.W - b.r)
-        b.y = clamp(my, -30, sim.H - b.r)
+        b.y = clamp(my, -90, sim.H - b.r)
         sim.lastX = mx
         sim.lastY = my
         sim.lastTime = now
@@ -813,15 +813,17 @@ export default function EaselShowcaseTemplate({
           const mx = e.clientX - rb.left
           const my = e.clientY - rb.top
           const moved = Math.hypot(mx - sim.startX, my - sim.startY)
-          // Quick tap launches a smooth basketball arc toward the hoop!
+          // Quick tap launches a parabolic arc that drops cleanly into the hoop from above
           if (moved < 10) {
             const hoop = getHoopGeometry(sim.W, sim.H)
-            const targetX = (hoop.rimLeft + hoop.rimRight) / 2
-            const dx = targetX - b.x
-            const dy = hoop.rimY - b.y
-            const flight = sim.W < 500 ? 0.68 : 0.78
-            b.vx = clamp(dx / flight, -1200, 1200)
-            b.vy = clamp((dy - 0.5 * 2600 * flight * flight) / flight, -1650, -780)
+            const targetX = hoop.rimLeft + hoop.rimW * 0.52
+            const apexY = Math.min(b.y - 40, hoop.rimY - (sim.W < 500 ? 64 : 88))
+            const g = 2600
+            const tUp = Math.sqrt((2 * Math.max(20, b.y - apexY)) / g)
+            const tDown = Math.sqrt((2 * Math.max(20, hoop.rimY - apexY)) / g)
+            const flight = tUp + tDown
+            b.vx = clamp((targetX - b.x) / flight, -1400, 1400)
+            b.vy = clamp(-g * tUp, -1700, -480)
           }
         }
       }

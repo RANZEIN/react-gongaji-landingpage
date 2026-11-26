@@ -123,14 +123,28 @@ export function bannerRect(p: number, w: number, h: number) {
   const b = { x: w / 2 - cw / 2, y: h * 0.53 - ch / 2, w: cw, h: ch }
   return { x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t), w: lerp(a.w, b.w, t), h: lerp(a.h, b.h, t), rad: lerp(18, 16, t) }
 }
-/** stage 3: the portrait wall, 5 columns × 3 rows around the banner */
+const MOBILE_WALL_INDEX: Record<number, { c: number; r: number }> = {
+  0: { c: 0, r: 0 },
+  1: { c: 1, r: 0 },
+  2: { c: 2, r: 0 },
+  10: { c: 0, r: 2 },
+  11: { c: 1, r: 2 },
+  12: { c: 2, r: 2 },
+}
+
+/** stage 3: the portrait wall, 5 columns × 3 rows around the banner (3×2 framing on mobile) */
 export function wallPose(k: number, w: number, h: number) {
   const u = unitWH(w, h)
-  const cols = w < 768 ? 3 : 5
-  const c = k % cols
-  const r = Math.floor(k / cols)
-  const pitch = w < 768 ? w * 0.33 : 246 * u
-  return { x: w / 2 + (c - (cols - 1) / 2) * pitch, y: h * [0.21, 0.53, 0.86][r] }
+  if (w < 768) {
+    const slot = MOBILE_WALL_INDEX[k]
+    if (!slot) return { x: w / 2, y: h * 0.53, hidden: true }
+    const pitch = w * 0.31
+    return { x: w / 2 + (slot.c - 1) * pitch, y: h * [0.19, 0.53, 0.86][slot.r], hidden: false }
+  }
+  const c = k % 5
+  const r = Math.floor(k / 5)
+  const pitch = 246 * u
+  return { x: w / 2 + (c - 2) * pitch, y: h * [0.21, 0.53, 0.86][r], hidden: false }
 }
 
 // The lime band's doodles: circles under gravity, bouncing off the box and each other.
@@ -573,6 +587,10 @@ export default function EaselShowcaseTemplate({
         wall.current.forEach((el, k) => {
           if (!el) return
           const wp = wallPose(k, w, h)
+          if (wp.hidden) {
+            el.style.opacity = "0"
+            return
+          }
           const a = easeOut(seg(p, 0.35 + (k % 5) * 0.03, 0.55 + (k % 5) * 0.03))
           const dx = (wp.x - w / 2) * (1 - a) * 0.5
           const dy = (wp.y - h * 0.53) * (1 - a) * 0.5
@@ -653,7 +671,7 @@ export default function EaselShowcaseTemplate({
       (es) => {
         for (const e of es) if (e.isIntersecting) (e.target as HTMLElement).classList.add("ea-in")
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
+      { rootMargin: "0px 0px 80px 0px", threshold: 0.01 },
     )
     root.querySelectorAll("[data-rv]").forEach((el) => io.observe(el))
 
@@ -1842,7 +1860,7 @@ export default function EaselShowcaseTemplate({
   ".ea-purplew{color:var(--purple)}" +
   ".ea-orangew{color:var(--orange)}" +
   // word reveal
-  ".ea-w{display:inline-block;opacity:0;filter:blur(8px);transform:translate3d(0,.25em,0);transition:opacity .7s " + EASE + ",filter .7s " + EASE + ",transform .7s " + EASE + ";transition-delay:calc(var(--i) * 70ms)}" +
+  ".ea-w{display:inline-block;opacity:0;filter:blur(6px);transform:translate3d(0,.22em,0);transition:opacity .45s " + EASE + ",filter .45s " + EASE + ",transform .45s " + EASE + ";transition-delay:calc(var(--i) * 35ms)}" +
   ".ea-in .ea-w{opacity:1;filter:blur(0);transform:none}" +
   ".ea-late{opacity:0;transform:translate3d(0,14px,0);transition:opacity .7s " + EASE + " .55s,transform .7s " + EASE + " .55s}" +
   ".ea-in .ea-late,.ea-in.ea-late{opacity:1;transform:none}" +

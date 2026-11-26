@@ -271,8 +271,14 @@ export const QUPEDULI_CAMPAIGNS: readonly QuPeduliCampaign[] = [
 ]
 
 // 06-artikel-carousel: Artikel Islami dari Gongaji Public Article API
-export const PUBLIC_ARTICLE_BASE =
-  "https://gongaji-service-article-staging-m3gra3glsq-et.a.run.app/v1/public/article"
+// Di local dev memanggil langsung staging; di production (Vercel) melewati proxy /api/article agar bebas CORS.
+const USE_DIRECT_STAGING_API =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+
+export const PUBLIC_ARTICLE_BASE = USE_DIRECT_STAGING_API
+  ? "https://gongaji-service-article-staging-m3gra3glsq-et.a.run.app/v1/public/article"
+  : "/api/article"
 
 export const PUBLIC_ARTICLE_API = `${PUBLIC_ARTICLE_BASE}?limit=3`
 

@@ -147,10 +147,25 @@ export function wallPose(k: number, w: number, h: number) {
   return { x: w / 2 + (c - 2) * pitch, y: h * [0.21, 0.53, 0.86][r], hidden: false }
 }
 
-// The lime band's doodles: circles under gravity, bouncing off the box and each other.
-export type Ball = { x: number; y: number; vx: number; vy: number; a: number; r: number }
-export function stepBalls(bs: Ball[], W: number, H: number, dt: number, g = 2600) {
+// The lime band's doodles: circles under gravity, bouncing off the box, basketball hoop, and each other.
+export type Ball = { x: number; y: number; prevY: number; vx: number; vy: number; a: number; r: number; grab?: boolean }
+export function getHoopGeometry(W: number, H: number) {
+  const isMobile = W < 500
+  const rimW = isMobile ? 76 : 114
+  const rimRight = Math.max(rimW + 24, W - (isMobile ? 16 : 32))
+  const rimLeft = rimRight - rimW
+  const rimY = Math.round(H * 0.28)
+  const boardTop = rimY - (isMobile ? 48 : 66)
+  const boardBottom = rimY + 8
+  return { rimLeft, rimRight, rimW, rimY, boardTop, boardBottom }
+}
+
+export function stepBalls(bs: Ball[], W: number, H: number, dt: number, g = 2600): number {
+  const hoop = getHoopGeometry(W, H)
+  let scored = 0
   for (const b of bs) {
+    b.prevY = b.y
+    if (b.grab) continue
     b.vy += g * dt
     b.x += b.vx * dt
     b.y += b.vy * dt
@@ -168,12 +183,52 @@ export function stepBalls(bs: Ball[], W: number, H: number, dt: number, g = 2600
       b.x = W - b.r
       b.vx = -Math.abs(b.vx) * 0.4
     }
+    // Backboard collision (vertical wall at hoop.rimRight)
+    if (b.y > hoop.boardTop - b.r && b.y < hoop.boardBottom + b.r) {
+      const distToBoard = hoop.rimRight - b.x
+      if (distToBoard > 0 && distToBoard < b.r) {
+        b.x = hoop.rimRight - b.r
+        if (b.vx > 0) b.vx = -b.vx * 0.55
+      } else if (distToBoard <= 0 && distToBoard > -b.r - 8) {
+        b.x = hoop.rimRight + 8 + b.r
+        if (b.vx < 0) b.vx = -b.vx * 0.55
+      }
+    }
+    // Left rim lip collision (circle vs rim point)
+    const rdx = b.x - hoop.rimLeft
+    const rdy = b.y - hoop.rimY
+    const rd = Math.hypot(rdx, rdy) || 0.001
+    const rMin = b.r + 5
+    if (rd < rMin) {
+      const nx = rdx / rd
+      const ny = rdy / rd
+      b.x = hoop.rimLeft + nx * rMin
+      b.y = hoop.rimY + ny * rMin
+      const vn = b.vx * nx + b.vy * ny
+      if (vn < 0) {
+        b.vx -= 1.5 * vn * nx
+        b.vy -= 1.5 * vn * ny
+      }
+    }
+    // Score detection: ball falls cleanly downward through rim opening
+    if (
+      b.vy > 0 &&
+      b.prevY <= hoop.rimY &&
+      b.y >= hoop.rimY &&
+      b.x > hoop.rimLeft + b.r * 0.3 &&
+      b.x < hoop.rimRight - b.r * 0.25
+    ) {
+      scored += 1
+      b.vy *= 0.62
+      b.vx *= 0.45
+    }
     b.a += (b.vx * dt * 180) / (Math.PI * b.r)
   }
   for (let i = 0; i < bs.length; i++) {
     for (let j = i + 1; j < bs.length; j++) {
       const p = bs[i]
       const q = bs[j]
+      if (p.grab || q.grab) continue
       const dx = q.x - p.x
       const dy = q.y - p.y
       const d = Math.hypot(dx, dy) || 0.001
@@ -196,8 +251,9 @@ export function stepBalls(bs: Ball[], W: number, H: number, dt: number, g = 2600
       }
     }
   }
+  return scored
 }
-export const settled = (bs: Ball[]) => bs.every((b) => Math.abs(b.vx) < 6 && Math.abs(b.vy) < 6)
+export const settled = (bs: Ball[]) => bs.every((b) => !b.grab && Math.abs(b.vx) < 6 && Math.abs(b.vy) < 6)
 // #endregion
 
 // line-art doodles: one path set per icon, drawn on a 24-unit grid
@@ -358,6 +414,8 @@ export default function EaselShowcaseTemplate({
   const [watchVideo, setWatchVideo] = useState(true)
   const [liveArticles, setLiveArticles] = useState<readonly ApiArticle[]>(articles ?? DEFAULT_ARTICLES)
   const [liked, setLiked] = useState(false)
+  const [hoopScore, setHoopScore] = useState(0)
+  const [swishTick, setSwishTick] = useState(0)
   const [innerDark, setInnerDark] = useState(false)
   const dark = controlledDark ?? innerDark
   const setDark = (updater: boolean | ((prev: boolean) => boolean)) => {
@@ -411,7 +469,20 @@ export default function EaselShowcaseTemplate({
     let lastT = t0
 
     // physics state for the lime pile
-    const sim = { on: false, bs: [] as Ball[], W: 0, H: 0, started: false }
+    const sim = {
+      on: false,
+      bs: [] as Ball[],
+      W: 0,
+      H: 0,
+      started: false,
+      dragIdx: -1,
+      pointerId: -1,
+      startX: 0,
+      startY: 0,
+      lastX: 0,
+      lastY: 0,
+      lastTime: 0,
+    }
     const startPile = () => {
       const box = pile.current
       if (!box || sim.started) return
@@ -420,14 +491,18 @@ export default function EaselShowcaseTemplate({
       sim.H = box.clientHeight
       const n = balls.current.length
       const r = sim.W < 500 ? 24 : 36
-      sim.bs = balls.current.map((_, i) => ({
-        x: r + sim.W * 0.04 + ((i * 0.618 * sim.W * 0.3) % (sim.W * 0.3)),
-        y: -60 - i * 70 - (i % 3) * 30,
-        vx: (i % 2 ? 1 : -1) * (40 + (i * 37) % 90),
-        vy: 0,
-        a: (i * 47) % 360,
-        r,
-      }))
+      sim.bs = balls.current.map((_, i) => {
+        const y = -60 - i * 70 - (i % 3) * 30
+        return {
+          x: r + sim.W * 0.04 + ((i * 0.618 * sim.W * 0.3) % (sim.W * 0.3)),
+          y,
+          prevY: y,
+          vx: (i % 2 ? 1 : -1) * (40 + (i * 37) % 90),
+          vy: 0,
+          a: (i * 47) % 360,
+          r,
+        }
+      })
       if (reduced || n === 0) {
         for (let k = 0; k < 900; k++) stepBalls(sim.bs, sim.W, sim.H, 1 / 120)
       } else sim.on = true
@@ -626,7 +701,12 @@ export default function EaselShowcaseTemplate({
       }
       if (sim.on) {
         const sub = 4
-        for (let k = 0; k < sub; k++) stepBalls(sim.bs, sim.W, sim.H, dt / sub)
+        let deltaScore = 0
+        for (let k = 0; k < sub; k++) deltaScore += stepBalls(sim.bs, sim.W, sim.H, dt / sub)
+        if (deltaScore > 0) {
+          setHoopScore((s) => s + deltaScore)
+          setSwishTick((t) => t + 1)
+        }
         if (settled(sim.bs) && sim.bs.every((b) => b.y > 0)) sim.on = false
         else again = true
       }
@@ -639,13 +719,71 @@ export default function EaselShowcaseTemplate({
     }
     kick()
 
-    // a cursor shove through the pile wakes it up again
-    const onPile = (e: PointerEvent) => {
+    // interactive grab-and-throw + cursor shove for basketball hoop play
+    const onPileDown = (e: PointerEvent) => {
       const box = pile.current
-      if (!box || !sim.started || reduced) return
+      if (!box || !sim.started) return
       const rb = box.getBoundingClientRect()
       const mx = e.clientX - rb.left
       const my = e.clientY - rb.top
+      let pick = -1
+      let best = Infinity
+      sim.bs.forEach((b, i) => {
+        const d = Math.hypot(b.x - mx, b.y - my)
+        if (d <= b.r * 1.35 && d < best) {
+          best = d
+          pick = i
+        }
+      })
+      if (pick < 0) return
+      const b = sim.bs[pick]
+      b.grab = true
+      b.vx = 0
+      b.vy = 0
+      sim.dragIdx = pick
+      sim.pointerId = e.pointerId
+      sim.startX = mx
+      sim.startY = my
+      sim.lastX = mx
+      sim.lastY = my
+      sim.lastTime = performance.now()
+      balls.current[pick]?.classList.add("is-grab")
+      try {
+        box.setPointerCapture(e.pointerId)
+      } catch {
+        // ignore if unsupported
+      }
+      sim.on = true
+      kick()
+    }
+
+    const onPileMove = (e: PointerEvent) => {
+      const box = pile.current
+      if (!box || !sim.started) return
+      const rb = box.getBoundingClientRect()
+      const mx = e.clientX - rb.left
+      const my = e.clientY - rb.top
+
+      if (sim.dragIdx >= 0 && e.pointerId === sim.pointerId) {
+        const b = sim.bs[sim.dragIdx]
+        if (!b) return
+        const now = performance.now()
+        const ddt = Math.max(0.008, (now - sim.lastTime) / 1000)
+        const ivx = clamp((mx - sim.lastX) / ddt, -1800, 1800)
+        const ivy = clamp((my - sim.lastY) / ddt, -1800, 1800)
+        b.vx = lerp(b.vx, ivx, 0.65)
+        b.vy = lerp(b.vy, ivy, 0.65)
+        b.x = clamp(mx, b.r, sim.W - b.r)
+        b.y = clamp(my, -30, sim.H - b.r)
+        sim.lastX = mx
+        sim.lastY = my
+        sim.lastTime = now
+        sim.on = true
+        kick()
+        return
+      }
+
+      if (reduced || e.pointerType === "touch") return
       let hit = false
       for (const b of sim.bs) {
         const dx = b.x - mx
@@ -662,8 +800,42 @@ export default function EaselShowcaseTemplate({
         kick()
       }
     }
+
+    const onPileUp = (e: PointerEvent) => {
+      if (sim.dragIdx < 0 || e.pointerId !== sim.pointerId) return
+      const box = pile.current
+      const b = sim.bs[sim.dragIdx]
+      balls.current[sim.dragIdx]?.classList.remove("is-grab")
+      if (b) {
+        b.grab = false
+        if (box) {
+          const rb = box.getBoundingClientRect()
+          const mx = e.clientX - rb.left
+          const my = e.clientY - rb.top
+          const moved = Math.hypot(mx - sim.startX, my - sim.startY)
+          // Quick tap launches a smooth basketball arc toward the hoop!
+          if (moved < 10) {
+            const hoop = getHoopGeometry(sim.W, sim.H)
+            const targetX = (hoop.rimLeft + hoop.rimRight) / 2
+            const dx = targetX - b.x
+            const dy = hoop.rimY - b.y
+            const flight = sim.W < 500 ? 0.68 : 0.78
+            b.vx = clamp(dx / flight, -1200, 1200)
+            b.vy = clamp((dy - 0.5 * 2600 * flight * flight) / flight, -1650, -780)
+          }
+        }
+      }
+      sim.dragIdx = -1
+      sim.pointerId = -1
+      sim.on = true
+      kick()
+    }
+
     const pileEl = pile.current
-    pileEl?.addEventListener("pointermove", onPile)
+    pileEl?.addEventListener("pointerdown", onPileDown)
+    pileEl?.addEventListener("pointermove", onPileMove)
+    pileEl?.addEventListener("pointerup", onPileUp)
+    pileEl?.addEventListener("pointercancel", onPileUp)
 
     const io = new IntersectionObserver(
       (es) => {
@@ -689,7 +861,10 @@ export default function EaselShowcaseTemplate({
       cancelAnimationFrame(raf)
       window.clearTimeout(heroIn)
       io.disconnect()
-      pileEl?.removeEventListener("pointermove", onPile)
+      pileEl?.removeEventListener("pointerdown", onPileDown)
+      pileEl?.removeEventListener("pointermove", onPileMove)
+      pileEl?.removeEventListener("pointerup", onPileUp)
+      pileEl?.removeEventListener("pointercancel", onPileUp)
       window.removeEventListener("scroll", kick)
       window.removeEventListener("resize", onResize)
       mq.removeEventListener("change", onMq)
@@ -1647,7 +1822,26 @@ export default function EaselShowcaseTemplate({
               ))}
             </div>
           </div>
-          <div ref={pile} className="ea-pilebox" aria-hidden="true">
+          <div ref={pile} className="ea-pilebox">
+            <div className="ea-hoop-hud" aria-live="polite">
+              <span className="ea-hoop-score">
+                🏀 Skor <b>{hoopScore}</b>
+              </span>
+              <small key={swishTick} className={swishTick > 0 ? "ea-swish-pop" : ""}>
+                {swishTick > 0 ? "Masuk! +1" : "Lempar / ketuk ikon"}
+              </small>
+            </div>
+            <div className={"ea-hoop" + (swishTick > 0 ? " is-swish" : "")} key={"hoop-" + swishTick} aria-hidden="true">
+              <div className="ea-hoop-board">
+                <span className="ea-hoop-sq" />
+              </div>
+              <div className="ea-hoop-rim" />
+              <svg className="ea-hoop-net" viewBox="0 0 114 70" fill="none" aria-hidden="true">
+                <path d="M6 2L22 66H92L108 2" stroke="rgba(255,255,255,.92)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M24 2L38 66M45 2L54 66M69 2L60 66M90 2L76 66" stroke="rgba(255,255,255,.78)" strokeWidth="2" strokeLinecap="round" />
+                <path d="M12 22H102M17 44H97" stroke="rgba(255,255,255,.72)" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </div>
             {DOODLES.map((d, i) => (
               <span key={i} ref={(el) => { balls.current[i] = el }} className="ea-ball">
                 <Svg d={d} size={34} stroke={1.4} />
@@ -2222,7 +2416,20 @@ const CSS =
   ".ea-mthumbs i{width:.42em;height:.42em;border-radius:50%}" +
   ".ea-mthumbs small{position:absolute;left:30%;top:100%;margin-top:4px;font-size:8px;line-height:1.2;letter-spacing:.06em;font-weight:600;white-space:nowrap;text-align:center}" +
   ".ea-pilebox{position:absolute;left:0;right:0;bottom:0;top:34%;cursor:crosshair}" +
-  ".ea-ball{position:absolute;left:0;top:0;width:72px;height:72px;border-radius:50%;background:#fff;color:#141414;display:grid;place-items:center;transform:translate3d(-100px,-200px,0);will-change:transform;box-shadow:0 6px 12px -8px rgba(0,0,0,.4)}" +
+  ".ea-hoop-hud{position:absolute;left:clamp(14px,2.4vw,28px);top:8px;z-index:4;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(20,20,20,.9);color:#fff;font-size:11.5px;pointer-events:none}" +
+  ".ea-hoop-score{display:inline-flex;align-items:center;gap:5px;font-weight:500}" +
+  ".ea-hoop-score b{color:#e6fa6a;font-weight:700}" +
+  ".ea-hoop-hud small{font-size:10.5px;color:rgba(255,255,255,.75)}" +
+  ".ea-hoop-hud small.ea-swish-pop{color:#a6e8c1;font-weight:700}" +
+  ".ea-hoop{position:absolute;right:32px;top:28%;width:122px;height:82px;pointer-events:none;z-index:2}" +
+  ".ea-hoop-board{position:absolute;right:-8px;top:-66px;width:10px;height:74px;border-radius:4px;background:#fff;border:2px solid #141414;box-shadow:0 6px 16px rgba(0,0,0,.18)}" +
+  ".ea-hoop-sq{position:absolute;right:0;bottom:8px;width:4px;height:28px;background:#5145b9;border-radius:2px}" +
+  ".ea-hoop-rim{position:absolute;right:0;top:-3px;width:114px;height:7px;border-radius:999px;background:#ff5b0d;border:1.5px solid #141414;z-index:5;box-shadow:0 3px 8px rgba(0,0,0,.2)}" +
+  ".ea-hoop-net{position:absolute;right:0;top:3px;width:114px;height:68px;z-index:4;transform-origin:top center;filter:drop-shadow(0 2px 4px rgba(0,0,0,.18))}" +
+  ".ea-hoop.is-swish .ea-hoop-net{animation:ea-swish .42s cubic-bezier(.22,1,.36,1)}" +
+  "@keyframes ea-swish{0%{transform:scaleY(1) scaleX(1)}35%{transform:scaleY(1.22) scaleX(.84)}70%{transform:scaleY(.92) scaleX(1.06)}100%{transform:scaleY(1) scaleX(1)}}" +
+  ".ea-ball{position:absolute;left:0;top:0;z-index:3;width:72px;height:72px;border-radius:50%;background:#fff;color:#141414;display:grid;place-items:center;transform:translate3d(-100px,-200px,0);will-change:transform;box-shadow:0 6px 12px -8px rgba(0,0,0,.4);cursor:grab;touch-action:none;user-select:none}" +
+  ".ea-ball.is-grab{cursor:grabbing;z-index:6;box-shadow:0 16px 28px -10px rgba(0,0,0,.45)}" +
   // duo
   ".ea-duo{padding:clamp(16px,2vh,24px) 0 clamp(100px,16vh,160px)}" +
   ".ea-duo-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.9vw,27px);padding:0 clamp(16px,8.75vw,126px)}" +
@@ -2304,6 +2511,8 @@ const CSS =
   ".ea-duo-grid{grid-template-columns:1fr}" +
   ".ea-plans{flex-direction:column;align-items:stretch;gap:12px;min-height:0}.ea-plan,.ea-p2{max-width:none;aspect-ratio:auto;min-height:132px;transform:none!important}" +
   ".ea-ball{width:48px;height:48px}.ea-ball svg{width:24px;height:24px}" +
+  ".ea-hoop{right:16px;width:84px}.ea-hoop-rim,.ea-hoop-net{width:76px}.ea-hoop-net{height:48px}.ea-hoop-board{top:-48px;height:56px}" +
+  ".ea-hoop-hud{top:4px;padding:4px 10px;font-size:10.5px}.ea-hoop-hud small{display:none}" +
   ".ea-trust-head{flex-direction:column;align-items:flex-start}" +
   ".ea-slide-meta{display:none}" +
   "}" +

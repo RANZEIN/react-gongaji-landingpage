@@ -715,7 +715,7 @@ export default function EaselShowcaseTemplate({
             {DECK1_ASSETS.map((item, i) => {
               if (item.kind === "tilawah") {
                 return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-indigo">
+                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-tealred">
                     <div className="ea-s1-top">
                       <span className="ea-s1-pill">{item.badge}</span>
                       <img src={asset(item.icon)} alt="" width={38} height={38} className="ea-s1-ico" />
@@ -732,23 +732,29 @@ export default function EaselShowcaseTemplate({
                 )
               }
               if (item.kind === "cutout") {
+                const bgCls =
+                  item.theme === "slate"
+                    ? "ea-s1-slate"
+                    : item.theme === "sunburst"
+                      ? "ea-s1-sunburst"
+                      : item.theme === "rose"
+                        ? "ea-s1-rose"
+                        : "ea-s1-royal"
+                const isInk = "inkPill" in item && item.inkPill
+                const isFloat = "float" in item && item.float
                 return (
-                  <div
-                    key={item.path + "-" + i}
-                    ref={(el) => { deck.current[i] = el }}
-                    className={"ea-card ea-c1 ea-s1-portrait " + (item.theme === "gold" ? "ea-s1-gold" : "ea-s1-cobalt")}
-                  >
-                    <img src={asset(item.path)} alt="" width={240} height={254} className="ea-s1-cut" draggable={false} />
+                  <div key={item.path + "-" + i} ref={(el) => { deck.current[i] = el }} className={"ea-card ea-c1 " + bgCls}>
+                    <img src={asset(item.path)} alt="" width={240} height={254} className={isFloat ? "ea-s1-mcut" : "ea-s1-cut"} draggable={false} />
                     <div className="ea-s1-phead">
-                      <span className={"ea-s1-pill " + (item.theme === "gold" ? "ea-s1-pill-ink" : "")}>{item.badge}</span>
-                      <small>{item.sub}</small>
+                      <span className={"ea-s1-pill " + (isInk ? "ea-s1-pill-ink" : "")}>{item.badge}</span>
+                      {item.sub ? <small>{item.sub}</small> : null}
                     </div>
                   </div>
                 )
               }
               if (item.kind === "features") {
                 return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-teal">
+                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-orange">
                     <div className="ea-s1-top">
                       <span className="ea-s1-pill">{item.badge}</span>
                     </div>
@@ -768,7 +774,7 @@ export default function EaselShowcaseTemplate({
               }
               if (item.kind === "qulib") {
                 return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-dark">
+                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-carmine">
                     <div className="ea-s1-top">
                       <span className="ea-s1-pill ea-s1-pill-gold">{item.badge}</span>
                       <img src={asset(item.icon)} alt="" width={38} height={38} className="ea-s1-ico" />
@@ -785,30 +791,15 @@ export default function EaselShowcaseTemplate({
                   </div>
                 )
               }
-              if (item.kind === "app") {
-                return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1-app">
-                    <div className="ea-s1-apphead">
-                      <span className="ea-s1-pill ea-s1-pill-white">{item.badge}</span>
-                      <span className="ea-s1-pill ea-s1-pill-gold">{item.rating}</span>
-                    </div>
-                    <div className="ea-s1-phone">
-                      <img src={asset(item.path)} alt="" width={216} height={240} className="ea-s1-screen" draggable={false} />
-                    </div>
-                  </div>
-                )
-              }
               return (
-                <div key={item.path + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1">
-                  <img
-                    src={asset(item.path)}
-                    alt=""
-                    width={260}
-                    height={282}
-                    style={{ objectPosition: item.pos }}
-                    draggable={false}
-                  />
-                  <span className="ea-s1-photobadge">{item.badge}</span>
+                <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1-app">
+                  <div className="ea-s1-apphead">
+                    <span className="ea-s1-pill ea-s1-pill-ink">{item.badge}</span>
+                    <span className="ea-s1-pill ea-s1-pill-green">{item.rating}</span>
+                  </div>
+                  <div className="ea-s1-phone">
+                    <img src={asset(item.path)} alt="" width={216} height={240} className="ea-s1-screen" draggable={false} />
+                  </div>
                 </div>
               )
             })}
@@ -1720,20 +1711,23 @@ const CSS =
   ".ea-portrait{object-position:50% 18%!important}" +
   ".ea-c1{width:260px;height:282px}" +
   ".ea-s1{padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}" +
-  ".ea-s1-indigo{background:linear-gradient(150deg,#3a3286,#5145b9);color:#fff}" +
-  ".ea-s1-dark{background:radial-gradient(circle at 80% 15%,rgba(81,69,185,.35),transparent 58%),#161523;color:#fff;border:1px solid rgba(255,255,255,.1)}" +
-  ".ea-s1-teal{background:linear-gradient(150deg,#009e97,#007582);color:#fff}" +
-  ".ea-s1-gold{background:radial-gradient(circle at 60% 35%,#ffe869,#f5b800);color:#141414}" +
-  ".ea-s1-cobalt{background:radial-gradient(circle at 60% 35%,#60a5fa,#2563eb);color:#fff}" +
-  ".ea-s1-app{background:linear-gradient(160deg,#5b4fd1 0%,#3a3286 100%);color:#fff;padding:12px 12px 0;display:flex;flex-direction:column;justify-content:space-between;gap:8px}" +
-  ".ea-s1-cut{position:absolute!important;left:43%;bottom:0;transform:translateX(-50%);width:86%!important;height:82%!important;object-fit:contain!important;object-position:50% 100%!important;filter:drop-shadow(0 12px 24px rgba(0,0,0,.22))}" +
+  ".ea-s1-tealred{background:radial-gradient(circle at 82% 18%,rgba(229,83,56,.58),transparent 52%),linear-gradient(150deg,#0f7d8f,#0c4e5e);color:#fff}" +
+  ".ea-s1-slate{background:radial-gradient(circle at 55% 40%,#8e9299,#55585e);color:#fff}" +
+  ".ea-s1-sunburst{background:radial-gradient(circle at 55% 32%,#ffe375,#fdbc16);color:#141414}" +
+  ".ea-s1-rose{background:radial-gradient(circle at 55% 32%,#fb96a3,#d95775);color:#fff}" +
+  ".ea-s1-carmine{background:radial-gradient(circle at 80% 18%,rgba(220,38,38,.42),transparent 54%),linear-gradient(155deg,#9a0909,#380303);color:#fff}" +
+  ".ea-s1-orange{background:linear-gradient(155deg,#ff7505 0%,#d63903 100%);color:#fff}" +
+  ".ea-s1-royal{background:radial-gradient(circle at 60% 35%,#016bd0,#0049a4);color:#fff}" +
+  ".ea-s1-app{background:radial-gradient(circle at 90% 14%,rgba(124,196,94,.42),transparent 46%),radial-gradient(circle at 10% 88%,rgba(169,210,151,.48),transparent 46%),#fdf4ea;color:#141414;padding:12px 12px 0;display:flex;flex-direction:column;justify-content:space-between;gap:8px}" +
+  ".ea-s1-cut{position:absolute!important;left:45%;bottom:0;transform:translateX(-50%);width:86%!important;height:82%!important;object-fit:contain!important;object-position:50% 100%!important;filter:drop-shadow(0 12px 24px rgba(0,0,0,.22))}" +
+  ".ea-s1-mcut{position:absolute!important;left:50%;bottom:10px;transform:translateX(-50%);width:88%!important;height:78%!important;object-fit:contain!important;object-position:50% 50%!important;filter:drop-shadow(0 14px 26px rgba(100,14,38,.28))}" +
   ".ea-s1-phead{position:relative;z-index:2;padding:14px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}" +
-  ".ea-s1-phead small{font-size:10px;font-weight:600;opacity:.85}" +
+  ".ea-s1-phead small{font-size:10px;font-weight:600;opacity:.88}" +
   ".ea-s1-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}" +
   ".ea-s1-ico{width:38px!important;height:38px!important;object-fit:contain!important;flex:none}" +
   ".ea-s1-pill{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}" +
   ".ea-s1-pill-ink{background:#141414;color:#fff;text-transform:none;letter-spacing:-.01em}" +
-  ".ea-s1-pill-white{background:rgba(255,255,255,.95);color:#3a3286;text-transform:none;letter-spacing:-.01em}" +
+  ".ea-s1-pill-green{background:#2d8a22;color:#fff;text-transform:none;letter-spacing:-.01em}" +
   ".ea-s1-pill-gold{background:#ffda03;color:#141414;text-transform:none;letter-spacing:-.01em}" +
   ".ea-s1-copy{display:flex;flex-direction:column;gap:4px}" +
   ".ea-s1-copy b{font-size:18px;font-weight:600;letter-spacing:-.025em;line-height:1.12}" +
@@ -1748,7 +1742,6 @@ const CSS =
   ".ea-s1-bar i{display:block;height:100%;border-radius:999px;background:#ffda03}" +
   ".ea-s1-chips{display:flex;flex-direction:column;gap:6px}" +
   ".ea-s1-chips span{font-size:11px;font-weight:600;padding:6px 10px;border-radius:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);color:#fff}" +
-  ".ea-s1-photobadge{position:absolute;left:12px;top:12px;z-index:2;height:22px;padding:0 9px;border-radius:999px;background:rgba(18,17,24,.76);backdrop-filter:blur(6px);color:#fff;font-size:9.5px;font-weight:600;display:inline-flex;align-items:center}" +
   ".ea-s1-apphead{display:flex;align-items:center;justify-content:space-between;gap:6px}" +
   ".ea-s1-phone{flex:1;min-height:0;border-radius:20px 20px 0 0;border:4px solid #161523;border-bottom:0;background:#fff;overflow:hidden;box-shadow:0 16px 32px -12px rgba(0,0,0,.45)}" +
   ".ea-s1-screen{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 0%!important;display:block}" +

@@ -22,7 +22,7 @@ export const GONGAJI_LOGO = {
   ],
 } as const
 
-// 01-hero: Stage 1 fanned hero deck (left-back -> right-front, last card rises first)
+// 01-hero: Stage 1 fanned hero deck (left-back -> right-front, matching hero palette progression)
 export const DECK1_ASSETS = [
   {
     kind: "tilawah" as const,
@@ -34,16 +34,36 @@ export const DECK1_ASSETS = [
   },
   {
     kind: "cutout" as const,
-    theme: "gold" as const,
+    theme: "slate" as const,
     badge: "Qursus · Pengajar",
     sub: "Bersertifikat",
     path: "01-hero/mentor-teja.webp",
   },
   {
-    kind: "photo" as const,
-    path: "01-hero/deck-murottal-qari.webp",
+    kind: "cutout" as const,
+    theme: "sunburst" as const,
+    badge: "QuPeduli · Transparan",
+    sub: "",
+    inkPill: true,
+    float: false,
+    path: "01-hero/cutout-qupeduli.webp",
+  },
+  {
+    kind: "cutout" as const,
+    theme: "rose" as const,
     badge: "11 Qari · Tikrar",
-    pos: "50% 42%",
+    sub: "",
+    inkPill: false,
+    float: true,
+    path: "01-hero/cutout-murottal.webp",
+  },
+  {
+    kind: "qulib" as const,
+    badge: "#JadiLebihMudah",
+    title: "Qu-Lib & Booster",
+    sub: "300+ buku & referensi Islami",
+    chips: ["Tilawah · Juz 12", "Hafalan · Tikrar"],
+    icon: "01-hero/icon-dzikir.webp",
   },
   {
     kind: "features" as const,
@@ -58,25 +78,11 @@ export const DECK1_ASSETS = [
     ],
   },
   {
-    kind: "qulib" as const,
-    badge: "#JadiLebihMudah",
-    title: "Qu-Lib & Booster",
-    sub: "300+ buku & referensi Islami",
-    chips: ["Tilawah · Juz 12", "Hafalan · Tikrar"],
-    icon: "01-hero/icon-dzikir.webp",
-  },
-  {
     kind: "cutout" as const,
-    theme: "cobalt" as const,
+    theme: "royal" as const,
     badge: "Live · 5–8 Org",
     sub: "Pemula 1 – Mahir 2",
     path: "01-hero/mentor-ilham.webp",
-  },
-  {
-    kind: "photo" as const,
-    path: "01-hero/deck-qupeduli-box.webp",
-    badge: "QuPeduli · Transparan",
-    pos: "42% 18%",
   },
   {
     kind: "app" as const,

@@ -22,106 +22,119 @@ export const GONGAJI_LOGO = {
   ],
 } as const
 
-// Stage 1 deck (back -> front, last card rises first in hero)
+// 01-hero: Stage 1 fanned hero deck (back -> front, last card rises first)
 export const DECK1_ASSETS = [
-  { path: "hero/hero-8.png", alt: "Qursus by Gongaji — belajar mengaji bersama pengajar" },
-  { path: "hero/hero-7.png", alt: "QuPeduli by Gongaji — program donasi dan kebaikan" },
-  { path: "hero/hero-6.png", alt: "Gongaji App — teman tilawah dan hafalan Al-Qur'an" },
-  { path: "hero/hero-5.png", alt: "Qursus by Gongaji — kelas kelompok kecil 5 level" },
-  { path: "hero/hero-4.png", alt: "QuPeduli by Gongaji — sedekah dan wakaf transparan" },
-  { path: "hero/hero-3.png", alt: "Qursus by Gongaji — belajar lebih terarah dan bertahap" },
-  { path: "hero/hero-2.png", alt: "QuPeduli by Gongaji — berbagi kebaikan bersama" },
-  { path: "hero/hero-1.png", alt: "Gongaji App — aplikasi Al-Qur'an dan ibadah harian" },
+  { path: "01-hero/hero-8.png", alt: "Qursus by Gongaji — belajar mengaji bersama pengajar" },
+  { path: "01-hero/hero-7.png", alt: "QuPeduli by Gongaji — program donasi dan kebaikan" },
+  { path: "01-hero/hero-6.png", alt: "Gongaji App — teman tilawah dan hafalan Al-Qur'an" },
+  { path: "01-hero/hero-5.png", alt: "Qursus by Gongaji — kelas kelompok kecil 5 level" },
+  { path: "01-hero/hero-4.png", alt: "QuPeduli by Gongaji — sedekah dan wakaf transparan" },
+  { path: "01-hero/hero-3.png", alt: "Qursus by Gongaji — belajar lebih terarah dan bertahap" },
+  { path: "01-hero/hero-2.png", alt: "QuPeduli by Gongaji — berbagi kebaikan bersama" },
+  { path: "01-hero/hero-1.png", alt: "Gongaji App — aplikasi Al-Qur'an dan ibadah harian" },
 ] as const
 
-// Stage 2 deck: Qursus & Gongaji journey -> filed into folder (index 1 is the info card)
-export const DECK2_ASSETS = [
-  "screens/qursus-murid.webp",
-  "",
-  "photos/teaching-thumbs.webp",
-  "photos/teaching-laptop.webp",
-  "screens/qursus-pengajar.webp",
-  "screens/app-target-coach.webp",
-  "screens/app-murottal.webp",
-] as const
-
-// Top & bottom drifting horizontal bands (Gongaji App icons with exact reference pop backgrounds)
-export const BAND_TOP_ASSETS = [
-  { path: "icons/tafsir.webp", kind: "icon" as const, bg: "#99CC33" },
-  { path: "icons/hadist.webp", kind: "icon" as const, bg: "#F95C0F" },
-  { path: "icons/dzikir.webp", kind: "icon" as const, bg: "#FA2A82" },
-  { path: "icons/doa.webp", kind: "icon" as const, bg: "#009E97" },
-  { path: "icons/asmaul-husna.webp", kind: "icon" as const, bg: "#000CD4" },
-  { path: "icons/jadwal-sholat.webp", kind: "icon" as const, bg: "#86E1B6" },
-  { path: "icons/arah-kiblat.webp", kind: "icon" as const, bg: "#FBC800" },
-  { path: "icons/kalender-hijriyah.webp", kind: "icon" as const, bg: "#FF5B0D" },
-  { path: "icons/kisah-25-nabi.webp", kind: "icon" as const, bg: "#B2DC0C" },
-  { path: "icons/sirah.webp", kind: "icon" as const, bg: "#7530BE" },
-  { path: "icons/tata-cara-sholat.webp", kind: "icon" as const, bg: "#00BDA6" },
-  { path: "icons/vr.webp", kind: "icon" as const, bg: "#5FC8A0" },
-  { path: "icons/qr.webp", kind: "icon" as const, bg: "#FF1260" },
-  { path: "icons/masjid-terdekat.webp", kind: "icon" as const, bg: "#F95C0F" },
-  { path: "icons/kalkulator-zakat.webp", kind: "icon" as const, bg: "#009E97" },
-  { path: "icons/qurban.webp", kind: "icon" as const, bg: "#FBC800" },
-] as const
-
-export const BAND_BOT_ASSETS = [
-  { path: "icons/donasi.webp", kind: "icon" as const, bg: "#75B986" },
-  { path: "icons/shopping.webp", kind: "icon" as const, bg: "#F39F18" },
-  { path: "icons/artikel.webp", kind: "icon" as const, bg: "#7B39BD" },
-  { path: "icons/more.webp", kind: "icon" as const, bg: "#F2A2C9" },
-  { path: "icons/jadwal-sholat.webp", kind: "icon" as const, bg: "#E89C00" },
-  { path: "icons/tafsir.webp", kind: "icon" as const, bg: "#4AC9AC" },
-  { path: "icons/dzikir.webp", kind: "icon" as const, bg: "#F72D79" },
-  { path: "icons/doa.webp", kind: "icon" as const, bg: "#FF4518" },
-  { path: "icons/arah-kiblat.webp", kind: "icon" as const, bg: "#FBD2BE" },
-  { path: "icons/asmaul-husna.webp", kind: "icon" as const, bg: "#FA652D" },
-  { path: "icons/hadist.webp", kind: "icon" as const, bg: "#007D8A" },
-  { path: "icons/vr.webp", kind: "icon" as const, bg: "#1047A1" },
-  { path: "icons/kalkulator-zakat.webp", kind: "icon" as const, bg: "#13A7CD" },
-  { path: "icons/qurban.webp", kind: "icon" as const, bg: "#7B39BD" },
-  { path: "icons/sirah.webp", kind: "icon" as const, bg: "#F39F18" },
-  { path: "icons/masjid-terdekat.webp", kind: "icon" as const, bg: "#4AC9AC" },
-] as const
-
-// Stage 3 portrait wall (5x3 grid, center index 7 empty for shrinking banner) — mentors only
-export const WALL_ASSETS = [
-  "mentors/dian.webp",
-  "mentors/ilham.webp",
-  "mentors/teja.webp",
-  "mentors/ardi.webp",
-  "mentors/rikrik.webp",
-  "mentors/ardi.webp",
-  "mentors/rikrik.webp",
-  "",
-  "mentors/dian.webp",
-  "mentors/ilham.webp",
-  "mentors/teja.webp",
-  "mentors/dian.webp",
-  "mentors/ilham.webp",
-  "mentors/rikrik.webp",
-  "mentors/ardi.webp",
-] as const
-
+// 02-gateway-banner: Featured ecosystem slides & video
 export const GATEWAY_SLIDES = [
   {
-    path: "photos/hero-poster.webp",
+    path: "02-gateway-banner/slide-1-gongaji-app.webp",
     alt: "Gongaji App — teman membangun kebiasaan bersama Al-Qur'an",
     badge: "01 · Gongaji App",
     caption: "Tilawah harian, murottal, & 25+ fitur ibadah",
   },
   {
-    path: "photos/teaching-laptop.webp",
+    path: "02-gateway-banner/slide-2-qursus.webp",
     alt: "Qursus by Gongaji — belajar mengaji online bersama pengajar",
     badge: "02 · Qursus",
     caption: "Kelas grup kecil 5–8 orang, Pemula hingga Mahir",
   },
   {
-    path: "photos/teaching-mushaf.webp",
+    path: "02-gateway-banner/slide-3-qupeduli.webp",
     alt: "QuPeduli by Gongaji — program sedekah dan wakaf transparan",
     badge: "03 · QuPeduli",
     caption: "Donasi & wakaf transparan bersama Qubba Foundation",
   },
+] as const
+
+// 03-filosofi-deck: Stage 2 riffling deck -> filed into folder (index 1 is the info card)
+export const DECK2_ASSETS = [
+  { path: "03-filosofi-deck/card-1-qursus-murid.webp", shot: false },
+  { path: "", shot: false },
+  { path: "03-filosofi-deck/card-3-teaching-thumbs.webp", shot: false },
+  { path: "03-filosofi-deck/card-4-teaching-laptop.webp", shot: false },
+  { path: "03-filosofi-deck/card-5-qursus-pengajar.webp", shot: false },
+  { path: "03-filosofi-deck/card-6-target-coach.webp", shot: true },
+  { path: "03-filosofi-deck/card-7-murottal.webp", shot: true },
+] as const
+
+// 04-fitur-icons: Top & bottom drifting horizontal bands
+export const BAND_TOP_ASSETS = [
+  { path: "04-fitur-icons/tafsir.webp", kind: "icon" as const, bg: "#99CC33" },
+  { path: "04-fitur-icons/hadist.webp", kind: "icon" as const, bg: "#F95C0F" },
+  { path: "04-fitur-icons/dzikir.webp", kind: "icon" as const, bg: "#FA2A82" },
+  { path: "04-fitur-icons/doa.webp", kind: "icon" as const, bg: "#009E97" },
+  { path: "04-fitur-icons/asmaul-husna.webp", kind: "icon" as const, bg: "#000CD4" },
+  { path: "04-fitur-icons/jadwal-sholat.webp", kind: "icon" as const, bg: "#86E1B6" },
+  { path: "04-fitur-icons/arah-kiblat.webp", kind: "icon" as const, bg: "#FBC800" },
+  { path: "04-fitur-icons/kalender-hijriyah.webp", kind: "icon" as const, bg: "#FF5B0D" },
+  { path: "04-fitur-icons/kisah-25-nabi.webp", kind: "icon" as const, bg: "#B2DC0C" },
+  { path: "04-fitur-icons/sirah.webp", kind: "icon" as const, bg: "#7530BE" },
+  { path: "04-fitur-icons/tata-cara-sholat.webp", kind: "icon" as const, bg: "#00BDA6" },
+  { path: "04-fitur-icons/vr.webp", kind: "icon" as const, bg: "#5FC8A0" },
+  { path: "04-fitur-icons/qr.webp", kind: "icon" as const, bg: "#FF1260" },
+  { path: "04-fitur-icons/masjid-terdekat.webp", kind: "icon" as const, bg: "#F95C0F" },
+  { path: "04-fitur-icons/kalkulator-zakat.webp", kind: "icon" as const, bg: "#009E97" },
+  { path: "04-fitur-icons/qurban.webp", kind: "icon" as const, bg: "#FBC800" },
+] as const
+
+export const BAND_BOT_ASSETS = [
+  { path: "04-fitur-icons/donasi.webp", kind: "icon" as const, bg: "#75B986" },
+  { path: "04-fitur-icons/shopping.webp", kind: "icon" as const, bg: "#F39F18" },
+  { path: "04-fitur-icons/artikel.webp", kind: "icon" as const, bg: "#7B39BD" },
+  { path: "04-fitur-icons/more.webp", kind: "icon" as const, bg: "#F2A2C9" },
+  { path: "04-fitur-icons/jadwal-sholat.webp", kind: "icon" as const, bg: "#E89C00" },
+  { path: "04-fitur-icons/tafsir.webp", kind: "icon" as const, bg: "#4AC9AC" },
+  { path: "04-fitur-icons/dzikir.webp", kind: "icon" as const, bg: "#F72D79" },
+  { path: "04-fitur-icons/doa.webp", kind: "icon" as const, bg: "#FF4518" },
+  { path: "04-fitur-icons/arah-kiblat.webp", kind: "icon" as const, bg: "#FBD2BE" },
+  { path: "04-fitur-icons/asmaul-husna.webp", kind: "icon" as const, bg: "#FA652D" },
+  { path: "04-fitur-icons/hadist.webp", kind: "icon" as const, bg: "#007D8A" },
+  { path: "04-fitur-icons/vr.webp", kind: "icon" as const, bg: "#1047A1" },
+  { path: "04-fitur-icons/kalkulator-zakat.webp", kind: "icon" as const, bg: "#13A7CD" },
+  { path: "04-fitur-icons/qurban.webp", kind: "icon" as const, bg: "#7B39BD" },
+  { path: "04-fitur-icons/sirah.webp", kind: "icon" as const, bg: "#F39F18" },
+  { path: "04-fitur-icons/masjid-terdekat.webp", kind: "icon" as const, bg: "#4AC9AC" },
+] as const
+
+// 06-artikel-carousel: Articles & QuPeduli campaigns carousel
+export const CAROUSEL_ITEMS = [
+  { path: "06-artikel-carousel/01-belajar-pemula.webp", title: "Belajar Ngaji untuk Pemula", tag: "Qursus", cls: "" },
+  { path: "06-artikel-carousel/02-satu-halaman.webp", title: "Satu Halaman Sehari", tag: "Gongaji App", cls: "ea-shot" },
+  { path: "06-artikel-carousel/03-tajwid-dasar.webp", title: "Tajwid Dasar: Nun & Mim Mati", tag: "Edukasi", cls: "" },
+  { path: "06-artikel-carousel/04-mushaf-garut.webp", title: "Mushaf Santri Garut · Rp38,5 jt", tag: "QuPeduli", cls: "" },
+  { path: "06-artikel-carousel/05-insentif-guru.webp", title: "Insentif 50 Guru Ngaji · Rp72,1 jt", tag: "QuPeduli", cls: "ea-portrait" },
+  { path: "06-artikel-carousel/06-target-tilawah.webp", title: "Target Tilawah Khatam 30 Hari", tag: "Gongaji App", cls: "ea-shot" },
+  { path: "06-artikel-carousel/07-jenjang-qursus.webp", title: "5 Jenjang Pemula 1 – Mahir 2", tag: "Qursus", cls: "" },
+  { path: "06-artikel-carousel/08-murottal-qari.webp", title: "Murottal dari 11 Qari Pilihan", tag: "Gongaji App", cls: "ea-shot" },
+] as const
+
+// 07-mentor-wall: Stage 3 portrait wall (5x3 grid, center index 7 empty for shrinking banner)
+export const WALL_ASSETS = [
+  "07-mentor-wall/dian.webp",
+  "07-mentor-wall/ilham.webp",
+  "07-mentor-wall/teja.webp",
+  "07-mentor-wall/ardi.webp",
+  "07-mentor-wall/rikrik.webp",
+  "07-mentor-wall/ardi.webp",
+  "07-mentor-wall/rikrik.webp",
+  "",
+  "07-mentor-wall/dian.webp",
+  "07-mentor-wall/ilham.webp",
+  "07-mentor-wall/teja.webp",
+  "07-mentor-wall/dian.webp",
+  "07-mentor-wall/ilham.webp",
+  "07-mentor-wall/rikrik.webp",
+  "07-mentor-wall/ardi.webp",
 ] as const
 
 export const TRUST_ITEMS = [
@@ -134,17 +147,6 @@ export const TRUST_ITEMS = [
   "Qubba Foundation",
 ] as const
 
-export const CAROUSEL_ITEMS = [
-  { path: "photos/teaching-thumbs.webp", title: "Belajar Ngaji untuk Pemula", tag: "Qursus" },
-  { path: "screens/app-quran.webp", title: "Satu Halaman Sehari", tag: "Gongaji App" },
-  { path: "photos/teaching-laptop.webp", title: "Tajwid Dasar: Nun & Mim Mati", tag: "Edukasi" },
-  { path: "photos/teaching-mushaf.webp", title: "Mushaf Santri Garut · Rp38,5 jt", tag: "QuPeduli" },
-  { path: "mentors/ilham.webp", title: "Insentif 50 Guru Ngaji · Rp72,1 jt", tag: "QuPeduli" },
-  { path: "screens/app-target.webp", title: "Target Tilawah Khatam 30 Hari", tag: "Gongaji App" },
-  { path: "screens/qursus-murid.webp", title: "5 Jenjang Pemula 1 – Mahir 2", tag: "Qursus" },
-  { path: "screens/app-murottal-qari.webp", title: "Murottal dari 11 Qari Pilihan", tag: "Gongaji App" },
-] as const
-
 export const NAV_ITEMS = [
   { label: "Ekosistem", href: "#ekosistem" },
   { label: "Gongaji App", href: "#fitur", live: true },
@@ -153,4 +155,3 @@ export const NAV_ITEMS = [
   { label: "Artikel", href: "#artikel" },
   { label: "Kontak", href: `mailto:${GONGAJI_LINKS.email}` },
 ] as const
-

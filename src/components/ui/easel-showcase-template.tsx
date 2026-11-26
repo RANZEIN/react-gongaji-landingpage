@@ -738,8 +738,8 @@ export default function EaselShowcaseTemplate({
           <div className="ea-banner" data-rv>
             {watchVideo ? (
               <video
-                src={asset("photos/hero-video.mp4")}
-                poster={asset("photos/hero-poster.webp")}
+                src={asset("02-gateway-banner/hero-video.mp4")}
+                poster={asset("02-gateway-banner/slide-1-gongaji-app.webp")}
                 autoPlay
                 loop
                 muted
@@ -852,7 +852,7 @@ export default function EaselShowcaseTemplate({
               <span className="ea-sw ea-mintw">tartil </span>
               <span className="ea-sw">dan terarah </span>
               <span className="ea-chip ea-sw">
-                <img src={asset("screens/app-quran.webp")} alt="" width={44} height={44} />
+                <img src={asset("03-filosofi-deck/chip-1-quran.webp")} alt="" width={44} height={44} />
               </span>{" "}
               <span className="ea-sw">Gongaji </span>
               <br />
@@ -862,7 +862,7 @@ export default function EaselShowcaseTemplate({
                 </span>
               ))}{" "}
               <span className="ea-chip ea-sw">
-                <img src={asset("photos/teaching-thumbs.webp")} alt="" width={44} height={44} />
+                <img src={asset("03-filosofi-deck/chip-2-mentor.webp")} alt="" width={44} height={44} />
               </span>{" "}
               <span className="ea-sw">mentor </span>
               <span className="ea-sw">dan kebaikan.</span>
@@ -911,7 +911,7 @@ export default function EaselShowcaseTemplate({
           </div>
 
           <div className="ea-deck" aria-hidden="true">
-            {DECK2_ASSETS.map((path, j) =>
+            {DECK2_ASSETS.map((item2, j) =>
               j === 1 ? (
                 <div key="info" ref={(el) => { deck2.current[j] = el }} className="ea-card ea-info">
                   <span className="ea-info-dot" />
@@ -924,8 +924,8 @@ export default function EaselShowcaseTemplate({
                   <p>Kelas live online 5–8 orang bersama mentor bersertifikat, dengan kelas ikhwan dan akhwat terpisah.</p>
                 </div>
               ) : (
-                <div key={path + j} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2">
-                  <img src={asset(path)} alt="" width={230} height={230} draggable={false} className={path.startsWith("screens/app-") ? "ea-shot" : ""} />
+                <div key={item2.path + j} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2">
+                  <img src={asset(item2.path)} alt="" width={230} height={230} draggable={false} className={item2.shot ? "ea-shot" : ""} />
                 </div>
               ),
             )}
@@ -989,9 +989,9 @@ export default function EaselShowcaseTemplate({
                   <Svg d={ICON.download} size={10} stroke={2} /> Gongaji App · 4,8★ &amp; 4,9★
                 </span>
                 <div className="ea-pile" aria-hidden="true">
-                  <img src={asset("screens/app-target.webp")} alt="" width={150} height={150} className="ea-shot" />
-                  <img src={asset("screens/app-home.webp")} alt="" width={150} height={150} className="ea-shot" />
-                  <img src={asset("screens/app-quran.webp")} alt="" width={150} height={150} className="ea-shot" />
+                  <img src={asset("05-bento-pilar/card1-app-target.webp")} alt="" width={150} height={150} className="ea-shot" />
+                  <img src={asset("05-bento-pilar/card1-app-home.webp")} alt="" width={150} height={150} className="ea-shot" />
+                  <img src={asset("05-bento-pilar/card1-app-quran.webp")} alt="" width={150} height={150} className="ea-shot" />
                   <span className="ea-tag ea-blue ea-t9">25+ fitur</span>
                 </div>
                 <h3 className="ea-h4">01 — Gongaji App: Bangun Kebiasaan Tilawah</h3>
@@ -1004,7 +1004,7 @@ export default function EaselShowcaseTemplate({
               </article>
               <article className="ea-bcard ea-img" data-rv>
                 <div className="ea-photo">
-                  <img src={asset("photos/teaching-thumbs.webp")} alt="Pengajar Qursus mendampingi peserta secara daring" width={550} height={300} />
+                  <img src={asset("05-bento-pilar/card2-qursus.webp")} alt="Pengajar Qursus mendampingi peserta secara daring" width={550} height={300} />
                 </div>
                 <h3 className="ea-h4">02 — Qursus: Belajar Ngaji Lebih Terarah</h3>
                 <p className="ea-small">
@@ -1018,7 +1018,7 @@ export default function EaselShowcaseTemplate({
             <div className="ea-col ea-col-r">
               <article id="qupeduli" className="ea-bcard ea-img" data-rv>
                 <div className="ea-photo ea-blueph">
-                  <img src={asset("photos/teaching-mushaf.webp")} alt="Program penyaluran mushaf dan pendidikan Al-Qur'an QuPeduli" width={550} height={300} />
+                  <img src={asset("05-bento-pilar/card3-qupeduli.webp")} alt="Program penyaluran mushaf dan pendidikan Al-Qur'an QuPeduli" width={550} height={300} />
                 </div>
                 <h3 className="ea-h4">03 — QuPeduli: Kebaikan dari Rasa Percaya</h3>
                 <p className="ea-small">
@@ -1087,7 +1087,7 @@ export default function EaselShowcaseTemplate({
                           alt={item.title}
                           width={220}
                           height={220}
-                          className={item.path.startsWith("screens/app-") ? "ea-shot" : item.path.startsWith("mentors/") ? "ea-portrait" : ""}
+                          className={item.cls}
                         />
                       </div>
                       <figcaption>
@@ -1125,18 +1125,12 @@ export default function EaselShowcaseTemplate({
           {WALL_ASSETS.map((path, i) =>
             path ? (
               <div key={path + i} ref={(el) => { wall.current[i] = el }} className="ea-wall" aria-hidden="true">
-                <img
-                  src={asset(path)}
-                  alt=""
-                  width={195}
-                  height={210}
-                  className={path.startsWith("mentors/") ? "ea-portrait" : path.startsWith("screens/app-") ? "ea-shot" : ""}
-                />
+                <img src={asset(path)} alt="" width={195} height={210} className="ea-portrait" />
               </div>
             ) : null,
           )}
           <div ref={banner} className="ea-orange">
-            <img src={asset("mentors/mentor-center.webp")} alt="Pengajar Qursus tersenyum saat membimbing kelas daring" width={1600} height={900} />
+            <img src={asset("07-mentor-wall/mentor-center.webp")} alt="Pengajar Qursus tersenyum saat membimbing kelas daring" width={1600} height={900} />
             <div className="ea-orange-scrim" aria-hidden="true" />
             <div className="ea-orange-ui">
               <span className="ea-tag ea-redtag ea-t10">@qursus.gongaji</span>
@@ -1145,7 +1139,7 @@ export default function EaselShowcaseTemplate({
                 {liked ? "Disukai" : "Suka"}
               </button>
               <div className="ea-by">
-                <img src={asset("mentors/dian.webp")} alt="" width={28} height={28} />
+                <img src={asset("07-mentor-wall/dian.webp")} alt="" width={28} height={28} />
                 <span>
                   <b>Fajar Nugraha · Pemula 2</b>
                   <small>“Kelasnya kecil, salah langsung dibenerin.”</small>
@@ -1213,21 +1207,21 @@ export default function EaselShowcaseTemplate({
                   Baca. Belajar. Berbagi.
                   <span className="ea-mthumbs">
                     <i style={{ background: "#5145B9" }} />
-                    <img src={asset("screens/app-home.webp")} alt="" width={44} height={44} />
-                    <img src={asset("screens/app-quran.webp")} alt="" width={44} height={44} />
+                    <img src={asset("08-lime-marquee/thumb-1-app-home.webp")} alt="" width={44} height={44} />
+                    <img src={asset("08-lime-marquee/thumb-2-app-quran.webp")} alt="" width={44} height={44} />
                     <small>#JADILEBIHMUDAH</small>
                   </span>
                   50rb+ Download di Android &amp; iOS
                   <span className="ea-mthumbs">
-                    <img src={asset("photos/teaching-smile.webp")} alt="" width={44} height={44} />
+                    <img src={asset("08-lime-marquee/thumb-3-teaching-smile.webp")} alt="" width={44} height={44} />
                   </span>
                   Qursus 5 Level Pemula–Mahir
                   <span className="ea-mthumbs">
-                    <img src={asset("screens/qursus-murid.webp")} alt="" width={44} height={44} />
+                    <img src={asset("08-lime-marquee/thumb-4-qursus-murid.webp")} alt="" width={44} height={44} />
                   </span>
                   QuPeduli · Qubba Foundation
                   <span className="ea-mthumbs">
-                    <img src={asset("photos/teaching-mushaf.webp")} alt="" width={44} height={44} />
+                    <img src={asset("08-lime-marquee/thumb-5-teaching-mushaf.webp")} alt="" width={44} height={44} />
                   </span>
                 </span>
               ))}
@@ -1247,7 +1241,7 @@ export default function EaselShowcaseTemplate({
       <section id="download" className="ea-sec ea-duo" aria-label="Mulai Bersama Gongaji">
         <div className="ea-wrap ea-duo-grid">
           <article className="ea-meet" data-rv>
-            <img src={asset("photos/teaching-laptop.webp")} alt="Aplikasi dan pembelajaran Al-Qur'an Gongaji" width={590} height={650} />
+            <img src={asset("09-download-cta/card-download.webp")} alt="Aplikasi dan pembelajaran Al-Qur'an Gongaji" width={590} height={650} />
             <div>
               <Svg d={ICON.download} size={14} />
               <h3 className="ea-h3">
@@ -1258,16 +1252,16 @@ export default function EaselShowcaseTemplate({
               <p className="ea-small">Tersedia gratis di Google Play (4,8★) dan App Store (4,9★). Mulai kebiasaan tilawahmu hari ini.</p>
               <div className="ea-store-row">
                 <a className="ea-store-badge" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di Google Play">
-                  <img src={asset("badges/google-play.svg")} alt="" height={40} />
+                  <img src={asset("09-download-cta/badge-google-play.svg")} alt="" height={40} />
                 </a>
                 <a className="ea-store-badge" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di App Store">
-                  <img src={asset("badges/app-store.svg")} alt="" height={40} />
+                  <img src={asset("09-download-cta/badge-app-store.svg")} alt="" height={40} />
                 </a>
               </div>
             </div>
           </article>
           <article className="ea-arch" data-rv>
-            <img src={asset("screens/qursus-murid.webp")} alt="Dashboard murid Qursus by Gongaji" width={575} height={650} />
+            <img src={asset("09-download-cta/card-qursus.webp")} alt="Dashboard murid Qursus by Gongaji" width={575} height={650} />
             <div>
               <Svg d={ICON.spark} size={14} />
               <h3 className="ea-h3">

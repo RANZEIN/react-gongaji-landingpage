@@ -1,17 +1,29 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import EaselShowcaseTemplate from "@/components/ui/easel-showcase-template"
 import { ArticleReaderPage, ArticlesDirectoryPage } from "@/components/ui/article-pages"
 
-type ArticleRoute =
+export type AppRoute =
   | { kind: "home"; anchor?: string }
   | { kind: "articles-list"; category: string }
   | { kind: "article-detail"; uuid: string }
 
-function parseHashRoute(hash: string): ArticleRoute {
+function parseLocationRoute(): AppRoute {
+  const { pathname, search, hash } = window.location
+
+  if (pathname.startsWith("/artikel")) {
+    const rest = pathname.slice("/artikel".length)
+    const cleanRest = rest.replace(/^\/+/, "").split("/")[0]
+    if (cleanRest) {
+      return { kind: "article-detail", uuid: decodeURIComponent(cleanRest) }
+    }
+    const params = new URLSearchParams(search)
+    return { kind: "articles-list", category: params.get("category") || "Semua" }
+  }
+
   if (hash.startsWith("#/artikel")) {
     const rest = hash.slice("#/artikel".length)
     if (rest.startsWith("/") && rest.length > 1) {
-      const uuid = decodeURIComponent(rest.slice(1).split("?")[0])
+      const uuid = decodeURIComponent(rest.slice(1).split("?")[0].split("/")[0])
       if (uuid) return { kind: "article-detail", uuid }
     }
     const qIdx = rest.indexOf("?")
@@ -22,37 +34,70 @@ function parseHashRoute(hash: string): ArticleRoute {
     }
     return { kind: "articles-list", category }
   }
+
   const anchor = hash.startsWith("#") && hash.length > 1 ? hash.slice(1) : undefined
   return { kind: "home", anchor }
 }
 
+const THEME_STORAGE_KEY = "gongaji-theme"
+
 export default function App() {
-  const [route, setRoute] = useState<ArticleRoute>(() => parseHashRoute(window.location.hash))
-  const [dark, setDark] = useState(false)
+  const [route, setRoute] = useState<AppRoute>(() => parseLocationRoute())
+  const [dark, setDark] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem(THEME_STORAGE_KEY) === "dark"
+    } catch {
+      return false
+    }
+  })
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark)
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, dark ? "dark" : "light")
+    } catch {
+      // ignore storage restrictions
+    }
   }, [dark])
 
-  useEffect(() => {
-    const onHashChange = () => {
-      const next = parseHashRoute(window.location.hash)
-      setRoute(next)
-      if (next.kind === "articles-list" || next.kind === "article-detail") {
-        window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
-      } else if (next.anchor) {
-        requestAnimationFrame(() => {
-          if (next.anchor === "top") {
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          } else {
-            document.getElementById(next.anchor!)?.scrollIntoView({ behavior: "smooth" })
-          }
-        })
-      }
+  const syncFromLocation = useCallback(() => {
+    const next = parseLocationRoute()
+    setRoute(next)
+    if (next.kind === "articles-list" || next.kind === "article-detail") {
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
+    } else if (next.anchor) {
+      window.setTimeout(() => {
+        if (next.anchor === "top") {
+          window.scrollTo({ top: 0, behavior: "smooth" })
+        } else {
+          document.getElementById(next.anchor!)?.scrollIntoView({ behavior: "smooth" })
+        }
+      }, 60)
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
     }
-    window.addEventListener("hashchange", onHashChange)
-    return () => window.removeEventListener("hashchange", onHashChange)
   }, [])
+
+  useEffect(() => {
+    window.addEventListener("popstate", syncFromLocation)
+    window.addEventListener("hashchange", syncFromLocation)
+    return () => {
+      window.removeEventListener("popstate", syncFromLocation)
+      window.removeEventListener("hashchange", syncFromLocation)
+    }
+  }, [syncFromLocation])
+
+  const navigate = useCallback(
+    (to: string) => {
+      if (to === window.location.pathname + window.location.search + window.location.hash) {
+        syncFromLocation()
+        return
+      }
+      window.history.pushState(null, "", to)
+      syncFromLocation()
+    },
+    [syncFromLocation],
+  )
 
   if (route.kind === "articles-list") {
     return (
@@ -60,6 +105,7 @@ export default function App() {
         dark={dark}
         onToggleDark={() => setDark((d) => !d)}
         initialCategory={route.category}
+        onNavigate={navigate}
       />
     )
   }
@@ -70,6 +116,7 @@ export default function App() {
         uuid={route.uuid}
         dark={dark}
         onToggleDark={() => setDark((d) => !d)}
+        onNavigate={navigate}
       />
     )
   }

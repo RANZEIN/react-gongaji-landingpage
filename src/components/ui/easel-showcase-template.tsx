@@ -1541,7 +1541,7 @@ export default function EaselShowcaseTemplate({
                                 <p className="ea-small">
                                   Bacaan ringan seputar Ramadan, fikih keluarga, dan tadabbur Al-Qur'an langsung dari redaksi Gongaji.
                                 </p>
-                                <a className="ea-art-cta" href="#/artikel">
+                                <a className="ea-art-cta" href="/artikel" target="_blank" rel="noopener noreferrer">
                                   Lihat Semua ({articleTotal} Artikel) →
                                 </a>
                               </div>
@@ -1552,7 +1552,9 @@ export default function EaselShowcaseTemplate({
                                 return (
                                 <a
                                   key={item.article_uuid}
-                                  href={`#/artikel/${item.article_uuid}`}
+                                  href={`/artikel/${item.article_uuid}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
                                   className="ea-art-card"
                                   aria-label={`Baca artikel ${item.article_title}`}
                                 >

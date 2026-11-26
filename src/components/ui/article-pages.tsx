@@ -434,20 +434,6 @@ export function ArticlesDirectoryPage({
       <main className="ea-submain">
         <section className="ea-sub-hero">
           <div className="ea-wrap">
-            <a
-              href="/#artikel"
-              className="ea-back-link"
-              onClick={(e) => {
-                if (isPlainLeftClick(e)) {
-                  e.preventDefault()
-                  onNavigate("/#artikel")
-                }
-              }}
-            >
-              <Svg d={ICON.left} size={14} />
-              Kembali ke Beranda
-            </a>
-
             <div className="ea-sub-head">
               <div className="ea-sub-head-copy">
                 <p className="ea-eyebrow">
@@ -682,7 +668,7 @@ export function ArticleReaderPage({
       .then((res) => {
         setRelated(res.items.filter((it) => it.article_uuid !== uuid))
       })
-      .catch(() => {})
+      .catch(() => { })
 
     return () => {
       ctrl.abort()

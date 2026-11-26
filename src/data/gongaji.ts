@@ -57,14 +57,58 @@ export const GATEWAY_SLIDES = [
 ] as const
 
 // 03-filosofi-deck: Stage 2 riffling deck -> filed into folder (index 1 is the info card)
-export const DECK2_ASSETS = [
-  { path: "03-filosofi-deck/card-1-qursus-murid.webp", shot: false },
-  { path: "", shot: false },
-  { path: "03-filosofi-deck/card-3-teaching-thumbs.webp", shot: false },
-  { path: "03-filosofi-deck/card-4-teaching-laptop.webp", shot: false },
-  { path: "03-filosofi-deck/card-5-qursus-pengajar.webp", shot: false },
-  { path: "03-filosofi-deck/card-6-target-coach.webp", shot: true },
-  { path: "03-filosofi-deck/card-7-murottal.webp", shot: true },
+export const DECK2_CARDS = [
+  {
+    kind: "features" as const,
+    badge: "IBADAH",
+    title: "25+ Fitur Ibadah",
+    sub: "Shalat, Kiblat, Doa & VR",
+    icons: [
+      "03-filosofi-deck/icon-jadwal-sholat.webp",
+      "03-filosofi-deck/icon-arah-kiblat.webp",
+      "03-filosofi-deck/icon-doa.webp",
+      "03-filosofi-deck/icon-vr.webp",
+    ],
+  },
+  { kind: "info" as const },
+  {
+    kind: "tilawah" as const,
+    badge: "01 · BACA",
+    title: "Target Tilawah",
+    sub: "Khatam Santai · 30 Hari",
+    meta: "Al-Baqarah : 142 · 72%",
+    icon: "03-filosofi-deck/icon-tafsir.webp",
+  },
+  {
+    kind: "murottal" as const,
+    badge: "MUROTTAL",
+    title: "11 Qari & Tikrar",
+    sub: "Dengarkan & ulangi per ayat",
+    meta: "Abu Bakr al-Shatri",
+    icon: "03-filosofi-deck/icon-dzikir.webp",
+  },
+  {
+    kind: "photo" as const,
+    badge: "02 · BELAJAR",
+    title: "Qursus Live",
+    sub: "5–8 peserta · Pemula–Mahir",
+    photo: "03-filosofi-deck/card-qursus-mentor.webp",
+  },
+  {
+    kind: "rapor" as const,
+    badge: "RAPOR",
+    title: "Progres Terpantau",
+    sub: "Evaluasi & sertifikat resmi",
+    levels: ["P1", "P2", "P3", "M1", "M2"],
+  },
+  {
+    kind: "qupeduli" as const,
+    badge: "03 · BERBAGI",
+    title: "QuPeduli",
+    sub: "Sedekah & wakaf transparan",
+    meta: "Qubba Foundation · Terverifikasi",
+    icon: "03-filosofi-deck/icon-donasi.webp",
+  },
 ] as const
 
 // 04-fitur-icons: Top & bottom drifting horizontal bands

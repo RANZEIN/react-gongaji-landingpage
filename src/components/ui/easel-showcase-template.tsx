@@ -6,7 +6,7 @@ import {
   BAND_TOP_ASSETS,
   CAROUSEL_ITEMS,
   DECK1_ASSETS,
-  DECK2_ASSETS,
+  DECK2_CARDS,
   GATEWAY_SLIDES,
   GONGAJI_LINKS,
   GONGAJI_LOGO,
@@ -463,7 +463,7 @@ export default function EaselShowcaseTemplate({
         }
         const words = pn2.querySelectorAll(".ea-sw")
         words.forEach((el, i) => {
-          ;(el as HTMLElement).style.opacity = inkAt(reduced ? 1 : q, i, words.length).toFixed(3)
+          ; (el as HTMLElement).style.opacity = inkAt(reduced ? 1 : q, i, words.length).toFixed(3)
         })
         const wt = whether.current
         if (wt) {
@@ -911,24 +911,130 @@ export default function EaselShowcaseTemplate({
           </div>
 
           <div className="ea-deck" aria-hidden="true">
-            {DECK2_ASSETS.map((item2, j) =>
-              j === 1 ? (
-                <div key="info" ref={(el) => { deck2.current[j] = el }} className="ea-card ea-info">
-                  <span className="ea-info-dot" />
-                  <b>
-                    Qursus
-                    <br />
-                    by Gongaji
-                  </b>
-                  <small>5 Level · 3 Bulan / Level</small>
-                  <p>Kelas live online 5–8 orang bersama mentor bersertifikat, dengan kelas ikhwan dan akhwat terpisah.</p>
+            {DECK2_CARDS.map((card, j) => {
+              if (card.kind === "info") {
+                return (
+                  <div key="info" ref={(el) => { deck2.current[j] = el }} className="ea-card ea-info">
+                    <span className="ea-info-dot" />
+                    <b>
+                      Qursus
+                      <br />
+                      by Gongaji
+                    </b>
+                    <small>5 Level · 3 Bulan / Level</small>
+                    <p>Kelas live online 5–8 orang bersama mentor bersertifikat, dengan kelas ikhwan dan akhwat terpisah.</p>
+                  </div>
+                )
+              }
+              if (card.kind === "tilawah") {
+                return (
+                  <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-purple">
+                    <div className="ea-s2-top">
+                      <span className="ea-s2-pill">{card.badge}</span>
+                      <img src={asset(card.icon)} alt="" width={44} height={44} className="ea-s2-ico" />
+                    </div>
+                    <div className="ea-s2-copy">
+                      <b>{card.title}</b>
+                      <small>{card.sub}</small>
+                    </div>
+                    <div className="ea-s2-foot">
+                      <div className="ea-s2-bar">
+                        <i style={{ width: "72%" }} />
+                      </div>
+                      <span>{card.meta}</span>
+                    </div>
+                  </div>
+                )
+              }
+              if (card.kind === "murottal") {
+                return (
+                  <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-lav">
+                    <div className="ea-s2-top">
+                      <span className="ea-s2-pill ea-s2-pill-dark">{card.badge}</span>
+                      <img src={asset(card.icon)} alt="" width={44} height={44} className="ea-s2-ico" />
+                    </div>
+                    <div className="ea-s2-copy">
+                      <b>{card.title}</b>
+                      <small>{card.sub}</small>
+                    </div>
+                    <div className="ea-s2-foot">
+                      <div className="ea-s2-wave">
+                        {[42, 76, 56, 94, 68, 86, 48, 72, 60, 40].map((h, wi) => (
+                          <i key={wi} style={{ height: h + "%" }} />
+                        ))}
+                      </div>
+                      <span>{card.meta}</span>
+                    </div>
+                  </div>
+                )
+              }
+              if (card.kind === "photo") {
+                return (
+                  <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2-photo">
+                    <img src={asset(card.photo)} alt="" width={230} height={230} draggable={false} />
+                    <div className="ea-s2-scrim" />
+                    <span className="ea-s2-pill ea-s2-pill-gold ea-s2-photo-badge">{card.badge}</span>
+                    <div className="ea-s2-photo-copy">
+                      <b>{card.title}</b>
+                      <small>{card.sub}</small>
+                    </div>
+                  </div>
+                )
+              }
+              if (card.kind === "features") {
+                return (
+                  <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-teal">
+                    <div className="ea-s2-grid">
+                      {card.icons.map((ic) => (
+                        <span key={ic} className="ea-s2-tile">
+                          <img src={asset(ic)} alt="" width={34} height={34} />
+                        </span>
+                      ))}
+                    </div>
+                    <div className="ea-s2-copy">
+                      <b>{card.title}</b>
+                      <small>{card.sub}</small>
+                    </div>
+                  </div>
+                )
+              }
+              if (card.kind === "rapor") {
+                return (
+                  <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-white">
+                    <div className="ea-s2-top">
+                      <span className="ea-s2-pill ea-s2-pill-dark">{card.badge}</span>
+                      <span className="ea-s2-mint">5 Level</span>
+                    </div>
+                    <div className="ea-s2-levels">
+                      {card.levels.map((lv, li) => (
+                        <span key={lv} className={li === 2 ? "on" : li < 2 ? "done" : ""}>
+                          {lv}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="ea-s2-copy">
+                      <b>{card.title}</b>
+                      <small>{card.sub}</small>
+                    </div>
+                  </div>
+                )
+              }
+              return (
+                <div key={card.kind} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2 ea-s2 ea-s2-gold">
+                  <div className="ea-s2-top">
+                    <span className="ea-s2-pill ea-s2-pill-ink">{card.badge}</span>
+                    <img src={asset(card.icon)} alt="" width={44} height={44} className="ea-s2-ico" />
+                  </div>
+                  <div className="ea-s2-copy">
+                    <b>{card.title}</b>
+                    <small>{card.sub}</small>
+                  </div>
+                  <div className="ea-s2-foot">
+                    <span className="ea-s2-ver">{card.meta}</span>
+                  </div>
                 </div>
-              ) : (
-                <div key={item2.path + j} ref={(el) => { deck2.current[j] = el }} className="ea-card ea-c2">
-                  <img src={asset(item2.path)} alt="" width={230} height={230} draggable={false} className={item2.shot ? "ea-shot" : ""} />
-                </div>
-              ),
-            )}
+              )
+            })}
           </div>
           <span className="ea-tag ea-orange ea-t8">@qupeduli</span>
         </div>
@@ -1504,10 +1610,51 @@ const CSS =
   ".ea-doodled .ea-t8{opacity:0}" +
   ".ea-pin:not(.ea-doodled) .ea-t8{opacity:0}" +
   ".ea-info{width:230px;height:280px;padding:22px 20px;display:flex;flex-direction:column;gap:6px;background:var(--card);color:var(--ink)}" +
-  ".ea-info b{font-size:15px;line-height:1.15;font-weight:600;letter-spacing:-.02em}" +
+  ".ea-info b{font-size:15px;line-height:1.15;font-weight:600;letter-spacing:-.02em;padding-right:26px}" +
   ".ea-info small{font-size:10px;color:var(--mute)}" +
   ".ea-info p{margin-top:auto;font-size:11.5px;line-height:1.5;color:var(--mute)}" +
   ".ea-info-dot{position:absolute;right:18px;top:18px;width:22px;height:22px;border-radius:50%;background:var(--blue);box-shadow:inset 0 0 0 6px var(--blue),inset 0 0 0 8px var(--card)}" +
+  // stage 2 folder cards (230x230 bespoke cards)
+  ".ea-s2{padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}" +
+  ".ea-s2-purple{background:linear-gradient(145deg,#5145b9,#3a3286);color:#fff}" +
+  ".ea-s2-lav{background:#f2f1fa;color:#141414}" +
+  ".dark .ea-s2-lav,.ea-dark .ea-s2-lav{background:#221f3a;color:#f1f1ef}" +
+  ".ea-s2-teal{background:linear-gradient(145deg,#009e97,#007d8a);color:#fff}" +
+  ".ea-s2-white{background:var(--card);color:var(--ink);border:1px solid var(--line)}" +
+  ".ea-s2-gold{background:linear-gradient(145deg,#ffda03,#f2b800);color:#141414}" +
+  ".ea-s2-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}" +
+  ".ea-s2-ico{width:42px!important;height:42px!important;object-fit:contain!important;flex:none}" +
+  ".ea-s2-pill{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;background:rgba(255,255,255,.18);color:inherit;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}" +
+  ".ea-s2-pill-dark{background:rgba(81,69,185,.12);color:#5145b9}" +
+  ".dark .ea-s2-pill-dark,.ea-dark .ea-s2-pill-dark{background:rgba(171,166,222,.16);color:#aba6de}" +
+  ".ea-s2-pill-gold{background:#ffda03;color:#141414}" +
+  ".ea-s2-pill-ink{background:#141414;color:#fff}" +
+  ".ea-s2-mint{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;background:#a6e8c1;color:#0f5b38;font-size:9px;font-weight:600}" +
+  ".ea-s2-copy{display:flex;flex-direction:column;gap:2px}" +
+  ".ea-s2-copy b{font-size:15px;line-height:1.15;font-weight:600;letter-spacing:-.02em}" +
+  ".ea-s2-copy small{font-size:10.5px;line-height:1.35;opacity:.78}" +
+  ".ea-s2-foot{display:flex;flex-direction:column;gap:5px}" +
+  ".ea-s2-foot span{font-size:9.5px;font-weight:500;opacity:.85}" +
+  ".ea-s2-bar{height:5px;width:100%;border-radius:999px;background:rgba(255,255,255,.22);overflow:hidden}" +
+  ".ea-s2-bar i{display:block;height:100%;border-radius:999px;background:#ffda03}" +
+  ".ea-s2-wave{display:flex;align-items:flex-end;gap:4px;height:24px}" +
+  ".ea-s2-wave i{flex:1;border-radius:999px;background:#5145b9;opacity:.78}" +
+  ".dark .ea-s2-wave i,.ea-dark .ea-s2-wave i{background:#aba6de}" +
+  ".ea-s2-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:108px}" +
+  ".ea-s2-tile{width:50px;height:50px;border-radius:10px;background:rgba(255,255,255,.18);display:grid;place-items:center;padding:6px}" +
+  ".ea-s2-tile img{width:100%!important;height:100%!important;object-fit:contain!important}" +
+  ".ea-s2-levels{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}" +
+  ".ea-s2-levels span{height:26px;border-radius:7px;display:grid;place-items:center;font-size:9.5px;font-weight:600;background:rgba(128,128,128,.12);color:var(--mute)}" +
+  ".ea-s2-levels span.done{background:#a6e8c1;color:#0f5b38}" +
+  ".ea-s2-levels span.on{background:#5145b9;color:#fff}" +
+  ".ea-s2-ver{display:inline-flex;align-items:center;padding:4px 8px;border-radius:8px;background:rgba(20,20,20,.1);font-size:9.5px;font-weight:600}" +
+  ".ea-s2-photo{position:relative}" +
+  ".ea-s2-photo img{object-position:50% 20%}" +
+  ".ea-s2-scrim{position:absolute;inset:35% 0 0;background:linear-gradient(180deg,rgba(17,17,17,0),rgba(17,17,17,.82) 78%);pointer-events:none}" +
+  ".ea-s2-photo-badge{position:absolute;left:14px;top:14px;z-index:1}" +
+  ".ea-s2-photo-copy{position:absolute;left:14px;right:14px;bottom:14px;z-index:1;color:#fff;display:flex;flex-direction:column;gap:2px}" +
+  ".ea-s2-photo-copy b{font-size:15px;line-height:1.15;font-weight:600}" +
+  ".ea-s2-photo-copy small{font-size:10px;opacity:.85}" +
   ".ea-folder{position:absolute;opacity:0;border-radius:16px;z-index:0;background:var(--card);box-shadow:0 30px 60px -40px rgba(0,0,0,.35)}" +
   ".ea-folder-tab{position:absolute;left:0;top:0;right:0;height:56px;display:flex;justify-content:space-between;align-items:center;padding:0 16px 0 22px;font-size:clamp(14px,1.35vw,19px);font-weight:500;color:var(--ink)}" +
   ".ea-folder-tab b{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:var(--card);font-size:10px;font-weight:500}" +

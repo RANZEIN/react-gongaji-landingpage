@@ -357,7 +357,6 @@ export default function EaselShowcaseTemplate({
   const [slide, setSlide] = useState(0)
   const [watchVideo, setWatchVideo] = useState(true)
   const [liveArticles, setLiveArticles] = useState<readonly ApiArticle[]>(articles ?? DEFAULT_ARTICLES)
-  const [articleTotal, setArticleTotal] = useState<number>(76)
   const [liked, setLiked] = useState(false)
   const [innerDark, setInnerDark] = useState(false)
   const dark = controlledDark ?? innerDark
@@ -376,11 +375,10 @@ export default function EaselShowcaseTemplate({
     const ctrl = new AbortController()
     fetch(PUBLIC_ARTICLE_API, { signal: ctrl.signal })
       .then((res) => (res.ok ? res.json() : null))
-      .then((json: { status?: boolean; data?: { data?: ApiArticle[]; total?: number } } | null) => {
+      .then((json: { status?: boolean; data?: { data?: ApiArticle[] } } | null) => {
         const rows = json?.data?.data
         if (Array.isArray(rows) && rows.length > 0) {
           setLiveArticles(rows)
-          if (typeof json?.data?.total === "number") setArticleTotal(json.data.total)
         }
       })
       .catch(() => {
@@ -1555,14 +1553,9 @@ export default function EaselShowcaseTemplate({
                                   <Words parts={["Artikel Pilihan &", "\n", "Panduan Qur'an"]} at={2} />
                                 </h2>
                               </div>
-                              <div className="ea-art-head-r">
-                                <p className="ea-small">
-                                  Bacaan ringan seputar Ramadan, fikih keluarga, dan tadabbur Al-Qur'an langsung dari redaksi Gongaji.
-                                </p>
-                                <a className="ea-art-cta" href="/artikel" target="_blank" rel="noopener noreferrer">
-                                  Lihat Semua ({articleTotal} Artikel) →
-                                </a>
-                              </div>
+                              <p className="ea-small ea-art-sub">
+                                Bacaan ringan seputar Ramadan, fikih keluarga, dan tadabbur Al-Qur'an langsung dari redaksi Gongaji.
+                              </p>
                             </div>
                             <div className="ea-art-grid" data-rv>
                               {liveArticles.map((item) => {
@@ -1607,6 +1600,11 @@ export default function EaselShowcaseTemplate({
                                 </a>
                                 )
                               })}
+                            </div>
+                            <div className="ea-art-actions">
+                              <a className="ea-art-cta" href="/artikel" target="_blank" rel="noopener noreferrer">
+                                Lihat Semua Artikel →
+                              </a>
                             </div>
                           </div>
                         </section>
@@ -2155,8 +2153,9 @@ export default function EaselShowcaseTemplate({
   // live articles section (3-column editorial grid)
   ".ea-artikel{position:relative;z-index:2;padding:clamp(60px,10vh,110px) 0}" +
   ".ea-art-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}" +
-  ".ea-art-head-r{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:360px}" +
-  ".ea-art-cta{position:relative;z-index:3;height:36px;padding:0 18px;border-radius:999px;background:var(--blue);color:#fff;font-size:12px;font-weight:600;display:inline-flex;align-items:center;cursor:pointer;pointer-events:auto;transition:transform .25s " + EASE + ",opacity .2s ease}" +
+  ".ea-art-sub{max-width:360px}" +
+  ".ea-art-actions{margin-top:clamp(24px,4vh,34px);display:flex;justify-content:center}" +
+  ".ea-art-cta{position:relative;z-index:3;height:44px;padding:0 26px;border-radius:999px;background:var(--blue);color:#fff;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto;transition:transform .25s " + EASE + ",opacity .2s ease}" +
   ".ea-art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
   ".ea-art-grid.ea-in{opacity:1;transform:none}" +
   ".ea-art-card{border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .45s " + EASE + ",border-color .25s ease}" +
@@ -2294,6 +2293,8 @@ export default function EaselShowcaseTemplate({
   ".ea-bento{grid-template-columns:1fr}.ea-col-r{padding-top:0}" +
   ".ea-qup-hero h3,.ea-qup-hero p{max-width:100%}.ea-qup-donor{opacity:.25}" +
   ".ea-art-grid{grid-template-columns:1fr}" +
+  ".ea-art-actions{justify-content:stretch}" +
+  ".ea-art-cta{width:100%}" +
   ".ea-duo-grid{grid-template-columns:1fr}" +
   ".ea-plans{flex-direction:column;align-items:stretch;gap:12px;min-height:0}.ea-plan,.ea-p2{max-width:none;aspect-ratio:auto;min-height:132px;transform:none!important}" +
   ".ea-ball{width:48px;height:48px}.ea-ball svg{width:24px;height:24px}" +

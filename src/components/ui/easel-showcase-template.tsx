@@ -730,33 +730,13 @@ export default function EaselShowcaseTemplate({
 
           <div className="ea-deck" aria-hidden="true">
             {DECK1_ASSETS.map((item, i) => {
-              if (item.kind === "tilawah") {
-                return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-indigo">
-                    <div className="ea-s1-top">
-                      <span className="ea-s1-pill">{item.badge}</span>
-                      <img src={asset(item.icon)} alt="" width={38} height={38} className="ea-s1-ico" />
-                    </div>
-                    <div className="ea-s1-copy">
-                      <b>{item.title}</b>
-                      <small>{item.sub}</small>
-                    </div>
-                    <div className="ea-s1-foot">
-                      <div className="ea-s1-bar"><i style={{ width: "72%" }} /></div>
-                      <span>{item.meta}</span>
-                    </div>
-                  </div>
-                )
-              }
               if (item.kind === "cutout") {
                 const bgCls =
                   item.theme === "periwinkle"
                     ? "ea-s1-periwinkle"
                     : item.theme === "sunburst"
                       ? "ea-s1-sunburst"
-                      : item.theme === "rose"
-                        ? "ea-s1-rose"
-                        : "ea-s1-mint"
+                      : "ea-s1-rose"
                 return (
                   <div key={item.path + "-" + i} ref={(el) => { deck.current[i] = el }} className={"ea-card ea-c1 " + bgCls}>
                     <img src={asset(item.path)} alt="" width={240} height={254} className={item.float ? "ea-s1-mcut" : "ea-s1-cut"} draggable={false} />
@@ -769,7 +749,7 @@ export default function EaselShowcaseTemplate({
               }
               if (item.kind === "features") {
                 return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-teal">
+                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-indigo">
                     <div className="ea-s1-top">
                       <span className="ea-s1-pill">{item.badge}</span>
                     </div>
@@ -802,6 +782,27 @@ export default function EaselShowcaseTemplate({
                       {item.chips.map((c) => (
                         <span key={c}>{c}</span>
                       ))}
+                    </div>
+                  </div>
+                )
+              }
+              if (item.kind === "showcase") {
+                const isMint = item.theme === "mint"
+                return (
+                  <div
+                    key={item.badge + "-" + i}
+                    ref={(el) => { deck.current[i] = el }}
+                    className={"ea-card ea-c1 ea-s1 " + (isMint ? "ea-s1-mint" : "ea-s1-teal")}
+                  >
+                    <div className="ea-s1-top">
+                      <span className={"ea-s1-pill " + (isMint ? "ea-s1-pill-ink" : "")}>{item.badge}</span>
+                    </div>
+                    <div className={"ea-s1-heroico " + (isMint ? "is-mint" : "")}>
+                      <img src={asset(item.icon)} alt="" width={60} height={60} className="ea-s1-bigico" />
+                    </div>
+                    <div className={"ea-s1-copy ea-s1-copy-sm " + (isMint ? "ea-s1-copydark" : "")}>
+                      <b>{item.title}</b>
+                      <small>{item.sub}</small>
                     </div>
                   </div>
                 )
@@ -1885,6 +1886,10 @@ const CSS =
   ".ea-s1-copy b{font-size:18px;font-weight:600;letter-spacing:-.025em;line-height:1.12}" +
   ".ea-s1-copy-sm b{font-size:15.5px}" +
   ".ea-s1-copy small{font-size:10.5px;color:rgba(255,255,255,.84);line-height:1.3}" +
+  ".ea-s1-copydark small{color:rgba(15,57,35,.82)}" +
+  ".ea-s1-heroico{width:84px;height:84px;border-radius:20px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.24);display:grid;place-items:center}" +
+  ".ea-s1-heroico.is-mint{background:rgba(255,255,255,.48);border-color:rgba(15,57,35,.12)}" +
+  ".ea-s1-bigico{width:58px!important;height:58px!important;object-fit:contain!important}" +
   ".ea-s1-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}" +
   ".ea-s1-tile{height:54px;border-radius:12px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.22);display:grid;place-items:center}" +
   ".ea-s1-timg{width:34px!important;height:34px!important;object-fit:contain!important}" +

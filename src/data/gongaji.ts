@@ -270,122 +270,71 @@ export const QUPEDULI_CAMPAIGNS: readonly QuPeduliCampaign[] = [
   },
 ]
 
-// 06-artikel-carousel: Artikel Islami & Panduan Qur'an (siap disambungkan ke API artikel)
-export type ArticleItem =
-  | {
-    readonly kind: "ui"
-    readonly variant: "indigo" | "teal" | "dark"
-    readonly badge: string
-    readonly big: string
-    readonly note: string
-    readonly icon: string
-    readonly title: string
-    readonly tag: string
-  }
-  | {
-    readonly kind: "tajwid"
-    readonly badge: string
-    readonly rules: readonly string[]
-    readonly note: string
-    readonly title: string
-    readonly tag: string
-  }
-  | {
-    readonly kind: "cutout"
-    readonly theme: "rose" | "gold"
-    readonly path: string
-    readonly title: string
-    readonly tag: string
-    readonly pill: string
-  }
-  | {
-    readonly kind: "levels"
-    readonly path: string
-    readonly levels: readonly string[]
-    readonly note: string
-    readonly title: string
-    readonly tag: string
-  }
-  | {
-    readonly kind: "photo"
-    readonly path: string
-    readonly title: string
-    readonly tag: string
-    readonly pill: string
-  }
+// 06-artikel-carousel: Artikel Islami dari Gongaji Public Article API
+export const PUBLIC_ARTICLE_API =
+  "https://gongaji-service-article-staging-m3gra3glsq-et.a.run.app/v1/public/article?limit=3"
 
-export const CAROUSEL_ITEMS: readonly ArticleItem[] = [
+export type ApiArticle = {
+  readonly article_uuid: string
+  readonly article_title: string
+  readonly article_excerpt: string
+  readonly article_image_url: string
+  readonly article_author: string
+  readonly article_category: string
+  readonly article_published_at: string
+  readonly article_total_view: number
+  readonly article_total_comment: number
+}
+
+export const cleanArticleExcerpt = (raw: string) => raw.replace(/\s+/g, " ").trim()
+
+export const formatArticleDate = (iso: string) => {
+  const dt = new Date(iso)
+  if (Number.isNaN(dt.getTime())) return ""
+  return new Intl.DateTimeFormat("id-ID", { day: "numeric", month: "short", year: "numeric" }).format(dt)
+}
+
+export const DEFAULT_ARTICLES: readonly ApiArticle[] = [
   {
-    kind: "ui",
-    variant: "indigo",
-    badge: "TILAWAH · 4 MNT",
-    big: "1 Hal / Hari",
-    note: "Menjaga istiqamah di kesibukan",
-    icon: "06-artikel-carousel/icon-tafsir.webp",
-    title: "Cara Konsisten Tilawah Satu Halaman Sehari",
-    tag: "Artikel · Tilawah",
+    article_uuid: "34789f0c-dd6b-4cbe-8308-c40afdd8a6b9",
+    article_title: "Untung Besar di Malam Lailatul Qadar",
+    article_excerpt:
+      "Bagaimana jika ada satu malam dalam hidup kita yang nilainya lebih berharga daripada delapan puluh tiga tahun yang kita habiskan untuk ibadah? Jika ada satu malam yang mampu menghapus dosa-dosa masa lalu hanya dengan beberapa rekaat salat dan doa yang tulus, apakah kita akan melewatkannya begitu saja?",
+    article_image_url:
+      "https://storage.googleapis.com/gongaji-assets/feature-article/article/34789f0c-dd6b-4cbe-8308-c40afdd8a6b9/c72326fd-02eb-4430-a8c2-a8587e70f7b9.webp",
+    article_author: "Muhammad Idris, Lc.",
+    article_category: "Ramadan",
+    article_published_at: "2026-03-04T00:00:00+07:00",
+    article_total_view: 909,
+    article_total_comment: 16,
   },
   {
-    kind: "photo",
-    path: "06-artikel-carousel/01-belajar-pemula.webp",
-    title: "Belajar Ngaji dari Nol untuk Pemula Dewasa",
-    tag: "Artikel · Panduan",
-    pill: "5 mnt baca",
+    article_uuid: "e7b09aa4-0fea-4e60-8f15-a18eb0d82bf1",
+    article_title: "Etika “Sharenting” (Berbagi Konten Anak di Media Sosial) dalam Islam",
+    article_excerpt:
+      "Di era digital, fenomena “sharenting” yaitu berbagi konten anak telah menjadi praktik umum. Orang tua dengan mudah mengunggah foto, video, dan cerita tentang anak mereka ke media sosial, mulai dari momen lucu, prestasi, hingga kondisi keseharian.",
+    article_image_url:
+      "https://storage.googleapis.com/gongaji-assets/feature-article/article/e7b09aa4-0fea-4e60-8f15-a18eb0d82bf1/4942baf8-ea75-4ea6-9b8f-70e22425b5f3.webp",
+    article_author: "Junaidi, S.H., M.H.",
+    article_category: "Fikih, Fikih Keluarga",
+    article_published_at: "2026-03-03T00:00:00+07:00",
+    article_total_view: 403,
+    article_total_comment: 2,
   },
   {
-    kind: "tajwid",
-    badge: "TAJWID · 4 MNT",
-    rules: ["Idzhar", "Idgham", "Iqlab", "Ikhfa"],
-    note: "Hukum Nun & Mim Mati",
-    title: "Tajwid Dasar: Mengenal Nun & Mim Mati",
-    tag: "Artikel · Tajwid",
-  },
-  {
-    kind: "ui",
-    variant: "dark",
-    badge: "HAFALAN · 6 MNT",
-    big: "Metode Tikrar",
-    note: "Ulangi ayat bertahap agar melekat",
-    icon: "06-artikel-carousel/icon-dzikir.webp",
-    title: "Teknik Tikrar agar Hafalan Tidak Mudah Hilang",
-    tag: "Artikel · Hafalan",
-  },
-  {
-    kind: "cutout",
-    theme: "rose",
-    path: "06-artikel-carousel/08-murottal-qari.webp",
-    title: "Menyimak Murottal untuk Melatih Makhraj",
-    tag: "Artikel · Murottal",
-    pill: "11 Qari · 3 mnt",
-  },
-  {
-    kind: "ui",
-    variant: "teal",
-    badge: "TARGET · 5 MNT",
-    big: "Khatam 30 Hari",
-    note: "Panduan membagi 1 juz setiap hari",
-    icon: "06-artikel-carousel/icon-jadwal-sholat.webp",
-    title: "Strategi Khatam 30 Hari Bagi Pekerja Sibuk",
-    tag: "Artikel · Tilawah",
-  },
-  {
-    kind: "levels",
-    path: "06-artikel-carousel/07-jenjang-qursus.webp",
-    levels: ["P1", "P2", "P3", "M1", "M2"],
-    note: "Alur belajar Pemula 1 – Mahir 2",
-    title: "Mengenal 5 Jenjang Belajar di Qursus",
-    tag: "Artikel · Qursus",
-  },
-  {
-    kind: "photo",
-    path: "06-artikel-carousel/04-mushaf-garut.webp",
-    title: "Keutamaan Wakaf Mushaf bagi Santri Pelosok",
-    tag: "Artikel · Inspirasi",
-    pill: "4 mnt baca",
+    article_uuid: "f4f02544-f52e-4d95-a3e6-10929385b5ce",
+    article_title: "Tafsir Surah An-Naba (Bag. 4): Betapa Indahnya Kenikmatan Surga",
+    article_excerpt:
+      "Terkait tadabbur dan tafsir surah An-Naba, kita sekarang memasuki bagian yang keempat. Ayat ke 31–36 menjelaskan tentang berbagai kenikmatan surga yang Allah janjikan kepada hamba-Nya yang taat menjalankan perintah dan menjauhi larangan.",
+    article_image_url:
+      "https://storage.googleapis.com/gongaji-assets/feature-article/article/f4f02544-f52e-4d95-a3e6-10929385b5ce/8595d928-a295-480d-8ef9-6e9d6a4225c2.webp",
+    article_author: "Dany Indra Permana, S.Si., M.H.",
+    article_category: "Al-Qur'an",
+    article_published_at: "2026-03-02T00:00:00+07:00",
+    article_total_view: 630,
+    article_total_comment: 0,
   },
 ]
-
-export const ARTICLES = CAROUSEL_ITEMS
 
 // 07-mentor-wall: Stage 3 portrait wall (5x3 grid, center index 7 empty for shrinking banner)
 export const WALL_ASSETS = [

@@ -4,17 +4,20 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 import {
   BAND_BOT_ASSETS,
   BAND_TOP_ASSETS,
-  CAROUSEL_ITEMS,
+  cleanArticleExcerpt,
   DECK1_ASSETS,
   DECK2_CARDS,
+  DEFAULT_ARTICLES,
+  formatArticleDate,
   GATEWAY_SLIDES,
   GONGAJI_LINKS,
   GONGAJI_LOGO,
   NAV_ITEMS,
+  PUBLIC_ARTICLE_API,
   QUPEDULI_CAMPAIGNS,
   TRUST_ITEMS,
   WALL_ASSETS,
-  type ArticleItem,
+  type ApiArticle,
   type QuPeduliCampaign,
 } from "@/data/gongaji"
 
@@ -286,8 +289,8 @@ export interface EaselShowcaseTemplateProps {
   assetBase?: string
   /** optional QuPeduli campaigns from API; defaults to local sample data */
   campaigns?: readonly QuPeduliCampaign[]
-  /** optional articles from API; defaults to local article cards */
-  articles?: readonly ArticleItem[]
+  /** optional articles override; by default fetches live from Gongaji public article API */
+  articles?: readonly ApiArticle[]
   className?: string
   style?: CSSProperties
 }
@@ -297,7 +300,7 @@ export default function EaselShowcaseTemplate({
   email = GONGAJI_LINKS.email,
   assetBase = "/assets/",
   campaigns = QUPEDULI_CAMPAIGNS,
-  articles = CAROUSEL_ITEMS,
+  articles,
   className,
   style,
 }: EaselShowcaseTemplateProps) {
@@ -333,10 +336,32 @@ export default function EaselShowcaseTemplate({
 
   const [slide, setSlide] = useState(0)
   const [watchVideo, setWatchVideo] = useState(true)
-  const [arc, setArc] = useState(0)
+  const [liveArticles, setLiveArticles] = useState<readonly ApiArticle[]>(articles ?? DEFAULT_ARTICLES)
+  const [articleTotal, setArticleTotal] = useState<number>(76)
   const [liked, setLiked] = useState(false)
   const [dark, setDark] = useState(false)
   const gateVideoRef = useRef(null as HTMLVideoElement | null)
+
+  useEffect(() => {
+    if (articles) {
+      setLiveArticles(articles)
+      return
+    }
+    const ctrl = new AbortController()
+    fetch(PUBLIC_ARTICLE_API, { signal: ctrl.signal })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((json: { status?: boolean; data?: { data?: ApiArticle[]; total?: number } } | null) => {
+        const rows = json?.data?.data
+        if (Array.isArray(rows) && rows.length > 0) {
+          setLiveArticles(rows)
+          if (typeof json?.data?.total === "number") setArticleTotal(json.data.total)
+        }
+      })
+      .catch(() => {
+        // fallback cleanly ke DEFAULT_ARTICLES jika jaringan/API tidak tersedia
+      })
+    return () => ctrl.abort()
+  }, [articles])
 
   useEffect(() => {
     const vid = gateVideoRef.current
@@ -1488,99 +1513,60 @@ export default function EaselShowcaseTemplate({
                           </div>
                         </section>
 
-                        {/* ---------- Artikel & wawasan (API-ready carousel) ---------- */}
-                        <section id="artikel" className="ea-sec ea-market" aria-label="Artikel dan Wawasan Gongaji">
+                        {/* ---------- Artikel & wawasan (live API) ---------- */}
+                        <section id="artikel" className="ea-sec ea-artikel" aria-label="Artikel dan Wawasan Gongaji">
                           <div className="ea-wrap">
-                            <div className="ea-market-grid">
-                              <div data-rv className="ea-market-head">
+                            <div className="ea-art-head" data-rv>
+                              <div>
                                 <p className="ea-eyebrow">
                                   <Words parts={["ARTIKEL &", ["WAWASAN", "ea-purplew"]]} />
                                 </p>
                                 <h2 className="ea-h2">
                                   <Words parts={["Artikel Pilihan &", "\n", "Panduan Qur'an"]} at={2} />
                                 </h2>
-                                <p className="ea-small ea-wrapm">
-                                  <Words parts={["Bacaan ringan seputar tajwid, tilawah harian, metode hafalan, dan kisah kebaikan bersama Al-Qur'an."]} at={5} />
+                              </div>
+                              <div className="ea-art-head-r">
+                                <p className="ea-small">
+                                  Bacaan ringan seputar Ramadan, fikih keluarga, dan tadabbur Al-Qur'an langsung dari redaksi Gongaji.
                                 </p>
-                                <div className="ea-mini-arrows ea-arc-arrows">
-                                  <button type="button" aria-label="Artikel sebelumnya" onClick={() => setArc((a) => Math.max(0, a - 1))} disabled={arc === 0}>
-                                    <Svg d={ICON.left} size={11} stroke={2} />
-                                  </button>
-                                  <button
-                                    type="button"
-                                    aria-label="Artikel berikutnya"
-                                    onClick={() => setArc((a) => Math.min(Math.max(0, articles.length - 4), a + 1))}
-                                    disabled={arc >= articles.length - 4}
-                                  >
-                                    <Svg d={ICON.right} size={11} stroke={2} />
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="ea-market-right" data-rv>
-                                <a className="ea-viewall" href="#download">
-                                  Baca di Qu-Lib
+                                <a className="ea-viewall ea-art-cta" href="#download">
+                                  Baca di Gongaji App ({articleTotal}+ Artikel)
                                 </a>
-                                <div className="ea-rail">
-                                  <div className="ea-rail-track" style={{ ["--ci" as string]: arc } as CSSProperties}>
-                                    {
-                                      articles.map((item, i) => (
-                                        <figure key={item.title} className="ea-arc" style={{ ["--i" as string]: i } as CSSProperties}>
-                                          {item.kind === "ui" ? (
-                                            <div className={"ea-arc-card " + (item.variant === "indigo" ? "ea-arc-indigo" : item.variant === "dark" ? "ea-arc-dark" : "ea-arc-teal")}>
-                                              <span className="ea-arc-top">
-                                                <small>{item.badge}</small>
-                                                <img src={asset(item.icon)} alt="" width={32} height={32} className="ea-arc-ico" />
-                                              </span>
-                                              <b>{item.big}</b>
-                                              <span className="ea-arc-note">{item.note}</span>
-                                            </div>
-                                          ) : item.kind === "tajwid" ? (
-                                            <div className="ea-arc-card ea-arc-tajwid">
-                                              <small className="ea-arc-kicker">{item.badge}</small>
-                                              <span className="ea-arc-rules">
-                                                {item.rules.map((r) => (
-                                                  <em key={r}>{r}</em>
-                                                ))}
-                                              </span>
-                                              <span className="ea-arc-note">{item.note}</span>
-                                            </div>
-                                          ) : item.kind === "cutout" ? (
-                                            <div className={"ea-arc-card " + (item.theme === "rose" ? "ea-arc-rose" : "ea-arc-gold")}>
-                                              <img src={asset(item.path)} alt={item.title} width={220} height={220} className="ea-arc-cut" />
-                                              <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
-                                            </div>
-                                          ) : item.kind === "levels" ? (
-                                            <div className="ea-arc-card ea-arc-levels">
-                                              <span className="ea-arc-mini-photo">
-                                                <img src={asset(item.path)} alt={item.title} width={220} height={115} />
-                                              </span>
-                                              <span className="ea-arc-lvl-row">
-                                                {item.levels.map((lv, li) => (
-                                                  <em key={lv} className={li === 1 ? "on" : li === 0 ? "done" : ""}>
-                                                    {lv}
-                                                  </em>
-                                                ))}
-                                              </span>
-                                              <span className="ea-arc-note">{item.note}</span>
-                                            </div>
-                                          ) : (
-                                            <div className="ea-arc-photo">
-                                              <img src={asset(item.path)} alt={item.title} width={220} height={220} />
-                                              <span className="ea-arc-pill ea-arc-pill-bot">{item.pill}</span>
-                                            </div>
-                                          )}
-                                          <figcaption>
-                                            <span className="ea-arc-tag">{item.tag}</span>
-                                            {item.title}
-                                          </figcaption>
-                                        </figure>
-                                      ))}
-                                  </div>
-                                </div>
-                                <div className="ea-progress" aria-hidden="true">
-                                  <i style={{ ["--ci" as string]: arc } as CSSProperties} />
-                                </div>
                               </div>
+                            </div>
+                            <div className="ea-art-grid" data-rv>
+                              {liveArticles.map((item) => (
+                                <article key={item.article_uuid} className="ea-art-card">
+                                  <div className="ea-art-media">
+                                    <img
+                                      src={item.article_image_url}
+                                      alt={item.article_title}
+                                      width={400}
+                                      height={250}
+                                      loading="lazy"
+                                      onError={(e) => {
+                                        if (!e.currentTarget.dataset.fb) {
+                                          e.currentTarget.dataset.fb = "1"
+                                          e.currentTarget.src = asset("06-artikel-carousel/01-belajar-pemula.webp")
+                                        }
+                                      }}
+                                    />
+                                    <span className="ea-art-cat">{item.article_category.split(",")[0].trim()}</span>
+                                  </div>
+                                  <div className="ea-art-body">
+                                    <div className="ea-art-meta">
+                                      <span>{formatArticleDate(item.article_published_at)}</span>
+                                      <span>{item.article_total_view.toLocaleString("id-ID")} dilihat</span>
+                                    </div>
+                                    <h3>{item.article_title}</h3>
+                                    <p>{cleanArticleExcerpt(item.article_excerpt)}</p>
+                                    <div className="ea-art-foot">
+                                      <span>{item.article_author}</span>
+                                      {item.article_total_comment > 0 && <small>{item.article_total_comment} komentar</small>}
+                                    </div>
+                                  </div>
+                                </article>
+                              ))}
                             </div>
                           </div>
                         </section>
@@ -2124,57 +2110,23 @@ export default function EaselShowcaseTemplate({
   ".ea-qup-bar i{display:block;height:100%;border-radius:999px;background:#5145b9}" +
   ".ea-qup-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:var(--mute)}" +
   ".ea-qup-foot b{color:var(--ink);font-weight:600}" +
-  // archive / articles carousel
-  ".ea-market{padding:clamp(60px,10vh,110px) 0}" +
-  ".ea-market-grid{display:grid;grid-template-columns:minmax(0,.27fr) minmax(0,.73fr);gap:24px;align-items:start}" +
-  ".ea-market-head{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr)}" +
-  ".ea-wrapm{max-width:250px;margin-top:16px}" +
-  ".ea-arc-arrows{margin-top:clamp(40px,17vh,150px)}" +
-  ".ea-market-right{grid-column:2;margin-top:-50px;position:relative;opacity:0;transition:opacity .8s " + EASE + "}" +
-  ".ea-market-right.ea-in{opacity:1}" +
-  ".ea-viewall{position:absolute;right:0;top:-78px;height:26px;padding:0 16px;border-radius:999px;background:var(--blue);color:#fff;font-size:10.5px;font-weight:500;display:inline-flex;align-items:center}" +
-  ".ea-rail{overflow:hidden}" +
-  ".ea-rail-track{display:flex;gap:16px;transform:translate3d(calc(var(--ci) * (-1 * (var(--cw) + 16px))),0,0);transition:transform .8s " + EASE + ";--cw:clamp(140px,15.3vw,220px)}" +
-  ".ea-arc{flex:none;width:var(--cw)}" +
-  ".ea-arc>div{position:relative;width:var(--cw);height:var(--cw);border-radius:12px;overflow:hidden;opacity:0;filter:blur(10px);transform:scale(.94);transition:opacity .8s " + EASE + ",filter .8s " + EASE + ",transform .8s " + EASE + ";transition-delay:calc(var(--i) * 90ms)}" +
-  ".ea-in .ea-arc>div{opacity:1;filter:blur(0);transform:none}" +
-  ".ea-arc-photo>img{width:100%;height:100%;object-fit:cover;transition:transform .8s " + EASE + "}" +
-  ".ea-arc-card{padding:14px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;background:var(--card);border:1px solid var(--line)}" +
-  ".ea-arc-indigo{background:linear-gradient(150deg,#3a3088,#5145b9);color:#fff;border-color:transparent}" +
-  ".ea-arc-teal{background:linear-gradient(150deg,#0fa39d,#06767d);color:#fff;border-color:transparent}" +
-  ".ea-arc-dark{background:radial-gradient(circle at 80% 18%,rgba(124,113,232,.36),transparent 54%),#171528;color:#fff;border-color:transparent}" +
-  ".ea-arc-tajwid{background:var(--card);color:var(--ink)}" +
-  ".ea-arc-gold{background:radial-gradient(circle at 55% 32%,#ffec94,#f8be24);color:#141414;border-color:transparent}" +
-  ".ea-arc-rose{background:radial-gradient(circle at 55% 32%,#ff9bb0,#da4d6e);color:#fff;border-color:transparent}" +
-  ".ea-arc-levels{padding:10px;background:var(--card);color:var(--ink)}" +
-  ".ea-arc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px}" +
-  ".ea-arc-top small,.ea-arc-kicker{font-size:9px;font-weight:700;letter-spacing:.08em;padding:3px 7px;border-radius:999px;background:rgba(255,255,255,.18);color:inherit;align-self:flex-start}" +
-  ".ea-arc-kicker{background:rgba(81,69,185,.12);color:#5145b9}" +
-  ".dark .ea-arc-kicker,.ea-dark .ea-arc-kicker{background:rgba(171,166,222,.16);color:#aba6de}" +
-  ".ea-arc-ico{width:32px;height:32px;object-fit:contain;flex:none}" +
-  ".ea-arc-card b{font-size:clamp(16px,1.45vw,21px);font-weight:600;letter-spacing:-.025em;line-height:1.1}" +
-  ".ea-arc-note{font-size:10px;opacity:.82;line-height:1.3}" +
-  ".ea-arc-rules{display:grid;grid-template-columns:1fr 1fr;gap:6px}" +
-  ".ea-arc-rules em{font-style:normal;font-size:11px;font-weight:600;padding:7px 6px;border-radius:8px;text-align:center;background:var(--bg);border:1px solid var(--line)}" +
-  ".ea-arc-cut{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:86%;height:88%;object-fit:contain;object-position:50% 100%;transition:transform .8s " + EASE + "}" +
-  ".ea-arc-rose .ea-arc-cut{bottom:18px;height:78%;object-position:50% 50%}" +
-  ".ea-arc-pill{height:21px;padding:0 8px;border-radius:999px;background:rgba(18,17,24,.82);backdrop-filter:blur(6px);color:#fff;font-size:9.5px;font-weight:600;display:inline-flex;align-items:center;white-space:nowrap}" +
-  ".ea-arc-pill-bot{position:absolute;left:10px;bottom:10px;z-index:2}" +
-  ".ea-arc-barbox{position:absolute;left:10px;right:10px;bottom:10px;padding:7px 9px;border-radius:9px;background:rgba(18,17,24,.84);backdrop-filter:blur(8px);color:#fff;display:flex;flex-direction:column;gap:4px}" +
-  ".ea-arc-barbox small{font-size:9.5px;font-weight:600}" +
-  ".ea-arc-barbox i{height:4px;border-radius:999px;background:rgba(255,255,255,.24);overflow:hidden;display:block}" +
-  ".ea-arc-barbox b{display:block;height:100%;border-radius:999px;background:#ffda03}" +
-  ".ea-arc-mini-photo{display:block;width:100%;height:52%;border-radius:8px;overflow:hidden}" +
-  ".ea-arc-mini-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .8s " + EASE + "}" +
-  ".ea-arc-lvl-row{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}" +
-  ".ea-arc-lvl-row em{font-style:normal;font-size:9.5px;font-weight:700;padding:5px 0;border-radius:6px;text-align:center;background:var(--bg);color:var(--mute)}" +
-  ".ea-arc-lvl-row em.done{background:#a6e8c1;color:#0f5b38}" +
-  ".ea-arc-lvl-row em.on{background:#5145b9;color:#fff}" +
-  ".ea-arc figcaption{margin-top:10px;font-size:12px;font-weight:600;letter-spacing:-.01em;display:flex;flex-direction:column;gap:2px}" +
-  ".ea-arc-tag{font-size:10px;font-weight:500;color:var(--blue);text-transform:uppercase;letter-spacing:.08em}" +
-  ".dark .ea-arc-tag,.ea-dark .ea-arc-tag{color:#aba6de}" +
-  ".ea-progress{position:relative;height:2px;margin-top:22px;width:calc(var(--cw,clamp(140px,15.3vw,220px)))}" +
-  ".ea-progress i{position:absolute;left:0;top:0;height:2px;width:clamp(140px,15.3vw,220px);background:var(--ink);transform:translate3d(calc(var(--ci) * 25%),0,0);transition:transform .8s " + EASE + "}" +
+  // live articles section (3-column editorial grid)
+  ".ea-artikel{padding:clamp(60px,10vh,110px) 0}" +
+  ".ea-art-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}" +
+  ".ea-art-head-r{display:flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:360px}" +
+  ".ea-art-cta{position:static;height:30px;padding:0 16px;border-radius:999px;background:var(--blue);color:#fff;font-size:11px;font-weight:500;display:inline-flex;align-items:center}" +
+  ".ea-art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
+  ".ea-art-grid.ea-in{opacity:1;transform:none}" +
+  ".ea-art-card{border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;transition:transform .45s " + EASE + "}" +
+  ".ea-art-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--foot)}" +
+  ".ea-art-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s " + EASE + "}" +
+  ".ea-art-cat{position:absolute;left:12px;top:12px;height:22px;padding:0 10px;border-radius:999px;background:rgba(18,17,24,.82);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center}" +
+  ".ea-art-body{padding:18px;flex:1;display:flex;flex-direction:column;gap:8px}" +
+  ".ea-art-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10.5px;color:var(--mute)}" +
+  ".ea-art-body h3{font-size:15.5px;font-weight:600;line-height:1.3;letter-spacing:-.015em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}" +
+  ".ea-art-body p{font-size:12px;line-height:1.55;color:var(--mute);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}" +
+  ".ea-art-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:500;color:var(--ink)}" +
+  ".ea-art-foot small{font-size:10.5px;font-weight:400;color:var(--mute)}" +
   // stage 3
   ".ea-lead{position:absolute;left:50%;top:22%;width:min(640px,90vw);display:flex;flex-direction:column;align-items:center;gap:14px;z-index:3}" +
   ".ea-lead .ea-eyebrow{margin-bottom:0}" +
@@ -2278,7 +2230,8 @@ export default function EaselShowcaseTemplate({
   ".ea-link:hover::after,.ea-ghost:hover::after,.ea-textlink:hover::after{transform:scaleX(1);transform-origin:0 50%}" +
   ".ea-round:hover,.ea-arrows button:hover{transform:scale(1.1)}" +
   ".ea-btn:hover,.ea-store-badge:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}" +
-  ".ea-arc:hover .ea-arc-photo>img,.ea-arc:hover .ea-arc-mini-photo>img,.ea-photo:hover>img{transform:scale(1.05)}" +
+  ".ea-art-card:hover .ea-art-media img,.ea-photo:hover>img{transform:scale(1.05)}" +
+  ".ea-art-card:hover{transform:translate3d(0,-4px,0)}" +
   ".ea-meet:hover .ea-duo-phones,.ea-arch:hover .ea-qursus-ui{transform:translate3d(0,-4px,0)}" +
   ".ea-b1:hover .ea-pile .ea-pcard:nth-child(1){transform:translate(-80%,-44%) rotate(-18deg)}" +
   ".ea-b1:hover .ea-pile .ea-pcard:nth-child(3){transform:translate(-18%,-58%) rotate(14deg)}" +
@@ -2287,7 +2240,7 @@ export default function EaselShowcaseTemplate({
   ".ea-av:hover{transform:translate3d(0,calc(var(--y) - 6px),0) scale(1.08);transition:transform .35s " + EASE + "}" +
   "}" +
   // tablet / phone
-  "@media (max-width:1023px){.ea-links{display:none}.ea-qup-grid{grid-template-columns:1fr}.ea-market-grid{grid-template-columns:1fr}.ea-market-right{grid-column:1;margin-top:0}.ea-viewall{position:static;margin-bottom:16px}.ea-price-grid{grid-template-columns:1fr}.ea-foot-grid{grid-template-columns:1fr 1fr}.ea-copy{position:static;grid-column:1/-1}}" +
+  "@media (max-width:1023px){.ea-links{display:none}.ea-qup-grid{grid-template-columns:1fr}.ea-art-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ea-price-grid{grid-template-columns:1fr}.ea-foot-grid{grid-template-columns:1fr 1fr}.ea-copy{position:static;grid-column:1/-1}}" +
   "@media (max-width:767px){" +
   ".ea-nav{height:76px;margin-bottom:-76px;padding-top:16px}" +
   ".ea-show{top:84px}.ea-show .ea-btns{margin-top:18px}.ea-wrapp{margin-top:14px}" +
@@ -2298,6 +2251,7 @@ export default function EaselShowcaseTemplate({
   ".ea-folder-tab{font-size:12px}.ea-folder-bar{top:40px;height:46px;font-size:12px}" +
   ".ea-bento{grid-template-columns:1fr}.ea-col-r{padding-top:0}" +
   ".ea-qup-hero h3,.ea-qup-hero p{max-width:100%}.ea-qup-donor{opacity:.25}" +
+  ".ea-art-grid{grid-template-columns:1fr}" +
   ".ea-duo-grid{grid-template-columns:1fr}" +
   ".ea-plans{flex-direction:column;align-items:stretch;gap:12px;min-height:0}.ea-plan,.ea-p2{max-width:none;aspect-ratio:auto;min-height:132px;transform:none!important}" +
   ".ea-ball{width:48px;height:48px}.ea-ball svg{width:24px;height:24px}" +
@@ -2306,9 +2260,9 @@ export default function EaselShowcaseTemplate({
   "}" +
   // reduced motion: no time-based motion; scroll-linked stages follow the scrollbar only
   "@media (prefers-reduced-motion:reduce){" +
-  ".ea-w,.ea-late,.ea-fade,.ea-tag,.ea-doodle,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-banner,.ea-banner img,.ea-arc>div,.ea-plan,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-rail-track,.ea-progress i{transition:none!important}" +
+  ".ea-w,.ea-late,.ea-fade,.ea-tag,.ea-doodle,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-art-grid,.ea-banner,.ea-banner img,.ea-plan,.ea-meet,.ea-arch,.ea-plans{transition:none!important}" +
   ".ea-w{opacity:1;filter:none;transform:none}" +
-  ".ea-late,.ea-fade,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-banner,.ea-meet,.ea-arch,.ea-market-right,.ea-plans,.ea-arc>div{opacity:1;filter:none;transform:none}" +
+  ".ea-late,.ea-fade,.ea-bcard,.ea-qup-hero,.ea-qup-list,.ea-art-grid,.ea-banner,.ea-meet,.ea-arch,.ea-plans{opacity:1;filter:none;transform:none}" +
   ".ea-logos-track{animation:none}" +
   "}" +
   ".ea-reduce .ea-w{transition:none;opacity:1;filter:none;transform:none}"

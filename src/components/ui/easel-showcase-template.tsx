@@ -463,7 +463,7 @@ export default function EaselShowcaseTemplate({
     if (!watchVideo || !vid) return
     vid.muted = true
     vid.play().catch(() => { })
-  }, [watchVideo])
+  }, [watchVideo, slide])
 
   useEffect(() => {
     const root = rootRef.current
@@ -1080,17 +1080,19 @@ export default function EaselShowcaseTemplate({
             <span className="ea-tag ea-ink ea-pop ea-t5">50rb+ Download</span>
           </div>
           <div className="ea-banner" data-rv>
-            {watchVideo ? (
+            {watchVideo && activeSlide.video ? (
               <video
+                key={activeSlide.video}
                 ref={gateVideoRef}
-                src={asset("02-gateway-banner/hero-video.mp4")}
-                poster={asset("02-gateway-banner/slide-1-gongaji-app.webp")}
+                src={asset(activeSlide.video)}
+                poster={asset(activeSlide.path)}
                 autoPlay
                 loop
                 muted
                 playsInline
                 preload="auto"
                 className="ea-banner-vid"
+                style={{ objectPosition: slide === 0 ? "50% 50%" : "50% 25%" }}
               />
             ) : (
               GATEWAY_SLIDES.map((item, i) => (
@@ -1106,27 +1108,52 @@ export default function EaselShowcaseTemplate({
               ))
             )}
             <div className="ea-banner-scrim" aria-hidden="true" />
+            {!activeSlide.video && watchVideo && (
+              <div className="ea-vid-empty" role="status">
+                <span className="ea-vid-empty-ico" aria-hidden="true">
+                  <Svg d={ICON.play} size={14} fill="currentColor" stroke={0} />
+                </span>
+                <b>Video DonasiQu Segera Hadir</b>
+                <small>Dokumentasi program sedekah &amp; wakaf sedang dipersiapkan.</small>
+                <div className="ea-vid-empty-acts">
+                  <button type="button" onClick={() => setWatchVideo(false)}>
+                    Lihat Poster
+                  </button>
+                  <a href="#donasiqu">Program DonasiQu →</a>
+                </div>
+              </div>
+            )}
             <span className="ea-switch" aria-hidden="true">
               <i />
               <i />
             </span>
             <span className="ea-slide-meta">
-              <b>{watchVideo ? "Video Ekosistem Gongaji" : activeSlide.badge}</b>
-              <small>{watchVideo ? "Membaca, belajar, dan berbagi bersama Al-Qur’an" : activeSlide.caption}</small>
+              <b>{activeSlide.badge}</b>
+              <small>{activeSlide.caption}</small>
             </span>
             <span className="ea-more" aria-hidden="true">
               <Svg d={ICON.dots} size={18} stroke={3} />
             </span>
-            <button type="button" className="ea-watch" onClick={() => setWatchVideo((v) => !v)} aria-pressed={watchVideo}>
-              <Svg d={watchVideo ? ICON.pause : ICON.play} size={9} fill="currentColor" stroke={0} />
-              {watchVideo ? "Tutup Video" : "Tonton Video"}
-            </button>
+            {activeSlide.video ? (
+              <button type="button" className="ea-watch" onClick={() => setWatchVideo((v) => !v)} aria-pressed={watchVideo}>
+                <Svg d={watchVideo ? ICON.pause : ICON.play} size={9} fill="currentColor" stroke={0} />
+                {watchVideo ? "Tutup Video" : "Tonton Video"}
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="ea-watch is-empty"
+                onClick={() => setWatchVideo((v) => !v)}
+                aria-pressed={watchVideo}
+              >
+                {watchVideo ? "Tutup Info Video" : "Video Belum Tersedia"}
+              </button>
+            )}
             <div className="ea-arrows">
               <button
                 type="button"
                 aria-label="Sorotan sebelumnya"
                 onClick={() => {
-                  setWatchVideo(false)
                   setSlide((s) => (s + GATEWAY_SLIDES.length - 1) % GATEWAY_SLIDES.length)
                 }}
               >
@@ -1136,7 +1163,6 @@ export default function EaselShowcaseTemplate({
                 type="button"
                 aria-label="Sorotan berikutnya"
                 onClick={() => {
-                  setWatchVideo(false)
                   setSlide((s) => (s + 1) % GATEWAY_SLIDES.length)
                 }}
               >
@@ -2178,6 +2204,15 @@ const CSS =
   ".ea-slide-meta small{font-size:12px;color:rgba(255,255,255,.8)}" +
   ".ea-more{position:absolute;right:22px;top:16px;color:#fff;opacity:.8;z-index:2}" +
   ".ea-watch{position:absolute;left:24px;bottom:22px;z-index:2;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 16px;border-radius:999px;background:#fff;color:#141414;font-size:12.5px;font-weight:500}" +
+  ".ea-watch.is-empty{background:rgba(255,255,255,.22);color:#fff;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.28)}" +
+  ".ea-vid-empty{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:2;width:min(340px,calc(100% - 40px));padding:18px 20px;border-radius:16px;background:rgba(18,17,24,.78);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.16);color:#fff;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}" +
+  ".ea-vid-empty-ico{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);color:#e6fa6a;display:grid;place-items:center;margin-bottom:2px}" +
+  ".ea-vid-empty b{font-size:14px;font-weight:600;letter-spacing:-.01em}" +
+  ".ea-vid-empty small{font-size:11.5px;line-height:1.4;color:rgba(255,255,255,.78)}" +
+  ".ea-vid-empty-acts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:6px}" +
+  ".ea-vid-empty-acts button,.ea-vid-empty-acts a{height:28px;padding:0 12px;border-radius:999px;font-size:11px;font-weight:600;display:inline-flex;align-items:center}" +
+  ".ea-vid-empty-acts button{background:rgba(255,255,255,.16);color:#fff}" +
+  ".ea-vid-empty-acts a{background:#fff;color:#141414}" +
   ".ea-arrows{position:absolute;right:22px;bottom:20px;z-index:2;display:flex;gap:6px}" +
   ".ea-arrows button{width:36px;height:36px;border-radius:50%;background:#fff;color:#141414;display:grid;place-items:center;transition:transform .3s " + EASE + "}" +
   // trusted

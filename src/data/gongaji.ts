@@ -98,22 +98,25 @@ export const DECK1_ASSETS = [
   },
 ] as const
 
-// 02-gateway-banner: Featured ecosystem slides & video
+// 02-gateway-banner: Featured ecosystem slides & video per pillar
 export const GATEWAY_SLIDES = [
   {
     path: "02-gateway-banner/slide-1-gongaji-app.webp",
+    video: "02-gateway-banner/gongaji-app-video.mp4",
     alt: "Gongaji App — teman membangun kebiasaan bersama Al-Qur'an",
     badge: "01 · Gongaji App",
     caption: "Tilawah harian, murottal, & 25+ fitur ibadah",
   },
   {
     path: "02-gateway-banner/slide-2-qursus.webp",
+    video: "02-gateway-banner/hero-video.mp4",
     alt: "Qursus by Gongaji — belajar mengaji online bersama pengajar",
     badge: "02 · Qursus",
     caption: "Kelas grup kecil 5–8 orang, Pemula hingga Mahir",
   },
   {
     path: "02-gateway-banner/slide-3-qupeduli.webp",
+    video: null,
     alt: "DonasiQu by Gongaji — program sedekah dan wakaf transparan",
     badge: "03 · DonasiQu",
     caption: "Donasi & wakaf transparan bersama Qubba Foundation",

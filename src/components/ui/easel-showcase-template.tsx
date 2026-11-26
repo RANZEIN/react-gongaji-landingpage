@@ -1425,32 +1425,32 @@ export default function EaselShowcaseTemplate({
         </div>
       </section>
 
-      {/* ---------- Gongaji App fitur bento ---------- */}
-      <section id="fitur" className="ea-sec ea-story" aria-label="Fitur Utama Gongaji App">
+      {/* ---------- Ekosistem Gongaji: App, Qursus & DonasiQu ---------- */}
+      <section id="fitur" className="ea-sec ea-story" aria-label="Ekosistem Gongaji: Go Ngaji, Qursus, dan DonasiQu">
         <div className="ea-wrap">
           <div data-rv className="ea-center-head">
             <p className="ea-eyebrow">
-              <Words parts={["FITUR UNGGULAN", ["GONGAJI APP", "ea-bluew"]]} />
+              <Words parts={["EKOSISTEM", ["GONGAJI", "ea-bluew"]]} />
             </p>
             <h2 className="ea-h2 ea-center">
-              <Words parts={["Semua kebutuhan ibadah", "\n", "dalam genggaman"]} at={3} />
+              <Words parts={["Go Ngaji, Qursus,", "\n", "dan DonasiQu"]} at={3} />
             </h2>
           </div>
           <div className="ea-bento">
             <div className="ea-col">
               <article className="ea-bcard ea-b1" data-rv>
                 <span className="ea-label">
-                  <Svg d={ICON.download} size={10} stroke={2} /> Gongaji App · 4,8★ &amp; 4,9★
+                  <Svg d={ICON.download} size={10} stroke={2} /> Go Ngaji App · 4,8★ &amp; 4,9★
                 </span>
                 <div className="ea-pile" aria-hidden="true">
                   <div className="ea-pcard ea-pc1">
                     <div className="ea-pc-top">
-                      <span className="ea-pc-pill">TARGET</span>
+                      <span className="ea-pc-pill">AL-QUR’AN</span>
                       <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
                     </div>
                     <div className="ea-pc-mid">
                       <strong>30 Hari</strong>
-                      <span>Khatam · Hari ke-12</span>
+                      <span>Target Khatam · Hari ke-12</span>
                     </div>
                     <div>
                       <div className="ea-pc-bar"><i style={{ width: "72%" }} /></div>
@@ -1459,16 +1459,16 @@ export default function EaselShowcaseTemplate({
                   </div>
                   <div className="ea-pcard ea-pc2">
                     <div className="ea-pc-top">
-                      <span className="ea-pc-pill ea-pc-pill-w">BANDUNG</span>
+                      <span className="ea-pc-pill ea-pc-pill-w">IBADAH</span>
                       <img src={asset("05-bento-pilar/jadwal-sholat.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
                     </div>
                     <div className="ea-pc-mid">
                       <strong>04:03</strong>
-                      <span>Subuh · Quran Booster</span>
+                      <span>Adzan &amp; Arah Kiblat</span>
                     </div>
                     <div className="ea-pc-chips">
-                      <span>Tilawah</span>
-                      <span>Hafalan</span>
+                      <span>Dzikir</span>
+                      <span>Manasik VR</span>
                     </div>
                   </div>
                   <div className="ea-pcard ea-pc3">
@@ -1478,7 +1478,7 @@ export default function EaselShowcaseTemplate({
                     </div>
                     <div className="ea-pc-mid">
                       <strong>11 Qari</strong>
-                      <span>Tikrar &amp; Ayat Terakhir</span>
+                      <span>Tikrar &amp; Qu-Lib 300+ Buku</span>
                     </div>
                     <div className="ea-pc-bars">
                       <i style={{ height: "42%" }} />
@@ -1491,56 +1491,55 @@ export default function EaselShowcaseTemplate({
                   </div>
                   <span className="ea-tag ea-blue ea-t9">25+ fitur</span>
                 </div>
-                <h3 className="ea-h4">01 — Al-Qur’an Digital &amp; Target Tilawah</h3>
+                <h3 className="ea-h4">01 — Go Ngaji · Teman Tilawah &amp; Ibadah Harian</h3>
                 <p className="ea-small">
-                  Mushaf digital nyaman dibaca, penanda ayat terakhir otomatis, serta target khatam santai hingga 30 hari agar tilawah lebih konsisten.
+                  Aplikasi Al-Qur’an digital dengan penanda ayat otomatis, target khatam 30 hari, murottal 11 qari, Qu-Lib 300+ buku, serta 25+ fitur ibadah harian gratis.
                 </p>
-                <a className="ea-chipbtn" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
-                  Unduh di Google Play
+                <a className="ea-chipbtn" href="#download">
+                  Unduh Go Ngaji App
                 </a>
               </article>
               <article className="ea-bcard ea-img" data-rv>
                 <div className="ea-photo">
-                  <img src={asset("05-bento-pilar/card2-murottal.webp")} alt="Murottal 11 qari pilihan dan metode tikrar di Gongaji App" width={1280} height={800} style={{ objectPosition: "35% 45%" }} />
+                  <img src={asset("05-bento-pilar/card2-qursus.webp")} alt="Kelas live Qursus by Gongaji bersama pengajar mengaji daring" width={1280} height={800} style={{ objectPosition: "50% 25%" }} />
                   <div className="ea-ph-badge" aria-hidden="true">
-                    <strong>Murottal · 11 Qari Pilihan</strong>
-                    <span>Putar &amp; ulangi per ayat · Metode Tikrar</span>
+                    <strong>Qursus · Kelas Live 3 Bulan</strong>
+                    <span>Grup kecil 5–8 peserta · Ikhwan &amp; Akhwat terpisah</span>
                   </div>
                 </div>
-                <h3 className="ea-h4">02 — Murottal 11 Qari &amp; Metode Tikrar</h3>
+                <h3 className="ea-h4">02 — Qursus · Belajar Ngaji Dibimbing Pengajar</h3>
                 <p className="ea-small">
-                  Dengarkan lantunan merdu 11 qari internasional dan hafalkan ayat secara bertahap dengan fitur pengulangan ayat otomatis.
+                  Sub-brand edukasi Gongaji dengan kelas live berjenjang dari Pemula 1 hingga Mahir 2. Lengkap dengan evaluasi berkala, rapor perkembangan, dan sertifikat.
                 </p>
-                <a className="ea-chipbtn" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
-                  Unduh di App Store
+                <a className="ea-chipbtn" href="https://qursus.gongaji.id/" target="_blank" rel="noopener noreferrer">
+                  Daftar Qursus
                 </a>
               </article>
             </div>
             <div className="ea-col ea-col-r">
               <article className="ea-bcard ea-img" data-rv>
-                <div className="ea-photo ea-ibadahph" aria-hidden="true">
-                  <div className="ea-ib-grid">
-                    {[
-                      { icon: "05-bento-pilar/jadwal-sholat.webp", label: "Jadwal Shalat" },
-                      { icon: "05-bento-pilar/arah-kiblat.webp", label: "Arah Kiblat" },
-                      { icon: "05-bento-pilar/doa.webp", label: "Dzikir & Doa" },
-                      { icon: "05-bento-pilar/tafsir.webp", label: "Tafsir & Hadits" },
-                      { icon: "05-bento-pilar/kalkulator-zakat.webp", label: "Hitung Zakat" },
-                      { icon: "05-bento-pilar/vr.webp", label: "Manasik VR" },
-                    ].map((it) => (
-                      <div key={it.label} className="ea-ib-item">
-                        <img src={asset(it.icon)} alt="" width={34} height={34} />
-                        <span>{it.label}</span>
-                      </div>
-                    ))}
+                <div className="ea-photo">
+                  <img src={asset("05-bento-pilar/card3-qupeduli.webp")} alt="Penyaluran mushaf dan bantuan DonasiQu by Gongaji" width={1280} height={800} style={{ objectPosition: "50% 35%" }} />
+                  <div className="ea-qu-card" aria-hidden="true">
+                    <div className="ea-qu-top">
+                      <img src={asset("05-bento-pilar/donasi.webp")} alt="" width={20} height={20} />
+                      <span>Terverifikasi</span>
+                    </div>
+                    <strong>1.200+ Mushaf &amp; Bantuan</strong>
+                    <div className="ea-qu-bar"><i style={{ width: "72%" }} /></div>
+                    <small>Bersama Qubba Foundation</small>
+                  </div>
+                  <div className="ea-ph-badge" aria-hidden="true">
+                    <strong>DonasiQu · Qubba Foundation</strong>
+                    <span>Sedekah, zakat &amp; wakaf dengan laporan terbuka</span>
                   </div>
                 </div>
-                <h3 className="ea-h4">03 — Jadwal Shalat, Kiblat, &amp; 25+ Fitur Ibadah</h3>
+                <h3 className="ea-h4">03 — DonasiQu · Berbagi Kebaikan &amp; Wakaf Transparan</h3>
                 <p className="ea-small">
-                  Pengingat adzan sesuai lokasi, kompas kiblat, dzikir harian, tafsir, kalkulator zakat, hingga simulasi manasik VR dalam satu aplikasi.
+                  Sub-brand filantropi Gongaji bersama Yayasan Quran Bina Bangsa untuk menyalurkan sedekah, zakat, dan wakaf mushaf bagi santri serta guru ngaji secara terbuka.
                 </p>
-                <a className="ea-chipbtn" href="#qursus">
-                  Kenali Sub-Brand Gongaji
+                <a className="ea-chipbtn" href="#donasiqu">
+                  Lihat Program DonasiQu
                 </a>
               </article>
               <article className="ea-bcard ea-phone-wrap" data-rv>
@@ -1549,27 +1548,28 @@ export default function EaselShowcaseTemplate({
                 </span>
                 <div className="ea-phone">
                   <div className="ea-ph-status">
-                    <span>04:03 · Subuh</span>
-                    <span>Bandung</span>
+                    <span>Ekosistem Gongaji</span>
+                    <span>50rb+ Unduhan</span>
                   </div>
                   <div className="ea-ph-hero">
-                    <small>Quran Booster</small>
+                    <small>Satu Ekosistem</small>
                     <b>#JadiLebihMudah</b>
                     <div className="ea-ph-pills">
-                      <span>Tilawah · Juz 12</span>
-                      <span>Hafalan · Tikrar</span>
+                      <span>Go Ngaji</span>
+                      <span>Qursus</span>
+                      <span>DonasiQu</span>
                     </div>
                   </div>
                   <div className="ea-ph-qulib">
                     <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={34} height={34} aria-hidden="true" />
                     <div>
-                      <strong>Qu-Lib · 300+ Buku</strong>
-                      <span>Tafsir, Sirah &amp; Referensi Islami</span>
+                      <strong>Baca · Belajar · Berbagi</strong>
+                      <span>Tilawah harian, kelas ngaji &amp; donasi</span>
                     </div>
                   </div>
                   <div className="ea-ph-foot">
-                    <em>Baca. Belajar. Berbagi.</em>
-                    <small>Gongaji App · Fitur Gratis</small>
+                    <em>Bersama Qubba Foundation</em>
+                    <small>Gongaji App · Qursus · DonasiQu</small>
                   </div>
                 </div>
               </article>

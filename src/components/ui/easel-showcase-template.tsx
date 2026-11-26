@@ -1454,6 +1454,11 @@ export default function EaselShowcaseTemplate({
                                   at={2}
                                 />
                               </p>
+                              <div className="ea-btns ea-price-cta">
+                                <a className="ea-btn" href="https://qursus.gongaji.id/" target="_blank" rel="noopener noreferrer">
+                                  Daftar Qursus →
+                                </a>
+                              </div>
                             </div>
                             <div className="ea-plans" data-rv>
                               <div className="ea-plan ea-p1">
@@ -2190,6 +2195,7 @@ export default function EaselShowcaseTemplate({
   // pricing
   ".ea-price{padding:clamp(70px,12vh,130px) 0 clamp(40px,7vh,70px)}" +
   ".ea-price-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:32px;align-items:center}" +
+  ".ea-price-cta{margin-top:20px}" +
   ".ea-plans{display:flex;align-items:center;justify-content:center;gap:14px;min-height:clamp(210px,18vw,260px);opacity:0;transition:opacity .6s " + EASE + "}" +
   ".ea-plans.ea-in{opacity:1}" +
   ".ea-plan{position:relative;flex:1;min-width:0;max-width:205px;aspect-ratio:1/1.04;border-radius:14px;background:var(--card);padding:16px;display:flex;flex-direction:column;box-shadow:0 24px 38px -26px rgba(0,0,0,.32);transform:translate3d(0,48px,0) rotate(0deg);transition:transform 1s cubic-bezier(.34,1.3,.64,1)}" +

@@ -1843,7 +1843,7 @@ export default function EaselShowcaseTemplate({
                 🏀 Skor <b>{hoopScore}</b>
               </span>
               <small key={swishTick} className={swishTick > 0 ? "ea-swish-pop" : ""}>
-                {swishTick > 0 ? "Masuk! +1" : "Lempar / ketuk ikon"}
+                {swishTick > 0 ? "Masuk! +1" : "Lempar ikon"}
               </small>
             </div>
             <div className={"ea-hoop" + (swishTick > 0 ? " is-swish" : "")} key={"hoop-" + swishTick} aria-hidden="true">

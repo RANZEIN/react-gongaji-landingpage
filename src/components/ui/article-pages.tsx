@@ -1065,7 +1065,7 @@ const SUBPAGE_CSS = `
 
 .ea-related{margin-top:58px}
 .ea-related-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap}
-.ea-art-cta-link{display:inline-flex;align-items:center;height:36px;padding:0 18px;border-radius:999px;background:var(--blue);color:#fff;font-size:12px;font-weight:600}
+.ea-art-cta-link{display:inline-flex;align-items:center;height:40px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:500}
 
 /* Beranda Duo-style Purple Banner before Footer */
 .ea-sub-cta-wrap{padding:0 0 clamp(40px,6vh,64px)}

@@ -1198,628 +1198,628 @@ export default function EaselShowcaseTemplate({
         </div>
       </section>
 
-                        {/* ---------- drifting feature icons ---------- */}
-                        <section ref={bands} className="ea-bands" aria-label="25+ Fitur Ibadah Gongaji App">
-                          <div ref={bandA} className="ea-band ea-band-a" aria-hidden="true">
-                            {BAND_TOP_ASSETS.map((item, i) => (
-                              <span
-                                key={item.path + i}
-                                className="ea-av ea-av-icon"
-                                style={{ ["--y" as string]: ((i * 37) % 5) * 12 - 24 + "px", backgroundColor: item.bg } as CSSProperties}
-                              >
-                                <img src={asset(item.path)} alt="" width={88} height={88} />
-                              </span>
-                            ))}
-                          </div>
-                          <div className="ea-bands-mid" data-rv>
-                            <span className="ea-spark" aria-hidden="true">
-                              <GongajiMarkIcon size={18} />
-                            </span>
-                            <h2 className="ea-h2 ea-center">
-                              <Words parts={["25+ fitur ibadah", "\n", "dalam satu aplikasi"]} />
-                            </h2>
-                            <p className="ea-small ea-center">
-                              <Words parts={["Target tilawah, murottal 11 qari, 300+ buku di Qu-Lib, jadwal shalat, kiblat, hingga simulasi manasik VR."]} at={6} />
-                            </p>
-                          </div>
-                          <div ref={bandB} className="ea-band ea-band-b" aria-hidden="true">
-                            {BAND_BOT_ASSETS.map((item, i) => (
-                              <span
-                                key={item.path + i}
-                                className={"ea-av" + (item.kind === "icon" ? " ea-av-icon" : " ea-av-portrait")}
-                                style={{ ["--y" as string]: ((i * 53) % 5) * 12 - 24 + "px", backgroundColor: item.bg } as CSSProperties}
-                              >
-                                <img src={asset(item.path)} alt="" width={88} height={88} />
-                              </span>
-                            ))}
-                          </div>
-                        </section>
+      {/* ---------- drifting feature icons ---------- */}
+      <section ref={bands} className="ea-bands" aria-label="25+ Fitur Ibadah Gongaji App">
+        <div ref={bandA} className="ea-band ea-band-a" aria-hidden="true">
+          {BAND_TOP_ASSETS.map((item, i) => (
+            <span
+              key={item.path + i}
+              className="ea-av ea-av-icon"
+              style={{ ["--y" as string]: ((i * 37) % 5) * 12 - 24 + "px", backgroundColor: item.bg } as CSSProperties}
+            >
+              <img src={asset(item.path)} alt="" width={88} height={88} />
+            </span>
+          ))}
+        </div>
+        <div className="ea-bands-mid" data-rv>
+          <span className="ea-spark" aria-hidden="true">
+            <GongajiMarkIcon size={18} />
+          </span>
+          <h2 className="ea-h2 ea-center">
+            <Words parts={["25+ fitur ibadah", "\n", "dalam satu aplikasi"]} />
+          </h2>
+          <p className="ea-small ea-center">
+            <Words parts={["Target tilawah, murottal 11 qari, 300+ buku di Qu-Lib, jadwal shalat, kiblat, hingga simulasi manasik VR."]} at={6} />
+          </p>
+        </div>
+        <div ref={bandB} className="ea-band ea-band-b" aria-hidden="true">
+          {BAND_BOT_ASSETS.map((item, i) => (
+            <span
+              key={item.path + i}
+              className={"ea-av" + (item.kind === "icon" ? " ea-av-icon" : " ea-av-portrait")}
+              style={{ ["--y" as string]: ((i * 53) % 5) * 12 - 24 + "px", backgroundColor: item.bg } as CSSProperties}
+            >
+              <img src={asset(item.path)} alt="" width={88} height={88} />
+            </span>
+          ))}
+        </div>
+      </section>
 
-                        {/* ---------- Gongaji App fitur bento ---------- */}
-                        <section id="fitur" className="ea-sec ea-story" aria-label="Fitur Utama Gongaji App">
-                          <div className="ea-wrap">
-                            <div data-rv className="ea-center-head">
-                              <p className="ea-eyebrow">
-                                <Words parts={["FITUR UNGGULAN", ["GONGAJI APP", "ea-bluew"]]} />
-                              </p>
-                              <h2 className="ea-h2 ea-center">
-                                <Words parts={["Semua kebutuhan ibadah", "\n", "dalam genggaman"]} at={3} />
-                              </h2>
-                            </div>
-                            <div className="ea-bento">
-                              <div className="ea-col">
-                                <article className="ea-bcard ea-b1" data-rv>
-                                  <span className="ea-label">
-                                    <Svg d={ICON.download} size={10} stroke={2} /> Gongaji App · 4,8★ &amp; 4,9★
-                                  </span>
-                                  <div className="ea-pile" aria-hidden="true">
-                                    <div className="ea-pcard ea-pc1">
-                                      <div className="ea-pc-top">
-                                        <span className="ea-pc-pill">TARGET</span>
-                                        <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
-                                      </div>
-                                      <div className="ea-pc-mid">
-                                        <strong>30 Hari</strong>
-                                        <span>Khatam · Hari ke-12</span>
-                                      </div>
-                                      <div>
-                                        <div className="ea-pc-bar"><i style={{ width: "72%" }} /></div>
-                                        <span className="ea-pc-meta">Al-Baqarah : 142</span>
-                                      </div>
-                                    </div>
-                                    <div className="ea-pcard ea-pc2">
-                                      <div className="ea-pc-top">
-                                        <span className="ea-pc-pill ea-pc-pill-w">BANDUNG</span>
-                                        <img src={asset("05-bento-pilar/jadwal-sholat.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
-                                      </div>
-                                      <div className="ea-pc-mid">
-                                        <strong>04:03</strong>
-                                        <span>Subuh · Quran Booster</span>
-                                      </div>
-                                      <div className="ea-pc-chips">
-                                        <span>Tilawah</span>
-                                        <span>Hafalan</span>
-                                      </div>
-                                    </div>
-                                    <div className="ea-pcard ea-pc3">
-                                      <div className="ea-pc-top">
-                                        <span className="ea-pc-pill ea-pc-pill-y">MUROTTAL</span>
-                                        <img src={asset("05-bento-pilar/dzikir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
-                                      </div>
-                                      <div className="ea-pc-mid">
-                                        <strong>11 Qari</strong>
-                                        <span>Tikrar &amp; Ayat Terakhir</span>
-                                      </div>
-                                      <div className="ea-pc-bars">
-                                        <i style={{ height: "42%" }} />
-                                        <i style={{ height: "85%" }} />
-                                        <i style={{ height: "62%" }} />
-                                        <i style={{ height: "100%" }} />
-                                        <i style={{ height: "70%" }} />
-                                        <i style={{ height: "48%" }} />
-                                      </div>
-                                    </div>
-                                    <span className="ea-tag ea-blue ea-t9">25+ fitur</span>
-                                  </div>
-                                  <h3 className="ea-h4">01 — Al-Qur’an Digital &amp; Target Tilawah</h3>
-                                  <p className="ea-small">
-                                    Mushaf digital nyaman dibaca, penanda ayat terakhir otomatis, serta target khatam santai hingga 30 hari agar tilawah lebih konsisten.
-                                  </p>
-                                  <a className="ea-chipbtn" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
-                                    Unduh di Google Play
-                                  </a>
-                                </article>
-                                <article className="ea-bcard ea-img" data-rv>
-                                  <div className="ea-photo">
-                                    <img src={asset("05-bento-pilar/card2-murottal.webp")} alt="Murottal 11 qari pilihan dan metode tikrar di Gongaji App" width={1280} height={800} style={{ objectPosition: "35% 45%" }} />
-                                    <div className="ea-ph-badge" aria-hidden="true">
-                                      <strong>Murottal · 11 Qari Pilihan</strong>
-                                      <span>Putar &amp; ulangi per ayat · Metode Tikrar</span>
-                                    </div>
-                                  </div>
-                                  <h3 className="ea-h4">02 — Murottal 11 Qari &amp; Metode Tikrar</h3>
-                                  <p className="ea-small">
-                                    Dengarkan lantunan merdu 11 qari internasional dan hafalkan ayat secara bertahap dengan fitur pengulangan ayat otomatis.
-                                  </p>
-                                  <a className="ea-chipbtn" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
-                                    Unduh di App Store
-                                  </a>
-                                </article>
-                              </div>
-                              <div className="ea-col ea-col-r">
-                                <article className="ea-bcard ea-img" data-rv>
-                                  <div className="ea-photo ea-ibadahph" aria-hidden="true">
-                                    <div className="ea-ib-grid">
-                                      {[
-                                        { icon: "05-bento-pilar/jadwal-sholat.webp", label: "Jadwal Shalat" },
-                                        { icon: "05-bento-pilar/arah-kiblat.webp", label: "Arah Kiblat" },
-                                        { icon: "05-bento-pilar/doa.webp", label: "Dzikir & Doa" },
-                                        { icon: "05-bento-pilar/tafsir.webp", label: "Tafsir & Hadits" },
-                                        { icon: "05-bento-pilar/kalkulator-zakat.webp", label: "Hitung Zakat" },
-                                        { icon: "05-bento-pilar/vr.webp", label: "Manasik VR" },
-                                      ].map((it) => (
-                                        <div key={it.label} className="ea-ib-item">
-                                          <img src={asset(it.icon)} alt="" width={34} height={34} />
-                                          <span>{it.label}</span>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                  <h3 className="ea-h4">03 — Jadwal Shalat, Kiblat, &amp; 25+ Fitur Ibadah</h3>
-                                  <p className="ea-small">
-                                    Pengingat adzan sesuai lokasi, kompas kiblat, dzikir harian, tafsir, kalkulator zakat, hingga simulasi manasik VR dalam satu aplikasi.
-                                  </p>
-                                  <a className="ea-chipbtn" href="#qursus">
-                                    Kenali Sub-Brand Gongaji
-                                  </a>
-                                </article>
-                                <article className="ea-bcard ea-phone-wrap" data-rv>
-                                  <span className="ea-pen" aria-hidden="true">
-                                    <Svg d={ICON.book} size={13} />
-                                  </span>
-                                  <div className="ea-phone">
-                                    <div className="ea-ph-status">
-                                      <span>04:03 · Subuh</span>
-                                      <span>Bandung</span>
-                                    </div>
-                                    <div className="ea-ph-hero">
-                                      <small>Quran Booster</small>
-                                      <b>#JadiLebihMudah</b>
-                                      <div className="ea-ph-pills">
-                                        <span>Tilawah · Juz 12</span>
-                                        <span>Hafalan · Tikrar</span>
-                                      </div>
-                                    </div>
-                                    <div className="ea-ph-qulib">
-                                      <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={34} height={34} aria-hidden="true" />
-                                      <div>
-                                        <strong>Qu-Lib · 300+ Buku</strong>
-                                        <span>Tafsir, Sirah &amp; Referensi Islami</span>
-                                      </div>
-                                    </div>
-                                    <div className="ea-ph-foot">
-                                      <em>Baca. Belajar. Berbagi.</em>
-                                      <small>Gongaji App · Fitur Gratis</small>
-                                    </div>
-                                  </div>
-                                </article>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-
-                        {/* ---------- Sub-Brand 01: stage 3 banner → mentor & learner wall ---------- */}
-                        <section ref={s3} id="qursus" className="ea-stage" style={stage(3)} aria-label="Sub-Brand Qursus by Gongaji">
-                          <div ref={pin3} className="ea-pin" style={{ height }}>
-                            <div ref={appRow} className="ea-lead">
-                              <p className="ea-eyebrow">
-                                SUB-BRAND 01 · <span className="ea-orangew">QURSUS BY GONGAJI</span>
-                              </p>
-                              <h2 className="ea-h2 ea-center">
-                                Ingin belajar ngaji
-                                <br />
-                                dibimbing pengajar?
-                              </h2>
-                              <p className="ea-small ea-center">
-                                Qursus adalah sub-brand edukasi Gongaji dengan kelas live grup kecil 5–8 peserta berjenjang (Pemula 1 – Mahir 2), dipisah ikhwan &amp; akhwat.
-                              </p>
-                            </div>
-                            {WALL_ASSETS.map((item, i) =>
-                              item.path ? (
-                                <div
-                                  key={item.path + i}
-                                  ref={(el) => { wall.current[i] = el }}
-                                  className="ea-wall"
-                                  style={{ backgroundColor: item.bg }}
-                                  aria-hidden="true"
-                                >
-                                  <img src={asset(item.path)} alt="" width={195} height={210} className="ea-portrait" />
-                                </div>
-                              ) : null,
-                            )}
-                            <div ref={banner} className="ea-orange">
-                              <img src={asset("07-mentor-wall/mentor-center.webp")} alt="Pengajar Qursus tersenyum saat membimbing kelas daring" width={1600} height={900} />
-                              <div className="ea-orange-scrim" aria-hidden="true" />
-                              <div className="ea-orange-ui">
-                                <span className="ea-tag ea-redtag ea-t10">@qursus.gongaji</span>
-                                <button type="button" className={"ea-like" + (liked ? " on" : "")} aria-pressed={liked} onClick={() => setLiked((l) => !l)}>
-                                  <Svg d={ICON.heart} size={10} fill={liked ? "currentColor" : "none"} stroke={2} />
-                                  {liked ? "Disukai" : "Suka"}
-                                </button>
-                                <div className="ea-by">
-                                  <img src={asset("07-mentor-wall/ilham.webp")} alt="" width={28} height={28} />
-                                  <span>
-                                    <b>Fajar Nugraha · Pemula 2</b>
-                                    <small>“Kelasnya kecil, salah langsung dibenerin.”</small>
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-
-                        {/* ---------- Qursus pricing ---------- */}
-                        <section id="pricing" className="ea-sec ea-price" aria-label="Biaya Sub-Brand Qursus">
-                          <div className="ea-wrap ea-price-grid">
-                            <div data-rv>
-                              <span className="ea-eye">
-                                <Svg d={ICON.spark} size={15} />
-                              </span>
-                              <h2 className="ea-h3">
-                                <Words parts={["Biaya Qursus"]} />
-                              </h2>
-                              <p className="ea-small ea-wrapp">
-                                <Words
-                                  parts={["Harga sama untuk semua level dari Pemula 1 hingga Mahir 2. Termasuk kelas live 3 bulan, evaluasi, rapor, dan sertifikat."]}
-                                  at={2}
-                                />
-                              </p>
-                              <div className="ea-btns ea-price-cta">
-                                <a className="ea-btn" href="https://qursus.gongaji.id/" target="_blank" rel="noopener noreferrer">
-                                  Daftar Qursus →
-                                </a>
-                              </div>
-                            </div>
-                            <div className="ea-plans" data-rv>
-                              <div className="ea-plan ea-p1">
-                                <small>Bayar Penuh</small>
-                                <b>
-                                  <sup>Rp</sup>699<small>rb</small>
-                                </b>
-                                <em>Per level · Hemat Rp51.000</em>
-                              </div>
-                              <div className="ea-plan ea-p2">
-                                <small>Bertahap</small>
-                                <span className="ea-pop-pill">Populer</span>
-                                <b>
-                                  <sup>Rp</sup>750<small>rb</small>
-                                </b>
-                                <em>Dicicil selama 3 bulan</em>
-                              </div>
-                              <div className="ea-plan ea-p3">
-                                <small>Beasiswa</small>
-                                <b>
-                                  <sup>Rp</sup>0<small>/batch</small>
-                                </b>
-                                <em>Jalur beasiswa Pemula 1–3</em>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-
-                        {/* ---------- Sub-Brand 02: dedicated DonasiQu section ---------- */}
-                        <section id="donasiqu" className="ea-sec ea-qupeduli" aria-label="Sub-Brand DonasiQu by Gongaji">
-                          <div className="ea-wrap">
-                            <div className="ea-qup-head" data-rv>
-                              <div>
-                                <p className="ea-eyebrow">
-                                  <Words parts={["SUB-BRAND 02 ·", ["DONASIQU BY GONGAJI", "ea-purplew"]]} />
-                                </p>
-                                <h2 className="ea-h2">
-                                  <Words parts={["Kebaikan yang lahir", "\n", "dari rasa percaya."]} at={2} />
-                                </h2>
-                              </div>
-                              <p className="ea-small ea-qup-sub">
-                                Platform donasi online, sedekah, dan wakaf bersama Yayasan Quran Bina Bangsa (Qubba Foundation) dengan rincian dana &amp; laporan penyaluran terbuka.
-                              </p>
-                            </div>
-                            <div className="ea-qup-grid">
-                              <div className="ea-qup-hero" data-rv>
-                                <span className="ea-qup-pill">Qubba Foundation · Terverifikasi</span>
-                                <h3>1.200+ Mushaf &amp; Bantuan Tersalurkan</h3>
-                                <p>Setiap donasi dicatat terbuka dan disalurkan berkala untuk santri, guru ngaji, serta masyarakat membutuhkan.</p>
-                                <div className="ea-qup-chips">
-                                  <span>Laporan Terbuka</span>
-                                  <span>Sedekah &amp; Wakaf</span>
-                                </div>
-                                <a className="ea-btn" href="#download">
-                                  Salurkan Lewat Gongaji App
-                                </a>
-                                <img src={asset("10-qupeduli/donor-spotlight.webp")} alt="" width={280} height={320} className="ea-qup-donor" aria-hidden="true" draggable={false} />
-                              </div>
-                              <div className="ea-qup-list" data-rv>
-                                {campaigns.map((camp) => (
-                                  <article key={camp.id} className="ea-qup-item">
-                                    <div className={"ea-qup-thumb" + (camp.isIcon ? " is-icon" : "")}>
-                                      <img src={asset(camp.image)} alt={camp.title} width={76} height={76} />
-                                    </div>
-                                    <div className="ea-qup-body">
-                                      <div className="ea-qup-meta">
-                                        <span>{camp.category}</span>
-                                        <small>{camp.daysLeft}</small>
-                                      </div>
-                                      <h4>{camp.title}</h4>
-                                      <div className="ea-qup-bar">
-                                        <i style={{ width: camp.pct + "%" }} />
-                                      </div>
-                                      <div className="ea-qup-foot">
-                                        <span>
-                                          <b>{camp.raisedText}</b> / {camp.targetText}
-                                        </span>
-                                        <small>{camp.donors} donatur</small>
-                                      </div>
-                                    </div>
-                                  </article>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-
-                        {/* ---------- Artikel & wawasan (live API) ---------- */}
-                        <section id="artikel" className="ea-sec ea-artikel" aria-label="Artikel dan Wawasan Gongaji">
-                          <div className="ea-wrap">
-                            <div className="ea-art-head" data-rv>
-                              <div>
-                                <p className="ea-eyebrow">
-                                  <Words parts={["ARTIKEL &", ["WAWASAN", "ea-purplew"]]} />
-                                </p>
-                                <h2 className="ea-h2">
-                                  <Words parts={["Artikel Pilihan &", "\n", "Panduan Qur'an"]} at={2} />
-                                </h2>
-                              </div>
-                              <p className="ea-small ea-art-sub">
-                                Bacaan ringan seputar Ramadan, fikih keluarga, dan tadabbur Al-Qur'an langsung dari redaksi Gongaji.
-                              </p>
-                            </div>
-                            <div className="ea-art-grid" data-rv>
-                              {liveArticles.map((item) => {
-                                const primaryCategory = splitCategories(item.article_category)[0]
-                                return (
-                                <a
-                                  key={item.article_uuid}
-                                  href={`/artikel/${item.article_uuid}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="ea-art-card"
-                                  aria-label={`Baca artikel ${item.article_title}`}
-                                >
-                                  <div className="ea-art-media">
-                                    <img
-                                      src={item.article_image_url || asset("06-artikel-carousel/01-belajar-pemula.webp")}
-                                      alt={item.article_title}
-                                      width={400}
-                                      height={250}
-                                      loading="lazy"
-                                      onError={(e) => {
-                                        if (!e.currentTarget.dataset.fb) {
-                                          e.currentTarget.dataset.fb = "1"
-                                          e.currentTarget.src = asset("06-artikel-carousel/01-belajar-pemula.webp")
-                                        }
-                                      }}
-                                    />
-                                    {primaryCategory ? <span className="ea-art-cat">{primaryCategory}</span> : null}
-                                  </div>
-                                  <div className="ea-art-body">
-                                    <div className="ea-art-meta">
-                                      <span>{formatArticleDate(item.article_published_at)}</span>
-                                      <span>{(item.article_total_view ?? 0).toLocaleString("id-ID")} dilihat</span>
-                                    </div>
-                                    <h3>{item.article_title}</h3>
-                                    <p>{cleanArticleExcerpt(item.article_excerpt)}</p>
-                                    <div className="ea-art-foot">
-                                      <span>{item.article_author || "Redaksi Gongaji"}</span>
-                                      <small className="ea-art-read">Baca artikel →</small>
-                                    </div>
-                                  </div>
-                                </a>
-                                )
-                              })}
-                            </div>
-                            <div className="ea-art-actions">
-                              <a className="ea-art-cta" href="/artikel" target="_blank" rel="noopener noreferrer">
-                                Lihat Semua Artikel →
-                              </a>
-                            </div>
-                          </div>
-                        </section>
-
-                        {/* ---------- lime marquee + falling doodles ---------- */}
-                        <section ref={limeRef} className="ea-sec ea-lime-sec" aria-label="Ajakan Ekosistem Gongaji">
-                          <div className="ea-lime">
-                            <span className="ea-water" aria-hidden="true">
-                              GONGAJI
-                            </span>
-                            <div className="ea-marquee">
-                              <div ref={limeTrack} className="ea-mtrack">
-                                {[0, 1].map((rep) => (
-                                  <span key={rep} className="ea-mrun" aria-hidden={rep === 1}>
-                                    Baca. Belajar. Berbagi.
-                                    <span className="ea-mthumbs">
-                                      <i style={{ background: "#5145B9" }} />
-                                      <img src={asset("08-lime-marquee/thumb-1-app-home.webp")} alt="" width={44} height={44} />
-                                      <img src={asset("08-lime-marquee/thumb-2-app-quran.webp")} alt="" width={44} height={44} />
-                                      <small>#JADILEBIHMUDAH</small>
-                                    </span>
-                                    25+ Fitur di Gongaji App
-                                    <span className="ea-mthumbs">
-                                      <img src={asset("08-lime-marquee/thumb-3-teaching-smile.webp")} alt="" width={44} height={44} />
-                                    </span>
-                                    Sub-Brand Qursus · 5 Level
-                                    <span className="ea-mthumbs">
-                                      <img src={asset("08-lime-marquee/thumb-4-qursus-murid.webp")} alt="" width={44} height={44} />
-                                    </span>
-                                    Sub-Brand DonasiQu · Qubba Foundation
-                                    <span className="ea-mthumbs">
-                                      <img src={asset("08-lime-marquee/thumb-5-teaching-mushaf.webp")} alt="" width={44} height={44} />
-                                    </span>
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                            <div ref={pile} className="ea-pilebox" aria-hidden="true">
-                              {DOODLES.map((d, i) => (
-                                <span key={i} ref={(el) => { balls.current[i] = el }} className="ea-ball">
-                                  <Svg d={d} size={34} stroke={1.4} />
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </section>
-
-                        {/* ---------- duo: download Gongaji App + daftar Qursus ---------- */}
-                        <section id="download" className="ea-sec ea-duo" aria-label="Mulai Bersama Gongaji">
-                          <div className="ea-wrap ea-duo-grid">
-                            <article className="ea-meet" data-rv>
-                              <div className="ea-duo-phones" aria-hidden="true">
-                                <span className="ea-duo-pill">50rb+ Unduhan · 25+ Fitur</span>
-                                <div className="ea-phone-back">
-                                  <img src={asset("09-download-cta/app-quran.webp")} alt="" width={210} height={380} draggable={false} />
-                                </div>
-                                <div className="ea-phone-front">
-                                  <img src={asset("09-download-cta/app-home.webp")} alt="" width={230} height={420} draggable={false} />
-                                </div>
-                              </div>
-                              <div className="ea-duo-copy">
-                                <Svg d={ICON.download} size={14} />
-                                <h3 className="ea-h3">
-                                  Unduh
-                                  <br />
-                                  <span>Gongaji App</span>
-                                </h3>
-                                <p className="ea-small">Tersedia gratis di Google Play (4,8★) dan App Store (4,9★). Mulai kebiasaan tilawahmu hari ini.</p>
-                                <div className="ea-store-row">
-                                  <a className="ea-store-badge" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di Google Play">
-                                    <img src={asset("09-download-cta/badge-google-play.svg")} alt="" height={40} />
-                                  </a>
-                                  <a className="ea-store-badge" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di App Store">
-                                    <img src={asset("09-download-cta/badge-app-store.svg")} alt="" height={40} />
-                                  </a>
-                                </div>
-                              </div>
-                            </article>
-                            <article className="ea-arch" data-rv>
-                              <div className="ea-qursus-ui" aria-hidden="true">
-                                <div className="ea-qursus-photo">
-                                  <img src={asset("09-download-cta/qursus-mentor.webp")} alt="" width={520} height={240} draggable={false} />
-                                  <span className="ea-qursus-live">Kelas Live · 5–8 Peserta</span>
-                                </div>
-                                <div className="ea-qursus-steps">
-                                  {[
-                                    { label: "Pemula 1", st: "done" },
-                                    { label: "Pemula 2", st: "on" },
-                                    { label: "Pemula 3", st: "" },
-                                    { label: "Mahir 1", st: "" },
-                                    { label: "Mahir 2", st: "" },
-                                  ].map((lv) => (
-                                    <span key={lv.label} className={lv.st}>
-                                      {lv.label}
-                                    </span>
-                                  ))}
-                                </div>
-                                <div className="ea-qursus-tags">
-                                  <span>Asesmen Awal</span>
-                                  <span>Ikhwan &amp; Akhwat Terpisah</span>
-                                  <span>Rapor &amp; Sertifikat</span>
-                                </div>
-                              </div>
-                              <div className="ea-duo-copy">
-                                <Svg d={ICON.spark} size={14} />
-                                <h3 className="ea-h3">
-                                  Mulai Belajar
-                                  <br />
-                                  di Qursus
-                                </h3>
-                                <p className="ea-small">Ikuti asesmen awal, pilih jadwal kelas live kecil bersama pengajar bersertifikat, dan pantau rapor progresmu.</p>
-                                <a className="ea-btn" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
-                                  Daftar Qursus
-                                </a>
-                              </div>
-                            </article>
-                          </div>
-                        </section>
-
-                        {/* ---------- footer ---------- */}
-                        <footer className="ea-foot">
-                          <div className="ea-wrap ea-foot-grid">
-                            <div>
-                              <h2 className="ea-h4">
-                                Baca. Belajar. Berbagi. <span className="ea-foot-dots">#JadiLebihMudah</span>
-                              </h2>
-                              <p className="ea-small">
-                                Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. DonasiQu dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
-                              </p>
-                              <a className="ea-mail" href={mail}>
-                                {email}
-                              </a>
-                              <span className="ea-contact-meta">
-                                {GONGAJI_LINKS.whatsapp} · {GONGAJI_LINKS.instagram}
-                              </span>
-                              <div className="ea-socials">
-                                <a href={mail} aria-label="Email Gongaji">
-                                  <Svg d={ICON.mail} size={12} />
-                                </a>
-                                <a href={GONGAJI_LINKS.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Gongaji">
-                                  <Svg d={ICON.globe} size={12} />
-                                </a>
-                                <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Gongaji di Google Play">
-                                  <Svg d={ICON.grid} size={12} />
-                                </a>
-                                <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer" aria-label="Qursus by Gongaji">
-                                  <Svg d={ICON.spark} size={12} />
-                                </a>
-                              </div>
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#fitur">Gongaji App</a>
-                              </li>
-                              <li>
-                                <i className="ea-dot" />{" "}
-                                <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
-                                  Qursus
-                                </a>{" "}
-                                <span className="ea-new">Live</span>
-                              </li>
-                              <li>
-                                <a href="#donasiqu">DonasiQu</a>
-                              </li>
-                              <li>
-                                <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
-                                  Google Play
-                                </a>
-                              </li>
-                              <li>
-                                <a href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
-                                  App Store
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#qursus">Pemula 1 – Mahir 2</a>
-                              </li>
-                              <li>
-                                <i className="ea-dot" /> <a href="#pricing">Biaya &amp; Beasiswa</a>
-                              </li>
-                              <li>
-                                <a href="#donasiqu">Program DonasiQu</a>
-                              </li>
-                              <li>
-                                <a href="#artikel">
-                                  Artikel Islami <span className="ea-soon">Baru</span>
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>Qubba Foundation</li>
-                              <li>
-                                <a href={mail}>Kontak Kami</a>
-                              </li>
-                              <li>
-                                Kemitraan <span className="ea-soon">Mitra</span>
-                              </li>
-                            </ul>
-                            <p className="ea-copy">© 2026 Gongaji. Semua hak dilindungi.</p>
-                          </div>
-                        </footer>
+      {/* ---------- Gongaji App fitur bento ---------- */}
+      <section id="fitur" className="ea-sec ea-story" aria-label="Fitur Utama Gongaji App">
+        <div className="ea-wrap">
+          <div data-rv className="ea-center-head">
+            <p className="ea-eyebrow">
+              <Words parts={["FITUR UNGGULAN", ["GONGAJI APP", "ea-bluew"]]} />
+            </p>
+            <h2 className="ea-h2 ea-center">
+              <Words parts={["Semua kebutuhan ibadah", "\n", "dalam genggaman"]} at={3} />
+            </h2>
+          </div>
+          <div className="ea-bento">
+            <div className="ea-col">
+              <article className="ea-bcard ea-b1" data-rv>
+                <span className="ea-label">
+                  <Svg d={ICON.download} size={10} stroke={2} /> Gongaji App · 4,8★ &amp; 4,9★
+                </span>
+                <div className="ea-pile" aria-hidden="true">
+                  <div className="ea-pcard ea-pc1">
+                    <div className="ea-pc-top">
+                      <span className="ea-pc-pill">TARGET</span>
+                      <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
+                    </div>
+                    <div className="ea-pc-mid">
+                      <strong>30 Hari</strong>
+                      <span>Khatam · Hari ke-12</span>
+                    </div>
+                    <div>
+                      <div className="ea-pc-bar"><i style={{ width: "72%" }} /></div>
+                      <span className="ea-pc-meta">Al-Baqarah : 142</span>
+                    </div>
+                  </div>
+                  <div className="ea-pcard ea-pc2">
+                    <div className="ea-pc-top">
+                      <span className="ea-pc-pill ea-pc-pill-w">BANDUNG</span>
+                      <img src={asset("05-bento-pilar/jadwal-sholat.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
+                    </div>
+                    <div className="ea-pc-mid">
+                      <strong>04:03</strong>
+                      <span>Subuh · Quran Booster</span>
+                    </div>
+                    <div className="ea-pc-chips">
+                      <span>Tilawah</span>
+                      <span>Hafalan</span>
+                    </div>
+                  </div>
+                  <div className="ea-pcard ea-pc3">
+                    <div className="ea-pc-top">
+                      <span className="ea-pc-pill ea-pc-pill-y">MUROTTAL</span>
+                      <img src={asset("05-bento-pilar/dzikir.webp")} alt="" width={24} height={24} className="ea-pc-ico" />
+                    </div>
+                    <div className="ea-pc-mid">
+                      <strong>11 Qari</strong>
+                      <span>Tikrar &amp; Ayat Terakhir</span>
+                    </div>
+                    <div className="ea-pc-bars">
+                      <i style={{ height: "42%" }} />
+                      <i style={{ height: "85%" }} />
+                      <i style={{ height: "62%" }} />
+                      <i style={{ height: "100%" }} />
+                      <i style={{ height: "70%" }} />
+                      <i style={{ height: "48%" }} />
+                    </div>
+                  </div>
+                  <span className="ea-tag ea-blue ea-t9">25+ fitur</span>
+                </div>
+                <h3 className="ea-h4">01 — Al-Qur’an Digital &amp; Target Tilawah</h3>
+                <p className="ea-small">
+                  Mushaf digital nyaman dibaca, penanda ayat terakhir otomatis, serta target khatam santai hingga 30 hari agar tilawah lebih konsisten.
+                </p>
+                <a className="ea-chipbtn" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
+                  Unduh di Google Play
+                </a>
+              </article>
+              <article className="ea-bcard ea-img" data-rv>
+                <div className="ea-photo">
+                  <img src={asset("05-bento-pilar/card2-murottal.webp")} alt="Murottal 11 qari pilihan dan metode tikrar di Gongaji App" width={1280} height={800} style={{ objectPosition: "35% 45%" }} />
+                  <div className="ea-ph-badge" aria-hidden="true">
+                    <strong>Murottal · 11 Qari Pilihan</strong>
+                    <span>Putar &amp; ulangi per ayat · Metode Tikrar</span>
+                  </div>
+                </div>
+                <h3 className="ea-h4">02 — Murottal 11 Qari &amp; Metode Tikrar</h3>
+                <p className="ea-small">
+                  Dengarkan lantunan merdu 11 qari internasional dan hafalkan ayat secara bertahap dengan fitur pengulangan ayat otomatis.
+                </p>
+                <a className="ea-chipbtn" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
+                  Unduh di App Store
+                </a>
+              </article>
+            </div>
+            <div className="ea-col ea-col-r">
+              <article className="ea-bcard ea-img" data-rv>
+                <div className="ea-photo ea-ibadahph" aria-hidden="true">
+                  <div className="ea-ib-grid">
+                    {[
+                      { icon: "05-bento-pilar/jadwal-sholat.webp", label: "Jadwal Shalat" },
+                      { icon: "05-bento-pilar/arah-kiblat.webp", label: "Arah Kiblat" },
+                      { icon: "05-bento-pilar/doa.webp", label: "Dzikir & Doa" },
+                      { icon: "05-bento-pilar/tafsir.webp", label: "Tafsir & Hadits" },
+                      { icon: "05-bento-pilar/kalkulator-zakat.webp", label: "Hitung Zakat" },
+                      { icon: "05-bento-pilar/vr.webp", label: "Manasik VR" },
+                    ].map((it) => (
+                      <div key={it.label} className="ea-ib-item">
+                        <img src={asset(it.icon)} alt="" width={34} height={34} />
+                        <span>{it.label}</span>
                       </div>
-                      )
+                    ))}
+                  </div>
+                </div>
+                <h3 className="ea-h4">03 — Jadwal Shalat, Kiblat, &amp; 25+ Fitur Ibadah</h3>
+                <p className="ea-small">
+                  Pengingat adzan sesuai lokasi, kompas kiblat, dzikir harian, tafsir, kalkulator zakat, hingga simulasi manasik VR dalam satu aplikasi.
+                </p>
+                <a className="ea-chipbtn" href="#qursus">
+                  Kenali Sub-Brand Gongaji
+                </a>
+              </article>
+              <article className="ea-bcard ea-phone-wrap" data-rv>
+                <span className="ea-pen" aria-hidden="true">
+                  <Svg d={ICON.book} size={13} />
+                </span>
+                <div className="ea-phone">
+                  <div className="ea-ph-status">
+                    <span>04:03 · Subuh</span>
+                    <span>Bandung</span>
+                  </div>
+                  <div className="ea-ph-hero">
+                    <small>Quran Booster</small>
+                    <b>#JadiLebihMudah</b>
+                    <div className="ea-ph-pills">
+                      <span>Tilawah · Juz 12</span>
+                      <span>Hafalan · Tikrar</span>
+                    </div>
+                  </div>
+                  <div className="ea-ph-qulib">
+                    <img src={asset("05-bento-pilar/tafsir.webp")} alt="" width={34} height={34} aria-hidden="true" />
+                    <div>
+                      <strong>Qu-Lib · 300+ Buku</strong>
+                      <span>Tafsir, Sirah &amp; Referensi Islami</span>
+                    </div>
+                  </div>
+                  <div className="ea-ph-foot">
+                    <em>Baca. Belajar. Berbagi.</em>
+                    <small>Gongaji App · Fitur Gratis</small>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- Sub-Brand 01: stage 3 banner → mentor & learner wall ---------- */}
+      <section ref={s3} id="qursus" className="ea-stage" style={stage(3)} aria-label="Sub-Brand Qursus by Gongaji">
+        <div ref={pin3} className="ea-pin" style={{ height }}>
+          <div ref={appRow} className="ea-lead">
+            <p className="ea-eyebrow">
+              SUB-BRAND 01 · <span className="ea-orangew">QURSUS BY GONGAJI</span>
+            </p>
+            <h2 className="ea-h2 ea-center">
+              Ingin belajar ngaji
+              <br />
+              dibimbing pengajar?
+            </h2>
+            <p className="ea-small ea-center">
+              Qursus adalah sub-brand edukasi Gongaji dengan kelas live grup kecil 5–8 peserta berjenjang (Pemula 1 – Mahir 2), dipisah ikhwan &amp; akhwat.
+            </p>
+          </div>
+          {WALL_ASSETS.map((item, i) =>
+            item.path ? (
+              <div
+                key={item.path + i}
+                ref={(el) => { wall.current[i] = el }}
+                className="ea-wall"
+                style={{ backgroundColor: item.bg }}
+                aria-hidden="true"
+              >
+                <img src={asset(item.path)} alt="" width={195} height={210} className="ea-portrait" />
+              </div>
+            ) : null,
+          )}
+          <div ref={banner} className="ea-orange">
+            <img src={asset("07-mentor-wall/mentor-center.webp")} alt="Pengajar Qursus tersenyum saat membimbing kelas daring" width={1600} height={900} />
+            <div className="ea-orange-scrim" aria-hidden="true" />
+            <div className="ea-orange-ui">
+              <span className="ea-tag ea-redtag ea-t10">@qursus.gongaji</span>
+              <button type="button" className={"ea-like" + (liked ? " on" : "")} aria-pressed={liked} onClick={() => setLiked((l) => !l)}>
+                <Svg d={ICON.heart} size={10} fill={liked ? "currentColor" : "none"} stroke={2} />
+                {liked ? "Disukai" : "Suka"}
+              </button>
+              <div className="ea-by">
+                <img src={asset("07-mentor-wall/ilham.webp")} alt="" width={28} height={28} />
+                <span>
+                  <b>Fajar Nugraha · Pemula 2</b>
+                  <small>“Kelasnya kecil, salah langsung dibenerin.”</small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- Qursus pricing ---------- */}
+      <section id="pricing" className="ea-sec ea-price" aria-label="Biaya Sub-Brand Qursus">
+        <div className="ea-wrap ea-price-grid">
+          <div data-rv>
+            <span className="ea-eye">
+              <Svg d={ICON.spark} size={15} />
+            </span>
+            <h2 className="ea-h3">
+              <Words parts={["Biaya Qursus"]} />
+            </h2>
+            <p className="ea-small ea-wrapp">
+              <Words
+                parts={["Harga sama untuk semua level dari Pemula 1 hingga Mahir 2. Termasuk kelas live 3 bulan, evaluasi, rapor, dan sertifikat."]}
+                at={2}
+              />
+            </p>
+            <div className="ea-btns ea-price-cta">
+              <a className="ea-btn" href="https://qursus.gongaji.id/" target="_blank" rel="noopener noreferrer">
+                Daftar Qursus →
+              </a>
+            </div>
+          </div>
+          <div className="ea-plans" data-rv>
+            <div className="ea-plan ea-p1">
+              <small>Bayar Penuh</small>
+              <b>
+                <sup>Rp</sup>699<small>rb</small>
+              </b>
+              <em>Per level · Hemat Rp51.000</em>
+            </div>
+            <div className="ea-plan ea-p2">
+              <small>Bertahap</small>
+              <span className="ea-pop-pill">Populer</span>
+              <b>
+                <sup>Rp</sup>750<small>rb</small>
+              </b>
+              <em>Dicicil selama 3 bulan</em>
+            </div>
+            <div className="ea-plan ea-p3">
+              <small>Beasiswa</small>
+              <b>
+                <sup>Rp</sup>0<small>/batch</small>
+              </b>
+              <em>Jalur beasiswa Pemula 1–3</em>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- Sub-Brand 02: dedicated DonasiQu section ---------- */}
+      <section id="donasiqu" className="ea-sec ea-qupeduli" aria-label="Sub-Brand DonasiQu by Gongaji">
+        <div className="ea-wrap">
+          <div className="ea-qup-head" data-rv>
+            <div>
+              <p className="ea-eyebrow">
+                <Words parts={["SUB-BRAND 02 ·", ["DONASIQU BY GONGAJI", "ea-purplew"]]} />
+              </p>
+              <h2 className="ea-h2">
+                <Words parts={["Kebaikan yang lahir", "\n", "dari rasa percaya."]} at={2} />
+              </h2>
+            </div>
+            <p className="ea-small ea-qup-sub">
+              Platform donasi online, sedekah, dan wakaf bersama Yayasan Quran Bina Bangsa (Qubba Foundation) dengan rincian dana &amp; laporan penyaluran terbuka.
+            </p>
+          </div>
+          <div className="ea-qup-grid">
+            <div className="ea-qup-hero" data-rv>
+              <span className="ea-qup-pill">Qubba Foundation · Terverifikasi</span>
+              <h3>1.200+ Mushaf &amp; Bantuan Tersalurkan</h3>
+              <p>Setiap donasi dicatat terbuka dan disalurkan berkala untuk santri, guru ngaji, serta masyarakat membutuhkan.</p>
+              <div className="ea-qup-chips">
+                <span>Laporan Terbuka</span>
+                <span>Sedekah &amp; Wakaf</span>
+              </div>
+              <a className="ea-btn" href="#download">
+                Salurkan Lewat Gongaji App
+              </a>
+              <img src={asset("10-qupeduli/donor-spotlight.webp")} alt="" width={280} height={320} className="ea-qup-donor" aria-hidden="true" draggable={false} />
+            </div>
+            <div className="ea-qup-list" data-rv>
+              {campaigns.map((camp) => (
+                <article key={camp.id} className="ea-qup-item">
+                  <div className={"ea-qup-thumb" + (camp.isIcon ? " is-icon" : "")}>
+                    <img src={asset(camp.image)} alt={camp.title} width={76} height={76} />
+                  </div>
+                  <div className="ea-qup-body">
+                    <div className="ea-qup-meta">
+                      <span>{camp.category}</span>
+                      <small>{camp.daysLeft}</small>
+                    </div>
+                    <h4>{camp.title}</h4>
+                    <div className="ea-qup-bar">
+                      <i style={{ width: camp.pct + "%" }} />
+                    </div>
+                    <div className="ea-qup-foot">
+                      <span>
+                        <b>{camp.raisedText}</b> / {camp.targetText}
+                      </span>
+                      <small>{camp.donors} donatur</small>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- Artikel & wawasan (live API) ---------- */}
+      <section id="artikel" className="ea-sec ea-artikel" aria-label="Artikel dan Wawasan Gongaji">
+        <div className="ea-wrap">
+          <div className="ea-art-head" data-rv>
+            <div>
+              <p className="ea-eyebrow">
+                <Words parts={["ARTIKEL &", ["WAWASAN", "ea-purplew"]]} />
+              </p>
+              <h2 className="ea-h2">
+                <Words parts={["Artikel Pilihan &", "\n", "Panduan Qur'an"]} at={2} />
+              </h2>
+            </div>
+            <p className="ea-small ea-art-sub">
+              Bacaan ringan seputar Ramadan, fikih keluarga, dan tadabbur Al-Qur'an langsung dari redaksi Gongaji.
+            </p>
+          </div>
+          <div className="ea-art-grid" data-rv>
+            {liveArticles.map((item) => {
+              const primaryCategory = splitCategories(item.article_category)[0]
+              return (
+                <a
+                  key={item.article_uuid}
+                  href={`/artikel/${item.article_uuid}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ea-art-card"
+                  aria-label={`Baca artikel ${item.article_title}`}
+                >
+                  <div className="ea-art-media">
+                    <img
+                      src={item.article_image_url || asset("06-artikel-carousel/01-belajar-pemula.webp")}
+                      alt={item.article_title}
+                      width={400}
+                      height={250}
+                      loading="lazy"
+                      onError={(e) => {
+                        if (!e.currentTarget.dataset.fb) {
+                          e.currentTarget.dataset.fb = "1"
+                          e.currentTarget.src = asset("06-artikel-carousel/01-belajar-pemula.webp")
+                        }
+                      }}
+                    />
+                    {primaryCategory ? <span className="ea-art-cat">{primaryCategory}</span> : null}
+                  </div>
+                  <div className="ea-art-body">
+                    <div className="ea-art-meta">
+                      <span>{formatArticleDate(item.article_published_at)}</span>
+                      <span>{(item.article_total_view ?? 0).toLocaleString("id-ID")} dilihat</span>
+                    </div>
+                    <h3>{item.article_title}</h3>
+                    <p>{cleanArticleExcerpt(item.article_excerpt)}</p>
+                    <div className="ea-art-foot">
+                      <span>{item.article_author || "Redaksi Gongaji"}</span>
+                      <small className="ea-art-read">Baca artikel →</small>
+                    </div>
+                  </div>
+                </a>
+              )
+            })}
+          </div>
+          <div className="ea-art-actions">
+            <a className="ea-art-cta" href="/artikel" target="_blank" rel="noopener noreferrer">
+              Lihat Semua Artikel →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- lime marquee + falling doodles ---------- */}
+      <section ref={limeRef} className="ea-sec ea-lime-sec" aria-label="Ajakan Ekosistem Gongaji">
+        <div className="ea-lime">
+          <span className="ea-water" aria-hidden="true">
+            GONGAJI
+          </span>
+          <div className="ea-marquee">
+            <div ref={limeTrack} className="ea-mtrack">
+              {[0, 1].map((rep) => (
+                <span key={rep} className="ea-mrun" aria-hidden={rep === 1}>
+                  Baca. Belajar. Berbagi.
+                  <span className="ea-mthumbs">
+                    <i style={{ background: "#5145B9" }} />
+                    <img src={asset("08-lime-marquee/thumb-1-app-home.webp")} alt="" width={44} height={44} />
+                    <img src={asset("08-lime-marquee/thumb-2-app-quran.webp")} alt="" width={44} height={44} />
+                    <small>#JADILEBIHMUDAH</small>
+                  </span>
+                  25+ Fitur di Gongaji App
+                  <span className="ea-mthumbs">
+                    <img src={asset("08-lime-marquee/thumb-3-teaching-smile.webp")} alt="" width={44} height={44} />
+                  </span>
+                  Sub-Brand Qursus · 5 Level
+                  <span className="ea-mthumbs">
+                    <img src={asset("08-lime-marquee/thumb-4-qursus-murid.webp")} alt="" width={44} height={44} />
+                  </span>
+                  Sub-Brand DonasiQu · Qubba Foundation
+                  <span className="ea-mthumbs">
+                    <img src={asset("08-lime-marquee/thumb-5-teaching-mushaf.webp")} alt="" width={44} height={44} />
+                  </span>
+                </span>
+              ))}
+            </div>
+          </div>
+          <div ref={pile} className="ea-pilebox" aria-hidden="true">
+            {DOODLES.map((d, i) => (
+              <span key={i} ref={(el) => { balls.current[i] = el }} className="ea-ball">
+                <Svg d={d} size={34} stroke={1.4} />
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- duo: download Gongaji App + daftar Qursus ---------- */}
+      <section id="download" className="ea-sec ea-duo" aria-label="Mulai Bersama Gongaji">
+        <div className="ea-wrap ea-duo-grid">
+          <article className="ea-meet" data-rv>
+            <div className="ea-duo-phones" aria-hidden="true">
+              <span className="ea-duo-pill">50rb+ Unduhan · 25+ Fitur</span>
+              <div className="ea-phone-back">
+                <img src={asset("09-download-cta/app-quran.webp")} alt="" width={210} height={380} draggable={false} />
+              </div>
+              <div className="ea-phone-front">
+                <img src={asset("09-download-cta/app-home.webp")} alt="" width={230} height={420} draggable={false} />
+              </div>
+            </div>
+            <div className="ea-duo-copy">
+              <Svg d={ICON.download} size={14} />
+              <h3 className="ea-h3">
+                Unduh
+                <br />
+                <span>Gongaji App</span>
+              </h3>
+              <p className="ea-small">Tersedia gratis di Google Play (4,8★) dan App Store (4,9★). Mulai kebiasaan tilawahmu hari ini.</p>
+              <div className="ea-store-row">
+                <a className="ea-store-badge" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di Google Play">
+                  <img src={asset("09-download-cta/badge-google-play.svg")} alt="" height={40} />
+                </a>
+                <a className="ea-store-badge" href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer" aria-label="Download Gongaji di App Store">
+                  <img src={asset("09-download-cta/badge-app-store.svg")} alt="" height={40} />
+                </a>
+              </div>
+            </div>
+          </article>
+          <article className="ea-arch" data-rv>
+            <div className="ea-qursus-ui" aria-hidden="true">
+              <div className="ea-qursus-photo">
+                <img src={asset("09-download-cta/qursus-mentor.webp")} alt="" width={520} height={240} draggable={false} />
+                <span className="ea-qursus-live">Kelas Live · 5–8 Peserta</span>
+              </div>
+              <div className="ea-qursus-steps">
+                {[
+                  { label: "Pemula 1", st: "done" },
+                  { label: "Pemula 2", st: "on" },
+                  { label: "Pemula 3", st: "" },
+                  { label: "Mahir 1", st: "" },
+                  { label: "Mahir 2", st: "" },
+                ].map((lv) => (
+                  <span key={lv.label} className={lv.st}>
+                    {lv.label}
+                  </span>
+                ))}
+              </div>
+              <div className="ea-qursus-tags">
+                <span>Asesmen Awal</span>
+                <span>Ikhwan &amp; Akhwat Terpisah</span>
+                <span>Rapor &amp; Sertifikat</span>
+              </div>
+            </div>
+            <div className="ea-duo-copy">
+              <Svg d={ICON.spark} size={14} />
+              <h3 className="ea-h3">
+                Mulai Belajar
+                <br />
+                di Qursus
+              </h3>
+              <p className="ea-small">Ikuti asesmen awal, pilih jadwal kelas live kecil bersama pengajar bersertifikat, dan pantau rapor progresmu.</p>
+              <a className="ea-btn" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
+                Daftar Qursus
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* ---------- footer ---------- */}
+      <footer className="ea-foot">
+        <div className="ea-wrap ea-foot-grid">
+          <div>
+            <h2 className="ea-h4">
+              Baca. Belajar. Berbagi. <span className="ea-foot-dots">#JadiLebihMudah</span>
+            </h2>
+            <p className="ea-small">
+              Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. DonasiQu dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
+            </p>
+            <a className="ea-mail" href={mail}>
+              {email}
+            </a>
+            <span className="ea-contact-meta">
+              {GONGAJI_LINKS.whatsapp} · {GONGAJI_LINKS.instagram}
+            </span>
+            <div className="ea-socials">
+              <a href={mail} aria-label="Email Gongaji">
+                <Svg d={ICON.mail} size={12} />
+              </a>
+              <a href={GONGAJI_LINKS.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Gongaji">
+                <Svg d={ICON.globe} size={12} />
+              </a>
+              <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer" aria-label="Gongaji di Google Play">
+                <Svg d={ICON.grid} size={12} />
+              </a>
+              <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer" aria-label="Qursus by Gongaji">
+                <Svg d={ICON.spark} size={12} />
+              </a>
+            </div>
+          </div>
+          <ul>
+            <li>
+              <a href="#fitur">Gongaji App</a>
+            </li>
+            <li>
+              <i className="ea-dot" />{" "}
+              <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
+                Qursus
+              </a>{" "}
+              <span className="ea-new">Live</span>
+            </li>
+            <li>
+              <a href="#donasiqu">DonasiQu</a>
+            </li>
+            <li>
+              <a href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
+                Google Play
+              </a>
+            </li>
+            <li>
+              <a href={GONGAJI_LINKS.appStore} target="_blank" rel="noopener noreferrer">
+                App Store
+              </a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="#qursus">Pemula 1 – Mahir 2</a>
+            </li>
+            <li>
+              <i className="ea-dot" /> <a href="#pricing">Biaya &amp; Beasiswa</a>
+            </li>
+            <li>
+              <a href="#donasiqu">Program DonasiQu</a>
+            </li>
+            <li>
+              <a href="#artikel">
+                Artikel Islami <span className="ea-soon">Baru</span>
+              </a>
+            </li>
+          </ul>
+          <ul>
+            <li>Qubba Foundation</li>
+            <li>
+              <a href={mail}>Kontak Kami</a>
+            </li>
+            <li>
+              Kemitraan <span className="ea-soon">Mitra</span>
+            </li>
+          </ul>
+          <p className="ea-copy">© 2026 Gongaji. Semua hak dilindungi.</p>
+        </div>
+      </footer>
+    </div>
+  )
 }
 
-                      const EASE = "cubic-bezier(.22,1,.36,1)"
+const EASE = "cubic-bezier(.22,1,.36,1)"
 
-                      const CSS =
+const CSS =
   ".ea-root{--bg:#f6f6f5;--ink:#141414;--mute:#666666;--soft:#bdbdbd;--card:#ffffff;--line:#e3e3e1;--foot:#efefee;--red:#5145b9;--blue:#5145b9;--mint:#a6e8c1;--purple:#736ac8;--lime:#e6fa6a;--orange:#5145b9;--sun:#ffda03;" +
   "position:relative;width:100%;overflow:clip;background:var(--bg);color:var(--ink);font-family:'Instrument Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;letter-spacing:-.01em;line-height:1.4;transition:background-color .4s ease,color .4s ease}" +
   ".dark .ea-root,.ea-root.ea-dark{--bg:#0f0f10;--ink:#f1f1ef;--mute:#a3a3a0;--soft:#4a4a4c;--card:#19191b;--line:#2b2b2d;--foot:#151517;--red:#aba6de;--blue:#6c60d8;--orange:#5145b9}" +
@@ -2160,7 +2160,7 @@ export default function EaselShowcaseTemplate({
   ".ea-art-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}" +
   ".ea-art-sub{max-width:360px}" +
   ".ea-art-actions{margin-top:clamp(24px,4vh,34px);display:flex;justify-content:center}" +
-  ".ea-art-cta{position:relative;z-index:3;height:44px;padding:0 26px;border-radius:999px;background:var(--blue);color:#fff;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto;transition:transform .25s " + EASE + ",opacity .2s ease}" +
+  ".ea-art-cta{position:relative;z-index:3;height:44px;padding:0 26px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto;transition:transform .35s " + EASE + ",box-shadow .35s " + EASE + "}" +
   ".ea-art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
   ".ea-art-grid.ea-in{opacity:1;transform:none}" +
   ".ea-art-card{border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .45s " + EASE + ",border-color .25s ease}" +

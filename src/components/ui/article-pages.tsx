@@ -47,7 +47,7 @@ function BrandLogo({ dark }: { dark: boolean }) {
   const markFill = dark ? "#FFFFFF" : "#5145B9"
   const wordFill = dark ? "#FFFFFF" : "#191919"
   return (
-    <svg viewBox="38 33 358 82" height={24} role="img" aria-label="Gongaji" className="ea-brand-svg">
+    <svg viewBox="38 33 358 82" height={24} role="img" aria-label="Gongaji" className="gj-brand-svg">
       <path d={GONGAJI_LOGO.markPath} fill={markFill} fillRule="evenodd" style={{ transition: "fill .25s ease" }} />
       {GONGAJI_LOGO.wordmarkPaths.map((path, i) => (
         <path key={i} d={path} fill={wordFill} style={{ transition: "fill .25s ease" }} />
@@ -87,11 +87,11 @@ function SubpageHeader({
   }
 
   return (
-    <header className={"ea-nav ea-subnav" + (solid ? " ea-solid" : "")}>
-      <a className="ea-brand" href="/" onClick={(e) => handleNav(e, "/")} aria-label="Gongaji — Beranda">
+    <header className={"gj-nav gj-subnav" + (solid ? " gj-solid" : "")}>
+      <a className="gj-brand" href="/" onClick={(e) => handleNav(e, "/")} aria-label="Gongaji — Beranda">
         <BrandLogo dark={dark} />
       </a>
-      <nav className="ea-links" aria-label="Navigasi utama">
+      <nav className="gj-links" aria-label="Navigasi utama">
         {NAV_ITEMS.map((item) => {
           const isMail = item.href.startsWith("mailto:")
           const target = item.label === "Artikel" ? "/artikel" : isMail ? item.href : "/" + item.href
@@ -99,20 +99,20 @@ function SubpageHeader({
           return (
             <a
               key={item.label}
-              className={"ea-link" + (isCurrent ? " is-current" : "")}
+              className={"gj-link" + (isCurrent ? " is-current" : "")}
               href={target}
               aria-current={isCurrent ? "page" : undefined}
               onClick={(e) => handleNav(e, target)}
             >
-              {"live" in item && item.live && <i className="ea-dot" aria-hidden="true" />}
+              {"live" in item && item.live && <i className="gj-dot" aria-hidden="true" />}
               {item.label}
             </a>
           )
         })}
       </nav>
-      <div className="ea-tools">
+      <div className="gj-tools">
         <a
-          className="ea-round"
+          className="gj-round"
           href={GONGAJI_LINKS.playStore}
           target="_blank"
           rel="noopener noreferrer"
@@ -122,7 +122,7 @@ function SubpageHeader({
         </a>
         <button
           type="button"
-          className="ea-round"
+          className="gj-round"
           aria-label={dark ? "Aktifkan tema terang" : "Aktifkan tema gelap"}
           aria-pressed={dark}
           onClick={onToggleDark}
@@ -145,24 +145,24 @@ function SubpageFooter({ onNavigate }: { onNavigate: (to: string) => void }) {
 
   return (
     <>
-      <section className="ea-sub-cta-wrap" aria-label="Unduh Aplikasi Gongaji">
-        <div className="ea-wrap">
-          <div className="ea-sub-cta">
+      <section className="gj-sub-cta-wrap" aria-label="Unduh Aplikasi Gongaji">
+        <div className="gj-wrap">
+          <div className="gj-sub-cta">
             <div>
-              <span className="ea-duo-pill">Ekosistem Gongaji · App, Qursus &amp; DonasiQu</span>
-              <h2 className="ea-h3">
+              <span className="gj-duo-pill">Ekosistem Gongaji · App, Qursus &amp; DonasiQu</span>
+              <h2 className="gj-h3">
                 Baca Al-Qur’an &amp; Belajar{" "}
                 <span>Lebih Terarah</span>
               </h2>
-              <p className="ea-small">
+              <p className="gj-small">
                 Nikmati 25+ fitur ibadah gratis di Gongaji App, kelas live Qursus 5–8 peserta, dan transparansi donasi DonasiQu.
               </p>
             </div>
-            <div className="ea-sub-cta-btns">
-              <a className="ea-btn ea-btn-w" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
+            <div className="gj-sub-cta-btns">
+              <a className="gj-btn gj-btn-w" href={GONGAJI_LINKS.playStore} target="_blank" rel="noopener noreferrer">
                 Unduh Gongaji App
               </a>
-              <a className="ea-btn-outline-w" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
+              <a className="gj-btn-outline-w" href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
                 Kenali Qursus
               </a>
             </div>
@@ -170,22 +170,22 @@ function SubpageFooter({ onNavigate }: { onNavigate: (to: string) => void }) {
         </div>
       </section>
 
-      <footer className="ea-foot">
-        <div className="ea-wrap ea-foot-grid">
+      <footer className="gj-foot">
+        <div className="gj-wrap gj-foot-grid">
           <div>
-            <h2 className="ea-h4">
-              Baca. Belajar. Berbagi. <span className="ea-foot-dots">#JadiLebihMudah</span>
+            <h2 className="gj-h4">
+              Baca. Belajar. Berbagi. <span className="gj-foot-dots">#JadiLebihMudah</span>
             </h2>
-            <p className="ea-small">
+            <p className="gj-small">
               Membantu siapa pun membaca, belajar, dan berbagi kebaikan bersama Al-Qur’an. DonasiQu dikelola oleh Yayasan Quran Bina Bangsa (Qubba Foundation).
             </p>
-            <a className="ea-mail" href={mail}>
+            <a className="gj-mail" href={mail}>
               {GONGAJI_LINKS.email}
             </a>
-            <span className="ea-contact-meta">
+            <span className="gj-contact-meta">
               {GONGAJI_LINKS.whatsapp} · {GONGAJI_LINKS.instagram}
             </span>
-            <div className="ea-socials">
+            <div className="gj-socials">
               <a href={mail} aria-label="Email Gongaji">
                 <Svg d={ICON.mail} size={12} />
               </a>
@@ -207,11 +207,11 @@ function SubpageFooter({ onNavigate }: { onNavigate: (to: string) => void }) {
               </a>
             </li>
             <li>
-              <i className="ea-dot" />{" "}
+              <i className="gj-dot" />{" "}
               <a href={GONGAJI_LINKS.qursus} target="_blank" rel="noopener noreferrer">
                 Qursus
               </a>{" "}
-              <span className="ea-new">Live</span>
+              <span className="gj-new">Live</span>
             </li>
             <li>
               <a href="/#donasiqu" onClick={(e) => handleNav(e, "/#donasiqu")}>
@@ -236,7 +236,7 @@ function SubpageFooter({ onNavigate }: { onNavigate: (to: string) => void }) {
               </a>
             </li>
             <li>
-              <i className="ea-dot" />{" "}
+              <i className="gj-dot" />{" "}
               <a href="/#pricing" onClick={(e) => handleNav(e, "/#pricing")}>
                 Biaya &amp; Beasiswa
               </a>
@@ -248,7 +248,7 @@ function SubpageFooter({ onNavigate }: { onNavigate: (to: string) => void }) {
             </li>
             <li>
               <a href="/artikel" onClick={(e) => handleNav(e, "/artikel")}>
-                Artikel Islami <span className="ea-soon">Baru</span>
+                Artikel Islami <span className="gj-soon">Baru</span>
               </a>
             </li>
           </ul>
@@ -258,10 +258,10 @@ function SubpageFooter({ onNavigate }: { onNavigate: (to: string) => void }) {
               <a href={mail}>Kontak Kami</a>
             </li>
             <li>
-              Kemitraan <span className="ea-soon">Mitra</span>
+              Kemitraan <span className="gj-soon">Mitra</span>
             </li>
           </ul>
-          <p className="ea-copy">© 2026 Gongaji. Semua hak dilindungi.</p>
+          <p className="gj-copy">© 2026 Gongaji. Semua hak dilindungi.</p>
         </div>
       </footer>
     </>
@@ -281,7 +281,7 @@ function ArticleCard({
   return (
     <a
       href={href}
-      className="ea-art-card"
+      className="gj-art-card"
       aria-label={`Baca artikel ${item.article_title}`}
       onClick={(e) => {
         if (isPlainLeftClick(e)) {
@@ -290,7 +290,7 @@ function ArticleCard({
         }
       }}
     >
-      <div className="ea-art-media">
+      <div className="gj-art-media">
         <img
           src={item.article_image_url || FALLBACK_ARTICLE_IMAGE}
           alt={item.article_title}
@@ -304,17 +304,17 @@ function ArticleCard({
             }
           }}
         />
-        {categories[0] ? <span className="ea-art-cat">{categories[0]}</span> : null}
+        {categories[0] ? <span className="gj-art-cat">{categories[0]}</span> : null}
       </div>
-      <div className="ea-art-body">
-        <div className="ea-art-meta">
+      <div className="gj-art-body">
+        <div className="gj-art-meta">
           <span>{formatArticleDate(item.article_published_at)}</span>
           <span>{(item.article_total_view ?? 0).toLocaleString("id-ID")} dilihat</span>
         </div>
         <h3>{item.article_title}</h3>
         <p>{cleanArticleExcerpt(item.article_excerpt)}</p>
-        <div className="ea-art-foot">
-          <span className="ea-art-author">{item.article_author || "Redaksi Gongaji"}</span>
+        <div className="gj-art-foot">
+          <span className="gj-art-author">{item.article_author || "Redaksi Gongaji"}</span>
           <small>Baca artikel →</small>
         </div>
       </div>
@@ -428,38 +428,38 @@ export function ArticlesDirectoryPage({
   }
 
   return (
-    <div className={"ea-root ea-subpage" + (dark ? " ea-dark" : "")}>
+    <div className={"gj-root gj-subpage" + (dark ? " gj-dark" : "")}>
       <style>{SUBPAGE_CSS}</style>
       <SubpageHeader dark={dark} onToggleDark={onToggleDark} onNavigate={onNavigate} />
 
-      <main className="ea-submain">
-        <section className="ea-sub-hero">
-          <div className="ea-wrap">
-            <div className="ea-sub-head">
-              <div className="ea-sub-head-copy">
-                <p className="ea-eyebrow">
-                  ARTIKEL &amp; <span className="ea-purplew">WAWASAN</span>
+      <main className="gj-submain">
+        <section className="gj-sub-hero">
+          <div className="gj-wrap">
+            <div className="gj-sub-head">
+              <div className="gj-sub-head-copy">
+                <p className="gj-eyebrow">
+                  ARTIKEL &amp; <span className="gj-purplew">WAWASAN</span>
                 </p>
-                <h1 className="ea-h2">
+                <h1 className="gj-h2">
                   Artikel Pilihan &amp;
                   <br />
                   Panduan Qur’an
                 </h1>
-                <p className="ea-small ea-sub-desc">
+                <p className="gj-small gj-sub-desc">
                   Bacaan terkurasi seputar Al-Qur’an, fikih, akidah, Ramadan, dan keluarga Muslim langsung dari redaksi Gongaji.
                 </p>
               </div>
-              <div className="ea-sub-head-side">
-                <div className="ea-sub-tags" aria-hidden="true">
-                  <span className="ea-tag-inline ea-blue">@gongaji.artikel</span>
-                  <span className="ea-tag-inline ea-mint">#WawasanQurani</span>
+              <div className="gj-sub-head-side">
+                <div className="gj-sub-tags" aria-hidden="true">
+                  <span className="gj-tag-inline gj-blue">@gongaji.artikel</span>
+                  <span className="gj-tag-inline gj-mint">#WawasanQurani</span>
                 </div>
               </div>
             </div>
 
-            <div className="ea-filter-card" role="region" aria-label="Filter dan pencarian artikel">
-              <div className="ea-search-row">
-                <label className="ea-search-box">
+            <div className="gj-filter-card" role="region" aria-label="Filter dan pencarian artikel">
+              <div className="gj-search-row">
+                <label className="gj-search-box">
                   <Svg d={ICON.search} size={15} />
                   <input
                     type="search"
@@ -474,7 +474,7 @@ export function ArticlesDirectoryPage({
                   {query ? (
                     <button
                       type="button"
-                      className="ea-clear-x"
+                      className="gj-clear-x"
                       onClick={() => {
                         setQuery("")
                         setPage(1)
@@ -486,9 +486,9 @@ export function ArticlesDirectoryPage({
                   ) : null}
                 </label>
 
-                <label className={"ea-sort-wrap" + (sort !== "newest" ? " is-filtered" : "")} title="Urutkan & filter artikel">
+                <label className={"gj-sort-wrap" + (sort !== "newest" ? " is-filtered" : "")} title="Urutkan & filter artikel">
                   <Svg d={ICON.sliders} size={15} />
-                  <span className="ea-sort-label">Urutkan</span>
+                  <span className="gj-sort-label">Urutkan</span>
                   <select
                     value={sort}
                     onChange={(e) => {
@@ -505,7 +505,7 @@ export function ArticlesDirectoryPage({
               </div>
 
               <div
-                className="ea-cats"
+                className="gj-cats"
                 role="tablist"
                 aria-label="Filter kategori artikel"
                 onWheel={(e) => {
@@ -517,7 +517,7 @@ export function ArticlesDirectoryPage({
               >
                 <button
                   type="button"
-                  className={"ea-cat-pill" + (category === "Semua" ? " is-on" : "")}
+                  className={"gj-cat-pill" + (category === "Semua" ? " is-on" : "")}
                   aria-pressed={category === "Semua"}
                   onClick={() => {
                     setCategory("Semua")
@@ -530,7 +530,7 @@ export function ArticlesDirectoryPage({
                   <button
                     key={name}
                     type="button"
-                    className={"ea-cat-pill" + (category === name ? " is-on" : "")}
+                    className={"gj-cat-pill" + (category === name ? " is-on" : "")}
                     aria-pressed={category === name}
                     onClick={() => {
                       setCategory(name)
@@ -544,63 +544,63 @@ export function ArticlesDirectoryPage({
             </div>
 
             {error ? (
-              <div className="ea-notice">
+              <div className="gj-notice">
                 <span>{error}</span>
-                <button type="button" className="ea-btn" onClick={() => setReloadTick((t) => t + 1)}>
+                <button type="button" className="gj-btn" onClick={() => setReloadTick((t) => t + 1)}>
                   Muat Ulang
                 </button>
               </div>
             ) : null}
 
             {loading && articles.length <= 3 ? (
-              <div className="ea-art-grid ea-in">
+              <div className="gj-art-grid gj-in">
                 {Array.from({ length: 6 }).map((_, idx) => (
-                  <div key={idx} className="ea-sk-card" aria-hidden="true">
-                    <div className="ea-sk-media" />
-                    <div className="ea-sk-body">
-                      <div className="ea-sk-line w40" />
-                      <div className="ea-sk-line w90" />
-                      <div className="ea-sk-line w75" />
+                  <div key={idx} className="gj-sk-card" aria-hidden="true">
+                    <div className="gj-sk-media" />
+                    <div className="gj-sk-body">
+                      <div className="gj-sk-line w40" />
+                      <div className="gj-sk-line w90" />
+                      <div className="gj-sk-line w75" />
                     </div>
                   </div>
                 ))}
               </div>
             ) : visibleItems.length === 0 ? (
-              <div className="ea-empty-box">
-                <h2 className="ea-h4">Belum ada artikel yang cocok</h2>
-                <p className="ea-small">Coba ubah kata kunci pencarian atau pilih kategori lain.</p>
+              <div className="gj-empty-box">
+                <h2 className="gj-h4">Belum ada artikel yang cocok</h2>
+                <p className="gj-small">Coba ubah kata kunci pencarian atau pilih kategori lain.</p>
                 {hasActiveFilter ? (
-                  <button type="button" className="ea-btn" onClick={resetFilters}>
+                  <button type="button" className="gj-btn" onClick={resetFilters}>
                     Reset Semua Filter
                   </button>
                 ) : null}
               </div>
             ) : (
               <>
-                <div className="ea-result-bar">
+                <div className="gj-result-bar">
                   <span>
                     Menampilkan {(safePage - 1) * PAGE_SIZE + 1}–{Math.min(safePage * PAGE_SIZE, filtered.length)} dari {filtered.length} artikel
                     {category !== "Semua" ? ` · Kategori “${category}”` : ""}
                   </span>
                   {hasActiveFilter ? (
-                    <button type="button" className="ea-ghost" onClick={resetFilters}>
+                    <button type="button" className="gj-ghost" onClick={resetFilters}>
                       Reset Filter
                     </button>
                   ) : null}
                 </div>
 
-                <div className="ea-art-grid ea-in">
+                <div className="gj-art-grid gj-in">
                   {visibleItems.map((item) => (
                     <ArticleCard key={item.article_uuid} item={item} onNavigate={onNavigate} />
                   ))}
                 </div>
 
                 {totalPages > 1 ? (
-                  <nav className="ea-pagination" aria-label="Navigasi halaman artikel">
+                  <nav className="gj-pagination" aria-label="Navigasi halaman artikel">
                     <button type="button" disabled={safePage <= 1} onClick={() => goToPage(safePage - 1)}>
                       ← Sebelumnya
                     </button>
-                    <div className="ea-page-nums">
+                    <div className="gj-page-nums">
                       {Array.from({ length: totalPages }, (_, idx) => idx + 1).map((num) => (
                         <button
                           key={num}
@@ -723,16 +723,16 @@ export function ArticleReaderPage({
   }
 
   return (
-    <div className={"ea-root ea-subpage" + (dark ? " ea-dark" : "")}>
+    <div className={"gj-root gj-subpage" + (dark ? " gj-dark" : "")}>
       <style>{SUBPAGE_CSS}</style>
       <SubpageHeader dark={dark} onToggleDark={onToggleDark} onNavigate={onNavigate} />
 
-      <main className="ea-submain">
-        <div className="ea-wrap">
-          <div className="ea-reader-topbar">
+      <main className="gj-submain">
+        <div className="gj-wrap">
+          <div className="gj-reader-topbar">
             <a
               href="/artikel"
-              className="ea-back-link"
+              className="gj-back-link"
               onClick={(e) => {
                 if (isPlainLeftClick(e)) {
                   e.preventDefault()
@@ -743,7 +743,7 @@ export function ArticleReaderPage({
               <Svg d={ICON.left} size={14} />
               Kembali ke Semua Artikel
             </a>
-            <div className="ea-breadcrumb">
+            <div className="gj-breadcrumb">
               <a
                 href="/#artikel"
                 onClick={(e) => {
@@ -771,26 +771,26 @@ export function ArticleReaderPage({
           </div>
 
           {loading ? (
-            <div className="ea-reader-shell">
-              <div className="ea-sk-line w40" />
-              <div className="ea-sk-line w90" style={{ height: 34 }} />
-              <div className="ea-sk-line w75" style={{ height: 34 }} />
-              <div className="ea-sk-cover" />
-              <div className="ea-sk-line w90" />
-              <div className="ea-sk-line w90" />
-              <div className="ea-sk-line w75" />
+            <div className="gj-reader-shell">
+              <div className="gj-sk-line w40" />
+              <div className="gj-sk-line w90" style={{ height: 34 }} />
+              <div className="gj-sk-line w75" style={{ height: 34 }} />
+              <div className="gj-sk-cover" />
+              <div className="gj-sk-line w90" />
+              <div className="gj-sk-line w90" />
+              <div className="gj-sk-line w75" />
             </div>
           ) : error || !article ? (
-            <div className="ea-empty-box">
-              <h2 className="ea-h4">Gagal Membuka Artikel</h2>
-              <p className="ea-small">{error || "Artikel tidak ditemukan."}</p>
-              <div className="ea-empty-actions">
-                <button type="button" className="ea-btn" onClick={() => setReloadTick((t) => t + 1)}>
+            <div className="gj-empty-box">
+              <h2 className="gj-h4">Gagal Membuka Artikel</h2>
+              <p className="gj-small">{error || "Artikel tidak ditemukan."}</p>
+              <div className="gj-empty-actions">
+                <button type="button" className="gj-btn" onClick={() => setReloadTick((t) => t + 1)}>
                   Coba Lagi
                 </button>
                 <a
                   href="/artikel"
-                  className="ea-ghost"
+                  className="gj-ghost"
                   onClick={(e) => {
                     if (isPlainLeftClick(e)) {
                       e.preventDefault()
@@ -803,17 +803,17 @@ export function ArticleReaderPage({
               </div>
             </div>
           ) : (
-            <article className="ea-reader-shell">
-              <header className="ea-reader-head">
+            <article className="gj-reader-shell">
+              <header className="gj-reader-head">
                 {categories.length > 0 ? (
-                  <div className="ea-reader-cats">
+                  <div className="gj-reader-cats">
                     {categories.map((cat) => {
                       const target = `/artikel?category=${encodeURIComponent(cat)}`
                       return (
                         <a
                           key={cat}
                           href={target}
-                          className="ea-reader-cat"
+                          className="gj-reader-cat"
                           onClick={(e) => {
                             if (isPlainLeftClick(e)) {
                               e.preventDefault()
@@ -828,9 +828,9 @@ export function ArticleReaderPage({
                   </div>
                 ) : null}
                 <h1>{article.article_title}</h1>
-                <div className="ea-reader-meta-bar">
-                  <div className="ea-author-box">
-                    <span className="ea-author-avatar" aria-hidden="true">
+                <div className="gj-reader-meta-bar">
+                  <div className="gj-author-box">
+                    <span className="gj-author-avatar" aria-hidden="true">
                       {(article.article_author || "Gongaji").trim().charAt(0).toUpperCase() || "G"}
                     </span>
                     <div>
@@ -842,14 +842,14 @@ export function ArticleReaderPage({
                       </small>
                     </div>
                   </div>
-                  <button type="button" className="ea-share-btn" onClick={handleCopyLink}>
+                  <button type="button" className="gj-share-btn" onClick={handleCopyLink}>
                     <Svg d={ICON.link} size={13} />
                     {copied ? "Tautan Disalin" : "Salin Tautan"}
                   </button>
                 </div>
               </header>
 
-              <figure className="ea-reader-cover">
+              <figure className="gj-reader-cover">
                 <img
                   src={article.article_image_url || FALLBACK_ARTICLE_IMAGE}
                   alt={article.article_title}
@@ -862,10 +862,10 @@ export function ArticleReaderPage({
                 />
               </figure>
 
-              <div className="ea-reader-content" dangerouslySetInnerHTML={{ __html: cleanHtml }} />
+              <div className="gj-reader-content" dangerouslySetInnerHTML={{ __html: cleanHtml }} />
 
               {tags.length > 0 ? (
-                <div className="ea-reader-tags">
+                <div className="gj-reader-tags">
                   <span>Topik:</span>
                   {tags.map((tag) => {
                     const target = `/artikel?category=${encodeURIComponent(tag)}`
@@ -873,7 +873,7 @@ export function ArticleReaderPage({
                       <a
                         key={tag}
                         href={target}
-                        className="ea-tag-chip"
+                        className="gj-tag-chip"
                         onClick={(e) => {
                           if (isPlainLeftClick(e)) {
                             e.preventDefault()
@@ -891,17 +891,17 @@ export function ArticleReaderPage({
           )}
 
           {relatedThree.length > 0 ? (
-            <section className="ea-related" aria-label="Artikel Terkait">
-              <div className="ea-related-head">
+            <section className="gj-related" aria-label="Artikel Terkait">
+              <div className="gj-related-head">
                 <div>
-                  <p className="ea-eyebrow">
-                    BACAAN <span className="ea-purplew">SERUPA</span>
+                  <p className="gj-eyebrow">
+                    BACAAN <span className="gj-purplew">SERUPA</span>
                   </p>
-                  <h2 className="ea-h3">Artikel Terkait Lainnya</h2>
+                  <h2 className="gj-h3">Artikel Terkait Lainnya</h2>
                 </div>
                 <a
                   href="/artikel"
-                  className="ea-art-cta-link"
+                  className="gj-art-cta-link"
                   onClick={(e) => {
                     if (isPlainLeftClick(e)) {
                       e.preventDefault()
@@ -912,7 +912,7 @@ export function ArticleReaderPage({
                   Lihat Semua Artikel →
                 </a>
               </div>
-              <div className="ea-art-grid ea-in">
+              <div className="gj-art-grid gj-in">
                 {relatedThree.map((item) => (
                   <ArticleCard key={item.article_uuid} item={item} onNavigate={onNavigate} />
                 ))}
@@ -930,215 +930,215 @@ export function ArticleReaderPage({
 const EASE = "cubic-bezier(.22,1,.36,1)"
 
 const SUBPAGE_CSS = `
-.ea-root{
+.gj-root{
   --bg:#f6f6f5;--ink:#141414;--mute:#666666;--soft:#bdbdbd;--card:#ffffff;--line:#e3e3e1;--foot:#efefee;--red:#5145b9;--blue:#5145b9;--mint:#a6e8c1;--purple:#736ac8;--lime:#e6fa6a;--orange:#5145b9;--sun:#ffda03;
   position:relative;width:100%;min-height:100svh;display:flex;flex-direction:column;overflow-x:clip;
   background:var(--bg);color:var(--ink);font-family:'Instrument Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
   font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;letter-spacing:-.01em;line-height:1.4;
   transition:background-color .4s ease,color .4s ease;
 }
-.dark .ea-root,.ea-root.ea-dark{
+.dark .gj-root,.gj-root.gj-dark{
   --bg:#0f0f10;--ink:#f1f1ef;--mute:#a3a3a0;--soft:#4a4a4c;--card:#19191b;--line:#2b2b2d;--foot:#151517;--red:#aba6de;--blue:#6c60d8;--purple:#aba6de;
 }
-.ea-root *,.ea-root *::before,.ea-root *::after{box-sizing:border-box}
-.ea-root :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}
-.ea-root :where(a){color:inherit;text-decoration:none}
-.ea-root :where(button){font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-.ea-root :where(h1,h2,h3,h4,p,ul,figure){margin:0;padding:0}
-.ea-root :where(ul){list-style:none}
-.ea-wrap{width:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,7.1vw,102px)}
+.gj-root *,.gj-root *::before,.gj-root *::after{box-sizing:border-box}
+.gj-root :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}
+.gj-root :where(a){color:inherit;text-decoration:none}
+.gj-root :where(button){font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.gj-root :where(h1,h2,h3,h4,p,ul,figure){margin:0;padding:0}
+.gj-root :where(ul){list-style:none}
+.gj-wrap{width:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,7.1vw,102px)}
 
 /* Identical Beranda Header */
-.ea-nav{position:sticky;top:0;z-index:40;height:110px;margin-bottom:-110px;display:flex;align-items:center;gap:24px;padding:30px clamp(20px,5.6vw,80px) 0;pointer-events:none}
-.ea-nav>*{pointer-events:auto}
-.ea-nav::before{content:'';position:absolute;left:0;right:0;top:0;bottom:12px;z-index:-1;background:rgba(246,246,245,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);opacity:0;transition:opacity .35s ease}
-.dark .ea-nav::before,.ea-dark .ea-nav::before{background:rgba(15,15,16,.8)}
-.ea-nav.ea-solid::before{opacity:1}
-.ea-brand{display:inline-flex;align-items:center;margin-right:auto}
-.ea-brand-svg{height:24px;width:auto;display:block}
-.ea-links{display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);font-size:13px;font-weight:500}
-.ea-link{position:relative;display:inline-flex;align-items:center;gap:6px;padding:4px 0}
-.ea-link::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s ${EASE}}
-.ea-link.is-current::after{transform:scaleX(1)}
-.ea-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:inset 0 0 0 2px var(--blue),inset 0 0 0 3px var(--bg)}
-.ea-tools{display:flex;gap:8px;margin-left:clamp(12px,3vw,48px)}
-.ea-round{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--card);box-shadow:0 1px 0 var(--line);transition:transform .3s ${EASE}}
+.gj-nav{position:sticky;top:0;z-index:40;height:110px;margin-bottom:-110px;display:flex;align-items:center;gap:24px;padding:30px clamp(20px,5.6vw,80px) 0;pointer-events:none}
+.gj-nav>*{pointer-events:auto}
+.gj-nav::before{content:'';position:absolute;left:0;right:0;top:0;bottom:12px;z-index:-1;background:rgba(246,246,245,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);opacity:0;transition:opacity .35s ease}
+.dark .gj-nav::before,.gj-dark .gj-nav::before{background:rgba(15,15,16,.8)}
+.gj-nav.gj-solid::before{opacity:1}
+.gj-brand{display:inline-flex;align-items:center;margin-right:auto}
+.gj-brand-svg{height:24px;width:auto;display:block}
+.gj-links{display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);font-size:13px;font-weight:500}
+.gj-link{position:relative;display:inline-flex;align-items:center;gap:6px;padding:4px 0}
+.gj-link::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s ${EASE}}
+.gj-link.is-current::after{transform:scaleX(1)}
+.gj-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:inset 0 0 0 2px var(--blue),inset 0 0 0 3px var(--bg)}
+.gj-tools{display:flex;gap:8px;margin-left:clamp(12px,3vw,48px)}
+.gj-round{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--card);box-shadow:0 1px 0 var(--line);transition:transform .3s ${EASE}}
 
 /* Shared Beranda Typography & Buttons */
-.ea-h2{font-size:clamp(34px,4.6vw,66px);line-height:1.06;letter-spacing:-.04em;font-weight:500}
-.ea-h3{font-size:clamp(24px,2.4vw,34px);line-height:1.1;letter-spacing:-.035em;font-weight:500}
-.ea-h4{font-size:17px;line-height:1.25;letter-spacing:-.02em;font-weight:600}
-.ea-eyebrow{font-size:10px;letter-spacing:.32em;font-weight:600;text-transform:uppercase;margin-bottom:14px}
-.ea-small{font-size:12.5px;line-height:1.6;color:var(--mute)}
-.ea-purplew{color:var(--purple)}
-.ea-btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:500;white-space:nowrap;transition:transform .35s ${EASE},box-shadow .35s ${EASE}}
-.ea-btn-w{background:#fff;color:#141414}
-.ea-ghost{font-size:12px;font-weight:500;position:relative;display:inline-flex;align-items:center}
-.ea-ghost::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s ${EASE}}
+.gj-h2{font-size:clamp(34px,4.6vw,66px);line-height:1.06;letter-spacing:-.04em;font-weight:500}
+.gj-h3{font-size:clamp(24px,2.4vw,34px);line-height:1.1;letter-spacing:-.035em;font-weight:500}
+.gj-h4{font-size:17px;line-height:1.25;letter-spacing:-.02em;font-weight:600}
+.gj-eyebrow{font-size:10px;letter-spacing:.32em;font-weight:600;text-transform:uppercase;margin-bottom:14px}
+.gj-small{font-size:12.5px;line-height:1.6;color:var(--mute)}
+.gj-purplew{color:var(--purple)}
+.gj-btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:500;white-space:nowrap;transition:transform .35s ${EASE},box-shadow .35s ${EASE}}
+.gj-btn-w{background:#fff;color:#141414}
+.gj-ghost{font-size:12px;font-weight:500;position:relative;display:inline-flex;align-items:center}
+.gj-ghost::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s ${EASE}}
 
 /* Main layout */
-.ea-submain{flex:1;padding-top:clamp(122px,15vh,148px);padding-bottom:clamp(40px,7vh,76px)}
-.ea-back-link{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:500;color:var(--mute);margin-bottom:22px;transition:color .2s ease}
-.ea-back-link:hover{color:var(--ink)}
-.ea-sub-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:30px}
-.ea-sub-head-copy{max-width:720px}
-.ea-sub-desc{margin-top:16px;max-width:460px}
-.ea-sub-head-side{display:flex;flex-direction:column;align-items:flex-end;gap:14px}
-.ea-sub-tags{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.ea-tag-inline{position:relative;display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
-.ea-tag-inline.ea-blue{background:#5145b9;color:#fff;transform:rotate(-3deg)}
-.ea-tag-inline.ea-mint{background:#a6e8c1;color:#0f5b38;transform:rotate(4deg)}
+.gj-submain{flex:1;padding-top:clamp(122px,15vh,148px);padding-bottom:clamp(40px,7vh,76px)}
+.gj-back-link{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:500;color:var(--mute);margin-bottom:22px;transition:color .2s ease}
+.gj-back-link:hover{color:var(--ink)}
+.gj-sub-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:30px}
+.gj-sub-head-copy{max-width:720px}
+.gj-sub-desc{margin-top:16px;max-width:460px}
+.gj-sub-head-side{display:flex;flex-direction:column;align-items:flex-end;gap:14px}
+.gj-sub-tags{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.gj-tag-inline{position:relative;display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:999px;font-size:12.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+.gj-tag-inline.gj-blue{background:#5145b9;color:#fff;transform:rotate(-3deg)}
+.gj-tag-inline.gj-mint{background:#a6e8c1;color:#0f5b38;transform:rotate(4deg)}
 
 /* Filter controls */
-.ea-filter-card{display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:16px;background:var(--card);border:1px solid var(--line);margin-bottom:26px;overflow:hidden}
-.ea-search-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.ea-search-box{flex:1;min-width:220px;height:44px;display:flex;align-items:center;gap:10px;padding:0 15px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--mute)}
-.ea-search-box:focus-within{border-color:var(--blue)}
-.ea-search-box input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;font:inherit;font-size:13.5px;color:var(--ink)}
-.ea-clear-x{width:22px;height:22px;flex:none;border-radius:50%;background:var(--line);color:var(--ink);display:grid;place-items:center;font-size:15px;line-height:1}
-.ea-sort-wrap{position:relative;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:12px;color:var(--mute);flex:none}
-.ea-sort-wrap select{border:0;outline:0;background:transparent;font:inherit;font-weight:600;color:var(--ink);cursor:pointer}
-.ea-cats{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;padding:2px 20px 4px 0;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 28px),transparent 100%)}
-.ea-cats::-webkit-scrollbar{display:none}
-.ea-cat-pill{flex:0 0 auto;white-space:nowrap;height:30px;padding:0 13px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all .2s ease}
-.ea-cat-pill small{font-size:10.5px;opacity:.68}
-.ea-cat-pill:hover{border-color:var(--blue)}
-.ea-cat-pill.is-on{background:var(--blue);border-color:var(--blue);color:#fff}
+.gj-filter-card{display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:16px;background:var(--card);border:1px solid var(--line);margin-bottom:26px;overflow:hidden}
+.gj-search-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.gj-search-box{flex:1;min-width:220px;height:44px;display:flex;align-items:center;gap:10px;padding:0 15px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--mute)}
+.gj-search-box:focus-within{border-color:var(--blue)}
+.gj-search-box input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;font:inherit;font-size:13.5px;color:var(--ink)}
+.gj-clear-x{width:22px;height:22px;flex:none;border-radius:50%;background:var(--line);color:var(--ink);display:grid;place-items:center;font-size:15px;line-height:1}
+.gj-sort-wrap{position:relative;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:12px;color:var(--mute);flex:none}
+.gj-sort-wrap select{border:0;outline:0;background:transparent;font:inherit;font-weight:600;color:var(--ink);cursor:pointer}
+.gj-cats{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;padding:2px 20px 4px 0;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 28px),transparent 100%)}
+.gj-cats::-webkit-scrollbar{display:none}
+.gj-cat-pill{flex:0 0 auto;white-space:nowrap;height:30px;padding:0 13px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all .2s ease}
+.gj-cat-pill small{font-size:10.5px;opacity:.68}
+.gj-cat-pill:hover{border-color:var(--blue)}
+.gj-cat-pill.is-on{background:var(--blue);border-color:var(--blue);color:#fff}
 
-.ea-result-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;font-size:12px;color:var(--mute)}
+.gj-result-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;font-size:12px;color:var(--mute)}
 
 /* Identical Beranda Article Grid & Cards */
-.ea-art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.ea-art-card{border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .45s ${EASE},border-color .25s ease}
-.ea-art-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--foot)}
-.ea-art-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ${EASE}}
-.ea-art-cat{position:absolute;left:12px;top:12px;height:22px;padding:0 10px;border-radius:999px;background:rgba(18,17,24,.82);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center}
-.ea-art-body{padding:18px;flex:1;display:flex;flex-direction:column;gap:8px}
-.ea-art-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10.5px;color:var(--mute)}
-.ea-art-body h3{font-size:15.5px;font-weight:600;line-height:1.3;letter-spacing:-.015em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.ea-art-body p{font-size:12px;line-height:1.55;color:var(--mute);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.ea-art-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:500;color:var(--ink)}
-.ea-art-author{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ea-art-foot small{font-size:10.5px;font-weight:600;color:var(--blue);white-space:nowrap}
+.gj-art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.gj-art-card{border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .45s ${EASE},border-color .25s ease}
+.gj-art-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--foot)}
+.gj-art-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ${EASE}}
+.gj-art-cat{position:absolute;left:12px;top:12px;height:22px;padding:0 10px;border-radius:999px;background:rgba(18,17,24,.82);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center}
+.gj-art-body{padding:18px;flex:1;display:flex;flex-direction:column;gap:8px}
+.gj-art-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10.5px;color:var(--mute)}
+.gj-art-body h3{font-size:15.5px;font-weight:600;line-height:1.3;letter-spacing:-.015em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.gj-art-body p{font-size:12px;line-height:1.55;color:var(--mute);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.gj-art-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:500;color:var(--ink)}
+.gj-art-author{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gj-art-foot small{font-size:10.5px;font-weight:600;color:var(--blue);white-space:nowrap}
 
-.ea-pagination{margin-top:34px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
-.ea-pagination button{height:36px;padding:0 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:12.5px;font-weight:500}
-.ea-pagination button:disabled{opacity:.45;cursor:not-allowed}
-.ea-page-nums{display:flex;gap:6px;flex-wrap:wrap}
-.ea-page-nums button{min-width:36px;padding:0 10px}
-.ea-page-nums button.is-on{background:var(--blue);border-color:var(--blue);color:#fff}
+.gj-pagination{margin-top:34px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.gj-pagination button{height:36px;padding:0 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:12.5px;font-weight:500}
+.gj-pagination button:disabled{opacity:.45;cursor:not-allowed}
+.gj-page-nums{display:flex;gap:6px;flex-wrap:wrap}
+.gj-page-nums button{min-width:36px;padding:0 10px}
+.gj-page-nums button.is-on{background:var(--blue);border-color:var(--blue);color:#fff}
 
-.ea-notice{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-radius:16px;background:var(--card);border:1px solid var(--line);margin-bottom:20px;font-size:12.5px}
-.ea-empty-box{text-align:center;padding:56px 20px;border-radius:16px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:12px}
-.ea-empty-actions{display:flex;gap:16px;align-items:center;margin-top:6px}
+.gj-notice{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-radius:16px;background:var(--card);border:1px solid var(--line);margin-bottom:20px;font-size:12.5px}
+.gj-empty-box{text-align:center;padding:56px 20px;border-radius:16px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:12px}
+.gj-empty-actions{display:flex;gap:16px;align-items:center;margin-top:6px}
 
 /* Article Detail Reader */
-.ea-reader-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
-.ea-reader-topbar .ea-back-link{margin-bottom:0}
-.ea-breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mute)}
-.ea-breadcrumb a:hover{color:var(--ink)}
-.ea-reader-shell{max-width:860px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,4.2vw,48px)}
-.ea-reader-cats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.ea-reader-cat{height:24px;padding:0 11px;border-radius:999px;background:rgba(81,69,185,.12);color:var(--blue);font-size:11px;font-weight:600;display:inline-flex;align-items:center}
-.ea-dark .ea-reader-cat{background:rgba(171,166,222,.16)}
-.ea-reader-head h1{font-size:clamp(26px,3.6vw,42px);line-height:1.12;letter-spacing:-.035em;font-weight:500;margin-bottom:20px}
-.ea-reader-meta-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.ea-author-box{display:flex;align-items:center;gap:12px}
-.ea-author-avatar{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:600;font-size:14px;flex:none}
-.ea-author-box strong{display:block;font-size:13.5px;font-weight:600}
-.ea-author-box small{display:block;font-size:11.5px;color:var(--mute);margin-top:2px}
-.ea-share-btn{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 14px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:12px;font-weight:500}
-.ea-share-btn:hover{border-color:var(--blue)}
-.ea-reader-cover{margin:24px 0;border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:var(--foot)}
-.ea-reader-cover img{width:100%;height:100%;object-fit:cover;display:block}
-.ea-reader-content{font-size:15.5px;line-height:1.82;color:var(--ink);overflow-wrap:anywhere}
-.ea-reader-content *{max-width:100%!important}
-.ea-reader-content p{margin:0 0 1.25em}
-.ea-reader-content h2{margin:1.7em 0 .6em;font-size:clamp(20px,2.2vw,26px);line-height:1.25;letter-spacing:-.025em;font-weight:600}
-.ea-reader-content h3,.ea-reader-content h4{margin:1.4em 0 .5em;font-size:18px;line-height:1.3;font-weight:600}
-.ea-reader-content ul,.ea-reader-content ol{margin:0 0 1.25em;padding-left:1.35em}
-.ea-reader-content li{margin-bottom:.45em}
-.ea-reader-content blockquote{margin:1.4em 0;padding:14px 18px;border-left:3px solid var(--blue);background:var(--bg);border-radius:0 12px 12px 0;font-style:italic}
-.ea-reader-content a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
-.ea-reader-content img{border-radius:12px;height:auto;margin:1.2em auto;display:block}
-.ea-reader-tags{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--mute)}
-.ea-tag-chip{height:28px;padding:0 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-size:11.5px;display:inline-flex;align-items:center}
-.ea-tag-chip:hover{border-color:var(--blue)}
+.gj-reader-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.gj-reader-topbar .gj-back-link{margin-bottom:0}
+.gj-breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mute)}
+.gj-breadcrumb a:hover{color:var(--ink)}
+.gj-reader-shell{max-width:860px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,4.2vw,48px)}
+.gj-reader-cats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.gj-reader-cat{height:24px;padding:0 11px;border-radius:999px;background:rgba(81,69,185,.12);color:var(--blue);font-size:11px;font-weight:600;display:inline-flex;align-items:center}
+.gj-dark .gj-reader-cat{background:rgba(171,166,222,.16)}
+.gj-reader-head h1{font-size:clamp(26px,3.6vw,42px);line-height:1.12;letter-spacing:-.035em;font-weight:500;margin-bottom:20px}
+.gj-reader-meta-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.gj-author-box{display:flex;align-items:center;gap:12px}
+.gj-author-avatar{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:600;font-size:14px;flex:none}
+.gj-author-box strong{display:block;font-size:13.5px;font-weight:600}
+.gj-author-box small{display:block;font-size:11.5px;color:var(--mute);margin-top:2px}
+.gj-share-btn{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 14px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:12px;font-weight:500}
+.gj-share-btn:hover{border-color:var(--blue)}
+.gj-reader-cover{margin:24px 0;border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:var(--foot)}
+.gj-reader-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.gj-reader-content{font-size:15.5px;line-height:1.82;color:var(--ink);overflow-wrap:anywhere}
+.gj-reader-content *{max-width:100%!important}
+.gj-reader-content p{margin:0 0 1.25em}
+.gj-reader-content h2{margin:1.7em 0 .6em;font-size:clamp(20px,2.2vw,26px);line-height:1.25;letter-spacing:-.025em;font-weight:600}
+.gj-reader-content h3,.gj-reader-content h4{margin:1.4em 0 .5em;font-size:18px;line-height:1.3;font-weight:600}
+.gj-reader-content ul,.gj-reader-content ol{margin:0 0 1.25em;padding-left:1.35em}
+.gj-reader-content li{margin-bottom:.45em}
+.gj-reader-content blockquote{margin:1.4em 0;padding:14px 18px;border-left:3px solid var(--blue);background:var(--bg);border-radius:0 12px 12px 0;font-style:italic}
+.gj-reader-content a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+.gj-reader-content img{border-radius:12px;height:auto;margin:1.2em auto;display:block}
+.gj-reader-tags{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--mute)}
+.gj-tag-chip{height:28px;padding:0 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-size:11.5px;display:inline-flex;align-items:center}
+.gj-tag-chip:hover{border-color:var(--blue)}
 
-.ea-related{margin-top:58px}
-.ea-related-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap}
-.ea-art-cta-link{display:inline-flex;align-items:center;height:40px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:500}
+.gj-related{margin-top:58px}
+.gj-related-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.gj-art-cta-link{display:inline-flex;align-items:center;height:40px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:500}
 
 /* Beranda Duo-style Purple Banner before Footer */
-.ea-sub-cta-wrap{padding:0 0 clamp(40px,6vh,64px)}
-.ea-sub-cta{border-radius:16px;padding:clamp(26px,3.6vw,44px);background:radial-gradient(circle at 80% 14%,rgba(167,159,248,.36),transparent 54%),linear-gradient(155deg,#3a3286,#5145b9);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.ea-duo-pill{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;letter-spacing:.02em;margin-bottom:12px}
-.ea-sub-cta h2 span{color:#ffda03}
-.ea-sub-cta .ea-small{color:rgba(255,255,255,.84);margin-top:10px;max-width:460px}
-.ea-sub-cta-btns{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.ea-btn-outline-w{display:inline-flex;align-items:center;height:40px;padding:0 20px;border-radius:999px;border:1px solid rgba(255,255,255,.32);color:#fff;font-size:12px;font-weight:500}
+.gj-sub-cta-wrap{padding:0 0 clamp(40px,6vh,64px)}
+.gj-sub-cta{border-radius:16px;padding:clamp(26px,3.6vw,44px);background:radial-gradient(circle at 80% 14%,rgba(167,159,248,.36),transparent 54%),linear-gradient(155deg,#3a3286,#5145b9);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.gj-duo-pill{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;letter-spacing:.02em;margin-bottom:12px}
+.gj-sub-cta h2 span{color:#ffda03}
+.gj-sub-cta .gj-small{color:rgba(255,255,255,.84);margin-top:10px;max-width:460px}
+.gj-sub-cta-btns{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.gj-btn-outline-w{display:inline-flex;align-items:center;height:40px;padding:0 20px;border-radius:999px;border:1px solid rgba(255,255,255,.32);color:#fff;font-size:12px;font-weight:500}
 
 /* Skeletons */
-.ea-sk-card{border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden}
-.ea-sk-media{aspect-ratio:16/10;background:var(--foot)}
-.ea-sk-cover{aspect-ratio:16/9;border-radius:14px;background:var(--foot);margin:24px 0}
-.ea-sk-body{padding:18px;display:flex;flex-direction:column;gap:10px}
-.ea-sk-line{height:14px;border-radius:999px;background:var(--foot);margin-bottom:10px}
-.ea-sk-line.w40{width:40%}.ea-sk-line.w75{width:75%}.ea-sk-line.w90{width:90%}
+.gj-sk-card{border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden}
+.gj-sk-media{aspect-ratio:16/10;background:var(--foot)}
+.gj-sk-cover{aspect-ratio:16/9;border-radius:14px;background:var(--foot);margin:24px 0}
+.gj-sk-body{padding:18px;display:flex;flex-direction:column;gap:10px}
+.gj-sk-line{height:14px;border-radius:999px;background:var(--foot);margin-bottom:10px}
+.gj-sk-line.w40{width:40%}.gj-sk-line.w75{width:75%}.gj-sk-line.w90{width:90%}
 
 /* Identical Beranda Footer */
-.ea-foot{background:var(--foot);padding:clamp(50px,7vh,70px) 0 clamp(30px,5vh,46px)}
-.ea-foot-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr .6fr;gap:32px;position:relative}
-.ea-foot-grid .ea-small{max-width:300px;margin-top:12px}
-.ea-foot .ea-h4{font-size:clamp(17px,1.45vw,21px)}
-.ea-foot-dots{font-size:9px;letter-spacing:.08em;vertical-align:3px;margin-left:8px;padding:3px 8px;border-radius:999px;background:var(--card);color:var(--blue);font-weight:600}
-.ea-mail{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:500;border-bottom:1px solid var(--line)}
-.ea-contact-meta{display:block;margin-top:6px;font-size:11.5px;color:var(--mute)}
-.ea-socials{display:flex;gap:8px;margin-top:18px}
-.ea-socials a{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--mute);transition:color .3s ease,border-color .3s ease}
-.ea-foot ul{display:flex;flex-direction:column;gap:11px;font-size:12.5px}
-.ea-foot li{display:flex;align-items:center;gap:6px}
-.ea-new,.ea-soon{height:16px;padding:0 7px;border-radius:999px;font-size:9px;display:inline-flex;align-items:center}
-.ea-new{background:#5145b9;color:#fff}
-.ea-soon{background:#f2f1fa;color:#5145b9}
-.ea-copy{position:absolute;right:clamp(20px,7.1vw,102px);bottom:0;font-size:10.5px;color:var(--mute)}
+.gj-foot{background:var(--foot);padding:clamp(50px,7vh,70px) 0 clamp(30px,5vh,46px)}
+.gj-foot-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr .6fr;gap:32px;position:relative}
+.gj-foot-grid .gj-small{max-width:300px;margin-top:12px}
+.gj-foot .gj-h4{font-size:clamp(17px,1.45vw,21px)}
+.gj-foot-dots{font-size:9px;letter-spacing:.08em;vertical-align:3px;margin-left:8px;padding:3px 8px;border-radius:999px;background:var(--card);color:var(--blue);font-weight:600}
+.gj-mail{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:500;border-bottom:1px solid var(--line)}
+.gj-contact-meta{display:block;margin-top:6px;font-size:11.5px;color:var(--mute)}
+.gj-socials{display:flex;gap:8px;margin-top:18px}
+.gj-socials a{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--mute);transition:color .3s ease,border-color .3s ease}
+.gj-foot ul{display:flex;flex-direction:column;gap:11px;font-size:12.5px}
+.gj-foot li{display:flex;align-items:center;gap:6px}
+.gj-new,.gj-soon{height:16px;padding:0 7px;border-radius:999px;font-size:9px;display:inline-flex;align-items:center}
+.gj-new{background:#5145b9;color:#fff}
+.gj-soon{background:#f2f1fa;color:#5145b9}
+.gj-copy{position:absolute;right:clamp(20px,7.1vw,102px);bottom:0;font-size:10.5px;color:var(--mute)}
 
 @media (hover:hover) and (pointer:fine){
-  .ea-link:hover::after,.ea-ghost:hover::after{transform:scaleX(1);transform-origin:0 50%}
-  .ea-round:hover{transform:scale(1.1)}
-  .ea-btn:hover,.ea-art-cta-link:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}
-  .ea-art-card:hover .ea-art-media img{transform:scale(1.05)}
-  .ea-art-card:hover{transform:translate3d(0,-4px,0);border-color:var(--blue)}
-  .ea-socials a:hover{color:var(--ink);border-color:var(--ink)}
+  .gj-link:hover::after,.gj-ghost:hover::after{transform:scaleX(1);transform-origin:0 50%}
+  .gj-round:hover{transform:scale(1.1)}
+  .gj-btn:hover,.gj-art-cta-link:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}
+  .gj-art-card:hover .gj-art-media img{transform:scale(1.05)}
+  .gj-art-card:hover{transform:translate3d(0,-4px,0);border-color:var(--blue)}
+  .gj-socials a:hover{color:var(--ink);border-color:var(--ink)}
 }
 @media (max-width:1023px){
-  .ea-links{display:none}
-  .ea-art-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .ea-foot-grid{grid-template-columns:1fr 1fr}
-  .ea-copy{position:static;grid-column:1/-1}
-  .ea-sub-head-side{align-items:flex-start}
+  .gj-links{display:none}
+  .gj-art-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gj-foot-grid{grid-template-columns:1fr 1fr}
+  .gj-copy{position:static;grid-column:1/-1}
+  .gj-sub-head-side{align-items:flex-start}
 }
 @media (max-width:767px){
-  .ea-nav{height:76px;margin-bottom:-76px;padding-top:16px}
-  .ea-submain{padding-top:96px}
-  .ea-filter-card{padding:14px;gap:12px}
-  .ea-search-row{flex-direction:row;flex-wrap:nowrap;align-items:center;gap:8px}
-  .ea-search-box{flex:1;width:auto;min-width:0;height:42px;padding:0 13px;gap:8px}
-  .ea-search-box input{font-size:14px}
-  .ea-sort-wrap{width:42px;height:42px;padding:0;justify-content:center;color:var(--ink)}
-  .ea-sort-wrap.is-filtered{background:var(--blue);border-color:var(--blue);color:#fff}
-  .ea-sort-label{display:none}
-  .ea-sort-wrap select{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px}
-  .ea-cats{margin:0 -14px;padding:2px 24px 2px 14px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%)}
-  .ea-filter-card{padding:14px;gap:12px}
-  .ea-search-row{flex-direction:row;flex-wrap:nowrap;align-items:center;gap:8px}
-  .ea-search-box{flex:1;width:auto;min-width:0;height:42px;padding:0 13px;gap:8px}
-  .ea-search-box input{font-size:14px}
-  .ea-sort-wrap{width:42px;height:42px;padding:0;justify-content:center;color:var(--ink)}
-  .ea-sort-wrap.is-filtered{background:var(--blue);border-color:var(--blue);color:#fff}
-  .ea-sort-label{display:none}
-  .ea-sort-wrap select{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px}
-  .ea-cats{margin:0 -14px;padding:2px 24px 2px 14px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%)}
-  .ea-art-grid{grid-template-columns:1fr}
+  .gj-nav{height:76px;margin-bottom:-76px;padding-top:16px}
+  .gj-submain{padding-top:96px}
+  .gj-filter-card{padding:14px;gap:12px}
+  .gj-search-row{flex-direction:row;flex-wrap:nowrap;align-items:center;gap:8px}
+  .gj-search-box{flex:1;width:auto;min-width:0;height:42px;padding:0 13px;gap:8px}
+  .gj-search-box input{font-size:14px}
+  .gj-sort-wrap{width:42px;height:42px;padding:0;justify-content:center;color:var(--ink)}
+  .gj-sort-wrap.is-filtered{background:var(--blue);border-color:var(--blue);color:#fff}
+  .gj-sort-label{display:none}
+  .gj-sort-wrap select{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px}
+  .gj-cats{margin:0 -14px;padding:2px 24px 2px 14px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%)}
+  .gj-filter-card{padding:14px;gap:12px}
+  .gj-search-row{flex-direction:row;flex-wrap:nowrap;align-items:center;gap:8px}
+  .gj-search-box{flex:1;width:auto;min-width:0;height:42px;padding:0 13px;gap:8px}
+  .gj-search-box input{font-size:14px}
+  .gj-sort-wrap{width:42px;height:42px;padding:0;justify-content:center;color:var(--ink)}
+  .gj-sort-wrap.is-filtered{background:var(--blue);border-color:var(--blue);color:#fff}
+  .gj-sort-label{display:none}
+  .gj-sort-wrap select{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px}
+  .gj-cats{margin:0 -14px;padding:2px 24px 2px 14px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent 100%)}
+  .gj-art-grid{grid-template-columns:1fr}
 }
 `

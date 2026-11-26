@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
-import EaselShowcaseTemplate from "@/components/ui/easel-showcase-template"
+import GongajiLanding from "@/components/ui/gongaji-landing"
 import { ArticleReaderPage, ArticlesDirectoryPage } from "@/components/ui/article-pages"
 
 export type AppRoute =
@@ -121,5 +121,5 @@ export default function App() {
     )
   }
 
-  return <EaselShowcaseTemplate dark={dark} onDarkChange={setDark} />
+  return <GongajiLanding dark={dark} onDarkChange={setDark} />
 }

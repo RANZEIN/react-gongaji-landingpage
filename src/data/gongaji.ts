@@ -271,8 +271,18 @@ export const QUPEDULI_CAMPAIGNS: readonly QuPeduliCampaign[] = [
 ]
 
 // 06-artikel-carousel: Artikel Islami dari Gongaji Public Article API
-export const PUBLIC_ARTICLE_API =
-  "https://gongaji-service-article-staging-m3gra3glsq-et.a.run.app/v1/public/article?limit=3"
+export const PUBLIC_ARTICLE_BASE =
+  "https://gongaji-service-article-staging-m3gra3glsq-et.a.run.app/v1/public/article"
+
+export const PUBLIC_ARTICLE_API = `${PUBLIC_ARTICLE_BASE}?limit=3`
+
+export const getPublicArticleDetailUrl = (uuid: string) =>
+  `${PUBLIC_ARTICLE_BASE}/${encodeURIComponent(uuid)}`
+
+export type ApiTaxonomyItem = {
+  readonly uuid: string
+  readonly name: string
+}
 
 export type ApiArticle = {
   readonly article_uuid: string
@@ -286,12 +296,122 @@ export type ApiArticle = {
   readonly article_total_comment: number
 }
 
+export type ApiArticleDetail = {
+  readonly article_uuid: string
+  readonly article_title: string
+  readonly article_description: string
+  readonly article_image_url: string
+  readonly article_author: string
+  readonly article_category: string
+  readonly article_tag?: string
+  readonly article_published_at: string
+  readonly article_total_view: number
+  readonly article_total_like?: number
+  readonly article_category_list?: readonly ApiTaxonomyItem[]
+  readonly article_tag_list?: readonly ApiTaxonomyItem[]
+}
+
 export const cleanArticleExcerpt = (raw: string) => raw.replace(/\s+/g, " ").trim()
 
 export const formatArticleDate = (iso: string) => {
   const dt = new Date(iso)
   if (Number.isNaN(dt.getTime())) return ""
   return new Intl.DateTimeFormat("id-ID", { day: "numeric", month: "short", year: "numeric" }).format(dt)
+}
+
+export const splitCategories = (raw: string) =>
+  raw
+    .split(",")
+    .map((c) => c.trim())
+    .filter(Boolean)
+
+export const estimateReadingMinutes = (htmlOrText: string) => {
+  const plain = htmlOrText.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
+  const words = plain ? plain.split(" ").length : 0
+  return Math.max(1, Math.ceil(words / 180))
+}
+
+export function sanitizeArticleHtml(rawHtml: string): string {
+  if (!rawHtml) return ""
+  if (typeof DOMParser === "undefined") {
+    return rawHtml.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
+  }
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(rawHtml, "text/html")
+
+  doc.querySelectorAll("script, style, iframe, object, embed, link, meta, form, input, button").forEach((el) => {
+    el.remove()
+  })
+
+  doc.body.querySelectorAll("*").forEach((el) => {
+    for (const attr of Array.from(el.attributes)) {
+      const name = attr.name.toLowerCase()
+      if (name === "style" || name === "class" || name === "id" || name.startsWith("on")) {
+        el.removeAttribute(attr.name)
+      }
+      if ((name === "href" || name === "src") && /^\s*(javascript|data|vbscript):/i.test(attr.value)) {
+        el.removeAttribute(attr.name)
+      }
+    }
+    if (el.tagName === "A") {
+      el.setAttribute("target", "_blank")
+      el.setAttribute("rel", "noopener noreferrer")
+    }
+    if (el.tagName === "IMG") {
+      el.setAttribute("loading", "lazy")
+    }
+  })
+
+  doc.body.querySelectorAll("p, div").forEach((el) => {
+    const text = (el.textContent || "").replace(/\u00a0/g, "").trim()
+    if (!text && !el.querySelector("img, br, hr")) {
+      el.remove()
+    }
+  })
+
+  return doc.body.innerHTML
+}
+
+export async function fetchPublicArticlesPage(page = 1, limit = 24, signal?: AbortSignal) {
+  const res = await fetch(`${PUBLIC_ARTICLE_BASE}?page=${page}&limit=${limit}`, { signal })
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  const json = await res.json()
+  const list = Array.isArray(json?.data?.data) ? (json.data.data as ApiArticle[]) : []
+  const total = typeof json?.data?.total === "number" ? json.data.total : list.length
+  const perPage = typeof json?.data?.limit === "number" && json.data.limit > 0 ? json.data.limit : list.length || limit
+  return { items: list, total, perPage }
+}
+
+export async function fetchAllPublicArticles(signal?: AbortSignal) {
+  const first = await fetchPublicArticlesPage(1, 24, signal)
+  const totalPages = Math.min(20, Math.max(1, Math.ceil(first.total / Math.max(1, first.perPage))))
+  if (totalPages === 1) {
+    return { items: first.items, total: first.total }
+  }
+  const rest = await Promise.all(
+    Array.from({ length: totalPages - 1 }, (_, idx) =>
+      fetchPublicArticlesPage(idx + 2, 24, signal)
+        .then((p) => p.items)
+        .catch(() => [] as ApiArticle[]),
+    ),
+  )
+  const seen = new Set<string>()
+  const merged: ApiArticle[] = []
+  for (const item of [...first.items, ...rest.flat()]) {
+    if (!seen.has(item.article_uuid)) {
+      seen.add(item.article_uuid)
+      merged.push(item)
+    }
+  }
+  return { items: merged, total: Math.max(first.total, merged.length) }
+}
+
+export async function fetchPublicArticleDetail(uuid: string, signal?: AbortSignal): Promise<ApiArticleDetail> {
+  const res = await fetch(getPublicArticleDetailUrl(uuid), { signal })
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  const json = await res.json()
+  if (!json?.data?.article_uuid) throw new Error("Artikel tidak ditemukan")
+  return json.data as ApiArticleDetail
 }
 
 export const DEFAULT_ARTICLES: readonly ApiArticle[] = [

@@ -291,6 +291,9 @@ export interface EaselShowcaseTemplateProps {
   campaigns?: readonly QuPeduliCampaign[]
   /** optional articles override; by default fetches live from Gongaji public article API */
   articles?: readonly ApiArticle[]
+  /** optional controlled dark mode state */
+  dark?: boolean
+  onDarkChange?: (dark: boolean) => void
   className?: string
   style?: CSSProperties
 }
@@ -301,6 +304,8 @@ export default function EaselShowcaseTemplate({
   assetBase = "/assets/",
   campaigns = QUPEDULI_CAMPAIGNS,
   articles,
+  dark: controlledDark,
+  onDarkChange,
   className,
   style,
 }: EaselShowcaseTemplateProps) {
@@ -339,7 +344,13 @@ export default function EaselShowcaseTemplate({
   const [liveArticles, setLiveArticles] = useState<readonly ApiArticle[]>(articles ?? DEFAULT_ARTICLES)
   const [articleTotal, setArticleTotal] = useState<number>(76)
   const [liked, setLiked] = useState(false)
-  const [dark, setDark] = useState(false)
+  const [innerDark, setInnerDark] = useState(false)
+  const dark = controlledDark ?? innerDark
+  const setDark = (updater: boolean | ((prev: boolean) => boolean)) => {
+    const next = typeof updater === "function" ? updater(dark) : updater
+    setInnerDark(next)
+    onDarkChange?.(next)
+  }
   const gateVideoRef = useRef(null as HTMLVideoElement | null)
 
   useEffect(() => {
@@ -1529,14 +1540,19 @@ export default function EaselShowcaseTemplate({
                                 <p className="ea-small">
                                   Bacaan ringan seputar Ramadan, fikih keluarga, dan tadabbur Al-Qur'an langsung dari redaksi Gongaji.
                                 </p>
-                                <a className="ea-viewall ea-art-cta" href="#download">
-                                  Baca di Gongaji App ({articleTotal}+ Artikel)
+                                <a className="ea-viewall ea-art-cta" href="#/artikel">
+                                  Lihat Semua ({articleTotal} Artikel) →
                                 </a>
                               </div>
                             </div>
                             <div className="ea-art-grid" data-rv>
                               {liveArticles.map((item) => (
-                                <article key={item.article_uuid} className="ea-art-card">
+                                <a
+                                  key={item.article_uuid}
+                                  href={`#/artikel/${item.article_uuid}`}
+                                  className="ea-art-card"
+                                  aria-label={`Baca artikel ${item.article_title}`}
+                                >
                                   <div className="ea-art-media">
                                     <img
                                       src={item.article_image_url}
@@ -1562,10 +1578,10 @@ export default function EaselShowcaseTemplate({
                                     <p>{cleanArticleExcerpt(item.article_excerpt)}</p>
                                     <div className="ea-art-foot">
                                       <span>{item.article_author}</span>
-                                      {item.article_total_comment > 0 && <small>{item.article_total_comment} komentar</small>}
+                                      <small className="ea-art-read">Baca artikel →</small>
                                     </div>
                                   </div>
-                                </article>
+                                </a>
                               ))}
                             </div>
                           </div>
@@ -2117,7 +2133,7 @@ export default function EaselShowcaseTemplate({
   ".ea-art-cta{position:static;height:30px;padding:0 16px;border-radius:999px;background:var(--blue);color:#fff;font-size:11px;font-weight:500;display:inline-flex;align-items:center}" +
   ".ea-art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;opacity:0;transform:translate3d(0,40px,0);transition:opacity .9s " + EASE + ",transform .9s " + EASE + "}" +
   ".ea-art-grid.ea-in{opacity:1;transform:none}" +
-  ".ea-art-card{border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;transition:transform .45s " + EASE + "}" +
+  ".ea-art-card{border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .45s " + EASE + ",border-color .25s ease}" +
   ".ea-art-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--foot)}" +
   ".ea-art-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s " + EASE + "}" +
   ".ea-art-cat{position:absolute;left:12px;top:12px;height:22px;padding:0 10px;border-radius:999px;background:rgba(18,17,24,.82);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;display:inline-flex;align-items:center}" +
@@ -2126,7 +2142,7 @@ export default function EaselShowcaseTemplate({
   ".ea-art-body h3{font-size:15.5px;font-weight:600;line-height:1.3;letter-spacing:-.015em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}" +
   ".ea-art-body p{font-size:12px;line-height:1.55;color:var(--mute);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}" +
   ".ea-art-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:500;color:var(--ink)}" +
-  ".ea-art-foot small{font-size:10.5px;font-weight:400;color:var(--mute)}" +
+  ".ea-art-foot small{font-size:10.5px;font-weight:600;color:var(--blue)}" +
   // stage 3
   ".ea-lead{position:absolute;left:50%;top:22%;width:min(640px,90vw);display:flex;flex-direction:column;align-items:center;gap:14px;z-index:3}" +
   ".ea-lead .ea-eyebrow{margin-bottom:0}" +
@@ -2231,7 +2247,7 @@ export default function EaselShowcaseTemplate({
   ".ea-round:hover,.ea-arrows button:hover{transform:scale(1.1)}" +
   ".ea-btn:hover,.ea-store-badge:hover{transform:translate3d(0,-2px,0);box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}" +
   ".ea-art-card:hover .ea-art-media img,.ea-photo:hover>img{transform:scale(1.05)}" +
-  ".ea-art-card:hover{transform:translate3d(0,-4px,0)}" +
+  ".ea-art-card:hover{transform:translate3d(0,-4px,0);border-color:var(--blue)}" +
   ".ea-meet:hover .ea-duo-phones,.ea-arch:hover .ea-qursus-ui{transform:translate3d(0,-4px,0)}" +
   ".ea-b1:hover .ea-pile .ea-pcard:nth-child(1){transform:translate(-80%,-44%) rotate(-18deg)}" +
   ".ea-b1:hover .ea-pile .ea-pcard:nth-child(3){transform:translate(-18%,-58%) rotate(14deg)}" +

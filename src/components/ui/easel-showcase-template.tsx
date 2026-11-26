@@ -769,9 +769,9 @@ export default function EaselShowcaseTemplate({
               }
               if (item.kind === "qulib") {
                 return (
-                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-dark">
+                  <div key={item.kind + "-" + i} ref={(el) => { deck.current[i] = el }} className="ea-card ea-c1 ea-s1 ea-s1-teal">
                     <div className="ea-s1-top">
-                      <span className="ea-s1-pill ea-s1-pill-gold">{item.badge}</span>
+                      <span className="ea-s1-pill">{item.badge}</span>
                       <img src={asset(item.icon)} alt="" width={38} height={38} className="ea-s1-ico" />
                     </div>
                     <div className="ea-s1-copy">
@@ -788,14 +788,15 @@ export default function EaselShowcaseTemplate({
               }
               if (item.kind === "showcase") {
                 const isMint = item.theme === "mint"
+                const bgCls = isMint ? "ea-s1-mint" : item.theme === "dark" ? "ea-s1-dark" : "ea-s1-teal"
                 return (
                   <div
                     key={item.badge + "-" + i}
                     ref={(el) => { deck.current[i] = el }}
-                    className={"ea-card ea-c1 ea-s1 " + (isMint ? "ea-s1-mint" : "ea-s1-teal")}
+                    className={"ea-card ea-c1 ea-s1 " + bgCls}
                   >
                     <div className="ea-s1-top">
-                      <span className={"ea-s1-pill " + (isMint ? "ea-s1-pill-ink" : "")}>{item.badge}</span>
+                      <span className={"ea-s1-pill " + (isMint ? "ea-s1-pill-ink" : item.theme === "dark" ? "ea-s1-pill-gold" : "")}>{item.badge}</span>
                     </div>
                     <div className={"ea-s1-heroico " + (isMint ? "is-mint" : "")}>
                       <img src={asset(item.icon)} alt="" width={60} height={60} className="ea-s1-bigico" />

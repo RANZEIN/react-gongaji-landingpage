@@ -22,8 +22,14 @@ export const GONGAJI_LOGO = {
   ],
 } as const
 
-// 01-hero: Stage 1 fanned hero deck (left-back -> right-front, 8 distinct ecosystem features)
+// 01-hero: Stage 1 fanned hero deck (left-back -> right-front, exact ecosystem order)
 export const DECK1_ASSETS = [
+  {
+    kind: "app" as const,
+    badge: "Gongaji App",
+    rating: "4,9 ★",
+    path: "01-hero/app-home.webp",
+  },
   {
     kind: "features" as const,
     badge: "IBADAH HARIAN",
@@ -35,6 +41,40 @@ export const DECK1_ASSETS = [
       "01-hero/icon-doa.webp",
       "01-hero/icon-dzikir.webp",
     ],
+  },
+  {
+    kind: "qulib" as const,
+    badge: "QU-LIB",
+    title: "Qu-Lib",
+    sub: "300+ buku & referensi Islami",
+    chips: ["Tafsir & Sirah", "Gratis di App"],
+    icon: "01-hero/icon-sirah.webp",
+  },
+  {
+    kind: "showcase" as const,
+    theme: "dark" as const,
+    badge: "VR MANASIK",
+    title: "VR Haji Umrah",
+    sub: "Simulasi Tawaf & Sa'i 3D",
+    icon: "01-hero/icon-vr.webp",
+  },
+  {
+    kind: "cutout" as const,
+    theme: "rose" as const,
+    badge: "Qori · 11 Pilihan",
+    sub: "",
+    inkPill: false,
+    darkText: false,
+    float: true,
+    path: "01-hero/cutout-murottal.webp",
+  },
+  {
+    kind: "showcase" as const,
+    theme: "mint" as const,
+    badge: "QR CONTENT",
+    title: "QR Content",
+    sub: "Scan Video & Materi Ngaji",
+    icon: "01-hero/icon-qr.webp",
   },
   {
     kind: "cutout" as const,
@@ -55,46 +95,6 @@ export const DECK1_ASSETS = [
     darkText: true,
     float: false,
     path: "01-hero/cutout-qupeduli.webp",
-  },
-  {
-    kind: "cutout" as const,
-    theme: "rose" as const,
-    badge: "Qori · 11 Pilihan",
-    sub: "",
-    inkPill: false,
-    darkText: false,
-    float: true,
-    path: "01-hero/cutout-murottal.webp",
-  },
-  {
-    kind: "qulib" as const,
-    badge: "QU-LIB",
-    title: "Qu-Lib",
-    sub: "300+ buku & referensi Islami",
-    chips: ["Tafsir & Sirah", "Gratis di App"],
-    icon: "01-hero/icon-sirah.webp",
-  },
-  {
-    kind: "showcase" as const,
-    theme: "teal" as const,
-    badge: "VR MANASIK",
-    title: "VR Haji Umrah",
-    sub: "Simulasi Tawaf & Sa'i 3D",
-    icon: "01-hero/icon-vr.webp",
-  },
-  {
-    kind: "showcase" as const,
-    theme: "mint" as const,
-    badge: "QR CONTENT",
-    title: "QR Content",
-    sub: "Scan Video & Materi Ngaji",
-    icon: "01-hero/icon-qr.webp",
-  },
-  {
-    kind: "app" as const,
-    badge: "Gongaji App",
-    rating: "4,9 ★",
-    path: "01-hero/app-home.webp",
   },
 ] as const
 
